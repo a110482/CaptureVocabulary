@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view
         view.addSubview(capContainerView)
         capContainerView.snp.makeConstraints {
             $0.top.equalTo(20)

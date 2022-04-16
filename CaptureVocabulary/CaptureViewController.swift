@@ -8,20 +8,31 @@
 import UIKit
 import SnapKit
 import AVFoundation
+import SwifterSwift
 
 class CaptureViewController: UIViewController {
+    let capturedImageView = UIImageView()
+    
+    let cameraView = UIView()
+    
     var captureSession: AVCaptureSession!
     
-    var backCamera : AVCaptureDevice!
-    var frontCamera : AVCaptureDevice!
-    var backInput : AVCaptureInput!
-    var frontInput : AVCaptureInput!
+    var videoOutput : AVCaptureVideoDataOutput!
     
     var previewLayer : AVCaptureVideoPreviewLayer!
     
+    var takePicture = false
+    
+    var identifyArea: CGRect {
+        let width: CGFloat = cameraView.bounds.width * 0.4
+        let height: CGFloat = 20
+        return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
+                      size: CGSize(width: width, height: height))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
+        configUI()
         setupAndStartCaptureSession()
         setupInputs()
     }
@@ -29,6 +40,8 @@ class CaptureViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupPreviewLayer()
+        setupOutput()
+        makeMask()
     }
     
     func setupAndStartCaptureSession(){
@@ -53,46 +66,126 @@ class CaptureViewController: UIViewController {
     }
     
     func setupInputs(){
-            //get back camera
-            if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
-                backCamera = device
-            } else {
-                //handle this appropriately for production purposes
-                fatalError("no back camera")
-            }
-            
-            //get front camera
-            if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
-                frontCamera = device
-            } else {
-                fatalError("no front camera")
-            }
-            
-            //now we need to create an input objects from our devices
-            guard let bInput = try? AVCaptureDeviceInput(device: backCamera) else {
-                fatalError("could not create input device from back camera")
-            }
-            backInput = bInput
-            if !captureSession.canAddInput(backInput) {
-                fatalError("could not add back camera input to capture session")
-            }
-            
-            guard let fInput = try? AVCaptureDeviceInput(device: frontCamera) else {
-                fatalError("could not create input device from front camera")
-            }
-            frontInput = fInput
-            if !captureSession.canAddInput(frontInput) {
-                fatalError("could not add front camera input to capture session")
-            }
-            
-            //connect back camera input to session
-            captureSession.addInput(backInput)
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+            return
         }
+        guard let bInput = try? AVCaptureDeviceInput(device: device) else {
+            return
+        }
+        captureSession.addInput(bInput)
+    }
+    
+    func setupOutput(){
+        videoOutput = AVCaptureVideoDataOutput()
+        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
+        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
+        
+        if captureSession.canAddOutput(videoOutput) {
+            captureSession.addOutput(videoOutput)
+        } else {
+            fatalError("could not add video output")
+        }
+        
+        videoOutput.connections.first?.videoOrientation = .portrait
+    }
     
     func setupPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        view.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.view.layer.frame
+        cameraView.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.cameraView.layer.frame
         previewLayer.videoGravity = .resizeAspectFill
+    }
+}
+
+// UI
+extension CaptureViewController {
+    func configUI() {
+        view.addSubview(cameraView)
+        cameraView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        #if DEBUG
+        setPreviewImage()
+        #endif
+    }
+    
+    func makeMask() {
+        let mask = UIView()
+        mask.borderColor = .red
+        mask.borderWidth = 2
+        mask.frame = identifyArea
+        cameraView.addSubview(mask)
+    }
+    
+    func croppedImage(image: UIImage) -> UIImage? {
+        // 先調整長寬比
+        let rate = cameraView.bounds.width/image.size.width
+        let originY = (image.size.height - cameraView.bounds.height/rate)/2
+        let rect = CGRect(origin: CGPoint(x: 0, y: originY),
+                          size: CGSize(width: cameraView.bounds.width/rate, height: cameraView.bounds.height/rate))
+        let image2 = image.cropped(to: rect)
+        // 再調整至辨識範圍
+        let rate2 = cameraView.bounds.width/image2.size.width
+        let rect2 = CGRect(
+            origin: CGPoint(x: identifyArea.origin.x/rate2,
+                            y: identifyArea.origin.y/rate2),
+            size: CGSize(width: identifyArea.width/rate2, height: identifyArea.height/rate2))
+        
+        let image3 = image2.cropped(to: rect2)
+        return image3
+    }
+
+    #if DEBUG
+    func setPreviewImage() {
+        capturedImageView.borderColor = .green
+        capturedImageView.borderWidth = 2
+        capturedImageView.backgroundColor = .gray
+        capturedImageView.contentMode = .scaleAspectFit
+        capturedImageView.clipsToBounds = true
+        view.addSubview(capturedImageView)
+        capturedImageView.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.left.right.bottom.equalToSuperview()
+        }
+    }
+    #endif
+}
+
+extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard !takePicture else { return }
+        takePicture = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.takePicture = false
+        }
+        guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        let ciImage = CIImage(cvImageBuffer: cvBuffer)
+        let context = CIContext()
+        guard let ref = context.createCGImage(ciImage, from: ciImage.extent) else { return }
+        let uiImage = UIImage(cgImage: ref)
+        DispatchQueue.main.async { [weak self] in
+            self?.capturedImageView.image = self!.croppedImage(image: uiImage)
+        }
+    }
+}
+
+private prefix func - (right: CGPoint) -> CGPoint {
+    return CGPoint(x: -right.x, y: -right.y)
+}
+
+extension CGPoint {
+    func offset(x: CGFloat, y: CGFloat) -> CGPoint {
+        return CGPoint(x: self.x + x,
+                       y: self.y + y)
+    }
+}
+
+extension UIView {
+    var image: UIImage {
+        let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
+        let image = renderer.image { ctx in
+            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        }
+        return image
     }
 }
