@@ -12,6 +12,7 @@
 		F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16308280BF13300257ABF /* Coordinator.swift */; };
 		F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16309280BF13300257ABF /* Coordinating.swift */; };
 		F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */; };
+		F5A16311280C759600257ABF /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16310280C759600257ABF /* CreateVocabularyCoordinator.swift */; };
 		F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006828071DE200A3AAB6 /* AppDelegate.swift */; };
 		F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */; };
 		F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006C28071DE200A3AAB6 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 		F5A16308280BF13300257ABF /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F5A16309280BF13300257ABF /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
 		F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellTemplate.swift; sourceTree = "<group>"; };
+		F5A16310280C759600257ABF /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C2006828071DE200A3AAB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,15 @@
 			path = Libary;
 			sourceTree = "<group>";
 		};
+		F5A1630F280C755500257ABF /* CreateVocabulary */ = {
+			isa = PBXGroup;
+			children = (
+				F5A16306280AE4FB00257ABF /* CaptureViewController.swift */,
+				F5A16310280C759600257ABF /* CreateVocabularyCoordinator.swift */,
+			);
+			path = CreateVocabulary;
+			sourceTree = "<group>";
+		};
 		F5C2005C28071DE200A3AAB6 = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +116,7 @@
 				F5C2007128071DE400A3AAB6 /* Assets.xcassets */,
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
-				F5A16306280AE4FB00257ABF /* CaptureViewController.swift */,
+				F5A1630F280C755500257ABF /* CreateVocabulary */,
 				F5A1630E280BF19600257ABF /* Libary */,
 			);
 			path = CaptureVocabulary;
@@ -230,6 +241,7 @@
 				F5A16307280AE4FB00257ABF /* CaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
+				F5A16311280C759600257ABF /* CreateVocabularyCoordinator.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,

@@ -24,7 +24,7 @@ public class Coordinator<T: UIViewController> : Coordinating {
     
     public func start() -> Void {
         // Do your action before call super.start()
-        UIInterfaceManager.shared.reflash()
+//        UIInterfaceManager.shared.reflash()
         started = true
     }
     
