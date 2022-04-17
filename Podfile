@@ -5,5 +5,6 @@ target 'CaptureVocabulary' do
 use_frameworks!
 
 pod 'SnapKit'
+pod 'SwifterSwift'
 
 end
