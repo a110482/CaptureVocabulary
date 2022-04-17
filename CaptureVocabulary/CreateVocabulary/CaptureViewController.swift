@@ -39,7 +39,7 @@ class CaptureViewController: UIViewController {
     
     var identifyArea: CGRect {
         let width: CGFloat = cameraView.bounds.width * 0.6
-        let height: CGFloat = 30
+        let height: CGFloat = 50
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
     }
