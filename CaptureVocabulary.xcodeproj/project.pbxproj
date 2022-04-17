@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5A16307280AE4FB00257ABF /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16306280AE4FB00257ABF /* CaptureViewController.swift */; };
+		F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16308280BF13300257ABF /* Coordinator.swift */; };
+		F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16309280BF13300257ABF /* Coordinating.swift */; };
+		F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */; };
 		F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006828071DE200A3AAB6 /* AppDelegate.swift */; };
 		F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */; };
 		F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006C28071DE200A3AAB6 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A16306280AE4FB00257ABF /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		F5A16308280BF13300257ABF /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F5A16309280BF13300257ABF /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
+		F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellTemplate.swift; sourceTree = "<group>"; };
 		F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C2006828071DE200A3AAB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +67,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F5A1630E280BF19600257ABF /* Libary */ = {
+			isa = PBXGroup;
+			children = (
+				F5A16309280BF13300257ABF /* Coordinating.swift */,
+				F5A16308280BF13300257ABF /* Coordinator.swift */,
+				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
+			);
+			path = Libary;
+			sourceTree = "<group>";
+		};
 		F5C2005C28071DE200A3AAB6 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +106,7 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F5A16306280AE4FB00257ABF /* CaptureViewController.swift */,
+				F5A1630E280BF19600257ABF /* Libary */,
 			);
 			path = CaptureVocabulary;
 			sourceTree = "<group>";
@@ -211,7 +228,10 @@
 			files = (
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* CaptureViewController.swift in Sources */,
+				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
+				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
+				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
