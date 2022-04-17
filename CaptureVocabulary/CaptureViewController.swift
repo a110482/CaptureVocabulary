@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 import AVFoundation
 import SwifterSwift
+import Vision
+
+
 
 class CaptureViewController: UIViewController {
     let capturedImageView = UIImageView()
@@ -21,11 +24,15 @@ class CaptureViewController: UIViewController {
     
     var previewLayer : AVCaptureVideoPreviewLayer!
     
+    let textRecognitionWorkQueue =  DispatchQueue (label: "TextRecognitionQueue", qos: .userInitiated , attributes: [], autoreleaseFrequency: .workItem )
+    
+    var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
+    
     var takePicture = false
     
     var identifyArea: CGRect {
-        let width: CGFloat = cameraView.bounds.width * 0.4
-        let height: CGFloat = 20
+        let width: CGFloat = cameraView.bounds.width * 0.6
+        let height: CGFloat = 30
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
     }
@@ -35,6 +42,7 @@ class CaptureViewController: UIViewController {
         configUI()
         setupAndStartCaptureSession()
         setupInputs()
+        setTextRecognitionRequest()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +103,31 @@ class CaptureViewController: UIViewController {
         previewLayer.frame = self.cameraView.layer.frame
         previewLayer.videoGravity = .resizeAspectFill
     }
+    
+    private func recognizeTextInImage(_ image: UIImage) {
+        guard let cgImage = image.cgImage else { return }
+        
+        textRecognitionWorkQueue.async {
+            let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+            do {
+                try requestHandler.perform([self.textRecognitionRequest])
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func setTextRecognitionRequest() {
+        textRecognitionRequest = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            var detectedText: [String] = []
+            for observation in observations {
+                guard let topCandidate = observation.topCandidates(1).first else { return }
+                detectedText.append(topCandidate.string)
+            }
+            print(detectedText)
+        }
+    }
 }
 
 // UI
@@ -153,7 +186,7 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !takePicture else { return }
         takePicture = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.takePicture = false
         }
         guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
@@ -164,7 +197,10 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let ref = context.createCGImage(ciImage, from: ciImage.extent) else { return }
         let uiImage = UIImage(cgImage: ref)
         DispatchQueue.main.async { [weak self] in
-            self?.capturedImageView.image = self!.croppedImage(image: uiImage)
+            guard let self = self else { return }
+            guard let croppedImage = self.croppedImage(image: uiImage) else { return }
+            self.capturedImageView.image = croppedImage
+            self.recognizeTextInImage(croppedImage)
         }
     }
 }
