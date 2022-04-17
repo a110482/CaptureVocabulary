@@ -6,5 +6,8 @@ use_frameworks!
 
 pod 'SnapKit'
 pod 'SwifterSwift'
+pod 'RxSwift'
+pod 'RxCocoa'
+pod 'Log'
 
 end

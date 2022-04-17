@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import Log
+
+// 設定
+let Log = Logger()
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Log.enabled = true
+        Log.minLevel = .debug
         return true
     }
 

@@ -8,13 +8,16 @@
 import UIKit
 import SnapKit
 import SwifterSwift
-import VisionKit
 import Vision
+import RxCocoa
+import RxSwift
 
 
 class ViewController: UIViewController {
     let cap = CaptureViewController()
     let capContainerView = UIView()
+    private let disposeBag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,13 @@ class ViewController: UIViewController {
         cap.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        cap.action.subscribe(onNext: { act in
+            switch act {
+            case .identifyText(let observations):
+                print(observations)
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
