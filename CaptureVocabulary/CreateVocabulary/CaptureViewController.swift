@@ -128,16 +128,6 @@ class CaptureViewController: UIViewController {
         textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
             self?.action.accept(.identifyText(observations: observations))
-            
-            #if DEBUG
-            var detectedText: [String] = []
-            for observation in observations {
-                guard let topCandidate = observation.topCandidates(1).first else { return }
-                detectedText.append(topCandidate.string)
-            }
-            guard detectedText.count > 0 else { return }
-            Log.debug("文字識別: \(detectedText)")
-            #endif
         }
     }
 }

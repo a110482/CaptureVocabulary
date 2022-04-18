@@ -29,11 +29,27 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
 
 // MARK: - VM
 class CreateVocabularyViewModel {
+    struct Output {
+        let identifyWords = BehaviorRelay<[String]>(value: [])
+    }
+    let output = Output()
+    
     func handleObservations(_ observations: [VNRecognizedTextObservation]) {
-        #if DEBUG
-        #endif
+        guard observations.count > 0 else { return }
+        let words = refineObservations(observations)
+        output.identifyWords.accept(words)
     }
     
+}
+
+private extension CreateVocabularyViewModel {
+    func refineObservations(_ observations: [VNRecognizedTextObservation]) -> [String] {
+        var words = observations.compactMap { $0.topCandidates(1).first?.string }
+        words = words.flatMap { $0.components(separatedBy: " ")}
+        words = words.filter { $0.count > 2 }
+        words = words.sortedFromMiddle()
+        return words
+    }
 }
 
 // MARK: - VC
