@@ -37,12 +37,12 @@ class CaptureViewController: UIViewController {
     
     var takePicture = false
     
-    var identifyArea: CGRect {
-        let width: CGFloat = cameraView.bounds.width * 0.6
-        let height: CGFloat = 50
+    lazy var identifyArea: CGRect = {
+        let width: CGFloat = cameraView.bounds.width * 0.8
+        let height: CGFloat = 150
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
-    }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,7 +188,7 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !takePicture else { return }
         takePicture = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.takePicture = false
         }
         guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
