@@ -10,5 +10,6 @@ pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Log'
 pod 'Then'
+pod 'Moya'
 
 end
