@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
+		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
 		F5A16307280AE4FB00257ABF /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16306280AE4FB00257ABF /* CaptureViewController.swift */; };
 		F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16308280BF13300257ABF /* Coordinator.swift */; };
 		F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16309280BF13300257ABF /* Coordinating.swift */; };
@@ -26,6 +27,7 @@
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
 		F5A16306280AE4FB00257ABF /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		F5A16308280BF13300257ABF /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F5A16309280BF13300257ABF /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				F5C2007128071DE400A3AAB6 /* Assets.xcassets */,
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
+				F53771C72812985B003F892D /* key.plist */,
 				F5A1630F280C755500257ABF /* CreateVocabulary */,
 				F5A1630E280BF19600257ABF /* Libary */,
 			);
@@ -193,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F53771C82812985B003F892D /* key.plist in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
