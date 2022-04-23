@@ -9,6 +9,10 @@ import Foundation
 import Moya
 
 
+struct KeyPlistModel: Codable {
+    let azureKey: String?
+}
+
 protocol AzureRequest: Request {
     
 }
@@ -39,29 +43,5 @@ struct EmptyResponse: Codable {
     
 }
 
-// NARK: --
 
-struct AzureTranslate: AzureRequest {
-    typealias ResponseModel = EmptyResponse
-    
-    let text: String
-    
-    var path: String {
-        "translate"
-    }
-    
-    var method: Moya.Method = .post
-    
-    private var queryModel: [String: Any] {
-        ["Text": "I would really like to drive your car around the block a few times."
-        ]
-    }
-    struct QueryModel: Codable {
-        let Text: String
-    }
-    
-    var task: Task {
-        let data = try! JSONEncoder().encode([QueryModel(Text: text)])
-        return .requestCompositeData(bodyData: data, urlParameters: parameters)
-    }
-}
+

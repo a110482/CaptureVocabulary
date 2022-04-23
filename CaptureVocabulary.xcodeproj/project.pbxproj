@@ -22,6 +22,9 @@
 		F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */; };
 		F5A16311280C759600257ABF /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16310280C759600257ABF /* CreateVocabularyCoordinator.swift */; };
 		F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16313280DBAFA00257ABF /* Array+Ext.swift */; };
+		F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */; };
+		F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD828145720000DD57B /* AzureDictionary.swift */; };
+		F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EADA28145B6C000DD57B /* PlistReader.swift */; };
 		F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006828071DE200A3AAB6 /* AppDelegate.swift */; };
 		F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */; };
 		F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006C28071DE200A3AAB6 /* ViewController.swift */; };
@@ -48,6 +51,9 @@
 		F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellTemplate.swift; sourceTree = "<group>"; };
 		F5A16310280C759600257ABF /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5A16313280DBAFA00257ABF /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureTranslate.swift; sourceTree = "<group>"; };
+		F5B5EAD828145720000DD57B /* AzureDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionary.swift; sourceTree = "<group>"; };
+		F5B5EADA28145B6C000DD57B /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
 		F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C2006828071DE200A3AAB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				F58A860528140ED10005CD34 /* AzureRequest.swift */,
+				F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */,
+				F5B5EAD828145720000DD57B /* AzureDictionary.swift */,
 			);
 			path = AzureApi;
 			sourceTree = "<group>";
@@ -116,6 +124,7 @@
 				F5A16309280BF13300257ABF /* Coordinating.swift */,
 				F5A16308280BF13300257ABF /* Coordinator.swift */,
 				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
+				F5B5EADA28145B6C000DD57B /* PlistReader.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -291,14 +300,17 @@
 			files = (
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
+				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* CaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
+				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5A16311280C759600257ABF /* CreateVocabularyCoordinator.swift in Sources */,
+				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,
