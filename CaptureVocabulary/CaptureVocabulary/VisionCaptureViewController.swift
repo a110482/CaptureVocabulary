@@ -14,7 +14,7 @@ import RxCocoa
 import RxSwift
 
 
-class CaptureViewController: UIViewController {
+class VisionCaptureViewController: UIViewController {
     enum Action {
         case identifyText(observations: [VNRecognizedTextObservation])
     }
@@ -133,7 +133,7 @@ class CaptureViewController: UIViewController {
 }
 
 // UI
-extension CaptureViewController {
+extension VisionCaptureViewController {
     func configUI() {
         view.addSubview(cameraView)
         cameraView.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -184,7 +184,7 @@ extension CaptureViewController {
     #endif
 }
 
-extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !takePicture else { return }
         takePicture = true
