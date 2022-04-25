@@ -36,6 +36,8 @@
 		F5CBF59428159FE30088C801 /* VocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF59328159FE30088C801 /* VocabularyView.swift */; };
 		F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */; };
 		F5CBF5982815BFF30088C801 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
+		F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = F5CBF5992816DCF00088C801 /* AzureDictionary.json */; };
+		F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		F5CBF59328159FE30088C801 /* VocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyView.swift; sourceTree = "<group>"; };
 		F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5CBF5972815BFF30088C801 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		F5CBF5992816DCF00088C801 /* AzureDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AzureDictionary.json; sourceTree = "<group>"; };
+		F5CBF5AD2816EEDB0088C801 /* GBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				F58A860528140ED10005CD34 /* AzureRequest.swift */,
 				F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */,
 				F5B5EAD828145720000DD57B /* AzureDictionary.swift */,
+				F5CBF5992816DCF00088C801 /* AzureDictionary.json */,
 			);
 			path = AzureApi;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
 				F5B5EADA28145B6C000DD57B /* PlistReader.swift */,
 				F5CBF5972815BFF30088C801 /* Operators.swift */,
+				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F53771C82812985B003F892D /* key.plist in Resources */,
+				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
@@ -332,6 +339,7 @@
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyView.swift in Sources */,
+				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,

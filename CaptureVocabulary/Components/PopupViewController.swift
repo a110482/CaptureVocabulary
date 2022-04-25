@@ -31,7 +31,6 @@ class PopupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black.withAlphaComponent(0.4)
         addBackgroundGesture()
     }
     
@@ -49,7 +48,11 @@ class PopupViewController: UIViewController {
     
     private func addBackgroundGesture() {
         let ges = UITapGestureRecognizer()
-        view.addGestureRecognizer(ges)
+        let back = UIView()
+        back.backgroundColor = .black.withAlphaComponent(0.5)
+        view.addSubview(back)
+        back.snp.makeConstraints { $0.edges.equalToSuperview() }
+        back.addGestureRecognizer(ges)
         ges.rx.event.subscribe(onNext: { [weak self] event in
             guard let self = self else { return }
             if event.state == .recognized {

@@ -25,17 +25,23 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        createVocabularyCoordinator = CaptureVocabularyCoordinator(rootViewController: self)
-//        createVocabularyCoordinator.start()
-        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "hello")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.coor.start()
-        }
+        createVocabularyCoordinator = CaptureVocabularyCoordinator(rootViewController: self)
+        createVocabularyCoordinator.start()
+        
+        
+        // popup 頁面
+//        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "immortal")
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            self.coor.start()
+//        }
+        
+        // api 測試
+//        demoRequest()
     }
     
     private func demoRequest() {
         typealias Req = AzureDictionary
-        let request = Req(queryModel: .init(Text: "fly"))
+        let request = Req(queryModel: .init(Text: "immortal"))
         let api = RequestBuilder<Req>()
         api.send(req: request)
         api.result.subscribe(onNext: { res in
