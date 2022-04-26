@@ -14,9 +14,8 @@ import RxSwift
 
 
 class ViewController: UIViewController {
-    var createVocabularyCoordinator: CaptureVocabularyCoordinator!
     let disposeBag = DisposeBag()
-    var coor: CreateVocabularyCoordinator!
+    var coor: Coordinator<UIViewController>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,20 +24,11 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        createVocabularyCoordinator = CaptureVocabularyCoordinator(rootViewController: self)
-        createVocabularyCoordinator.start()
         
         
-        // popup 頁面
-//        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "immortal")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            self.coor.start()
-//        }
-        
-        // api 測試
-//        demoRequest()
     }
     
+    // api 測試
     private func demoRequest() {
         typealias Req = AzureDictionary
         let request = Req(queryModel: .init(Text: "immortal"))
@@ -48,6 +38,20 @@ class ViewController: UIViewController {
             guard let res = res else { return }
             print(res)
         }).disposed(by: disposeBag)
+    }
+    
+    // 相機畫面
+    private func testCapture() {
+        coor = CaptureVocabularyCoordinator(rootViewController: self)
+        coor.start()
+    }
+    
+    // popup 頁面
+    private func testPopupPage() {
+        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "immortal")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.coor.start()
+        }
     }
 }
 
