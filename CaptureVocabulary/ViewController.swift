@@ -11,7 +11,13 @@ import SwifterSwift
 import Vision
 import RxCocoa
 import RxSwift
+import SQLite
 
+struct User: Codable {
+    let name: String?
+    let id: Int64
+    let email: String
+}
 
 class ViewController: UIViewController {
     let disposeBag = DisposeBag()
@@ -22,10 +28,34 @@ class ViewController: UIViewController {
         view.backgroundColor = .orange
     }
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let path = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+        ).first!
+
+        let db = try! Connection("\(path)/db.sqlite3")
         
+        // User table
+        let users = Table("users")
+        let id = Expression<Int64>("id")
+        let name = Expression<String?>("name")
+        let email = Expression<String>("email")
         
+        try! db.run(users.create(ifNotExists: true) { t in     // CREATE TABLE "users" (
+            t.column(id, primaryKey: true) //     "id" INTEGER PRIMARY KEY NOT NULL,
+            t.column(email, unique: true)  //     "email" TEXT UNIQUE NOT NULL,
+            t.column(name)                 //     "name" TEXT
+        })
+        
+        let loadedUsers: [User] = try! db.prepare(users).map { row in
+            return try row.decode()
+        }
+        print(loadedUsers)
+        
+        (try? db.prepare(users))?.forEach { print($0) }
     }
     
     // api 測試
