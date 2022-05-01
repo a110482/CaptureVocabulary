@@ -28,34 +28,9 @@ class ViewController: UIViewController {
         view.backgroundColor = .orange
     }
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-        ).first!
-
-        let db = try! Connection("\(path)/db.sqlite3")
-        
-        // User table
-        let users = Table("users")
-        let id = Expression<Int64>("id")
-        let name = Expression<String?>("name")
-        let email = Expression<String>("email")
-        
-        try! db.run(users.create(ifNotExists: true) { t in     // CREATE TABLE "users" (
-            t.column(id, primaryKey: true) //     "id" INTEGER PRIMARY KEY NOT NULL,
-            t.column(email, unique: true)  //     "email" TEXT UNIQUE NOT NULL,
-            t.column(name)                 //     "name" TEXT
-        })
-        
-        let loadedUsers: [User] = try! db.prepare(users).map { row in
-            return try row.decode()
-        }
-        print(loadedUsers)
-        
-        (try? db.prepare(users))?.forEach { print($0) }
+        sql()
     }
     
     // api 測試
@@ -83,10 +58,327 @@ class ViewController: UIViewController {
             self.coor.start()
         }
     }
+    
+    // SQLite
+    private func sql() {
+        AzureDictionaryORM().createTable()
+        AzureDictionaryORM().clear()
+        AzureDictionaryTranslationORM().createTable()
+        AzureDictionaryTranslationORM().clear()
+        
+        let demoModels = try! JSONDecoder().decode([AzureDictionaryModel].self, from: testDate!)
+        demoModels.first?.save()
+
+        let d = AzureDictionaryORM().pluck(AzureDictionaryORM.table)
+        print(d)
+        
+        AzureDictionaryORM().drop()
+        AzureDictionaryTranslationORM().drop()
+    }
 }
 
 // MARK: -
-
+let testDate = """
+[
+  {
+    "normalizedSource" : "immortal",
+    "translations" : [
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 397,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 140,
+            "numExamples" : 5,
+            "displayText" : "immortality",
+            "normalizedText" : "immortality"
+          },
+          {
+            "frequencyCount" : 33,
+            "numExamples" : 5,
+            "displayText" : "monumental",
+            "normalizedText" : "monumental"
+          },
+          {
+            "frequencyCount" : 32,
+            "numExamples" : 5,
+            "displayText" : "enduring",
+            "normalizedText" : "enduring"
+          },
+          {
+            "frequencyCount" : 26,
+            "numExamples" : 10,
+            "displayText" : "eternal",
+            "normalizedText" : "eternal"
+          },
+          {
+            "frequencyCount" : 20,
+            "numExamples" : 5,
+            "displayText" : "undying",
+            "normalizedText" : "undying"
+          },
+          {
+            "frequencyCount" : 12,
+            "numExamples" : 5,
+            "displayText" : "imperishable",
+            "normalizedText" : "imperishable"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "不朽",
+        "confidence" : 0.37730000000000002,
+        "normalizedTarget" : "不朽"
+      },
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 36,
+            "numExamples" : 5,
+            "displayText" : "fairy",
+            "normalizedText" : "fairy"
+          },
+          {
+            "frequencyCount" : 34,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 12,
+            "numExamples" : 3,
+            "displayText" : "immortals",
+            "normalizedText" : "immortals"
+          },
+          {
+            "frequencyCount" : 4,
+            "numExamples" : 1,
+            "displayText" : "Xianren",
+            "normalizedText" : "xianren"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "仙人",
+        "confidence" : 0.13950000000000001,
+        "normalizedTarget" : "仙人"
+      },
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 84,
+            "numExamples" : 15,
+            "displayText" : "fairy",
+            "normalizedText" : "fairy"
+          },
+          {
+            "frequencyCount" : 41,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 31,
+            "numExamples" : 15,
+            "displayText" : "gods",
+            "normalizedText" : "gods"
+          },
+          {
+            "frequencyCount" : 24,
+            "numExamples" : 5,
+            "displayText" : "immortals",
+            "normalizedText" : "immortals"
+          },
+          {
+            "frequencyCount" : 12,
+            "numExamples" : 5,
+            "displayText" : "deity",
+            "normalizedText" : "deity"
+          },
+          {
+            "frequencyCount" : 4,
+            "numExamples" : 2,
+            "displayText" : "genie",
+            "normalizedText" : "genie"
+          },
+          {
+            "frequencyCount" : 3,
+            "numExamples" : 5,
+            "displayText" : "celestial",
+            "normalizedText" : "celestial"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "神仙",
+        "confidence" : 0.12559999999999999,
+        "normalizedTarget" : "神仙"
+      },
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 213,
+            "numExamples" : 5,
+            "displayText" : "eternal life",
+            "normalizedText" : "eternal life"
+          },
+          {
+            "frequencyCount" : 120,
+            "numExamples" : 5,
+            "displayText" : "live forever",
+            "normalizedText" : "live forever"
+          },
+          {
+            "frequencyCount" : 76,
+            "numExamples" : 5,
+            "displayText" : "immortality",
+            "normalizedText" : "immortality"
+          },
+          {
+            "frequencyCount" : 47,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 24,
+            "numExamples" : 14,
+            "displayText" : "eternal",
+            "normalizedText" : "eternal"
+          },
+          {
+            "frequencyCount" : 15,
+            "numExamples" : 4,
+            "displayText" : "immortalized",
+            "normalizedText" : "immortalized"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "永生",
+        "confidence" : 0.1104,
+        "normalizedTarget" : "永生"
+      },
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 11,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 4,
+            "numExamples" : 2,
+            "displayText" : "lasts forever",
+            "normalizedText" : "lasts forever"
+          },
+          {
+            "frequencyCount" : 3,
+            "numExamples" : 1,
+            "displayText" : "immortality",
+            "normalizedText" : "immortality"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "永垂不朽",
+        "confidence" : 0.1062,
+        "normalizedTarget" : "永垂不朽"
+      },
+      {
+        "posTag" : "ADJ",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 73,
+            "numExamples" : 5,
+            "displayText" : "live forever",
+            "normalizedText" : "live forever"
+          },
+          {
+            "frequencyCount" : 13,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 10,
+            "numExamples" : 5,
+            "displayText" : "immortality",
+            "normalizedText" : "immortality"
+          },
+          {
+            "frequencyCount" : 4,
+            "numExamples" : 1,
+            "displayText" : "longevity",
+            "normalizedText" : "longevity"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "长生不老",
+        "confidence" : 0.077200000000000005,
+        "normalizedTarget" : "长生不老"
+      },
+      {
+        "posTag" : "NOUN",
+        "backTranslations" : [
+          {
+            "frequencyCount" : 388,
+            "numExamples" : 0,
+            "displayText" : "Xian",
+            "normalizedText" : "xian"
+          },
+          {
+            "frequencyCount" : 154,
+            "numExamples" : 15,
+            "displayText" : "fairy",
+            "normalizedText" : "fairy"
+          },
+          {
+            "frequencyCount" : 68,
+            "numExamples" : 15,
+            "displayText" : "cents",
+            "normalizedText" : "cents"
+          },
+          {
+            "frequencyCount" : 40,
+            "numExamples" : 6,
+            "displayText" : "sin",
+            "normalizedText" : "sin"
+          },
+          {
+            "frequencyCount" : 26,
+            "numExamples" : 5,
+            "displayText" : "immortal",
+            "normalizedText" : "immortal"
+          },
+          {
+            "frequencyCount" : 14,
+            "numExamples" : 0,
+            "displayText" : "paradise",
+            "normalizedText" : "paradise"
+          },
+          {
+            "frequencyCount" : 5,
+            "numExamples" : 0,
+            "displayText" : "Shania",
+            "normalizedText" : "shania"
+          }
+        ],
+        "prefixWord" : "",
+        "displayTarget" : "仙",
+        "confidence" : 0.063799999999999996,
+        "normalizedTarget" : "仙"
+      }
+    ],
+    "displaySource" : "immortal"
+  }
+]
+""".data(using: .utf8)
 
 
 
