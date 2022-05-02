@@ -14,23 +14,37 @@ struct VocabularyCardORM: TableType {
     static let id = Expression<Int64>("id")
     static let normalizedSource = Expression<String>("normalizedSource")
     static let normalizedTarget = Expression<String>("normalizedTarget")
+    // 是否標示為刪除
+    static let enable = Expression<Bool>("enable")
+    // 標示為已記憶 (複習不出現, 但測驗會出)
+    static let memorized = Expression<Bool>("memorized")
+    static let timestamp = Expression<Double>("timeStamp")
+    static let listId = Expression<Int64>("groupId")
     
     private var db: Connection {
         SQLCore.shared.db
     }
     
-    struct ORM: Codable {
+    struct ORM: ORMProtocol {
         var id: Int64? = nil
-        var normalizedSource: String
-        var normalizedTarget: String
+        var normalizedSource: String?
+        var normalizedTarget: String?
+        var enable: Bool?
+        var memorized: Bool?
+        var timestamp: TimeInterval?
+        var groupId: Int64?
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
         do {
             let _ = try db.run(Self.table.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
-                t.column(normalizedSource, unique: true)
+                t.column(normalizedSource)
                 t.column(normalizedTarget)
+                t.column(enable, defaultValue: true)
+                t.column(memorized, defaultValue: false)
+                t.column(timestamp, defaultValue: Date().timeIntervalSince1970)
+                t.column(listId, references: VocabularyCardListORM.table, id)
             })
         }
         catch {
@@ -40,4 +54,52 @@ struct VocabularyCardORM: TableType {
 }
 
 // MARK: -
+struct VocabularyCardListORM: TableType {
+    static let table = Table("vocabularyCardGroup")
+    static let id = Expression<Int64>("id")
+    static let name = Expression<String>("name")
+    // 是否標示為刪除
+    static let enable = Expression<Bool>("enable")
+    // 標示為已記憶 (複習不出現, 但測驗會出)
+    static let memorized = Expression<Bool>("memorized")
+    static let timestamp = Expression<Double>("timeStamp")
+    
+    struct ORM: ORMProtocol {
+        var id: Int64? = nil
+        var name: String?
+        var enable: Bool?
+        var memorized: Bool?
+        var timestamp: TimeInterval?
+    }
+    
+    static func createTable(db: Connection = SQLCore.shared.db) {
+        do {
+            let _ = try db.run(Self.table.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(name)
+                t.column(enable)
+                t.column(memorized)
+                t.column(timestamp)
+            })
+        }
+        catch {
+            print(error)
+        }
+    }
+}
 
+extension VocabularyCardListORM.ORM: ORMTranslateAble {
+    typealias ORMModel = VocabularyCardListORM
+    
+    static func newList() -> Self? {
+        let dateString = Date().string(withFormat: "yyyy/MM/dd")
+        let defaultName = "我的單字".localized() + dateString
+        var createObj = Self()
+        createObj.name = defaultName
+        ORMModel.create(createObj)
+        
+        let query = ORMModel.table.order(ORMModel.id.desc).limit(1)
+        guard let orm = ORMModel.prepare(query)?.first else { return nil }
+        return orm
+    }
+}

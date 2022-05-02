@@ -92,7 +92,7 @@ struct AzureDictionaryModel: Codable {
 extension AzureDictionaryModel: ORMTranslateAble {
     typealias ORMModel = AzureDictionaryORM
     
-    func save(_ foreignKey: Int64? = nil) {
+    func create(_ foreignKey: Int64? = nil) {
         // 存主詞
         guard let normalizedSource = normalizedSource,
               let displaySource = displaySource else { return }
@@ -101,27 +101,25 @@ extension AzureDictionaryModel: ORMTranslateAble {
         // 存解釋
         guard let translations = translations else { return }
         let query = ORMModel.table
-//            .select(ORMModel.id, ORMModel.normalizedSource, ORMModel.displaySource)
             .filter(ORMModel.normalizedSource == normalizedSource)
             .limit(1)
         guard let foreignKey = ORMModel.prepare(query)?.first?.id else { return }
         for translation in translations {
-            translation.save(foreignKey)
+            translation.create(foreignKey)
         }
         
     }
     
-    static func load(key: String?, foreignKey: Int64? = nil) -> [AzureDictionaryModel] {
-        guard let key = key else { return [] }
+    static func load(normalizedSource: String) -> [AzureDictionaryModel] {
         // 先讀取第一層資料
-        let query = ORMModel.table.filter(ORMModel.normalizedSource == key).limit(1)
+        let query = ORMModel.table.filter(ORMModel.normalizedSource == normalizedSource).limit(1)
         guard let dictionaryObj = ORMModel.prepare(query)?.first else { return [] }
         var model = AzureDictionaryModel()
         model.normalizedSource = dictionaryObj.normalizedSource
         model.displaySource = dictionaryObj.displaySource
         
         // 讀取第二層
-        let translations = Translation.load(foreignKey: dictionaryObj.id)
+        let translations = Translation.load(foreignKey: dictionaryObj.id!)
         model.translations = translations
         return [model]
     }
@@ -130,7 +128,7 @@ extension AzureDictionaryModel: ORMTranslateAble {
 extension AzureDictionaryModel.Translation: ORMTranslateAble {
     typealias ORMModel = AzureDictionaryTranslationORM
     
-    func save(_ foreignKey: Int64? = nil) {
+    func create(_ foreignKey: Int64? = nil) {
         guard let foreignKey = foreignKey else { return }
         guard let posTag = posTag,
               let backTranslations = backTranslations,
@@ -150,8 +148,7 @@ extension AzureDictionaryModel.Translation: ORMTranslateAble {
         ORMModel.create(orm)
     }
     
-    static func load(key: String? = nil, foreignKey: Int64? = nil) -> [AzureDictionaryModel.Translation] {
-        guard let foreignKey = foreignKey else { return [] }
+    static func load(foreignKey: Int64) -> [AzureDictionaryModel.Translation] {
         let query = ORMModel.table.filter(ORMModel.azureDictionaryId == foreignKey)
         guard let orms = ORMModel.prepare(query) else { return [] }
         return orms.map { orm in

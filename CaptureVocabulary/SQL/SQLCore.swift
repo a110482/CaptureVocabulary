@@ -17,24 +17,50 @@ class SQLCore {
         ).first!
         
         db = try! Connection("\(path)/db.sqlite3")
-        createTables()
     }
     
-    private func createTables() {
-        VocabularyCardORM.createTable()
-        AzureDictionaryORM.createTable()
-        AzureDictionaryTranslationORM.createTable()
+    private var tables: Array<TableProtocol.Type> {
+        [VocabularyCardORM.self,
+         AzureDictionaryORM.self,
+         AzureDictionaryTranslationORM.self
+        ]
+    }
+    
+    func createTables() {
+        tables.forEach {
+            $0.createTable(db: db)
+        }
+    }
+    
+    func dropTables() {
+        tables.forEach {
+            $0.drop()
+        }
+    }
+    
+    func deleteTables() {
+        tables.forEach {
+            $0.delete()
+        }
     }
 }
 
+protocol ORMProtocol: Codable {
+    var id: Int64? { get }
+}
 
-protocol TableType {
-    associatedtype ORM: Codable
-    static var table: Table { get }
+protocol TableProtocol {
     static func createTable(db: Connection)
+    static func delete()
+    static func drop()
+}
+
+protocol TableType: TableProtocol {
+    associatedtype ORM: ORMProtocol
+    static var table: Table { get }
+    static var id: Expression<Int64> { get }
     static func create(_ orm: ORM)
     static func prepare(_ query: QueryType) -> [ORM]?
-    static func clear()
 }
 
 extension TableType {
@@ -50,16 +76,6 @@ extension TableType {
         }
     }
     
-    static func pluck(_ query: QueryType) -> ORM? {
-        do {
-            return try SQLCore.shared.db.pluck(query)?.decode()
-        }
-        catch {
-            print(error)
-            return nil
-        }
-    }
-    
     static func create(_ orm: ORM) {
         do {
             try SQLCore.shared.db.run(Self.table.insert(orm))
@@ -67,11 +83,19 @@ extension TableType {
         catch { print(error) }
     }
     
-    static func clear() {
+    static func delete() {
         let _ = try? SQLCore.shared.db.run(Self.table.delete())
     }
     
     static func drop() {
         let _ = try? SQLCore.shared.db.run(Self.table.drop())
+    }
+    
+    static func update(_ orm: ORM) {
+        guard orm.id != nil else { return }
+        do {
+            try SQLCore.shared.db.run(self.table.filter(self.id == orm.id!).update(orm))
+        }
+        catch { print(error) }
     }
 }

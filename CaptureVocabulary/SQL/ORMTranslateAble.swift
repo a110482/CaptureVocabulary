@@ -9,6 +9,18 @@ import SQLite
 
 protocol ORMTranslateAble {
     associatedtype ORMModel: TableType
-    func save(_ foreignKey: Int64?)
-    static func load(key: String? ,foreignKey: Int64?) -> [Self]
+    func create(_ foreignKey: Int64?)
+    func update()
+}
+
+extension ORMTranslateAble {
+    func create(_ foreignKey: Int64?) {
+        guard type(of: self) == ORMModel.ORM.self else { return }
+        ORMModel.create(self as! Self.ORMModel.ORM)
+    }
+    func update(){
+        guard type(of: self) == ORMModel.ORM.self else { return }
+        guard (self as! Self.ORMModel.ORM).id != nil else { return }
+        ORMModel.update(self as! Self.ORMModel.ORM)
+    }
 }

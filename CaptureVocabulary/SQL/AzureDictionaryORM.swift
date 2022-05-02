@@ -10,7 +10,7 @@ import SQLite
 
 struct AzureDictionaryORM: TableType {
     static var table = Table("azureDictionary")
-    struct ORM: Codable {
+    struct ORM: ORMProtocol {
         var id: Int64?
         var normalizedSource: String
         var displaySource: String
@@ -37,7 +37,7 @@ struct AzureDictionaryORM: TableType {
 // MARK: -
 struct AzureDictionaryTranslationORM: TableType {
     static var table = Table("azureDictionaryTranslation")
-    struct ORM: Codable {
+    struct ORM: ORMProtocol {
         var id: Int64?
         var posTag: String
         var prefixWord: String
