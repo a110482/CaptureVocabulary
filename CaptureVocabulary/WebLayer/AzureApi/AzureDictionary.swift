@@ -31,22 +31,22 @@ struct AzureDictionary: AzureRequest {
 }
 
 struct AzureDictionaryModel: Codable {
-    let normalizedSource: String?
-    let translations: [Translation]?
-    let displaySource: String?
+    var normalizedSource: String?
+    var translations: [Translation]?
+    var displaySource: String?
     
     struct Translation: Codable {
-        let posTag: PosTag?
-        let backTranslations: [BackTranslation]?
-        let prefixWord: String?
-        let displayTarget: String?
-        let confidence: Double?
-        let normalizedTarget: String?
+        var posTag: PosTag?
+        var backTranslations: [BackTranslation]?
+        var prefixWord: String?
+        var displayTarget: String?
+        var confidence: Double?
+        var normalizedTarget: String?
     }
 
     struct BackTranslation: Codable {
-        let frequencyCount, numExamples: Int?
-        let displayText, normalizedText: String?
+        var frequencyCount, numExamples: Int?
+        var displayText, normalizedText: String?
     }
     
     enum PosTag: String, Codable {
@@ -88,6 +88,7 @@ struct AzureDictionaryModel: Codable {
     }
 }
 
+// MARK: - 接上 SQL
 extension AzureDictionaryModel: ORMTranslateAble {
     typealias ORMModel = AzureDictionaryORM
     
@@ -96,23 +97,39 @@ extension AzureDictionaryModel: ORMTranslateAble {
         guard let normalizedSource = normalizedSource,
               let displaySource = displaySource else { return }
         let orm = ORMModel.ORM(normalizedSource: normalizedSource, displaySource: displaySource)
-        ORMModel().create(orm)
+        ORMModel.create(orm)
         // 存解釋
         guard let translations = translations else { return }
         let query = ORMModel.table
-//            .select(ORMModel().id, ORMModel().normalizedSource, ORMModel().displaySource)
-            .filter(ORMModel().normalizedSource == normalizedSource)
+//            .select(ORMModel.id, ORMModel.normalizedSource, ORMModel.displaySource)
+            .filter(ORMModel.normalizedSource == normalizedSource)
             .limit(1)
-        guard let foreignKey = ORMModel().prepare(query)?.first?.id else { return }
+        guard let foreignKey = ORMModel.prepare(query)?.first?.id else { return }
         for translation in translations {
             translation.save(foreignKey)
         }
         
     }
+    
+    static func load(key: String?, foreignKey: Int64? = nil) -> [AzureDictionaryModel] {
+        guard let key = key else { return [] }
+        // 先讀取第一層資料
+        let query = ORMModel.table.filter(ORMModel.normalizedSource == key).limit(1)
+        guard let dictionaryObj = ORMModel.prepare(query)?.first else { return [] }
+        var model = AzureDictionaryModel()
+        model.normalizedSource = dictionaryObj.normalizedSource
+        model.displaySource = dictionaryObj.displaySource
+        
+        // 讀取第二層
+        let translations = Translation.load(foreignKey: dictionaryObj.id)
+        model.translations = translations
+        return [model]
+    }
 }
 
 extension AzureDictionaryModel.Translation: ORMTranslateAble {
     typealias ORMModel = AzureDictionaryTranslationORM
+    
     func save(_ foreignKey: Int64? = nil) {
         guard let foreignKey = foreignKey else { return }
         guard let posTag = posTag,
@@ -130,12 +147,24 @@ extension AzureDictionaryModel.Translation: ORMTranslateAble {
                                backTranslations: backTranslationsData,
                                azureDictionaryId: foreignKey
         )
-        ORMModel().create(orm)
+        ORMModel.create(orm)
     }
-}
-
-// MARK: -
-protocol ORMTranslateAble {
-    associatedtype ORMModel: TableType
-    func save(_ foreignKey: Int64?)
+    
+    static func load(key: String? = nil, foreignKey: Int64? = nil) -> [AzureDictionaryModel.Translation] {
+        guard let foreignKey = foreignKey else { return [] }
+        let query = ORMModel.table.filter(ORMModel.azureDictionaryId == foreignKey)
+        guard let orms = ORMModel.prepare(query) else { return [] }
+        return orms.map { orm in
+            var model = AzureDictionaryModel.Translation()
+            model.posTag = AzureDictionaryModel.PosTag(rawValue: orm.posTag)
+            model.prefixWord = orm.prefixWord
+            model.displayTarget = orm.displayTarget
+            model.confidence = orm.confidence
+            model.normalizedTarget = orm.normalizedTarget
+            if let backTranslations = orm.backTranslations {
+                model.backTranslations = try? JSONDecoder().decode([AzureDictionaryModel.BackTranslation].self, from: backTranslations)
+            }
+            return model
+        }
+    }
 }

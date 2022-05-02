@@ -24,10 +24,10 @@ extension String {
         }
     }
     
-    var normalized: String? {
+    var normalized: String {
         let lowerCase = self.lowercased()
         let normalizedString = regularMatches(for: "[a-z]+", in: lowerCase).first
-        return normalizedString
+        return normalizedString ?? self
     }
     
     

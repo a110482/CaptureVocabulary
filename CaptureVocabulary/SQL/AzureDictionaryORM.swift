@@ -15,12 +15,12 @@ struct AzureDictionaryORM: TableType {
         var normalizedSource: String
         var displaySource: String
     }
-    let id = Expression<Int64>("id")
-    let normalizedSource = Expression<String>("normalizedSource")
-    let displaySource = Expression<String>("displaySource")
+    static let id = Expression<Int64>("id")
+    static let normalizedSource = Expression<String>("normalizedSource")
+    static let displaySource = Expression<String>("displaySource")
     
     
-    func createTable(db: Connection = Database.shared.db) {
+    static func createTable(db: Connection = SQLCore.shared.db) {
         do {
             let _ = try db.run(Self.table.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
@@ -48,16 +48,16 @@ struct AzureDictionaryTranslationORM: TableType {
         var azureDictionaryId: Int64
     }
     
-    private let id = Expression<Int64>("id")
-    private let posTag = Expression<String>("posTag")
-    private let prefixWord = Expression<String>("prefixWord")
-    private let displayTarget = Expression<String>("displayTarget")
-    private let confidence = Expression<Double>("confidence")
-    private let normalizedTarget = Expression<String>("normalizedTarget")
-    private let backTranslations = Expression<Data?>("backTranslations")
-    private let azureDictionaryId = Expression<Int64>("azureDictionaryId")
+    static let id = Expression<Int64>("id")
+    static let posTag = Expression<String>("posTag")
+    static let prefixWord = Expression<String>("prefixWord")
+    static let displayTarget = Expression<String>("displayTarget")
+    static let confidence = Expression<Double>("confidence")
+    static let normalizedTarget = Expression<String>("normalizedTarget")
+    static let backTranslations = Expression<Data?>("backTranslations")
+    static let azureDictionaryId = Expression<Int64>("azureDictionaryId")
     
-    func createTable(db: Connection = Database.shared.db) {
+    static func createTable(db: Connection = SQLCore.shared.db) {
         do {
             let _ = try db.run(Self.table.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)

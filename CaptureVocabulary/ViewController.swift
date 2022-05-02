@@ -61,19 +61,24 @@ class ViewController: UIViewController {
     
     // SQLite
     private func sql() {
-        AzureDictionaryORM().createTable()
-        AzureDictionaryORM().clear()
-        AzureDictionaryTranslationORM().createTable()
-        AzureDictionaryTranslationORM().clear()
+//        AzureDictionaryORM().createTable()
+//        AzureDictionaryORM().clear()
+//        AzureDictionaryTranslationORM().createTable()
+//        AzureDictionaryTranslationORM().clear()
         
-        let demoModels = try! JSONDecoder().decode([AzureDictionaryModel].self, from: testDate!)
-        demoModels.first?.save()
-
-        let d = AzureDictionaryORM().pluck(AzureDictionaryORM.table)
-        print(d)
+//        let demoModels = try! JSONDecoder().decode([AzureDictionaryModel].self, from: testDate!)
+//        demoModels.first?.save()
         
-        AzureDictionaryORM().drop()
-        AzureDictionaryTranslationORM().drop()
+//        let query = AzureDictionaryORM.table
+//            .filter(AzureDictionaryORM.normalizedSource == "immortal".normalized)
+//        let d = AzureDictionaryORM.prepare(query)
+//        print(d)
+        
+        let q = AzureDictionaryModel.load(key: "immortal")
+        print(q)
+        
+//        AzureDictionaryORM.drop()
+//        AzureDictionaryTranslationORM.drop()
     }
 }
 
