@@ -34,7 +34,7 @@ public class RequestBuilder<Req: Request> {
     private let _err = BehaviorSubject<Error?>(value: nil)
     private func configPlugins(_ req: Req) -> Array<PluginType> {
         var plugins: Array<PluginType> = []
-        #if DEBUG
+        #if block//DEBUG
         plugins.append(configLogger())
         #endif
         return plugins

@@ -55,7 +55,7 @@ struct VocabularyCardORM: TableType {
 
 // MARK: -
 struct VocabularyCardListORM: TableType {
-    static let table = Table("vocabularyCardGroup")
+    static let table = Table("vocabularyCardList")
     static let id = Expression<Int64>("id")
     static let name = Expression<String>("name")
     // 是否標示為刪除
@@ -77,9 +77,9 @@ struct VocabularyCardListORM: TableType {
             let _ = try db.run(Self.table.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
                 t.column(name)
-                t.column(enable)
-                t.column(memorized)
-                t.column(timestamp)
+                t.column(enable, defaultValue: true)
+                t.column(memorized, defaultValue: false)
+                t.column(timestamp, defaultValue: Date().timeIntervalSince1970)
             })
         }
         catch {
@@ -101,5 +101,15 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
         let query = ORMModel.table.order(ORMModel.id.desc).limit(1)
         guard let orm = ORMModel.prepare(query)?.first else { return nil }
         return orm
+    }
+    
+    static func lastEditList() -> Self? {
+        let query = ORMModel.table.order(ORMModel.timestamp.desc).limit(1)
+        return ORMModel.prepare(query)?.first
+    }
+    
+    static func allList() -> [Self]? {
+        let query = ORMModel.table.order(ORMModel.id.desc)
+        return ORMModel.prepare(query)
     }
 }

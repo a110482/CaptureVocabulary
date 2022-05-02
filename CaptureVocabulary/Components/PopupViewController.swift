@@ -34,8 +34,9 @@ class PopupViewController: UIViewController {
         addBackgroundGesture()
     }
     
-    func pop(view v: UIView, constrains: ((ConstraintMaker) -> Void)? = nil) {
-        view.addSubview(v)
+    func pop(viewController vc: UIViewController, constrains: ((ConstraintMaker) -> Void)? = nil) {
+        addChildViewController(vc, toContainerView: view)
+        guard let v = vc.view else { return }
         if let constrains = constrains {
             v.snp.makeConstraints(constrains)
         } else {

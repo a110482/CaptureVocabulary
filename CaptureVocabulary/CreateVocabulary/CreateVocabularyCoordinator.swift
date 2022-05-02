@@ -35,9 +35,9 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
         super.start()
         viewController = PopupViewController()
         viewModel = VocabularyViewModel(vocabulary: vocabulary)
-        let view = VocabularyView()
-        view.bind(viewModel)
-        viewController.pop(view: view)
+        let vc = VocabularyViewController()
+        vc.bind(viewModel)
+        viewController.pop(viewController: vc)
         present(viewController: viewController)
     }
 }

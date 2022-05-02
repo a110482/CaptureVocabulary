@@ -35,7 +35,7 @@
 		F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */; };
 		F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */; };
 		F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58F2815718E0088C801 /* PopupViewController.swift */; };
-		F5CBF59428159FE30088C801 /* VocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF59328159FE30088C801 /* VocabularyView.swift */; };
+		F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF59328159FE30088C801 /* VocabularyViewController.swift */; };
 		F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */; };
 		F5CBF5982815BFF30088C801 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
 		F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = F5CBF5992816DCF00088C801 /* AzureDictionary.json */; };
@@ -82,7 +82,7 @@
 		F5C2007628071DE400A3AAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		F5CBF58F2815718E0088C801 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
-		F5CBF59328159FE30088C801 /* VocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyView.swift; sourceTree = "<group>"; };
+		F5CBF59328159FE30088C801 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5CBF5972815BFF30088C801 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		F5CBF5992816DCF00088C801 /* AzureDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AzureDictionary.json; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		F5CBF59128159F850088C801 /* CreateVocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				F5CBF59328159FE30088C801 /* VocabularyView.swift */,
+				F5CBF59328159FE30088C801 /* VocabularyViewController.swift */,
 				F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */,
 			);
 			path = CreateVocabulary;
@@ -383,7 +383,7 @@
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
-				F5CBF59428159FE30088C801 /* VocabularyView.swift in Sources */,
+				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,

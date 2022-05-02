@@ -20,14 +20,21 @@ class VocabularyViewModel {
     }
     let `inout` = Inout()
     
+    struct Output {
+        let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
+        let showEditListNameAlert = PublishRelay<Void>()
+    }
+    let output = Output()
+    
     private let disposeBag = DisposeBag()
     
     init(vocabulary: String) {
         `inout`.vocabulary.accept(vocabulary)
         sentQueryRequest()
+        getVocabularyListObject()
     }
     
-    // 等按 return 再查詢, 不然流量太兇～
+    // 等按 return 再查詢, 不然流量太兇
     func sentQueryRequest() {
         guard let vocabulary = `inout`.vocabulary.value else { return }
         typealias Req = AzureDictionary
@@ -43,18 +50,40 @@ class VocabularyViewModel {
         }).disposed(by: disposeBag)
     }
     
-    func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
+    func cerateNewListORM() {
+        let newORM = VocabularyCardListORM.ORM.newList()
+        output.vocabularyListORM.accept(newORM)
+        output.showEditListNameAlert.accept(())
+    }
+    
+    func setListORMName(_ name: String) {
+        guard var orm = output.vocabularyListORM.value else { return }
+        orm.name = name
+        VocabularyCardListORM.update(orm)
+        output.vocabularyListORM.accept(orm)
+    }
+    
+    private func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
         let translate = translateData.translations?.first?.displayTarget
         self.inout.translate.accept(translate)
+    }
+    
+    private func getVocabularyListObject() {
+        let lastEditList = VocabularyCardListORM.ORM.lastEditList()
+        output.vocabularyListORM.accept(lastEditList)
     }
 }
 
 // MARK: - View
-class VocabularyView: UIView {
+class VocabularyViewController: UIViewController {
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .center
         $0.spacing = 10
+    }
+    private let listButton = UIButton().then {
+        $0.backgroundColor = .gray
+        $0.setTitle(" ", for: .normal)
     }
     private let sourceTextField = UITextField()
     private let translateTextField = UITextField()
@@ -64,16 +93,21 @@ class VocabularyView: UIView {
     }
     
     private let disposeBag = DisposeBag()
-    init() {
-        super.init(frame: .zero)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if viewModel?.output.vocabularyListORM.value == nil {
+            viewModel?.cerateNewListORM()
+        }
     }
     
     private weak var viewModel: VocabularyViewModel?
+    
     func bind(_ viewModel: VocabularyViewModel) {
         self.viewModel = viewModel
         sourceTextField.text = viewModel.inout.vocabulary.value
@@ -86,14 +120,24 @@ class VocabularyView: UIView {
             guard let self = self else { return }
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
+        
+        viewModel.output.vocabularyListORM.subscribe(onNext: { [weak self] orm in
+            guard let self = self else { return }
+            self.listButton.setTitle(orm?.name, for: .normal)
+        }).disposed(by: disposeBag)
+        
+        viewModel.output.showEditListNameAlert.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.showEditListNameAlert()
+        }).disposed(by: disposeBag)
     }
     
     private func configUI() {
         addEmptyGestureBackgroundView()
-        backgroundColor = .white
-        layer.cornerRadius = 10
-        layer.masksToBounds = true
-        addSubview(mainStack)
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.addSubview(mainStack)
         mainStack.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.left.equalToSuperview()
@@ -105,6 +149,7 @@ class VocabularyView: UIView {
         }
         
         mainStack.addArrangedSubviews([
+            listButton,
             sourceTextField,
             separateLine,
             translateTextField,
@@ -129,7 +174,7 @@ class VocabularyView: UIView {
     
     private func addEmptyGestureBackgroundView() {
         let backgroundView = UIView()
-        addSubview(backgroundView)
+        view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -147,15 +192,34 @@ class VocabularyView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    private func showEditListNameAlert() {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertVC.title = "請輸入新的清單名稱".localized()
+        alertVC.addTextField { [weak self] textField in
+            guard let self = self else { return }
+            textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
+        }
+        let ok = UIAlertAction(title: "確認".localized(),
+                               style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            guard let newName = alertVC.textFields?.first?.text else { return }
+            self.viewModel?.setListORMName(newName)
+        }
+        alertVC.addAction(ok)
+        present(alertVC, animated: true, completion: {
+            alertVC.textFields?.first?.selectAll(nil)
+        })
+    }
 }
 
-extension VocabularyView: UITextFieldDelegate {
+extension VocabularyViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         viewModel?.sentQueryRequest()
     }
 }
 
-extension VocabularyView: UITableViewDelegate, UITableViewDataSource {
+extension VocabularyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellDatas?.count ?? 0
     }

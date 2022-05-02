@@ -30,7 +30,8 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        test()
+        sql()
+        testCapture()
     }
     
     // api 測試
