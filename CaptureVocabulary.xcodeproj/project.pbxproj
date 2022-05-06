@@ -42,10 +42,6 @@
 		F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
 		F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64828281E70CA00F8F423 /* String+Ext.swift */; };
 		F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */; };
-		F5E64834281EA4D100F8F423 /* String+LocalizeTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64830281EA4D100F8F423 /* String+LocalizeTableName.swift */; };
-		F5E64835281EA4D100F8F423 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64831281EA4D100F8F423 /* Localize.swift */; };
-		F5E64836281EA4D100F8F423 /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64832281EA4D100F8F423 /* String+LocalizeBundle.swift */; };
-		F5E64837281EA4D100F8F423 /* String+LocalizedBundleTableName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64833281EA4D100F8F423 /* String+LocalizedBundleTableName.swift */; };
 		F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,10 +85,6 @@
 		F5CBF5AD2816EEDB0088C801 /* GBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBig.swift; sourceTree = "<group>"; };
 		F5E64828281E70CA00F8F423 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardORM.swift; sourceTree = "<group>"; };
-		F5E64830281EA4D100F8F423 /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeTableName.swift"; sourceTree = "<group>"; };
-		F5E64831281EA4D100F8F423 /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
-		F5E64832281EA4D100F8F423 /* String+LocalizeBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizeBundle.swift"; sourceTree = "<group>"; };
-		F5E64833281EA4D100F8F423 /* String+LocalizedBundleTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LocalizedBundleTableName.swift"; sourceTree = "<group>"; };
 		F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionaryORM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				F5A16312280DBAD500257ABF /* CustomExtension */,
-				F5E6482F281EA4D100F8F423 /* Localize */,
 				F5A16309280BF13300257ABF /* Coordinating.swift */,
 				F5A16308280BF13300257ABF /* Coordinator.swift */,
 				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
@@ -249,18 +240,6 @@
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 			);
 			path = SQL;
-			sourceTree = "<group>";
-		};
-		F5E6482F281EA4D100F8F423 /* Localize */ = {
-			isa = PBXGroup;
-			children = (
-				F5E64830281EA4D100F8F423 /* String+LocalizeTableName.swift */,
-				F5E64831281EA4D100F8F423 /* Localize.swift */,
-				F5E64832281EA4D100F8F423 /* String+LocalizeBundle.swift */,
-				F5E64833281EA4D100F8F423 /* String+LocalizedBundleTableName.swift */,
-			);
-			name = Localize;
-			path = ../../../../fybet_ios/Bumblebee/Other/ThirdParty/Localize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,15 +367,12 @@
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
-				F5E64835281EA4D100F8F423 /* Localize.swift in Sources */,
-				F5E64834281EA4D100F8F423 /* String+LocalizeTableName.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
-				F5E64837281EA4D100F8F423 /* String+LocalizedBundleTableName.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
@@ -404,7 +380,6 @@
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
-				F5E64836281EA4D100F8F423 /* String+LocalizeBundle.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,

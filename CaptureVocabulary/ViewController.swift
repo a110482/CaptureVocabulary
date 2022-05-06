@@ -64,8 +64,6 @@ class ViewController: UIViewController {
     private func sql() {
         SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
-        
-
     }
     
     // test
