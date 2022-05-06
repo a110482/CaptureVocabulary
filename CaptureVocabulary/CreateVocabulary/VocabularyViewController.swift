@@ -81,6 +81,14 @@ class VocabularyViewController: UIViewController {
         $0.alignment = .center
         $0.spacing = 10
     }
+    private let buttonStack = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 1
+    }
+    private let newListButton = UIButton().then {
+        $0.backgroundColor = .gray
+        $0.setTitle("+", for: .normal)
+    }
     private let listButton = UIButton().then {
         $0.backgroundColor = .gray
         $0.setTitle(" ", for: .normal)
@@ -132,8 +140,31 @@ class VocabularyViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func showEditListNameAlert() {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertVC.title = "請輸入新的清單名稱".localized()
+        alertVC.addTextField { [weak self] textField in
+            guard let self = self else { return }
+            textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
+        }
+        let ok = UIAlertAction(title: "確認".localized(),
+                               style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            guard let newName = alertVC.textFields?.first?.text else { return }
+            self.viewModel?.setListORMName(newName)
+        }
+        let cancel = UIAlertAction(title: "取消".localized(), style: .default, handler: nil)
+        alertVC.addAction(ok)
+        alertVC.addAction(cancel)
+        present(alertVC, animated: true, completion: {
+            alertVC.textFields?.first?.selectAll(nil)
+        })
+    }
+}
+
+// UI
+extension VocabularyViewController {
     private func configUI() {
-        addEmptyGestureBackgroundView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
@@ -149,12 +180,15 @@ class VocabularyViewController: UIViewController {
         }
         
         mainStack.addArrangedSubviews([
-            listButton,
+            buttonStack,
             sourceTextField,
             separateLine,
             translateTextField,
             tableView
         ])
+        buttonStack.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
         
         separateLine.snp.makeConstraints {
             $0.width.equalToSuperview().multipliedBy(0.8)
@@ -170,16 +204,16 @@ class VocabularyViewController: UIViewController {
         }
         sourceTextField.delegate = self
         configTableView()
+        layoutButtonStack()
     }
     
-    private func addEmptyGestureBackgroundView() {
-        let backgroundView = UIView()
-        view.addSubview(backgroundView)
-        backgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+    private func layoutButtonStack() {
+        buttonStack.addArrangedSubviews([
+            listButton, newListButton
+        ])
+        newListButton.snp.makeConstraints {
+            $0.width.equalTo(50)
         }
-        let emptyGesture = UITapGestureRecognizer()
-        backgroundView.addGestureRecognizer(emptyGesture)
     }
     
     private func configTableView() {
@@ -192,29 +226,10 @@ class VocabularyViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    private func showEditListNameAlert() {
-        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alertVC.title = "請輸入新的清單名稱".localized()
-        alertVC.addTextField { [weak self] textField in
-            guard let self = self else { return }
-            textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
-        }
-        let ok = UIAlertAction(title: "確認".localized(),
-                               style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            guard let newName = alertVC.textFields?.first?.text else { return }
-            self.viewModel?.setListORMName(newName)
-        }
-        alertVC.addAction(ok)
-        present(alertVC, animated: true, completion: {
-            alertVC.textFields?.first?.selectAll(nil)
-        })
-    }
 }
 
 extension VocabularyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         viewModel?.sentQueryRequest()
     }
 }

@@ -49,6 +49,7 @@ class PopupViewController: UIViewController {
     
     private func addBackgroundGesture() {
         let ges = UITapGestureRecognizer()
+        ges.cancelsTouchesInView = false
         let back = UIView()
         back.backgroundColor = .black.withAlphaComponent(0.5)
         view.addSubview(back)
