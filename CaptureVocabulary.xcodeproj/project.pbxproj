@@ -10,6 +10,7 @@
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
 		F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B7281FE865000C74B0 /* SQLCore.swift */; };
+		F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B928267A43000C74B0 /* UIPickerViewController.swift */; };
 		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
@@ -51,6 +52,7 @@
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
+		F50952B928267A43000C74B0 /* UIPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerViewController.swift; sourceTree = "<group>"; };
 		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				F5CBF58F2815718E0088C801 /* PopupViewController.swift */,
+				F50952B928267A43000C74B0 /* UIPickerViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,
+				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,

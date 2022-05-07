@@ -24,6 +24,7 @@ class VocabularyViewModel {
         let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
         let showEditListNameAlert = PublishRelay<Void>()
     }
+    
     let output = Output()
     
     private let disposeBag = DisposeBag()
@@ -63,6 +64,14 @@ class VocabularyViewModel {
         output.vocabularyListORM.accept(orm)
     }
     
+    func selected(orm: VocabularyCardListORM.ORM) {
+        output.vocabularyListORM.accept(orm)
+    }
+    
+    func getAllList() -> [VocabularyCardListORM.ORM] {
+        return VocabularyCardListORM.ORM.allList() ?? []
+    }
+    
     private func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
         let translate = translateData.translations?.first?.displayTarget
         self.inout.translate.accept(translate)
@@ -71,6 +80,12 @@ class VocabularyViewModel {
     private func getVocabularyListObject() {
         let lastEditList = VocabularyCardListORM.ORM.lastEditList()
         output.vocabularyListORM.accept(lastEditList)
+    }
+}
+
+extension VocabularyCardListORM.ORM: UIPickerViewModelProtocol {
+    var title: String {
+        return name ?? ""
     }
 }
 
@@ -93,9 +108,21 @@ class VocabularyViewController: UIViewController {
         $0.backgroundColor = .gray
         $0.setTitle(" ", for: .normal)
     }
-    private let sourceTextField = UITextField()
-    private let translateTextField = UITextField()
+    private let sourceTextField = UITextField().then {
+        $0.textColor = UILabel().textColor
+        $0.font = .systemFont(ofSize: 25)
+        $0.textAlignment = .center
+    }
+    private let translateTextField = UITextField().then {
+        $0.textColor = UILabel().textColor
+        $0.font = .systemFont(ofSize: 25)
+        $0.textAlignment = .center
+    }
     private let tableView = UITableView()
+    private let saveButton = UIButton().then {
+        $0.setTitle("儲存".localized(), for: .normal)
+        $0.setTitleColor(UILabel().textColor, for: .normal)
+    }
     private var cellDatas: [AzureDictionaryModel.Translation]? {
         viewModel?.inout.translateData.value?.translations
     }
@@ -105,6 +132,7 @@ class VocabularyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        bindActions()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,12 +188,25 @@ class VocabularyViewController: UIViewController {
             alertVC.textFields?.first?.selectAll(nil)
         })
     }
+    
+    private func showListPicker() {
+        guard let orms = viewModel?.getAllList() else { return }
+        let picker = UIPickerViewController<VocabularyCardListORM.ORM>()
+        picker.setModels(models: [orms])
+        
+        picker.selected = { [weak self] orm in
+            guard let self = self else { return }
+            self.viewModel?.selected(orm: orm)
+        }
+        
+        present(picker, animated: true, completion: nil)
+    }
 }
 
 // UI
 extension VocabularyViewController {
     private func configUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.addSubview(mainStack)
@@ -176,7 +217,7 @@ extension VocabularyViewController {
         }
         
         let separateLine = UIView().then {
-            $0.backgroundColor = .black
+            $0.backgroundColor = UILabel().textColor
         }
         
         mainStack.addArrangedSubviews([
@@ -184,7 +225,8 @@ extension VocabularyViewController {
             sourceTextField,
             separateLine,
             translateTextField,
-            tableView
+            tableView,
+            saveButton
         ])
         buttonStack.snp.makeConstraints {
             $0.width.equalToSuperview()
@@ -198,9 +240,6 @@ extension VocabularyViewController {
             $0.snp.makeConstraints { view in
                 view.width.equalToSuperview()
             }
-            $0.textAlignment = .center
-            $0.font = .systemFont(ofSize: 25)
-            $0.textColor = .black
         }
         sourceTextField.delegate = self
         configTableView()
@@ -218,13 +257,39 @@ extension VocabularyViewController {
     
     private func configTableView() {
         tableView.snp.makeConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.height*0.5)
+            $0.height.equalTo(UIScreen.main.bounds.height*0.3)
             $0.width.equalToSuperview()
         }
         tableView.register(cellWithClass: UITableViewCell.self)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .systemBackground
         tableView.delegate = self
         tableView.dataSource = self
+    }
+}
+
+// user action
+extension VocabularyViewController {
+    func bindActions() {
+        listButtonAction()
+        newListButtonAction()
+    }
+    
+    func listButtonAction() {
+        listButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.showListPicker()
+        }).disposed(by: disposeBag)
+    }
+    
+    func newListButtonAction() {
+        newListButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel?.cerateNewListORM()
+        }).disposed(by: disposeBag)
+    }
+    
+    func saveButtonAction() {
+        #warning("")
     }
 }
 
@@ -242,8 +307,6 @@ extension VocabularyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self)
         guard let cellModel = cellDatas?[safe: indexPath.row] else { return cell }
-        cell.textLabel?.textColor = .black
-        cell.contentView.backgroundColor = .white
         var text = "\(cellModel.posTag?.string ?? ""): "
         text += "\(cellModel.displayTarget ?? "")"
         cell.textLabel?.text = text

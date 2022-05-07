@@ -62,13 +62,19 @@ class ViewController: UIViewController {
     
     // SQLite
     private func sql() {
-        SQLCore.shared.dropTables()
+//        SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
     }
     
     // test
     private func test() {
-        let date = Date().string(withFormat: "yyyy/MM/dd")
-        print(date)
+        let picker = UIPickerViewController<String>()
+        picker.setModels(models: [["a", "b", "c", "a", "b", "c", "a", "b", "c"]])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.present(picker, animated: true, completion: nil)
+        }
     }
 }
+
+// MARK: -
+
