@@ -39,7 +39,7 @@ class VisionCaptureViewController: UIViewController {
     
     lazy var identifyArea: CGRect = {
         let width: CGFloat = cameraView.bounds.width * 0.8
-        let height: CGFloat = 150
+        let height: CGFloat = 50
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
     }()

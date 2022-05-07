@@ -39,16 +39,27 @@ class VocabularyViewModel {
     func sentQueryRequest() {
         guard let vocabulary = `inout`.vocabulary.value else { return }
         typealias Req = AzureDictionary
-        let request = Req(queryModel: .init(Text: vocabulary))
-        let api = RequestBuilder<Req>()
-        api.send(req: request)
-        api.result.subscribe(onNext: { [weak self] response in
-            guard let self = self else { return }
-            guard let response = response else { return }
-            guard let translateData = response.first else { return }
-            self.setDefaultTranslate(translateData)
-            self.`inout`.translateData.accept(translateData)
-        }).disposed(by: disposeBag)
+
+        let normalized = vocabulary.normalized
+        if let savedModel = AzureDictionaryModel.load(normalizedSource: normalized).first {
+            updateData(model: savedModel)
+        } else {
+            let request = Req(queryModel: .init(Text: vocabulary))
+            let api = RequestBuilder<Req>()
+            api.send(req: request)
+            api.result.subscribe(onNext: { [weak self] response in
+                guard let self = self else { return }
+                guard let response = response else { return }
+                guard let translateData = response.first else { return }
+                translateData.create()
+                self.updateData(model: translateData)
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    private func updateData(model: AzureDictionaryModel) {
+        setDefaultTranslate(model)
+        `inout`.translateData.accept(model)
     }
     
     func cerateNewListORM() {

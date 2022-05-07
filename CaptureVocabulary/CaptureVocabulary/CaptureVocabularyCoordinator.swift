@@ -54,7 +54,7 @@ class CaptureVocabularyViewModel {
     
     func handleObservations(_ observations: [VNRecognizedTextObservation]) {
         guard observations.count > 0 else { return }
-        let words = refineObservations(observations)
+        let words = refineObservations(observations).map { $0.normalized }
         DispatchQueue.main.async {
             self.output.identifyWords.accept(words)
         }

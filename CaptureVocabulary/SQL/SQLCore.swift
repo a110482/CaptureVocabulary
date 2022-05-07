@@ -28,6 +28,7 @@ class SQLCore {
     }
     
     func createTables() {
+        #warning("資料庫版本遷移功能")
         tables.forEach {
             $0.createTable(db: db)
         }
