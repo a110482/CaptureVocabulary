@@ -92,7 +92,7 @@ class UIPickerViewController<M: UIPickerViewModelProtocol>: UIViewController,
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentSelectedModel = models[component][row]
+        currentSelectedModel = models[safe: component]?[safe: row]
     }
 }
 

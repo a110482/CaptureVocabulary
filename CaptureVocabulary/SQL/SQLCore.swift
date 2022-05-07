@@ -35,13 +35,13 @@ class SQLCore {
     
     func dropTables() {
         tables.forEach {
-            $0.drop()
+            $0.dropTable()
         }
     }
     
     func deleteTables() {
         tables.forEach {
-            $0.delete()
+            $0.deleteTable()
         }
     }
 }
@@ -52,8 +52,8 @@ protocol ORMProtocol: Codable {
 
 protocol TableProtocol {
     static func createTable(db: Connection)
-    static func delete()
-    static func drop()
+    static func deleteTable()
+    static func dropTable()
 }
 
 protocol TableType: TableProtocol {
@@ -61,6 +61,7 @@ protocol TableType: TableProtocol {
     static var table: Table { get }
     static var id: Expression<Int64> { get }
     static func create(_ orm: ORM)
+    static func delete(_ orm: ORM)
     static func prepare(_ query: QueryType) -> [ORM]?
 }
 
@@ -77,6 +78,16 @@ extension TableType {
         }
     }
     
+    static func scalar<V: Value>(_ scalar: ScalarQuery<V>, type: V.Type) -> V? {
+        do {
+            return try SQLCore.shared.db.scalar(scalar)
+        }
+        catch {
+            print(error)
+            return nil
+        }
+    }
+    
     static func create(_ orm: ORM) {
         do {
             try SQLCore.shared.db.run(Self.table.insert(orm))
@@ -84,11 +95,19 @@ extension TableType {
         catch { print(error) }
     }
     
-    static func delete() {
+    static func delete(_ orm: ORM) {
+        guard orm.id != nil else { return }
+        do {
+            try SQLCore.shared.db.run(self.table.filter(self.id == orm.id!).delete())
+        }
+        catch { print(error) }
+    }
+    
+    static func deleteTable() {
         let _ = try? SQLCore.shared.db.run(Self.table.delete())
     }
     
-    static func drop() {
+    static func dropTable() {
         let _ = try? SQLCore.shared.db.run(Self.table.drop())
     }
     

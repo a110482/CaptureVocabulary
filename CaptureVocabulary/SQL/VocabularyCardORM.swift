@@ -62,14 +62,14 @@ struct VocabularyCardListORM: TableType {
     static let enable = Expression<Bool>("enable")
     // 標示為已記憶 (複習不出現, 但測驗會出)
     static let memorized = Expression<Bool>("memorized")
-    static let timestamp = Expression<Double>("timeStamp")
+    static let timestamp = Expression<Double>("timestamp")
     
     struct ORM: ORMProtocol {
         var id: Int64? = nil
         var name: String?
         var enable: Bool?
         var memorized: Bool?
-        var timestamp: TimeInterval?
+        var timestamp: TimeInterval = Date().timeIntervalSince1970
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
@@ -79,7 +79,7 @@ struct VocabularyCardListORM: TableType {
                 t.column(name)
                 t.column(enable, defaultValue: true)
                 t.column(memorized, defaultValue: false)
-                t.column(timestamp, defaultValue: Date().timeIntervalSince1970)
+                t.column(timestamp)
             })
         }
         catch {
@@ -93,7 +93,13 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
     
     static func newList() -> Self? {
         let dateString = Date().string(withFormat: "yyyy/MM/dd")
-        let defaultName = "我的單字".localized() + dateString
+        var defaultName = "我的單字".localized() + dateString
+        let defaultNameScalar = ORMModel.table.filter(ORMModel.name.like("\(defaultName)%")).count
+        let count = ORMModel.scalar(defaultNameScalar, type: Int.self) ?? 0
+        if count > 0 {
+            defaultName += "(\(count))"
+        }
+        
         var createObj = Self()
         createObj.name = defaultName
         ORMModel.create(createObj)
@@ -104,7 +110,7 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
     }
     
     static func lastEditList() -> Self? {
-        let query = ORMModel.table.order(ORMModel.timestamp.desc).limit(1)
+        let query = ORMModel.table.order(ORMModel.timestamp.desc)
         return ORMModel.prepare(query)?.first
     }
     

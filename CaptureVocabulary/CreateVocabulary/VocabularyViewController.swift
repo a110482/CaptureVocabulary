@@ -57,6 +57,12 @@ class VocabularyViewModel {
         output.showEditListNameAlert.accept(())
     }
     
+    func cancelNewListORM() {
+        output.vocabularyListORM.value?.delete()
+        output.vocabularyListORM.accept(nil)
+        getVocabularyListObject()
+    }
+    
     func setListORMName(_ name: String) {
         guard var orm = output.vocabularyListORM.value else { return }
         orm.name = name
@@ -181,7 +187,10 @@ class VocabularyViewController: UIViewController {
             guard let newName = alertVC.textFields?.first?.text else { return }
             self.viewModel?.setListORMName(newName)
         }
-        let cancel = UIAlertAction(title: "取消".localized(), style: .default, handler: nil)
+        let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
+            self?.viewModel?.cancelNewListORM()
+        }
+        
         alertVC.addAction(ok)
         alertVC.addAction(cancel)
         present(alertVC, animated: true, completion: {

@@ -68,13 +68,8 @@ class ViewController: UIViewController {
     
     // test
     private func test() {
-        let picker = UIPickerViewController<String>()
-        picker.setModels(models: [["a", "b", "c", "a", "b", "c", "a", "b", "c"]])
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.present(picker, animated: true, completion: nil)
-        }
+
     }
 }
 
-// MARK: -
 

@@ -11,6 +11,7 @@ protocol ORMTranslateAble {
     associatedtype ORMModel: TableType
     func create(_ foreignKey: Int64?)
     func update()
+    func delete()
 }
 
 extension ORMTranslateAble {
@@ -22,5 +23,10 @@ extension ORMTranslateAble {
         guard type(of: self) == ORMModel.ORM.self else { return }
         guard (self as! Self.ORMModel.ORM).id != nil else { return }
         ORMModel.update(self as! Self.ORMModel.ORM)
+    }
+    func delete() {
+        guard type(of: self) == ORMModel.ORM.self else { return }
+        guard (self as! Self.ORMModel.ORM).id != nil else { return }
+        ORMModel.delete(self as! ORMModel.ORM)
     }
 }
