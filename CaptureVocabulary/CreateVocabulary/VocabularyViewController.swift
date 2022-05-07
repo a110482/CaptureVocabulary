@@ -62,12 +62,14 @@ class VocabularyViewModel {
         `inout`.translateData.accept(model)
     }
     
+    // 建立新的清單
     func cerateNewListORM() {
         let newORM = VocabularyCardListORM.ORM.newList()
         output.vocabularyListORM.accept(newORM)
         output.showEditListNameAlert.accept(())
     }
     
+    // 刪除當前清單
     func cancelNewListORM() {
         output.vocabularyListORM.value?.delete()
         output.vocabularyListORM.accept(nil)
@@ -89,6 +91,21 @@ class VocabularyViewModel {
         return VocabularyCardListORM.ORM.allList() ?? []
     }
     
+    func saveVocabularyCard() {
+        guard let vocabulary = `inout`.vocabulary.value,
+              let translate = `inout`.translate.value,
+              let groupId = output.vocabularyListORM.value?.id
+        else { return }
+        var cardObj = VocabularyCardORM.ORM()
+        cardObj.normalizedSource = vocabulary
+        cardObj.normalizedTarget = translate
+        cardObj.groupId = groupId
+        VocabularyCardORM.create(cardObj)
+        guard var listObj = output.vocabularyListORM.value else { return }
+        listObj.timestamp = Date().timeIntervalSince1970
+        VocabularyCardListORM.update(listObj)
+    }
+    
     private func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
         let translate = translateData.translations?.first?.displayTarget
         self.inout.translate.accept(translate)
@@ -108,6 +125,11 @@ extension VocabularyCardListORM.ORM: UIPickerViewModelProtocol {
 
 // MARK: - View
 class VocabularyViewController: UIViewController {
+    enum Action {
+        case dismiss
+    }
+    let action = PublishRelay<Action>()
+    
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .center
@@ -292,6 +314,7 @@ extension VocabularyViewController {
     func bindActions() {
         listButtonAction()
         newListButtonAction()
+        saveButtonAction()
     }
     
     func listButtonAction() {
@@ -309,7 +332,11 @@ extension VocabularyViewController {
     }
     
     func saveButtonAction() {
-        #warning("")
+        saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel?.saveVocabularyCard()
+            self.action.accept(.dismiss)
+        }).disposed(by: disposeBag)
     }
 }
 

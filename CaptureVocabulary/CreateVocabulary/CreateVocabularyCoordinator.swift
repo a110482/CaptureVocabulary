@@ -17,6 +17,7 @@ import Then
 class CreateVocabularyCoordinator: Coordinator<UIViewController> {
     var viewController: PopupViewController!
     var viewModel: VocabularyViewModel!
+    private let disposeBag = DisposeBag()
     
     private let vocabulary: String
     
@@ -36,8 +37,24 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
         viewController = PopupViewController()
         viewModel = VocabularyViewModel(vocabulary: vocabulary)
         let vc = VocabularyViewController()
+        handleAction(vc)
         vc.bind(viewModel)
         viewController.pop(viewController: vc)
         present(viewController: viewController)
+    }
+    
+    override func stop() {
+        viewController.presentingViewController?.dismiss(animated: true, completion: nil)
+        super.stop()
+    }
+    
+    private func handleAction(_ vc: VocabularyViewController) {
+        vc.action.subscribe(onNext: { [weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case .dismiss:
+                self.stop()
+            }
+        }).disposed(by: disposeBag)
     }
 }

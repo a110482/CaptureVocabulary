@@ -64,6 +64,9 @@ class ViewController: UIViewController {
     private func sql() {
 //        SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
+        #if DEBUG
+//        print(VocabularyCardORM.prepare(VocabularyCardORM.table))
+        #endif
     }
     
     // test

@@ -18,7 +18,7 @@ struct VocabularyCardORM: TableType {
     static let enable = Expression<Bool>("enable")
     // 標示為已記憶 (複習不出現, 但測驗會出)
     static let memorized = Expression<Bool>("memorized")
-    static let timestamp = Expression<Double>("timeStamp")
+    static let timestamp = Expression<Double>("timestamp")
     static let listId = Expression<Int64>("groupId")
     
     private var db: Connection {
@@ -31,7 +31,7 @@ struct VocabularyCardORM: TableType {
         var normalizedTarget: String?
         var enable: Bool?
         var memorized: Bool?
-        var timestamp: TimeInterval?
+        var timestamp: TimeInterval = Date().timeIntervalSince1970
         var groupId: Int64?
     }
     
@@ -43,7 +43,7 @@ struct VocabularyCardORM: TableType {
                 t.column(normalizedTarget)
                 t.column(enable, defaultValue: true)
                 t.column(memorized, defaultValue: false)
-                t.column(timestamp, defaultValue: Date().timeIntervalSince1970)
+                t.column(timestamp)
                 t.column(listId, references: VocabularyCardListORM.table, id)
             })
         }
