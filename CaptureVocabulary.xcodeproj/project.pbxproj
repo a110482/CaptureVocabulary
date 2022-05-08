@@ -11,6 +11,8 @@
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
 		F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B7281FE865000C74B0 /* SQLCore.swift */; };
 		F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B928267A43000C74B0 /* UIPickerViewController.swift */; };
+		F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952BD282781CA000C74B0 /* TabBarCoordinator.swift */; };
+		F50952C12827BEB8000C74B0 /* VocabularyListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C02827BEB8000C74B0 /* VocabularyListCoordinator.swift */; };
 		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
@@ -53,6 +55,8 @@
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
 		F50952B928267A43000C74B0 /* UIPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerViewController.swift; sourceTree = "<group>"; };
+		F50952BD282781CA000C74B0 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		F50952C02827BEB8000C74B0 /* VocabularyListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListCoordinator.swift; sourceTree = "<group>"; };
 		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,22 @@
 				4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F50952BB28278192000C74B0 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				F50952BD282781CA000C74B0 /* TabBarCoordinator.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		F50952BF2827BE46000C74B0 /* VocabularyList */ = {
+			isa = PBXGroup;
+			children = (
+				F50952C02827BEB8000C74B0 /* VocabularyListCoordinator.swift */,
+			);
+			path = VocabularyList;
 			sourceTree = "<group>";
 		};
 		F53771C92812B442003F892D /* WebLayer */ = {
@@ -206,9 +226,11 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* key.plist */,
-				F53771C92812B442003F892D /* WebLayer */,
+				F50952BB28278192000C74B0 /* Tabbar */,
+				F50952BF2827BE46000C74B0 /* VocabularyList */,
 				F5A1630F280C755500257ABF /* CaptureVocabulary */,
 				F5CBF59128159F850088C801 /* CreateVocabulary */,
+				F53771C92812B442003F892D /* WebLayer */,
 				F5A1630E280BF19600257ABF /* Libary */,
 				F5E6482A281E722C00F8F423 /* SQL */,
 				F5CBF58E281571510088C801 /* Components */,
@@ -364,6 +386,7 @@
 			files = (
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
+				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
@@ -387,6 +410,7 @@
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,
 				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
+				F50952C12827BEB8000C74B0 /* VocabularyListCoordinator.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,

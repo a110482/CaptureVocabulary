@@ -27,7 +27,6 @@ class CaptureVocabularyCoordinator: Coordinator<UIViewController> {
         observeAction(viewController)
         viewModel = CaptureVocabularyViewModel()
         viewController.bind(viewModel: viewModel)
-        present(viewController: viewController)
     }
     
     private func observeAction(_ viewController: CaptureVocabularyViewController) {
@@ -54,7 +53,7 @@ class CaptureVocabularyViewModel {
     
     func handleObservations(_ observations: [VNRecognizedTextObservation]) {
         guard observations.count > 0 else { return }
-        let words = refineObservations(observations).map { $0.normalized }
+        let words = refineObservations(observations)
         DispatchQueue.main.async {
             self.output.identifyWords.accept(words)
         }

@@ -25,9 +25,11 @@ class VisionCaptureViewController: UIViewController {
     
     let cameraView = UIView()
     
+    private let mask = UIView()
+    
     var captureSession: AVCaptureSession!
     
-    var videoOutput : AVCaptureVideoDataOutput!
+    var videoOutput : AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
     
     var previewLayer : AVCaptureVideoPreviewLayer!
     
@@ -39,69 +41,102 @@ class VisionCaptureViewController: UIViewController {
     
     lazy var identifyArea: CGRect = {
         let width: CGFloat = cameraView.bounds.width * 0.8
-        let height: CGFloat = 50
+        let height: CGFloat = 100
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
     }()
     
+    let loadQueue = DispatchQueue(label: "loadQueue")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configUI()
-        setupAndStartCaptureSession()
-        setupInputs()
-        setTextRecognitionRequest()
+        self.configUI()
+        
+        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
+        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
+        
+        loadQueue.async {
+            self.setupAndStartCaptureSession()
+            DispatchQueue.global().async {
+                self.setTextRecognitionRequest()
+            }
+        }
+        
+        loadQueue.async {
+            self.setupInputAndOutput()
+        }
+        
+        loadQueue.async {
+            DispatchQueue.main.async {
+                self.setupPreviewLayer()
+                self.makeMask()
+            }
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupPreviewLayer()
-        setupOutput()
-        makeMask()
+        loadQueue.async {
+            self.setupInputAndOutput()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        loadQueue.async {
+            self.dismissInputAndOutput()
+        }
     }
     
     func setupAndStartCaptureSession(){
-        DispatchQueue.global(qos: .userInitiated).async{
-            //init session
-            self.captureSession = AVCaptureSession()
-            //start configuration
-            self.captureSession.beginConfiguration()
-
-            //session specific configuration
-            //before setting a session presets, we should check if the session supports it
-            if self.captureSession.canSetSessionPreset(.photo) {
-                self.captureSession.sessionPreset = .photo
-            }
-            self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
-
-            //commit configuration
-            self.captureSession.commitConfiguration()
-            //start running it
-            self.captureSession.startRunning()
-        }
-    }
-    
-    func setupInputs(){
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-            return
-        }
-        guard let bInput = try? AVCaptureDeviceInput(device: device) else {
-            return
-        }
-        captureSession.addInput(bInput)
-    }
-    
-    func setupOutput(){
-        videoOutput = AVCaptureVideoDataOutput()
-        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
-        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
+        //init session
+        self.captureSession = AVCaptureSession()
+        //start configuration
+        self.captureSession.beginConfiguration()
         
+        //session specific configuration
+        //before setting a session presets, we should check if the session supports it
+        if self.captureSession.canSetSessionPreset(.photo) {
+            self.captureSession.sessionPreset = .photo
+        }
+        self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
+        
+        //commit configuration
+        self.captureSession.commitConfiguration()
+        //start running it
+        self.captureSession.startRunning()
+    }
+    
+    private let avInput: AVCaptureDeviceInput? = {
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+            return nil
+        }
+        guard let avInput = try? AVCaptureDeviceInput(device: device) else {
+            return nil
+        }
+        return avInput
+    }()
+    
+    func setupInputAndOutput(){
+        guard let avInput = avInput else {
+            return
+        }
+        if captureSession.canAddInput(avInput) {
+            captureSession.addInput(avInput)
+        }
         if captureSession.canAddOutput(videoOutput) {
             captureSession.addOutput(videoOutput)
-        } else {
-            fatalError("could not add video output")
         }
-        
         videoOutput.connections.first?.videoOrientation = .portrait
+    }
+    
+    func dismissInputAndOutput() {
+        guard let avInput = avInput else {
+            return
+        }
+        captureSession.removeInput(avInput)
+        captureSession.removeOutput(videoOutput)
     }
     
     func setupPreviewLayer(){
@@ -143,10 +178,16 @@ extension VisionCaptureViewController {
     }
     
     func makeMask() {
-        let mask = UIView()
         mask.borderColor = .red
         mask.borderWidth = 2
         mask.frame = identifyArea
+        let plusImage = UIImage(systemName: "plus")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let plus = UIImageView(image: plusImage)
+        mask.addSubview(plus)
+        plus.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
         cameraView.addSubview(mask)
     }
     
@@ -177,7 +218,7 @@ extension VisionCaptureViewController {
         capturedImageView.clipsToBounds = true
         view.addSubview(capturedImageView)
         capturedImageView.snp.makeConstraints {
-            $0.height.equalTo(50)
+            $0.height.equalTo(100)
             $0.left.right.bottom.equalToSuperview()
         }
     }

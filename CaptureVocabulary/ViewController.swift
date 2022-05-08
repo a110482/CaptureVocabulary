@@ -31,7 +31,8 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sql()
-        testCapture()
+//        testCapture()
+        test()
     }
     
     // api 測試
@@ -64,14 +65,12 @@ class ViewController: UIViewController {
     private func sql() {
 //        SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
-        #if DEBUG
-//        print(VocabularyCardORM.prepare(VocabularyCardORM.table))
-        #endif
     }
     
     // test
     private func test() {
-
+        coor = TabBarCoordinator(rootViewController: self)
+        coor.start()
     }
 }
 
