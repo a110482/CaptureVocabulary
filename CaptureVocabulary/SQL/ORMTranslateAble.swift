@@ -7,6 +7,7 @@
 
 import SQLite
 
+/// 讓 orm 物件, 跟資料庫直接溝通
 protocol ORMTranslateAble {
     associatedtype ORMModel: TableType
     func create(_ foreignKey: Int64?)

@@ -14,6 +14,7 @@ import RxSwift
 class VocabularyListCoordinator: Coordinator<UIViewController> {
     private(set) var viewController: UINavigationController!
     private(set) var viewModel: VocabularyListViewModel!
+    private let disposeBag = DisposeBag()
     
     override func start() {
         guard !started else { return }
@@ -22,7 +23,21 @@ class VocabularyListCoordinator: Coordinator<UIViewController> {
         viewModel = VocabularyListViewModel()
         vc.bind(viewModel)
         present(viewController: viewController)
+        handleAction(vc)
         super.start()
+    }
+    
+    private func handleAction(_ vc: VocabularyListViewController) {
+        vc.action.subscribe(onNext: { [weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case .selectedList(let orm):
+                let coordinator = VocabularyCardsCoordinator(
+                    rootViewController: self.viewController,
+                    selectedList: orm)
+                self.startChild(coordinator: coordinator)
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -33,9 +48,15 @@ private enum DisplayModel {
 }
 
 class VocabularyListViewController: UITableViewController {
+    enum Action {
+        case selectedList(orm: VocabularyCardListORM.ORM)
+    }
+    
+    let action = PublishRelay<Action>()
+    
     private let disposeBag = DisposeBag()
     
-    private var viewModel: VocabularyListViewModel?
+    private weak var viewModel: VocabularyListViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +80,6 @@ class VocabularyListViewController: UITableViewController {
         navigationItem.rightBarButtonItems = [deleteMode]
     }
     
-    @objc func tapAddList() {
-        viewModel?.cerateNewListORM()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.loadList()
@@ -71,6 +88,10 @@ class VocabularyListViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    @objc private func tapAddList() {
+        viewModel?.cerateNewListORM()
     }
     
     private var cellModels: [VocabularyCardListORM.ORM] {
@@ -124,6 +145,11 @@ class VocabularyListViewController: UITableViewController {
         let cellModel = cellModels[indexPath.row]
         cell.textLabel?.text = cellModel.name
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellModel = cellModels[indexPath.row]
+        action.accept(.selectedList(orm: cellModel))
     }
 }
 

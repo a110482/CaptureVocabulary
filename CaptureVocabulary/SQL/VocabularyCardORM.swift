@@ -53,6 +53,15 @@ struct VocabularyCardORM: TableType {
     }
 }
 
+extension VocabularyCardORM.ORM: ORMTranslateAble {
+    typealias ORMModel =  VocabularyCardORM
+    
+    static func allList(listId: Int64) -> [Self]? {
+        let query = ORMModel.table.filter(ORMModel.listId == listId)
+        return ORMModel.prepare(query)
+    }
+}
+
 // MARK: -
 struct VocabularyCardListORM: TableType {
     static let table = Table("vocabularyCardList")
