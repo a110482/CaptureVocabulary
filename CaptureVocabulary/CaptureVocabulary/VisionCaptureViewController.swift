@@ -228,6 +228,7 @@ extension VisionCaptureViewController {
 extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !takePicture else { return }
+        connection.videoOrientation = .portrait
         takePicture = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.takePicture = false

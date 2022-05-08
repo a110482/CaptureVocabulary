@@ -19,8 +19,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         guard !started else { return }
         viewController = TabBarViewController()
         viewController.viewControllers = [
-            
-            DemoViewController(),
+            vocabularyList(),
             DemoViewController(),
             captureVocabulary(),
         ]
@@ -35,6 +34,16 @@ class TabBarCoordinator: Coordinator<UIViewController> {
             title: "捕捉".localized(),
             image: UIImage(systemName: "camera.on.rectangle"),
             tag: 2)
+        return coordinator.viewController
+    }
+    
+    private func vocabularyList() -> UIViewController {
+        let coordinator = VocabularyListCoordinator(rootViewController: viewController)
+        startChild(coordinator: coordinator)
+        coordinator.viewController.tabBarItem = UITabBarItem(
+            title: "單字卡".localized(),
+            image: UIImage(systemName: "list.bullet.indent"),
+            tag: 0)
         return coordinator.viewController
     }
 }
