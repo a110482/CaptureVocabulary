@@ -111,9 +111,9 @@ class VocabularyListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self)
+        let cell = tableView.dequeueReusableCell(withClass: VocabularyListCell.self)
         let cellModel = cellModels[indexPath.row]
-        cell.textLabel?.text = cellModel.name
+        cell.bind(cellModel)
         return cell
     }
     
@@ -121,11 +121,22 @@ class VocabularyListViewController: UITableViewController {
         let cellModel = cellModels[indexPath.row]
         action.accept(.selectedList(orm: cellModel))
     }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let cellModel = cellModels[indexPath.row]
+        cellModel.delete()
+        viewModel?.loadList()
+    }
 }
 
 // UI
 extension VocabularyListViewController {
     func configTable() {
-        tableView.register(cellWithClass: UITableViewCell.self)
+        tableView.register(cellWithClass: VocabularyListCell.self)
     }
 }
