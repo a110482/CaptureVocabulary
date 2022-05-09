@@ -59,6 +59,7 @@ class VocabularyViewModel {
     
     private func updateData(model: AzureDictionaryModel) {
         setDefaultTranslate(model)
+        setNormalizedSource(model)
         `inout`.translateData.accept(model)
     }
     
@@ -109,6 +110,11 @@ class VocabularyViewModel {
     private func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
         let translate = translateData.translations?.first?.displayTarget
         self.inout.translate.accept(translate)
+    }
+    
+    private func setNormalizedSource(_ translateData: AzureDictionaryModel) {
+        let normalizedSource = translateData.normalizedSource
+        `inout`.vocabulary.accept(normalizedSource)
     }
     
     private func getVocabularyListObject() {
@@ -185,7 +191,7 @@ class VocabularyViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyViewModel) {
         self.viewModel = viewModel
-        sourceTextField.text = viewModel.inout.vocabulary.value
+        viewModel.inout.vocabulary.bind(to: sourceTextField.rx.text).disposed(by: disposeBag)
         sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
         viewModel.inout.translate.bind(to: translateTextField.rx.text).disposed(by: disposeBag)
