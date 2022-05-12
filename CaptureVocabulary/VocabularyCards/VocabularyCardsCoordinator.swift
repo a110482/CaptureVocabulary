@@ -113,6 +113,17 @@ class VocabularyCardsViewController: UITableViewController {
         cell.textLabel?.text = "\(cellModel.normalizedSource ?? "") | \(cellModel.normalizedTarget ?? "")"
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let cellModel = cellModels[indexPath.row]
+        cellModel.delete()
+        viewModel?.loadCards()
+    }
 }
 
 //UI

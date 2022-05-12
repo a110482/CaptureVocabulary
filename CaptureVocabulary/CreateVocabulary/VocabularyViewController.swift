@@ -139,7 +139,7 @@ class VocabularyViewController: UIViewController {
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .center
-        $0.spacing = 10
+        $0.spacing = 20
     }
     private let buttonStack = UIStackView().then {
         $0.axis = .horizontal
@@ -162,6 +162,9 @@ class VocabularyViewController: UIViewController {
         $0.textColor = UILabel().textColor
         $0.font = .systemFont(ofSize: 25)
         $0.textAlignment = .center
+    }
+    private let speakerButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
     }
     private let tableView = UITableView()
     private let saveButton = UIButton().then {
@@ -273,6 +276,7 @@ extension VocabularyViewController {
             sourceTextField,
             separateLine,
             translateTextField,
+            speakerButton,
             tableView,
             saveButton
         ])
@@ -321,6 +325,7 @@ extension VocabularyViewController {
         listButtonAction()
         newListButtonAction()
         saveButtonAction()
+        speakerButtonAction()
     }
     
     func listButtonAction() {
@@ -342,6 +347,14 @@ extension VocabularyViewController {
             guard let self = self else { return }
             self.viewModel?.saveVocabularyCard()
             self.action.accept(.dismiss)
+        }).disposed(by: disposeBag)
+    }
+    
+    func speakerButtonAction() {
+        speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            guard let source = self.sourceTextField.text else { return }
+            Speaker.speak(source, language: .en_US)
         }).disposed(by: disposeBag)
     }
 }

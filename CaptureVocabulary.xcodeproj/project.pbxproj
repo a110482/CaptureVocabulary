@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
+		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
 		F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B7281FE865000C74B0 /* SQLCore.swift */; };
 		F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B928267A43000C74B0 /* UIPickerViewController.swift */; };
@@ -56,6 +57,7 @@
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
 		F50952B928267A43000C74B0 /* UIPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				F5B5EADA28145B6C000DD57B /* PlistReader.swift */,
 				F5CBF5972815BFF30088C801 /* Operators.swift */,
 				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
+				F5071C9D282BBD8F00813841 /* Speaker.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
+				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,

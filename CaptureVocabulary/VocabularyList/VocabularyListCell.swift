@@ -10,6 +10,7 @@ import SnapKit
 import SwifterSwift
 import RxCocoa
 import RxSwift
+import AVFoundation
 
 class VocabularyListCell: UITableViewCell {
     let mainStack = UIStackView().then {
@@ -69,6 +70,10 @@ private extension VocabularyListCell {
         memorizedSwitchButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             #warning("寫入已記憶")
+            
+            Speaker.speak("hello", language: .en_US)
+            
         }).disposed(by: disposeBag)
     }
 }
+
