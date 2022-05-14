@@ -233,8 +233,9 @@ class VocabularyViewController: UIViewController {
             self?.viewModel?.cancelNewListORM()
         }
         
-        alertVC.addAction(ok)
         alertVC.addAction(cancel)
+        alertVC.addAction(ok)
+        
         present(alertVC, animated: true, completion: {
             alertVC.textFields?.first?.selectAll(nil)
         })

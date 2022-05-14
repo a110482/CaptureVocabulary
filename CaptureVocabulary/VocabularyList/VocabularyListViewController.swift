@@ -89,18 +89,19 @@ class VocabularyListViewController: UITableViewController {
             guard let self = self else { return }
             textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
         }
+        
+        let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
+            self?.viewModel?.cancelNewListORM()
+        }
+        
         let ok = UIAlertAction(title: "確認".localized(),
                                style: .default) { [weak self] _ in
             guard let self = self else { return }
             guard let newName = alertVC.textFields?.first?.text else { return }
             self.viewModel?.setListORMName(newName)
         }
-        let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
-            self?.viewModel?.cancelNewListORM()
-        }
-        
-        alertVC.addAction(ok)
         alertVC.addAction(cancel)
+        alertVC.addAction(ok)
         present(alertVC, animated: true, completion: {
             alertVC.textFields?.first?.selectAll(nil)
         })
