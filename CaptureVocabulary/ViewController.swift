@@ -65,6 +65,22 @@ class ViewController: UIViewController {
     private func sql() {
 //        SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
+        #if DEBUG
+//        let _ = VocabularyCardListORM.ORM.newList()
+//
+//        var orm = VocabularyCardORM.ORM()
+//        orm.groupId = 1
+//        for index in 0 ..< 10 {
+//            orm.normalizedSource = "hello_\(index)"
+//            orm.normalizedTarget = "哈樓_\(index)"
+//
+//            VocabularyCardORM.create(orm)
+//        }
+//        VocabularyCardORM.ORM.get(by: 3)
+        #endif
+        
+        
+        
     }
     
     // test

@@ -56,9 +56,40 @@ struct VocabularyCardORM: TableType {
 extension VocabularyCardORM.ORM: ORMTranslateAble {
     typealias ORMModel =  VocabularyCardORM
     
+    private static func query(listIds: [Int64] = [], memorized: Bool? = nil) -> Table {
+        var query = ORMModel.table
+        if listIds.count > 0 {
+            query = query.filter(listIds.contains(ORMModel.listId))
+        }
+        if let memorized = memorized {
+            query = query.filter(ORMModel.memorized == memorized)
+        }
+        return query
+    }
+    
     static func allList(listId: Int64) -> [Self]? {
         let query = ORMModel.table.filter(ORMModel.listId == listId)
         return ORMModel.prepare(query)
+    }
+    
+    /// 算出共有幾筆資料
+    static func cardNumbers(listIds: [Int64] = [], memorized: Bool? = nil) -> Int {
+        let query = query(listIds: listIds, memorized: memorized)
+        return ORMModel.scalar(query.count, type: Int.self) ?? 0
+    }
+    
+    /// 取出第 n 筆資料
+    static func get(by index: Int, listIds: [Int64] = [], memorized: Bool? = nil) -> Self? {
+        guard cardNumbers(listIds: listIds, memorized: memorized) > index else { return nil }
+        let query = query(listIds: listIds, memorized: memorized).limit(1, offset: index)
+        return ORMModel.prepare(query)?.first
+    }
+    
+    /// 由 id 算出資料是第 n 筆
+    static func getIndex(by id: Int?, listIds: [Int64] = [], memorized: Bool? = nil) -> Int {
+        guard let id = id else { return 0 }
+        let query = query(listIds: listIds, memorized: memorized).filter(ORMModel.id < Int64(id))
+        return ORMModel.scalar(query.count, type: Int.self) ?? 0
     }
 }
 

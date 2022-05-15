@@ -16,7 +16,7 @@ protocol ORMTranslateAble {
 }
 
 extension ORMTranslateAble {
-    func create(_ foreignKey: Int64?) {
+    func create(_ foreignKey: Int64? = nil) {
         guard type(of: self) == ORMModel.ORM.self else { return }
         ORMModel.create(self as! Self.ORMModel.ORM)
     }

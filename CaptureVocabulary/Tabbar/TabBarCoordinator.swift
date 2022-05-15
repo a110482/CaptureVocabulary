@@ -20,7 +20,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         viewController = TabBarViewController()
         viewController.viewControllers = [
             vocabularyList(),
-            DemoViewController(),
+            review(),
             captureVocabulary(),
         ]
         super.start()
@@ -34,6 +34,12 @@ class TabBarCoordinator: Coordinator<UIViewController> {
             title: "捕捉".localized(),
             image: UIImage(systemName: "camera.on.rectangle"),
             tag: 2)
+        return coordinator.viewController
+    }
+    
+    private func review() -> UIViewController {
+        let coordinator = ReviewCoordinator(rootViewController: viewController)
+        startChild(coordinator: coordinator)
         return coordinator.viewController
     }
     
@@ -51,7 +57,14 @@ class TabBarCoordinator: Coordinator<UIViewController> {
 
 // MARK: -
 class TabBarViewController: UITabBarController {
-    override var shouldAutorotate: Bool { false } 
+    override var shouldAutorotate: Bool { false }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let viewControllers = viewControllers, viewControllers.indices.contains(1) {
+            selectedViewController = viewControllers[1]
+        }
+    }
     
     init() {
         super.init(nibName: nil, bundle: nil)

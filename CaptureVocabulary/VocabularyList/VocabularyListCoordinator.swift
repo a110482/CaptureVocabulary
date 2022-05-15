@@ -22,7 +22,6 @@ class VocabularyListCoordinator: Coordinator<UIViewController> {
         viewController = UINavigationController(rootViewController: vc)
         viewModel = VocabularyListViewModel()
         vc.bind(viewModel)
-        present(viewController: viewController)
         handleAction(vc)
         super.start()
     }

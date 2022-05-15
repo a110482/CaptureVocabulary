@@ -51,6 +51,9 @@
 		F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64828281E70CA00F8F423 /* String+Ext.swift */; };
 		F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */; };
 		F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */; };
+		F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E660302830DFD100277222 /* ReviewCoordinator.swift */; };
+		F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E66032283108CB00277222 /* UserDefaultUtility.swift */; };
+		F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +105,9 @@
 		F5E64828281E70CA00F8F423 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardORM.swift; sourceTree = "<group>"; };
 		F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionaryORM.swift; sourceTree = "<group>"; };
+		F5E660302830DFD100277222 /* ReviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCoordinator.swift; sourceTree = "<group>"; };
+		F5E66032283108CB00277222 /* UserDefaultUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultUtility.swift; sourceTree = "<group>"; };
+		F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +202,7 @@
 				F5CBF5972815BFF30088C801 /* Operators.swift */,
 				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
+				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* key.plist */,
+				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
 				F50952C228280B33000C74B0 /* VocabularyCards */,
 				F50952BF2827BE46000C74B0 /* VocabularyList */,
@@ -257,6 +265,7 @@
 				F5A1630E280BF19600257ABF /* Libary */,
 				F5E6482A281E722C00F8F423 /* SQL */,
 				F5CBF58E281571510088C801 /* Components */,
+				F5E6603428311BD400277222 /* Settings */,
 			);
 			path = CaptureVocabulary;
 			sourceTree = "<group>";
@@ -288,6 +297,22 @@
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 			);
 			path = SQL;
+			sourceTree = "<group>";
+		};
+		F5E6602F2830DF2500277222 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				F5E660302830DFD100277222 /* ReviewCoordinator.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		F5E6603428311BD400277222 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +443,7 @@
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
+				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
@@ -425,6 +451,7 @@
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
+				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
@@ -434,6 +461,7 @@
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
+				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,
 				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
