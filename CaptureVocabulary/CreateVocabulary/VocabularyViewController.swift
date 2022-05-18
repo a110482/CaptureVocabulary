@@ -376,7 +376,7 @@ extension VocabularyViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cellModel = cellDatas?[safe: indexPath.row] else { return cell }
         var text = "\(cellModel.posTag?.string ?? ""): "
         text += "\(cellModel.displayTarget ?? "")"
-        cell.textLabel?.text = text
+        cell.textLabel?.text = text.localized()
         return cell
     }
     

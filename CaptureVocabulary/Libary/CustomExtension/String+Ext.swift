@@ -30,5 +30,15 @@ extension String {
         return normalizedString ?? self
     }
     
-    
+    func localized() -> String {
+        let preferredLanguages = Locale.preferredLanguages
+        let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
+        let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
+        if hantIndex == nil && hansIndex == nil { return self }
+        if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
+            return self.big5
+        } else {
+            return self.gb
+        }
+    }
 }
