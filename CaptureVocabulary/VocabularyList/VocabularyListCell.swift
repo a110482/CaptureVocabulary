@@ -23,6 +23,7 @@ class VocabularyListCell: UITableViewCell {
     
     let memorizedSwitchButton = UIButton().then {
         $0.setTitle("已記憶".localized(), for: .normal)
+        $0.setTitleColor(UILabel().textColor, for: .normal)
     }
     
     private let disposeBag = DisposeBag()
@@ -70,9 +71,6 @@ private extension VocabularyListCell {
         memorizedSwitchButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             #warning("寫入已記憶")
-            
-            Speaker.speak("hello", language: .en_US)
-            
         }).disposed(by: disposeBag)
     }
 }

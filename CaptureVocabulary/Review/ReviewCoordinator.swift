@@ -30,7 +30,7 @@ class ReviewViewModel {
         let scrollToIndex = PublishRelay<Int>()
     }
     let output = Output()
-    let indexCount = VocabularyCardORM.ORM.cardNumbers(memorized: false) * 5
+    let indexCount = max(VocabularyCardORM.ORM.cardNumbers(memorized: false) * 3, 100)
     private var middleIndex: Int { indexCount/2 }
     private var lastReadCardId: Int? {
         get {
@@ -44,7 +44,6 @@ class ReviewViewModel {
     func loadVocabularyCard() {
         let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId)
         output.scrollToIndex.accept(index + middleIndex)
-        print(index + middleIndex)
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
@@ -61,9 +60,7 @@ class ReviewViewModel {
     func updateLastReadCardId(index: Int) {
         guard let orm = queryVocabularyCard(index: index) else { return }
         guard let id = orm.id else { return }
-//        print("index: \(index - middleIndex), id: \(id)")
         lastReadCardId = Int(id)
-//        print(lastReadCardId)
     }
     
     /// 重新校正 index 以維持無線滾動維持在中央
@@ -107,10 +104,9 @@ class ReviewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.async {
+        collectionView.reloadData {
             self.viewModel?.loadVocabularyCard()
         }
-        
     }
     
     func bind(viewModel: ReviewViewModel) {
@@ -222,6 +218,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }
     
     private func configUI() {
+        contentView.backgroundColor = .systemBackground
         contentView.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
