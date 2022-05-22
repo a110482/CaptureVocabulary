@@ -98,7 +98,6 @@ class ReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 100)
         configUI()
     }
     

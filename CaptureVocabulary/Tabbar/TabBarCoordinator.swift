@@ -40,6 +40,10 @@ class TabBarCoordinator: Coordinator<UIViewController> {
     private func review() -> UIViewController {
         let coordinator = ReviewCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
+        coordinator.viewController.tabBarItem = UITabBarItem(
+            title: "複習".localized(),
+            image: UIImage(systemName: "doc.text"),
+            tag: 1)
         return coordinator.viewController
     }
     
@@ -61,9 +65,7 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let viewControllers = viewControllers, viewControllers.indices.contains(1) {
-            selectedViewController = viewControllers[1]
-        }
+        selectedIndex = 1
     }
     
     init() {
