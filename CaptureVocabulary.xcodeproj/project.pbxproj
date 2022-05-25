@@ -18,6 +18,7 @@
 		F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C528297B90000C74B0 /* VocabularyListViewController.swift */; };
 		F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C728297BC9000C74B0 /* VocabularyListViewModel.swift */; };
 		F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C928297E1A000C74B0 /* VocabularyListCell.swift */; };
+		F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A6548283DDC540094357B /* VocabularyCardCell.swift */; };
 		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
@@ -70,6 +71,7 @@
 		F50952C528297B90000C74B0 /* VocabularyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListViewController.swift; sourceTree = "<group>"; };
 		F50952C728297BC9000C74B0 /* VocabularyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListViewModel.swift; sourceTree = "<group>"; };
 		F50952C928297E1A000C74B0 /* VocabularyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListCell.swift; sourceTree = "<group>"; };
+		F52A6548283DDC540094357B /* VocabularyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardCell.swift; sourceTree = "<group>"; };
 		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				F50952C328280B62000C74B0 /* VocabularyCardsCoordinator.swift */,
+				F52A6548283DDC540094357B /* VocabularyCardCell.swift */,
 			);
 			path = VocabularyCards;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
+				F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
 				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,

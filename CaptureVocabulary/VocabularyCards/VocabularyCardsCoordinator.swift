@@ -108,9 +108,9 @@ class VocabularyCardsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self)
+        let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
         let cellModel = cellModels[indexPath.row]
-        cell.textLabel?.text = "\(cellModel.normalizedSource ?? "") | \(cellModel.normalizedTarget ?? "")"
+        cell.bind(cellModel: cellModel)
         return cell
     }
     
@@ -129,6 +129,7 @@ class VocabularyCardsViewController: UITableViewController {
 //UI
 extension VocabularyCardsViewController {
     func configUI() {
-        tableView.register(cellWithClass: UITableViewCell.self)
+        tableView.register(cellWithClass: VocabularyCardCell.self)
     }
 }
+
