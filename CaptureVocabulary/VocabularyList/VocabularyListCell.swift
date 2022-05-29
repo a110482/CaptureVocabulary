@@ -12,16 +12,22 @@ import RxCocoa
 import RxSwift
 import AVFoundation
 
+protocol VocabularyListCellDelegate: AnyObject {
+    func tapMemorizedSwitchButton(cellModel: VocabularyCardListORM.ORM)
+}
+
 class VocabularyListCell: UITableViewCell {
-    let mainStack = UIStackView().then {
+    weak var delegate: VocabularyListCellDelegate?
+    
+    private let mainStack = UIStackView().then {
         $0.axis = .horizontal
     }
     
-    let nameLabel = UILabel().then {
+    private let nameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20)
     }
     
-    let memorizedSwitchButton = UIButton().then {
+    private let memorizedSwitchButton = ActiveSwitchButton().then {
         $0.setTitle("已記憶".localized(), for: .normal)
         $0.setTitleColor(UILabel().textColor, for: .normal)
     }
@@ -50,7 +56,9 @@ class VocabularyListCell: UITableViewCell {
 // UI
 private extension VocabularyListCell {
     func updateUI() {
-        backgroundColor = (self.cellModel?.memorized ?? false) ? .gray : .systemBackground
+        let memorized = self.cellModel?.memorized ?? false
+        backgroundColor = memorized ? .gray : .systemBackground
+        memorizedSwitchButton.setActive(!memorized)
     }
     
     func configUI() {
@@ -70,7 +78,8 @@ private extension VocabularyListCell {
     func bindAction() {
         memorizedSwitchButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            #warning("寫入已記憶")
+            guard let cellModel = self.cellModel else { return }
+            self.delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         }).disposed(by: disposeBag)
     }
 }

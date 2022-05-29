@@ -30,7 +30,7 @@ class ReviewViewModel {
         let scrollToIndex = PublishRelay<Int>()
     }
     let output = Output()
-    let indexCount = max(VocabularyCardORM.ORM.cardNumbers(memorized: false) * 3, 100)
+    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 100)
     private var middleIndex: Int { indexCount/2 }
     private var lastReadCardId: Int? {
         get {
@@ -42,18 +42,19 @@ class ReviewViewModel {
     }
     
     func loadVocabularyCard() {
-        let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId)
+        let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
         output.scrollToIndex.accept(index + middleIndex)
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
         let cellModelsCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
+        guard cellModelsCount > 0 else { return nil }
         var absIndex = (index - middleIndex)
         while absIndex < 0 {
             absIndex += cellModelsCount
         }
         absIndex = absIndex % cellModelsCount
-        let orm = VocabularyCardORM.ORM.get(by: absIndex)
+        let orm = VocabularyCardORM.ORM.get(by: absIndex, memorized: false)
         return orm
     }
     
@@ -66,6 +67,7 @@ class ReviewViewModel {
     /// 重新校正 index 以維持無線滾動維持在中央
     func adjustIndex(index: Int) {
         let cellModelsCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
+        guard cellModelsCount > 0 else { return }
         var newIndex = index
         while (newIndex - middleIndex) > cellModelsCount {
             newIndex -= cellModelsCount
@@ -214,6 +216,11 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        [sourceLabel, translateLabel].forEach { $0.text = nil }
     }
     
     private func configUI() {

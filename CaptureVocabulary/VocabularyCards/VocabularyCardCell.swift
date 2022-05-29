@@ -11,24 +11,37 @@ import SwifterSwift
 import RxCocoa
 import RxSwift
 
+protocol VocabularyCardCellDelegate: AnyObject {
+    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM)
+}
+
 class VocabularyCardCell: UITableViewCell {
+    weak var delegate: VocabularyCardCellDelegate?
+    
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
     }
+    
     private let sourceLabel = UILabel().then {
         $0.textAlignment = .center
     }
+    
     private let translateLabel = UILabel().then {
         $0.textAlignment = .center
     }
+    
     private let speakerButton = UIButton().then {
         $0.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
     }
-    private let memorizedSwitchButton = UIButton().then {
+    
+    private let memorizedSwitchButton = ActiveSwitchButton().then {
         $0.setTitle("已記憶".localized(), for: .normal)
         $0.setTitleColor(UILabel().textColor, for: .normal)
     }
+    
+    private var cellModel: VocabularyCardORM.ORM?
+    
     private let disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,8 +55,11 @@ class VocabularyCardCell: UITableViewCell {
     }
     
     func bind(cellModel: VocabularyCardORM.ORM) {
+        self.cellModel = cellModel
         sourceLabel.text = cellModel.normalizedSource
         translateLabel.text = cellModel.normalizedTarget
+        let memorized = cellModel.memorized ?? false
+        memorizedSwitchButton.setActive(!memorized)
     }
 }
 
@@ -75,6 +91,12 @@ private extension VocabularyCardCell {
     func bindAction() {
         speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
             Speaker.speak(self?.sourceLabel.text ?? "", language: .en_US)
+        }).disposed(by: disposeBag)
+        
+        memorizedSwitchButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            guard let cellModel = self.cellModel else { return }
+            self.delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         }).disposed(by: disposeBag)
     }
 }

@@ -58,6 +58,16 @@ class VocabularyCardsViewModel {
     }
 }
 
+extension VocabularyCardsViewModel: VocabularyCardCellDelegate {
+    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
+        var cellModel = cellModel
+        guard let memorized = cellModel.memorized else { return }
+        cellModel.memorized = !memorized
+        cellModel.update()
+        loadCards()
+    }
+}
+
 // MARK: -
 class VocabularyCardsViewController: UITableViewController {
     
@@ -111,6 +121,7 @@ class VocabularyCardsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
         let cellModel = cellModels[indexPath.row]
         cell.bind(cellModel: cellModel)
+        cell.delegate = self.viewModel
         return cell
     }
     
