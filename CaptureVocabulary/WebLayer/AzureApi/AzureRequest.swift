@@ -11,6 +11,8 @@ import Moya
 
 struct KeyPlistModel: Codable {
     let azureKey: String?
+    let YDAppKey: String?
+    let YDSecret: String?
 }
 
 protocol AzureRequest: Request {

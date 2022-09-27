@@ -28,6 +28,8 @@
 		F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A8607281411080005CD34 /* HeaderStorage.swift */; };
 		F58A860B281428670005CD34 /* StanderDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860A281428670005CD34 /* StanderDecision.swift */; };
 		F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860C28142A110005CD34 /* RequestBuilder.swift */; };
+		F599B36628E3014100C551D8 /* YoudaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599B36528E3014100C551D8 /* YoudaoService.swift */; };
+		F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599B36728E306EB00C551D8 /* Data+Ext.swift */; };
 		F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16306280AE4FB00257ABF /* VisionCaptureViewController.swift */; };
 		F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16308280BF13300257ABF /* Coordinator.swift */; };
 		F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16309280BF13300257ABF /* Coordinating.swift */; };
@@ -82,6 +84,8 @@
 		F58A8607281411080005CD34 /* HeaderStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderStorage.swift; sourceTree = "<group>"; };
 		F58A860A281428670005CD34 /* StanderDecision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StanderDecision.swift; sourceTree = "<group>"; };
 		F58A860C28142A110005CD34 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		F599B36528E3014100C551D8 /* YoudaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoudaoService.swift; sourceTree = "<group>"; };
+		F599B36728E306EB00C551D8 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		F5A16306280AE4FB00257ABF /* VisionCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCaptureViewController.swift; sourceTree = "<group>"; };
 		F5A16308280BF13300257ABF /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F5A16309280BF13300257ABF /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -204,6 +208,14 @@
 			path = AzureApi;
 			sourceTree = "<group>";
 		};
+		F599B36428E3011600C551D8 /* YoudaoService */ = {
+			isa = PBXGroup;
+			children = (
+				F599B36528E3014100C551D8 /* YoudaoService.swift */,
+			);
+			path = YoudaoService;
+			sourceTree = "<group>";
+		};
 		F5A1630E280BF19600257ABF /* Libary */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +247,7 @@
 				F5A16313280DBAFA00257ABF /* Array+Ext.swift */,
 				F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */,
 				F5E64828281E70CA00F8F423 /* String+Ext.swift */,
+				F599B36728E306EB00C551D8 /* Data+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -268,6 +281,7 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* key.plist */,
+				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
 				F50952C228280B33000C74B0 /* VocabularyCards */,
@@ -466,6 +480,8 @@
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
+				F599B36628E3014100C551D8 /* YoudaoService.swift in Sources */,
+				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
