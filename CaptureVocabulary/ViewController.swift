@@ -84,8 +84,13 @@ class ViewController: UIViewController {
     
     // test
     private func test() {
-        coor = TabBarCoordinator(rootViewController: self)
-        coor.start()
+//        coor = TabBarCoordinator(rootViewController: self)
+//        coor.start()
+        
+        typealias Req = StringTranslateAPI
+        let request = Req()
+        let api = RequestBuilder<Req>()
+        api.send(req: request)
     }
 }
 
