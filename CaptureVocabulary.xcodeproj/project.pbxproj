@@ -37,6 +37,8 @@
 		F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16310280C759600257ABF /* CaptureVocabularyCoordinator.swift */; };
 		F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16313280DBAFA00257ABF /* Array+Ext.swift */; };
 		F5A4CF7828E5A6A100600E21 /* YoudaoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7728E5A6A100600E21 /* YoudaoRequest.swift */; };
+		F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */; };
+		F5A4CF7C28E6FC0400600E21 /* StringTranslateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7B28E6FC0400600E21 /* StringTranslateAPI.swift */; };
 		F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */; };
 		F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD828145720000DD57B /* AzureDictionary.swift */; };
 		F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EADA28145B6C000DD57B /* PlistReader.swift */; };
@@ -94,6 +96,8 @@
 		F5A16310280C759600257ABF /* CaptureVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5A16313280DBAFA00257ABF /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		F5A4CF7728E5A6A100600E21 /* YoudaoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoudaoRequest.swift; sourceTree = "<group>"; };
+		F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Ext.swift"; sourceTree = "<group>"; };
+		F5A4CF7B28E6FC0400600E21 /* StringTranslateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTranslateAPI.swift; sourceTree = "<group>"; };
 		F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureTranslate.swift; sourceTree = "<group>"; };
 		F5B5EAD828145720000DD57B /* AzureDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionary.swift; sourceTree = "<group>"; };
 		F5B5EADA28145B6C000DD57B /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			children = (
 				F599B36528E3014100C551D8 /* YoudaoService.swift */,
 				F5A4CF7728E5A6A100600E21 /* YoudaoRequest.swift */,
+				F5A4CF7B28E6FC0400600E21 /* StringTranslateAPI.swift */,
 			);
 			path = YoudaoService;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */,
 				F5E64828281E70CA00F8F423 /* String+Ext.swift */,
 				F599B36728E306EB00C551D8 /* Data+Ext.swift */,
+				F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
+				F5A4CF7C28E6FC0400600E21 /* StringTranslateAPI.swift in Sources */,
 				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
 				F5A16314280DBAFA00257ABF /* Array+Ext.swift in Sources */,
@@ -507,6 +514,7 @@
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
+				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 			);
