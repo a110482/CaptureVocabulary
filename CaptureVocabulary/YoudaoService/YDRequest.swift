@@ -9,11 +9,11 @@ import Foundation
 import Moya
 
 
-protocol YoudaoRequest: Request {
+protocol YDRequest: Request {
     
 }
 
-extension YoudaoRequest {
+extension YDRequest {
     var baseURL: URL { URL(string: "https://openapi.youdao.com/")! }
     
     var headers: [String : String]? { nil }

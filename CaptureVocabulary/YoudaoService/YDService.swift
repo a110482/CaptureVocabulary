@@ -1,5 +1,5 @@
 //
-//  YoudaoService.swift
+//  YDService.swift
 //  CaptureVocabulary
 //
 //  Created by 譚培成 on 2022/9/27.
@@ -9,8 +9,8 @@ import Foundation
 import SwifterSwift
 
 
-class YoudaoService {
-    static let shared = YoudaoService()
+class YDService {
+    static let shared = YDService()
     let appKey: String
     private let secret: String
     
@@ -29,7 +29,7 @@ class YoudaoService {
     }
 }
 
-private extension YoudaoService {
+private extension YDService {
     func truncate(_ query: String) -> String {
         guard query.count > 20 else {
             return query

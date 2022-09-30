@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-struct StringTranslateAPIQueryModel: Encodable {
+struct YDTranslateAPIQueryModel: Encodable {
     let q: String
     let from = "en"
     let to = "zh-CHS"
@@ -27,7 +27,7 @@ struct StringTranslateAPIQueryModel: Encodable {
         self.salt = salt
         let time = String(Int(Date().timeIntervalSince1970))
         self.curtime = time
-        let sign = YoudaoService.shared.sing(
+        let sign = YDService.shared.sing(
             query: queryString,
             uuid: salt,
             time: time)
@@ -36,14 +36,14 @@ struct StringTranslateAPIQueryModel: Encodable {
 }
 
 
-struct StringTranslateAPI: YoudaoRequest {
+struct YDTranslateAPI: YDRequest {
     typealias ResponseModel = EmptyResponse
     
     var path: String = "api"
     
     var method: Moya.Method = .post
     
-    let queryModel = StringTranslateAPIQueryModel(queryString: "hello")
+    let queryModel = YDTranslateAPIQueryModel(queryString: "hello")
     
     var task: Task {
         var multipartData = [MultipartFormData]()

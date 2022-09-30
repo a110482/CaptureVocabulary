@@ -87,7 +87,7 @@ class ViewController: UIViewController {
 //        coor = TabBarCoordinator(rootViewController: self)
 //        coor.start()
         
-        typealias Req = StringTranslateAPI
+        typealias Req = YDTranslateAPI
         let request = Req()
         let api = RequestBuilder<Req>()
         api.send(req: request)
