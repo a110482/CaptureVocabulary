@@ -7,7 +7,9 @@
 
 import Foundation
 import Moya
+import SQLite
 
+// MARK: query model
 struct YDTranslateAPIQueryModel: Encodable {
     let q: String
     let from = "en"
@@ -35,7 +37,7 @@ struct YDTranslateAPIQueryModel: Encodable {
     }
 }
 
-
+// MARK: api
 struct YDTranslateAPI: YDRequest {
     typealias ResponseModel = StringTranslateAPIResponse
     
@@ -65,19 +67,19 @@ struct YDTranslateAPI: YDRequest {
     }
 }
 
-
+// MARK: response model
 struct StringTranslateAPIResponse: Codable {
-    let dict: Dict
-    let translation: [String]
-    let query: String
-    let webdict: Dict
-    let basic: Basic
-    let tSpeakURL: String
-    let isWord: Bool
-    let requestID, l, errorCode: String
-    let web: [Web]
-    let speakURL: String
-    let returnPhrase: [String]
+    let dict: Dict?
+    let translation: [String]?
+    let query: String?
+    let webdict: Dict?
+    let basic: Basic?
+    let tSpeakURL: String?
+    let isWord: Bool?
+    let requestID, l, errorCode: String?
+    let web: [Web]?
+    let speakURL: String?
+    let returnPhrase: [String]?
 
     enum CodingKeys: String, CodingKey {
         case dict, translation, query, webdict, basic
@@ -90,14 +92,13 @@ struct StringTranslateAPIResponse: Codable {
     }
 }
 
-// MARK: - Basic
 struct Basic: Codable {
-    let ukPhonetic: String
-    let wfs: [WfElement]
-    let ukSpeech, usSpeech: String
-    let examType: [String]
-    let usPhonetic, phonetic: String
-    let explains: [String]
+    let ukPhonetic: String?
+    let wfs: [WfElement]?
+    let ukSpeech, usSpeech: String?
+    let examType: [String]?
+    let usPhonetic, phonetic: String?
+    let explains: [String]?
 
     enum CodingKeys: String, CodingKey {
         case ukPhonetic = "uk-phonetic"
@@ -110,23 +111,41 @@ struct Basic: Codable {
     }
 }
 
-// MARK: - WfElement
 struct WfElement: Codable {
-    let wf: WfWf
+    let wf: WfWf?
 }
 
-// MARK: - WfWf
 struct WfWf: Codable {
-    let name, value: String
+    let name, value: String?
 }
 
-// MARK: - Dict
 struct Dict: Codable {
-    let url: String
+    let url: String?
 }
 
-// MARK: - Web
 struct Web: Codable {
-    let value: [String]
-    let key: String
+    let value: [String]?
+    let key: String?
+}
+
+// MARK: sql
+extension StringTranslateAPIResponse: ORMTranslateAble {
+    typealias ORMModel = YDTranslateORM
+    
+    func create(_ foreignKey: Int64?) {
+        guard let query = query else { return }
+        let data = try? JSONEncoder().encode(self)
+        let orm =  ORMModel.ORM(query: query,
+                                data: data)
+        ORMModel.create(orm)
+    }
+    
+    static func load(queryString: String) -> StringTranslateAPIResponse? {
+        let queryString = queryString.normalized
+        let query = ORMModel.table.filter(ORMModel.query == queryString).limit(1)
+        guard let orms = ORMModel.prepare(query) else { return nil }
+        guard let dataObject = orms.first else { return nil }
+        guard let data = dataObject.data else { return nil }
+        return try? JSONDecoder().decode(Self.self, from: data)
+    }
 }

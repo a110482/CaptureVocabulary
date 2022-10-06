@@ -30,22 +30,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sql()
-        test()
-    }
-    
-    
-    // 相機畫面
-    private func testCapture() {
-        coor = CaptureVocabularyCoordinator(rootViewController: self)
-        coor.start()
-    }
-    
-    // popup 頁面
-    private func testPopupPage() {
-        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "immortal")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.coor.start()
-        }
+        mainCoordinator()
     }
     
     // SQLite
@@ -54,22 +39,9 @@ class ViewController: UIViewController {
     }
     
     // test
-    private func test() {
-//        coor = TabBarCoordinator(rootViewController: self)
-//        coor.start()
-        
-        typealias Req = YDTranslateAPI
-        let request = Req()
-        let api = RequestBuilder<Req>()
-        
-        api.result.subscribe(onNext: { [weak self] res in
-            guard let self = self else { return }
-            print(res)
-        }).disposed(by: disposeBag)
-        
-        
-        
-        api.send(req: request)
+    private func mainCoordinator() {
+        coor = TabBarCoordinator(rootViewController: self)
+        coor.start()
     }
 }
 
