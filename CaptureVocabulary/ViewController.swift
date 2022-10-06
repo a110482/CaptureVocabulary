@@ -30,21 +30,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sql()
-//        testCapture()
         test()
     }
     
-    // api 測試
-    private func demoRequest() {
-        typealias Req = AzureDictionary
-        let request = Req(queryModel: .init(Text: "immortal"))
-        let api = RequestBuilder<Req>()
-        api.send(req: request)
-        api.result.subscribe(onNext: { res in
-            guard let res = res else { return }
-            print(res)
-        }).disposed(by: disposeBag)
-    }
     
     // 相機畫面
     private func testCapture() {
@@ -62,24 +50,7 @@ class ViewController: UIViewController {
     
     // SQLite
     private func sql() {
-//        SQLCore.shared.dropTables()
         SQLCore.shared.createTables()
-        #if DEBUG
-//        let _ = VocabularyCardListORM.ORM.newList()
-//
-//        var orm = VocabularyCardORM.ORM()
-//        orm.groupId = 1
-//        for index in 0 ..< 10 {
-//            orm.normalizedSource = "hello_\(index)"
-//            orm.normalizedTarget = "哈樓_\(index)"
-//
-//            VocabularyCardORM.create(orm)
-//        }
-//        VocabularyCardORM.ORM.get(by: 3)
-        #endif
-        
-        
-        
     }
     
     // test
