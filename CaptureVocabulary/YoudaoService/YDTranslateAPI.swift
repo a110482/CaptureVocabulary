@@ -37,13 +37,13 @@ struct YDTranslateAPIQueryModel: Encodable {
 
 
 struct YDTranslateAPI: YDRequest {
-    typealias ResponseModel = EmptyResponse
+    typealias ResponseModel = StringTranslateAPIResponse
     
     var path: String = "api"
     
     var method: Moya.Method = .post
     
-    let queryModel = YDTranslateAPIQueryModel(queryString: "hello")
+    let queryModel: YDTranslateAPIQueryModel
     
     var task: Task {
         var multipartData = [MultipartFormData]()

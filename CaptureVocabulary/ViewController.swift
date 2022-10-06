@@ -90,6 +90,14 @@ class ViewController: UIViewController {
         typealias Req = YDTranslateAPI
         let request = Req()
         let api = RequestBuilder<Req>()
+        
+        api.result.subscribe(onNext: { [weak self] res in
+            guard let self = self else { return }
+            print(res)
+        }).disposed(by: disposeBag)
+        
+        
+        
         api.send(req: request)
     }
 }
