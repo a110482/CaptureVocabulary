@@ -20,10 +20,12 @@ class SQLCore {
     }
     
     private var tables: Array<TableProtocol.Type> {
-        [VocabularyCardORM.self,
-         VocabularyCardListORM.self,
-         AzureDictionaryORM.self,
-         AzureDictionaryTranslationORM.self
+        [
+            VocabularyCardORM.self,
+            VocabularyCardListORM.self,
+            AzureDictionaryORM.self,
+            AzureDictionaryTranslationORM.self,
+            YDTranslateORM.self
         ]
     }
     

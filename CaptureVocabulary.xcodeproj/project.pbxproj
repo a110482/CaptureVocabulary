@@ -48,6 +48,7 @@
 		F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5C2006E28071DE200A3AAB6 /* Main.storyboard */; };
 		F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5C2007128071DE400A3AAB6 /* Assets.xcassets */; };
 		F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */; };
+		F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */; };
 		F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */; };
 		F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58F2815718E0088C801 /* PopupViewController.swift */; };
 		F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF59328159FE30088C801 /* VocabularyViewController.swift */; };
@@ -55,6 +56,7 @@
 		F5CBF5982815BFF30088C801 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
 		F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = F5CBF5992816DCF00088C801 /* AzureDictionary.json */; };
 		F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
+		F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */; };
 		F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64828281E70CA00F8F423 /* String+Ext.swift */; };
 		F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */; };
 		F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */; };
@@ -109,6 +111,7 @@
 		F5C2007128071DE400A3AAB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5C2007428071DE400A3AAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5C2007628071DE400A3AAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDTranslateORM.swift; sourceTree = "<group>"; };
 		F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		F5CBF58F2815718E0088C801 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		F5CBF59328159FE30088C801 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		F5CBF5972815BFF30088C801 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		F5CBF5992816DCF00088C801 /* AzureDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AzureDictionary.json; sourceTree = "<group>"; };
 		F5CBF5AD2816EEDB0088C801 /* GBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBig.swift; sourceTree = "<group>"; };
+		F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewModel.swift; sourceTree = "<group>"; };
 		F5E64828281E70CA00F8F423 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardORM.swift; sourceTree = "<group>"; };
 		F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionaryORM.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 			children = (
 				F5CBF59328159FE30088C801 /* VocabularyViewController.swift */,
 				F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */,
+				F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */,
 			);
 			path = CreateVocabulary;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
+				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
+				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
@@ -510,6 +517,7 @@
 				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
 				F50952C12827BEB8000C74B0 /* VocabularyListCoordinator.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
+				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,

@@ -11,124 +11,6 @@ import RxCocoa
 import RxSwift
 
 
-// MARK: - ViewModel
-class VocabularyViewModel {
-    struct Inout {
-        let vocabulary = BehaviorRelay<String?>(value: nil)
-        let translate = BehaviorRelay<String?>(value: nil)
-        let translateData = BehaviorRelay<AzureDictionaryModel?>(value: nil)
-    }
-    let `inout` = Inout()
-    
-    struct Output {
-        let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
-        let showEditListNameAlert = PublishRelay<Void>()
-    }
-    
-    let output = Output()
-    
-    private let disposeBag = DisposeBag()
-    
-    init(vocabulary: String) {
-        `inout`.vocabulary.accept(vocabulary)
-        sentQueryRequest()
-        getVocabularyListObject()
-    }
-    
-    // 等按 return 再查詢, 不然流量太兇
-    func sentQueryRequest() {
-        guard let vocabulary = `inout`.vocabulary.value else { return }
-        typealias Req = AzureDictionary
-
-        let normalized = vocabulary.normalized
-        if let savedModel = AzureDictionaryModel.load(normalizedSource: normalized).first {
-            updateData(model: savedModel)
-        } else {
-            let request = Req(queryModel: .init(Text: vocabulary))
-            let api = RequestBuilder<Req>()
-            api.send(req: request)
-            api.result.subscribe(onNext: { [weak self] response in
-                guard let self = self else { return }
-                guard let response = response else { return }
-                guard let translateData = response.first else { return }
-                translateData.create()
-                self.updateData(model: translateData)
-            }).disposed(by: disposeBag)
-        }
-    }
-    
-    private func updateData(model: AzureDictionaryModel) {
-        setDefaultTranslate(model)
-        setNormalizedSource(model)
-        `inout`.translateData.accept(model)
-    }
-    
-    // 建立新的清單
-    func cerateNewListORM() {
-        let newORM = VocabularyCardListORM.ORM.newList()
-        output.vocabularyListORM.accept(newORM)
-        output.showEditListNameAlert.accept(())
-    }
-    
-    // 刪除當前清單
-    func cancelNewListORM() {
-        output.vocabularyListORM.value?.delete()
-        output.vocabularyListORM.accept(nil)
-        getVocabularyListObject()
-    }
-    
-    func setListORMName(_ name: String) {
-        guard var orm = output.vocabularyListORM.value else { return }
-        orm.name = name
-        VocabularyCardListORM.update(orm)
-        output.vocabularyListORM.accept(orm)
-    }
-    
-    func selected(orm: VocabularyCardListORM.ORM) {
-        output.vocabularyListORM.accept(orm)
-    }
-    
-    func getAllList() -> [VocabularyCardListORM.ORM] {
-        return VocabularyCardListORM.ORM.allList() ?? []
-    }
-    
-    func saveVocabularyCard() {
-        guard let vocabulary = `inout`.vocabulary.value,
-              let translate = `inout`.translate.value,
-              let groupId = output.vocabularyListORM.value?.id
-        else { return }
-        var cardObj = VocabularyCardORM.ORM()
-        cardObj.normalizedSource = vocabulary
-        cardObj.normalizedTarget = translate
-        cardObj.groupId = groupId
-        VocabularyCardORM.create(cardObj)
-        guard var listObj = output.vocabularyListORM.value else { return }
-        listObj.timestamp = Date().timeIntervalSince1970
-        VocabularyCardListORM.update(listObj)
-    }
-    
-    private func setDefaultTranslate(_ translateData: AzureDictionaryModel) {
-        let translate = translateData.translations?.first?.displayTarget
-        self.inout.translate.accept(translate)
-    }
-    
-    private func setNormalizedSource(_ translateData: AzureDictionaryModel) {
-        let normalizedSource = translateData.normalizedSource
-        `inout`.vocabulary.accept(normalizedSource)
-    }
-    
-    private func getVocabularyListObject() {
-        let lastEditList = VocabularyCardListORM.ORM.lastEditList()
-        output.vocabularyListORM.accept(lastEditList)
-    }
-}
-
-extension VocabularyCardListORM.ORM: UIPickerViewModelProtocol {
-    var title: String {
-        return name ?? ""
-    }
-}
-
 // MARK: - View
 class VocabularyViewController: UIViewController {
     enum Action {
@@ -158,22 +40,15 @@ class VocabularyViewController: UIViewController {
         $0.font = .systemFont(ofSize: 25)
         $0.textAlignment = .center
     }
-    private let translateTextField = UITextField().then {
-        $0.textColor = UILabel().textColor
-        $0.font = .systemFont(ofSize: 25)
-        $0.textAlignment = .center
-    }
     private let speakerButton = UIButton().then {
         $0.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
     }
-    private let tableView = UITableView()
+    private let translateResultView = TranslateResultView()
     private let saveButton = UIButton().then {
         $0.setTitle("儲存".localized(), for: .normal)
         $0.setTitleColor(UILabel().textColor, for: .normal)
     }
-    private var cellDatas: [AzureDictionaryModel.Translation]? {
-        viewModel?.inout.translateData.value?.translations
-    }
+    
     
     private let disposeBag = DisposeBag()
     
@@ -197,12 +72,9 @@ class VocabularyViewController: UIViewController {
         viewModel.inout.vocabulary.bind(to: sourceTextField.rx.text).disposed(by: disposeBag)
         sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
-        viewModel.inout.translate.bind(to: translateTextField.rx.text).disposed(by: disposeBag)
-        translateTextField.rx.text.bind(to: viewModel.inout.translate).disposed(by: disposeBag)
-        
         viewModel.inout.translateData.subscribe(onNext: { [weak self] translateData in
             guard let self = self else { return }
-            self.tableView.reloadData()
+            self.translateResultView.config(model: translateData)
         }).disposed(by: disposeBag)
         
         viewModel.output.vocabularyListORM.subscribe(onNext: { [weak self] orm in
@@ -276,9 +148,8 @@ extension VocabularyViewController {
             buttonStack,
             sourceTextField,
             separateLine,
-            translateTextField,
             speakerButton,
-            tableView,
+            translateResultView,
             saveButton
         ])
         buttonStack.snp.makeConstraints {
@@ -289,13 +160,16 @@ extension VocabularyViewController {
             $0.width.equalToSuperview().multipliedBy(0.8)
             $0.height.equalTo(1)
         }
-        [sourceTextField, translateTextField].forEach {
+        [sourceTextField].forEach {
             $0.snp.makeConstraints { view in
                 view.width.equalToSuperview()
             }
         }
+        translateResultView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.left.equalTo(10)
+        }
         sourceTextField.delegate = self
-        configTableView()
         layoutButtonStack()
     }
     
@@ -306,17 +180,6 @@ extension VocabularyViewController {
         newListButton.snp.makeConstraints {
             $0.width.equalTo(50)
         }
-    }
-    
-    private func configTableView() {
-        tableView.snp.makeConstraints {
-            $0.height.equalTo(UIScreen.main.bounds.height*0.3)
-            $0.width.equalToSuperview()
-        }
-        tableView.register(cellWithClass: UITableViewCell.self)
-        tableView.backgroundColor = .systemBackground
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 }
 
@@ -366,23 +229,52 @@ extension VocabularyViewController: UITextFieldDelegate {
     }
 }
 
-extension VocabularyViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellDatas?.count ?? 0
+// MARK: -
+class TranslateResultView: UIStackView {
+    private let phonetic = UILabel()
+    #warning("自定義解釋功能")
+    let translate = UITextField().then {
+        $0.isUserInteractionEnabled = false
+    }
+    private let explains = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        axis = .vertical
+        spacing = 8
+        configUI()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self)
-        guard let cellModel = cellDatas?[safe: indexPath.row] else { return cell }
-        var text = "\(cellModel.posTag?.string ?? ""): "
-        text += "\(cellModel.displayTarget ?? "")"
-        cell.textLabel?.text = text.localized()
-        return cell
+    required init(coder: NSCoder) {
+        fatalError()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cellModel = cellDatas?[safe: indexPath.row] else { return }
-        guard let displayTarget = cellModel.displayTarget else { return }
-        viewModel?.inout.translate.accept(displayTarget)
+    func config(model: StringTranslateAPIResponse?) {
+        if let usPhonetic = model?.basic?.usPhonetic {
+            phonetic.text = "[US] \(usPhonetic)"
+        }
+        
+        if let explans = model?.basic?.explains {
+            explains.text = explans.reduce("", {
+                $0 + ($0.isEmpty ? "" : "\n\n") + $1
+            })
+        }
+        
+        if let translation = model?.translation?.first {
+            translate.text = translation
+        }
+    }
+    
+    private func configUI() {
+        addArrangedSubviews([
+            phonetic,
+            translate,
+            explains
+        ])
+        
+        [phonetic, explains].forEach {
+            $0.numberOfLines = 0
+            $0.textAlignment = .left
+        }
     }
 }

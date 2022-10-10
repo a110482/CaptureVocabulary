@@ -30,22 +30,8 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         sql()
+        mainCoordinator()
         test()
-    }
-    
-    
-    // 相機畫面
-    private func testCapture() {
-        coor = CaptureVocabularyCoordinator(rootViewController: self)
-        coor.start()
-    }
-    
-    // popup 頁面
-    private func testPopupPage() {
-        coor = CreateVocabularyCoordinator(rootViewController: self, vocabulary: "immortal")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.coor.start()
-        }
     }
     
     // SQLite
@@ -53,24 +39,31 @@ class ViewController: UIViewController {
         SQLCore.shared.createTables()
     }
     
-    // test
+    private func mainCoordinator() {
+        coor = TabBarCoordinator(rootViewController: self)
+        coor.start()
+    }
+    
     private func test() {
-//        coor = TabBarCoordinator(rootViewController: self)
-//        coor.start()
-        
-        typealias Req = YDTranslateAPI
-        let request = Req()
-        let api = RequestBuilder<Req>()
-        
-        api.result.subscribe(onNext: { [weak self] res in
+        let queryModel = YDTranslateAPIQueryModel(queryString: "immortal")
+        let api = YDTranslateAPI(queryModel: queryModel)
+        let req = RequestBuilder<YDTranslateAPI>()
+
+        req.result.subscribe(onNext: { [weak self] res in
             guard let self = self else { return }
+            res?.create(nil)
             print(res)
+            print("save responde")
         }).disposed(by: disposeBag)
-        
-        
-        
-        api.send(req: request)
+
+        if let res = YDTranslateAPI.ResponseModel.load(queryModel: queryModel) {
+            print(res)
+        } else {
+            req.send(req: api)
+        }
     }
 }
+
+
 
 
