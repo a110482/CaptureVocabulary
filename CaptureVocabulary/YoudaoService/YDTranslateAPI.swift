@@ -139,9 +139,11 @@ extension StringTranslateAPIResponse: ORMTranslateAble {
                                 data: data)
         ORMModel.create(orm)
     }
-    
-    static func load(queryString: String) -> StringTranslateAPIResponse? {
-        let queryString = queryString.normalized
+}
+
+extension StringTranslateAPIResponse {
+    static func load(queryModel: YDTranslateAPIQueryModel) -> StringTranslateAPIResponse? {
+        let queryString = queryModel.q.normalized
         let query = ORMModel.table.filter(ORMModel.query == queryString).limit(1)
         guard let orms = ORMModel.prepare(query) else { return nil }
         guard let dataObject = orms.first else { return nil }
