@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         sql()
         mainCoordinator()
-//        test()
+        test()
     }
     
     // SQLite
@@ -45,13 +45,14 @@ class ViewController: UIViewController {
     }
     
     private func test() {
-        let queryModel = YDTranslateAPIQueryModel(queryString: "test")
+        let queryModel = YDTranslateAPIQueryModel(queryString: "immortal")
         let api = YDTranslateAPI(queryModel: queryModel)
         let req = RequestBuilder<YDTranslateAPI>()
 
         req.result.subscribe(onNext: { [weak self] res in
             guard let self = self else { return }
             res?.create(nil)
+            print(res)
             print("save responde")
         }).disposed(by: disposeBag)
 

@@ -107,6 +107,11 @@ class CaptureVocabularyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        #if DEBUG
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.action.accept(.selected(vocabulary: "immortal"))
+        }
+        #endif
     }
     
     func bind(viewModel: CaptureVocabularyViewModel) {
