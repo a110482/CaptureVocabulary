@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         sql()
         mainCoordinator()
-        test()
     }
     
     // SQLite
@@ -42,25 +41,6 @@ class ViewController: UIViewController {
     private func mainCoordinator() {
         coor = TabBarCoordinator(rootViewController: self)
         coor.start()
-    }
-    
-    private func test() {
-        let queryModel = YDTranslateAPIQueryModel(queryString: "immortal")
-        let api = YDTranslateAPI(queryModel: queryModel)
-        let req = RequestBuilder<YDTranslateAPI>()
-
-        req.result.subscribe(onNext: { [weak self] res in
-            guard let self = self else { return }
-            res?.create(nil)
-            print(res)
-            print("save responde")
-        }).disposed(by: disposeBag)
-
-        if let res = YDTranslateAPI.ResponseModel.load(queryModel: queryModel) {
-            print(res)
-        } else {
-            req.send(req: api)
-        }
     }
 }
 
