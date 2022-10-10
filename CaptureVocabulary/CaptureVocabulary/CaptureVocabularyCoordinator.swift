@@ -107,7 +107,7 @@ class CaptureVocabularyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        #if DEBUG
+        #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.action.accept(.selected(vocabulary: "shift"))
         }

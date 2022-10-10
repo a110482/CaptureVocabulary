@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        #if DEBUG
+//        SQLCore.shared.dropTables()
+        #endif
         sql()
         mainCoordinator()
     }

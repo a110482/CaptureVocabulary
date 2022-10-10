@@ -19,7 +19,7 @@ struct VocabularyCardORM: TableType {
     // 標示為已記憶 (複習不出現, 但測驗會出)
     static let memorized = Expression<Bool>("memorized")
     static let timestamp = Expression<Double>("timestamp")
-    static let listId = Expression<Int64>("groupId")
+    static let cardListId = Expression<Int64>("cardListId")
     
     private var db: Connection {
         SQLCore.shared.db
@@ -32,7 +32,7 @@ struct VocabularyCardORM: TableType {
         var enable: Bool?
         var memorized: Bool?
         var timestamp: TimeInterval = Date().timeIntervalSince1970
-        var groupId: Int64?
+        var cardListId: Int64?
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
@@ -44,7 +44,12 @@ struct VocabularyCardORM: TableType {
                 t.column(enable, defaultValue: true)
                 t.column(memorized, defaultValue: false)
                 t.column(timestamp)
-                t.column(listId, references: VocabularyCardListORM.table, id)
+                t.column(cardListId)
+                t.foreignKey(cardListId,
+                             references: VocabularyCardListORM.table,
+                             id,
+                             update: .cascade,
+                             delete: .cascade)
             })
         }
         catch {
@@ -59,7 +64,7 @@ extension VocabularyCardORM.ORM: ORMTranslateAble {
     private static func query(listIds: [Int64] = [], memorized: Bool? = nil) -> Table {
         var query = ORMModel.table
         if listIds.count > 0 {
-            query = query.filter(listIds.contains(ORMModel.listId))
+            query = query.filter(listIds.contains(ORMModel.cardListId))
         }
         if let memorized = memorized {
             query = query.filter(ORMModel.memorized == memorized)
@@ -68,7 +73,7 @@ extension VocabularyCardORM.ORM: ORMTranslateAble {
     }
     
     static func allList(listId: Int64) -> [Self]? {
-        let query = ORMModel.table.filter(ORMModel.listId == listId)
+        let query = ORMModel.table.filter(ORMModel.cardListId == listId)
         return ORMModel.prepare(query)
     }
     
@@ -125,6 +130,14 @@ struct VocabularyCardListORM: TableType {
         catch {
             print(error)
         }
+    }
+    
+    static func delete(_ orm: ORM) {
+        guard orm.id != nil else { return }
+        do {
+            try SQLCore.shared.db.run(self.table.filter(self.id == orm.id!).delete())
+        }
+        catch { print(error) }
     }
 }
 

@@ -17,12 +17,13 @@ class SQLCore {
         ).first!
         
         db = try! Connection("\(path)/db.sqlite3")
+        try? db.execute("PRAGMA foreign_keys=ON")
     }
     
     private var tables: Array<TableProtocol.Type> {
         [
-            VocabularyCardORM.self,
             VocabularyCardListORM.self,
+            VocabularyCardORM.self,
             AzureDictionaryORM.self,
             AzureDictionaryTranslationORM.self,
             YDTranslateORM.self

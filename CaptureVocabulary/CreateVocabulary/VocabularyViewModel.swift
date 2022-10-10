@@ -94,12 +94,12 @@ class VocabularyViewModel {
     func saveVocabularyCard() {
         guard let vocabulary = `inout`.vocabulary.value,
               let translate = `inout`.translateData.value?.translation?.first,
-              let groupId = output.vocabularyListORM.value?.id
+              let cardListId = output.vocabularyListORM.value?.id
         else { return }
         var cardObj = VocabularyCardORM.ORM()
         cardObj.normalizedSource = vocabulary
         cardObj.normalizedTarget = translate
-        cardObj.groupId = groupId
+        cardObj.cardListId = cardListId
         VocabularyCardORM.create(cardObj)
         guard var listObj = output.vocabularyListORM.value else { return }
         listObj.timestamp = Date().timeIntervalSince1970
