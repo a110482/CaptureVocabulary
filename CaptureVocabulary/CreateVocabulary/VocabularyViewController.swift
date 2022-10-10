@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import RxCocoa
 import RxSwift
-
+import SwifterSwift
 
 // MARK: - View
 class VocabularyViewController: UIViewController {
@@ -236,7 +236,11 @@ class TranslateResultView: UIStackView {
     let translate = UITextField().then {
         $0.isUserInteractionEnabled = false
     }
-    private let explains = UILabel()
+    private let explains = UITextView().then {
+        $0.font = .systemFont(ofSize: 17)
+        $0.backgroundColor = .lightGray
+        $0.isEditable = false
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -255,13 +259,17 @@ class TranslateResultView: UIStackView {
         }
         
         if let explans = model?.basic?.explains {
-            explains.text = explans.reduce("", {
-                $0 + ($0.isEmpty ? "" : "\n\n") + $1
-            })
+            let partOfSpeech = explans.map { $0.halfWidth.split(separator: ";") }
+            for speech in partOfSpeech {
+                explains.text = speech.reduce(explains.text ?? "", {
+                    $0 + ($0.isEmpty ? "" : "\n") + String($1).localized().trimmed
+                })
+                explains.text = (explains.text ?? "") + "\n\n"
+            }
         }
         
         if let translation = model?.translation?.first {
-            translate.text = translation
+            translate.text = translation.localized()
         }
     }
     
@@ -272,9 +280,11 @@ class TranslateResultView: UIStackView {
             explains
         ])
         
-        [phonetic, explains].forEach {
-            $0.numberOfLines = 0
-            $0.textAlignment = .left
+        snp.makeConstraints {
+            let screenHeight = UIScreen.main.bounds.height
+            $0.height.equalTo(screenHeight * 0.5)
         }
     }
 }
+
+

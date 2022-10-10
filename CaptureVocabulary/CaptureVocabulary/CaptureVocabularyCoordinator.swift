@@ -109,7 +109,7 @@ class CaptureVocabularyViewController: UIViewController {
         configUI()
         #if DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.action.accept(.selected(vocabulary: "immortal"))
+            self.action.accept(.selected(vocabulary: "shift"))
         }
         #endif
     }
