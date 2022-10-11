@@ -47,7 +47,7 @@ class CaptureVocabularyCoordinator: Coordinator<UIViewController> {
 // MARK: - VM
 class CaptureVocabularyViewModel {
     struct Output {
-        let identifyWords = BehaviorRelay<[String]>(value: [])
+        let identifyWord = BehaviorRelay<String?>(value: nil)
     }
     let output = Output()
     
@@ -55,7 +55,7 @@ class CaptureVocabularyViewModel {
         guard observations.count > 0 else { return }
         let words = refineObservations(observations)
         DispatchQueue.main.async {
-            self.output.identifyWords.accept(words)
+            self.output.identifyWord.accept(words.first)
         }
     }
 }
@@ -96,17 +96,28 @@ class CaptureVocabularyViewController: UIViewController {
     let action = PublishRelay<Action>()
     
     let captureViewController = VisionCaptureViewController()
-    let capContainerView = UIView()
-    let tableView = UITableView().then {
-        $0.register(cellWithClass: UITableViewCell.self)
+    let mainStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .center
     }
-    var cellModels: [String] = []
+    let capContainerView = UIView()
+    #warning("text delegate")
+    let queryStringTextField = UITextField().then {
+        $0.textAlignment = .center
+        $0.backgroundColor = .lightGray
+    }
+    let scanButton = UIButton().then {
+        $0.setTitle("scan", for: .normal)
+        $0.backgroundColor = .gray
+    }
+    
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        bindAction()
         #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.action.accept(.selected(vocabulary: "shift"))
@@ -122,10 +133,24 @@ class CaptureVocabularyViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.output.identifyWords.subscribe(onNext: { [weak self] cellModels in
+        viewModel.output.identifyWord.subscribe(onNext: { [weak self] word in
             guard let self = self else { return }
-            self.cellModels = cellModels
-            self.tableView.reloadData()
+            self.queryStringTextField.text = word
+        }).disposed(by: disposeBag)
+    }
+    
+    func bindAction() {
+        scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.captureViewController.setScanActiveState(isActive: true)
+        }).disposed(by: disposeBag)
+        
+        scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.captureViewController.setScanActiveState(isActive: false)
+            if let text = self.queryStringTextField.text {
+                self.action.accept(.selected(vocabulary: text))
+            }
         }).disposed(by: disposeBag)
     }
 }
@@ -133,22 +158,30 @@ class CaptureVocabularyViewController: UIViewController {
 // UI
 extension CaptureVocabularyViewController {
     func configUI() {
-        addCaptureViewController()
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.top.equalTo(capContainerView.snp.bottom)
-            $0.left.right.bottom.equalToSuperview()
+        view.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        tableView.delegate = self
-        tableView.dataSource = self
+        mainStackView.addArrangedSubviews([
+            capContainerView,
+            queryStringTextField,
+            mainStackView.padding(gap: 30),
+            scanButton,
+            UIView()
+        ])
+        
+        addCaptureViewController()
+        configQueryStringLabel()
+        
+        scanButton.snp.makeConstraints {
+            $0.size.equalTo(50)
+        }
     }
     
     func addCaptureViewController() {
-        view.addSubview(capContainerView)
         capContainerView.snp.makeConstraints {
-            $0.top.equalTo(20)
-            $0.centerX.equalToSuperview()
             $0.left.equalTo(20)
+            $0.right.equalTo(-20)
             $0.height.equalTo(300)
         }
         
@@ -157,23 +190,11 @@ extension CaptureVocabularyViewController {
             $0.edges.equalToSuperview()
         }
         
-        
     }
-}
-
-extension CaptureVocabularyViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellModels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self)
-        cell.textLabel?.text = cellModels[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vocabulary = cellModels[safe: indexPath.row] else { return }
-        action.accept(.selected(vocabulary: vocabulary))
+    func configQueryStringLabel() {
+        queryStringTextField.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalTo(30)
+        }
     }
 }
