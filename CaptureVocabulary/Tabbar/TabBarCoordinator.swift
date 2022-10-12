@@ -25,7 +25,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         ]
         super.start()
         present(viewController: viewController, animated: false)
-        #if DEBUG
+        #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.viewController.selectedIndex = 2
         }
