@@ -28,6 +28,7 @@ class ReviewCoordinator: Coordinator<UIViewController> {
 class ReviewViewModel {
     struct Output {
         let scrollToIndex = PublishRelay<Int>()
+        let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
     }
     let output = Output()
     let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 100)
@@ -64,6 +65,10 @@ class ReviewViewModel {
         lastReadCardId = Int(id)
     }
     
+    func updateTranslateData(vocabulary: String) {
+        
+    }
+    
     /// 重新校正 index 以維持無線滾動維持在中央
     func adjustIndex(index: Int) {
         let cellModelsCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
@@ -78,6 +83,12 @@ class ReviewViewModel {
         guard newIndex != index else { return }
         output.scrollToIndex.accept(newIndex)
     }
+    
+    func queryLocalDictionary(vocabulary: String) {
+        let queryModel = YDTranslateAPIQueryModel(queryString: vocabulary)
+        let response = StringTranslateAPIResponse.load(queryModel: queryModel)
+        output.dictionaryData.accept(response)
+    }
 }
 
 // MARK: -
@@ -85,6 +96,7 @@ class ReviewViewController: UIViewController {
     
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
+        $0.spacing = 0
     }
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -95,6 +107,9 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
+    private let translateResultView = TranslateResultView().then {
+        $0.backgroundColor = .white
+    }
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
     
@@ -107,6 +122,7 @@ class ReviewViewController: UIViewController {
         super.viewDidAppear(animated)
         collectionView.reloadData {
             self.viewModel?.loadVocabularyCard()
+            self.displayCurrentCellVocabularyTranslate()
         }
     }
     
@@ -118,6 +134,11 @@ class ReviewViewController: UIViewController {
             self.collectionView.scrollToItem(at: IndexPath(row: indexRow, section: 0),
                                              at: .centeredHorizontally,
                                              animated: false)
+        }).disposed(by: disposeBag)
+        
+        viewModel.output.dictionaryData.subscribe(onNext: { [weak self] data in
+            guard let self = self else { return }
+            self.translateResultView.config(model: data)
         }).disposed(by: disposeBag)
     }
 }
@@ -133,7 +154,7 @@ private extension ReviewViewController {
         
         mainStackView.addArrangedSubviews([
             collectionView,
-            UIView().then { $0.backgroundColor = .gray }
+            translateResultView
         ])
         
         collectionView.snp.makeConstraints {
@@ -172,12 +193,14 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         if !decelerate {
             getIndexOfCentralCell()
             adjustIndex()
+            displayCurrentCellVocabularyTranslate()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         getIndexOfCentralCell()
         adjustIndex()
+        displayCurrentCellVocabularyTranslate()
     }
     
     private func centralCellIndex() -> Int? {
@@ -194,6 +217,14 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     private func adjustIndex() {
         guard let index = centralCellIndex() else { return }
         viewModel?.adjustIndex(index: index)
+    }
+    
+    private func displayCurrentCellVocabularyTranslate() {
+        guard let currentCell = collectionView.visibleCells.first else { return }
+        guard let index = collectionView.indexPath(for: currentCell) else { return }
+        guard let cellModel = viewModel?.queryVocabularyCard(index: index.row) else { return }
+        guard let vocabulary = cellModel.normalizedSource else { return }
+        viewModel?.queryLocalDictionary(vocabulary: vocabulary)
     }
 }
 

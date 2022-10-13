@@ -238,7 +238,7 @@ class TranslateResultView: UIStackView {
     let translate = UITextField().then {
         $0.isUserInteractionEnabled = false
     }
-    private let explains = UITextView().then {
+    private let explainsTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColor = .lightGray
         $0.isEditable = false
@@ -255,18 +255,26 @@ class TranslateResultView: UIStackView {
         fatalError()
     }
     
+    func prepareForReuse() {
+        explainsTextView.text = nil
+        phonetic.text = nil
+        translate.text = nil
+        explainsTextView.contentOffset = .zero
+    }
+    
     func config(model: StringTranslateAPIResponse?) {
+        prepareForReuse()
         if let usPhonetic = model?.basic?.usPhonetic {
             phonetic.text = "[US] \(usPhonetic)"
         }
         
-        if let explans = model?.basic?.explains {
-            let partOfSpeech = explans.map { $0.halfWidth.split(separator: ";") }
+        if let explains = model?.basic?.explains {
+            let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
             for speech in partOfSpeech {
-                explains.text = speech.reduce(explains.text ?? "", {
+                explainsTextView.text = speech.reduce(explainsTextView.text ?? "", {
                     $0 + ($0.isEmpty ? "" : "\n") + String($1).localized().trimmed
                 })
-                explains.text = (explains.text ?? "") + "\n\n"
+                explainsTextView.text = (explainsTextView.text ?? "") + "\n\n"
             }
         }
         
@@ -279,7 +287,7 @@ class TranslateResultView: UIStackView {
         addArrangedSubviews([
             phonetic,
             translate,
-            explains
+            explainsTextView
         ])
     }
 }
