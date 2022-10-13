@@ -21,6 +21,8 @@ class VisionCaptureViewController: UIViewController {
     
     let action = PublishRelay<Action>()
     
+    private let isScanActive = BehaviorRelay<Bool>(value: false)
+    
     let capturedImageView = UIImageView()
     
     let cameraView = UIView()
@@ -47,6 +49,8 @@ class VisionCaptureViewController: UIViewController {
     }()
     
     let loadQueue = DispatchQueue(label: "loadQueue")
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +122,10 @@ class VisionCaptureViewController: UIViewController {
         return avInput
     }()
     
+    func setScanActiveState(isActive: Bool) {
+        isScanActive.accept(isActive)
+    }
+    
     func setupInputAndOutput(){
         guard let avInput = avInput else {
             return
@@ -178,7 +186,11 @@ extension VisionCaptureViewController {
     }
     
     func makeMask() {
-        mask.borderColor = .red
+        isScanActive.subscribe(onNext: { [weak self] isScanActive in
+            guard let self = self else { return }
+            self.mask.borderColor = isScanActive ? .red : .gray
+        }).disposed(by: disposeBag)
+        
         mask.borderWidth = 2
         mask.frame = identifyArea
         let plusImage = UIImage(systemName: "plus")?.withTintColor(.red, renderingMode: .alwaysOriginal)
@@ -227,10 +239,11 @@ extension VisionCaptureViewController {
 
 extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard isScanActive.value else { return }
         guard !takePicture else { return }
         connection.videoOrientation = .portrait
         takePicture = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.takePicture = false
         }
         guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {

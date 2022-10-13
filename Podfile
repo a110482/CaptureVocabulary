@@ -11,6 +11,6 @@ pod 'RxCocoa'
 pod 'Log'
 pod 'Then'
 pod 'Moya'
-pod 'SQLite.swift', '~> 0.13.3'
+pod 'SQLite.swift'
 
 end
