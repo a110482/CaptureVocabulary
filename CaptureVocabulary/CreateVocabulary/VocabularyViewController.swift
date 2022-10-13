@@ -168,6 +168,8 @@ extension VocabularyViewController {
         translateResultView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.left.equalTo(10)
+            let screenHeight = UIScreen.main.bounds.height
+            $0.height.equalTo(screenHeight * 0.3)
         }
         sourceTextField.delegate = self
         layoutButtonStack()
@@ -279,11 +281,6 @@ class TranslateResultView: UIStackView {
             translate,
             explains
         ])
-        
-        snp.makeConstraints {
-            let screenHeight = UIScreen.main.bounds.height
-            $0.height.equalTo(screenHeight * 0.5)
-        }
     }
 }
 

@@ -101,7 +101,6 @@ class CaptureVocabularyViewController: UIViewController {
         $0.alignment = .center
     }
     let capContainerView = UIView()
-    #warning("text delegate")
     let queryStringTextField = UITextField().then {
         $0.textAlignment = .center
         $0.backgroundColor = .lightGray
@@ -148,10 +147,12 @@ class CaptureVocabularyViewController: UIViewController {
         scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.captureViewController.setScanActiveState(isActive: false)
-            if let text = self.queryStringTextField.text {
+            if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
         }).disposed(by: disposeBag)
+        
+        queryStringTextField.delegate = self
     }
 }
 
@@ -165,7 +166,7 @@ extension CaptureVocabularyViewController {
         mainStackView.addArrangedSubviews([
             capContainerView,
             queryStringTextField,
-            mainStackView.padding(gap: 30),
+            mainStackView.padding(gap: 70),
             scanButton,
             UIView()
         ])
@@ -174,7 +175,7 @@ extension CaptureVocabularyViewController {
         configQueryStringLabel()
         
         scanButton.snp.makeConstraints {
-            $0.size.equalTo(50)
+            $0.size.equalTo(150)
         }
     }
     
@@ -196,5 +197,15 @@ extension CaptureVocabularyViewController {
             $0.width.equalToSuperview()
             $0.height.equalTo(30)
         }
+    }
+}
+
+extension CaptureVocabularyViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        if let text = self.queryStringTextField.text, !text.isEmpty {
+            self.action.accept(.selected(vocabulary: text))
+        }
+        return true
     }
 }
