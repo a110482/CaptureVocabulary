@@ -86,6 +86,10 @@ class VocabularyViewController: UIViewController {
             guard let self = self else { return }
             self.showEditListNameAlert()
         }).disposed(by: disposeBag)
+        
+        translateResultView.customTranslate
+            .bind(to: viewModel.input.customTranslate)
+            .disposed(by: disposeBag)
     }
     
     private func showEditListNameAlert() {
@@ -234,15 +238,13 @@ extension VocabularyViewController: UITextFieldDelegate {
 // MARK: -
 class TranslateResultView: UIStackView {
     private let phonetic = UILabel()
-    #warning("自定義解釋功能")
-    let translate = UITextField().then {
-        $0.isUserInteractionEnabled = false
-    }
+    let translate = UITextField()
     private let explainsTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColor = .lightGray
         $0.isEditable = false
     }
+    let customTranslate = BehaviorRelay<String?>(value: nil)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -289,7 +291,15 @@ class TranslateResultView: UIStackView {
             translate,
             explainsTextView
         ])
+        translate.delegate = self
     }
 }
 
+extension TranslateResultView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        customTranslate.accept(textField.text)
+        return true
+    }
+}
 
