@@ -25,8 +25,8 @@ extension String {
     }
     
     var normalized: String {
-        let lowerCase = self.lowercased()
-        let normalizedString = regularMatches(for: "[a-z]+", in: lowerCase).first
+        let lowerCase = self.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedString = regularMatches(for: "[a-z ]+", in: lowerCase).first
         return normalizedString ?? self
     }
     
