@@ -142,6 +142,7 @@ class CaptureVocabularyViewController: UIViewController {
         scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.captureViewController.setScanActiveState(isActive: true)
+            self.captureViewController.startAutoFocus()
         }).disposed(by: disposeBag)
         
         scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
@@ -150,6 +151,7 @@ class CaptureVocabularyViewController: UIViewController {
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
+            self.captureViewController.stopAutoFocus()
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self
@@ -177,6 +179,9 @@ extension CaptureVocabularyViewController {
         scanButton.snp.makeConstraints {
             $0.size.equalTo(150)
         }
+        #if DEBUG
+        queryStringTextField.alpha = 0.5
+        #endif
     }
     
     func addCaptureViewController() {
@@ -190,7 +195,6 @@ extension CaptureVocabularyViewController {
         captureViewController.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
     }
     func configQueryStringLabel() {
         queryStringTextField.snp.makeConstraints {
