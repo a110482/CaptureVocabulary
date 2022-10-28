@@ -24,6 +24,12 @@ class VocabularyViewModel {
     
     let output = Output()
     
+    struct Input {
+        let customTranslate = BehaviorRelay<String?>(value: nil)
+    }
+    
+    let input = Input()
+    
     private let disposeBag = DisposeBag()
     
     init(vocabulary: String) {
@@ -92,10 +98,13 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
+        guard let translate = input.customTranslate.value ?? `inout`.translateData.value?.translation?.first else {
+            return
+        }
         guard let vocabulary = `inout`.vocabulary.value,
-              let translate = `inout`.translateData.value?.translation?.first,
               let cardListId = output.vocabularyListORM.value?.id
         else { return }
+        
         var cardObj = VocabularyCardORM.ORM()
         cardObj.normalizedSource = vocabulary
         cardObj.normalizedTarget = translate

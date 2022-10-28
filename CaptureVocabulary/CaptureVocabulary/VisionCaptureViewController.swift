@@ -14,6 +14,7 @@ import RxCocoa
 import RxSwift
 
 
+
 class VisionCaptureViewController: UIViewController {
     enum Action {
         case identifyText(observations: [VNRecognizedTextObservation])
@@ -52,6 +53,8 @@ class VisionCaptureViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var timer: DispatchSourceTimer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configUI()
@@ -76,7 +79,6 @@ class VisionCaptureViewController: UIViewController {
                 self.makeMask()
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,6 +156,19 @@ class VisionCaptureViewController: UIViewController {
         previewLayer.videoGravity = .resizeAspectFill
     }
     
+    func startAutoFocus() {
+        timer = DispatchSource.makeTimerSource()
+        timer?.schedule(deadline: .now(), repeating: .seconds(1))
+        timer?.setEventHandler(handler: {
+            self.focusPoint()
+        })
+        timer?.activate()
+    }
+    
+    func stopAutoFocus() {
+        timer?.cancel()
+    }
+    
     private func recognizeTextInImage(_ image: UIImage) {
         guard let cgImage = image.cgImage else { return }
         
@@ -173,10 +188,34 @@ class VisionCaptureViewController: UIViewController {
             self?.action.accept(.identifyText(observations: observations))
         }
     }
+    
+    private func focusPoint() {
+        Log.debug(#function)
+        do {
+            let focusPoint = CGPoint(x: 0.5, y: 0.5)
+            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+                return
+            }
+            
+            try device.lockForConfiguration()
+
+            if device.isFocusModeSupported(.autoFocus) {
+                device.focusPointOfInterest = focusPoint
+                device.focusMode = .autoFocus
+            }
+
+            if device.isExposureModeSupported(.autoExpose) {
+                device.exposurePointOfInterest = focusPoint
+                // 曝光量调节
+                device.exposureMode = .autoExpose
+            }
+            device.unlockForConfiguration()
+        } catch {}
+    }
 }
 
 // UI
-extension VisionCaptureViewController {
+private extension VisionCaptureViewController {
     func configUI() {
         view.addSubview(cameraView)
         cameraView.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -227,11 +266,13 @@ extension VisionCaptureViewController {
         capturedImageView.borderWidth = 2
         capturedImageView.backgroundColor = .gray
         capturedImageView.contentMode = .scaleAspectFit
+        capturedImageView.alpha = 0.7
         capturedImageView.clipsToBounds = true
         view.addSubview(capturedImageView)
         capturedImageView.snp.makeConstraints {
             $0.height.equalTo(100)
-            $0.left.right.bottom.equalToSuperview()
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(view.snp.bottom)
         }
     }
     #endif
