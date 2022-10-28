@@ -59,25 +59,13 @@ class VisionCaptureViewController: UIViewController {
         AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
     }
     
+    private var currentVideoZoomFactor: CGFloat = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configVideoQueue()
         configUI()
         addPinchGesture()
-        
-        
-        #if DEBUG
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//            if let dev = self.device {
-//                do {
-//                    try dev.lockForConfiguration()
-//                    dev.videoZoomFactor = 5
-//                    dev.unlockForConfiguration()
-//                } catch {}
-//
-//            }
-//        })
-        #endif
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -211,8 +199,14 @@ private extension VisionCaptureViewController {
         return image3
     }
     
-    func addPinchGesture() {
-        
+    func zoom(videoZoomFactor: CGFloat) {
+        guard videoZoomFactor >= 1, videoZoomFactor < 5 else { return }
+        guard let device = device else { return }
+        do {
+            try device.lockForConfiguration()
+            device.videoZoomFactor = videoZoomFactor
+            device.unlockForConfiguration()
+        } catch {}
     }
 
     #if DEBUG
@@ -307,6 +301,24 @@ private extension VisionCaptureViewController {
         self.captureSession.commitConfiguration()
         //start running it
         self.captureSession.startRunning()
+    }
+    
+    func addPinchGesture() {
+        let pinch = UIPinchGestureRecognizer()
+        cameraView.addGestureRecognizer(pinch)
+        pinch.rx.event.subscribe(onNext: { [weak self] recognizer in
+            guard let self = self else { return }
+            guard let device = self.device else { return }
+            switch recognizer.state {
+            case .began:
+                self.currentVideoZoomFactor = device.videoZoomFactor
+            case .changed:
+                let newFactor = self.currentVideoZoomFactor * recognizer.scale
+                self.zoom(videoZoomFactor: newFactor)
+            default:
+                break
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
