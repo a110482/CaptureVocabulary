@@ -24,6 +24,8 @@
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
 		F53771CF2812B4D7003F892D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CC2812B4D7003F892D /* Request.swift */; };
+		F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */; };
+		F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */; };
 		F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860528140ED10005CD34 /* AzureRequest.swift */; };
 		F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A8607281411080005CD34 /* HeaderStorage.swift */; };
 		F58A860B281428670005CD34 /* StanderDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860A281428670005CD34 /* StanderDecision.swift */; };
@@ -85,6 +87,8 @@
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
 		F53771CC2812B4D7003F892D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyViewController.swift; sourceTree = "<group>"; };
+		F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyViewModel.swift; sourceTree = "<group>"; };
 		F58A860528140ED10005CD34 /* AzureRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureRequest.swift; sourceTree = "<group>"; };
 		F58A8607281411080005CD34 /* HeaderStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderStorage.swift; sourceTree = "<group>"; };
 		F58A860A281428670005CD34 /* StanderDecision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StanderDecision.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 			children = (
 				F5A16306280AE4FB00257ABF /* VisionCaptureViewController.swift */,
 				F5A16310280C759600257ABF /* CaptureVocabularyCoordinator.swift */,
+				F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */,
+				F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */,
 			);
 			path = CaptureVocabulary;
 			sourceTree = "<group>";
@@ -495,7 +501,9 @@
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
+				F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */,
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
+				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
