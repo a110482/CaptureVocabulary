@@ -47,44 +47,54 @@ class CaptureVocabularyCoordinator: Coordinator<UIViewController> {
 // MARK: - VM
 class CaptureVocabularyViewModel {
     struct Output {
-        let identifyWord = BehaviorRelay<String?>(value: nil)
+        let identifyWord = BehaviorRelay<RecognizedItem?>(value: nil)
     }
     let output = Output()
     
     func handleObservations(_ observations: [VNRecognizedTextObservation]) {
         guard observations.count > 0 else { return }
-        let words = refineObservations(observations)
+        let identifyWord = refineObservations(observations)
         DispatchQueue.main.async {
-            self.output.identifyWord.accept(words.first)
+            self.output.identifyWord.accept(identifyWord)
         }
     }
 }
 
+struct RecognizedItem {
+    let word: String
+    let observation: VNRectangleObservation
+}
+
 private extension CaptureVocabularyViewModel {
-    func refineObservations(_ observations: [VNRecognizedTextObservation]) -> [String] {
-        // 改由圖片位置靠近中央處優先
-        var refinedAlternateWords: [(word: String, distance: CGFloat)] = []
+    var scanCanter: CGRect {
+        let pointSize: Double = 0.04
+        return CGRect(x: (1 - pointSize)/2, y: (1 - pointSize)/2, width: pointSize, height: pointSize)
+    }
+    
+    func refineObservations(_ observations: [VNRecognizedTextObservation]) -> RecognizedItem? {
+        guard let recognizedText = searchByContains(observations) else {
+            return nil
+        }
         
-        for lineObservation in observations {
-            if refinedAlternateWords.count >= 5 {
-                return refinedAlternateWords.map { $0.word }
-            }
-            guard let textLine = lineObservation.topCandidates(1).first else { continue }
-            let words = textLine.string.split{ $0.isWhitespace }.map{ String($0)}
-            for word in words {
-                guard word.count > 2 else { continue }
-                if let wordRange = textLine.string.range(of: word),
-                   let wordRect = try? textLine.boundingBox(for: wordRange)?.boundingBox{
-                    // 座標是位置的百分比, 原點是左下角, 所以最接近中心點的就是 (0.5, 0.5)
-                    let absoluteCenter = CGPoint(x: 0.5, y: 0.5)
-                    let distance = absoluteCenter.distance(from: wordRect.center)
-                    refinedAlternateWords.append((word: word, distance: distance))
-                    refinedAlternateWords.sort(by: { $0.distance < $1.distance })
-                    refinedAlternateWords = Array(refinedAlternateWords.prefix(5))
+        let words = recognizedText.string.split{ $0.isWhitespace }.map{ String($0)}
+        for word in words {
+            guard word.count > 2 else { continue }
+            if let wordRange = recognizedText.string.range(of: word),
+               let observation = try? recognizedText.boundingBox(for: wordRange),
+               let wordRect = try? recognizedText.boundingBox(for: wordRange)?.boundingBox{
+                // 座標是位置的百分比, 原點是左下角, 所以最接近中心點的就是 (0.5, 0.5)
+                if wordRect.intersects(scanCanter) {
+                    return RecognizedItem(word: word, observation: observation)
                 }
             }
         }
-        return refinedAlternateWords.map { $0.0 }
+        return nil
+    }
+    
+    func searchByContains(_ observations: [VNRecognizedTextObservation]) -> VNRecognizedText? {
+        return observations.first(where: {
+            $0.boundingBox.intersects(scanCanter)
+        })?.topCandidates(1).first
     }
 }
 
@@ -132,13 +142,43 @@ class CaptureVocabularyViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.output.identifyWord.subscribe(onNext: { [weak self] word in
+        viewModel.output.identifyWord.subscribe(onNext: { [weak self] recognizedItem in
             guard let self = self else { return }
-            self.queryStringTextField.text = word
+            self.removeMarking()
+            guard let recognizedItem = recognizedItem else { return }
+            self.queryStringTextField.text = recognizedItem.word
+            self.drawMarking(recognizedItem.observation)
         }).disposed(by: disposeBag)
     }
     
-    func bindAction() {
+    private func removeMarking() {
+        capContainerView.layer.sublayers?.filter { $0.isKind(of: CAShapeLayer.self) }.forEach {
+            $0.removeFromSuperlayer()
+        }
+    }
+    
+    private func drawMarking(_ observation: VNRectangleObservation) {
+        let c = capContainerView
+        let transform = CGAffineTransform.identity
+            .scaledBy(x: 1, y: -1)
+            .translatedBy(x: 0, y: -c.bounds.size.height)
+            .scaledBy(x: c.bounds.size.width, y: c.bounds.size.height)
+        
+        
+        let path = UIBezierPath()
+        path.move(to: observation.topLeft.applying(transform))
+        path.addLine(to: observation.topRight.applying(transform))
+        path.addLine(to: observation.bottomRight.applying(transform))
+        path.addLine(to: observation.bottomLeft.applying(transform))
+        path.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = UIColor.green.withAlphaComponent(0.3).cgColor
+        c.layer.addSublayer(shapeLayer)
+    }
+    
+    private func bindAction() {
         scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.captureViewController.setScanActiveState(isActive: true)
@@ -152,6 +192,7 @@ class CaptureVocabularyViewController: UIViewController {
                 self.action.accept(.selected(vocabulary: text))
             }
             self.captureViewController.stopAutoFocus()
+            self.removeMarking()
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self

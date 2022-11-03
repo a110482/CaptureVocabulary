@@ -55,30 +55,17 @@ class VisionCaptureViewController: UIViewController {
     
     private var timer: DispatchSourceTimer? = nil
     
+    private var device: AVCaptureDevice? {
+        AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+    }
+    
+    private var currentVideoZoomFactor: CGFloat = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configUI()
-        
-        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
-        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
-        
-        loadQueue.async {
-            self.setupAndStartCaptureSession()
-            DispatchQueue.global().async {
-                self.setTextRecognitionRequest()
-            }
-        }
-        
-        loadQueue.async {
-            self.setupInputAndOutput()
-        }
-        
-        loadQueue.async {
-            DispatchQueue.main.async {
-                self.setupPreviewLayer()
-                self.makeMask()
-            }
-        }
+        configVideoQueue()
+        configUI()
+        addPinchGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,25 +82,6 @@ class VisionCaptureViewController: UIViewController {
         }
     }
     
-    func setupAndStartCaptureSession(){
-        //init session
-        self.captureSession = AVCaptureSession()
-        //start configuration
-        self.captureSession.beginConfiguration()
-        
-        //session specific configuration
-        //before setting a session presets, we should check if the session supports it
-        if self.captureSession.canSetSessionPreset(.photo) {
-            self.captureSession.sessionPreset = .photo
-        }
-        self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
-        
-        //commit configuration
-        self.captureSession.commitConfiguration()
-        //start running it
-        self.captureSession.startRunning()
-    }
-    
     private let avInput: AVCaptureDeviceInput? = {
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             return nil
@@ -126,34 +94,6 @@ class VisionCaptureViewController: UIViewController {
     
     func setScanActiveState(isActive: Bool) {
         isScanActive.accept(isActive)
-    }
-    
-    func setupInputAndOutput(){
-        guard let avInput = avInput else {
-            return
-        }
-        if captureSession.canAddInput(avInput) {
-            captureSession.addInput(avInput)
-        }
-        if captureSession.canAddOutput(videoOutput) {
-            captureSession.addOutput(videoOutput)
-        }
-        videoOutput.connections.first?.videoOrientation = .portrait
-    }
-    
-    func dismissInputAndOutput() {
-        guard let avInput = avInput else {
-            return
-        }
-        captureSession.removeInput(avInput)
-        captureSession.removeOutput(videoOutput)
-    }
-    
-    func setupPreviewLayer(){
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        cameraView.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.cameraView.layer.frame
-        previewLayer.videoGravity = .resizeAspectFill
     }
     
     func startAutoFocus() {
@@ -190,10 +130,9 @@ class VisionCaptureViewController: UIViewController {
     }
     
     private func focusPoint() {
-        Log.debug(#function)
         do {
             let focusPoint = CGPoint(x: 0.5, y: 0.5)
-            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+            guard let device = device else {
                 return
             }
             
@@ -259,6 +198,16 @@ private extension VisionCaptureViewController {
         let image3 = image2.cropped(to: rect2)
         return image3
     }
+    
+    func zoom(videoZoomFactor: CGFloat) {
+        guard videoZoomFactor >= 1, videoZoomFactor < 5 else { return }
+        guard let device = device else { return }
+        do {
+            try device.lockForConfiguration()
+            device.videoZoomFactor = videoZoomFactor
+            device.unlockForConfiguration()
+        } catch {}
+    }
 
     #if DEBUG
     func setPreviewImage() {
@@ -276,6 +225,101 @@ private extension VisionCaptureViewController {
         }
     }
     #endif
+}
+
+// video
+private extension VisionCaptureViewController {
+    // 設置專用線程處理影像
+    func configVideoQueue() {
+        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
+        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
+        
+        loadQueue.async {
+            self.setupAndStartCaptureSession()
+            DispatchQueue.global().async {
+                self.setTextRecognitionRequest()
+            }
+        }
+        
+        loadQueue.async {
+            self.setupInputAndOutput()
+        }
+        
+        loadQueue.async {
+            DispatchQueue.main.async {
+                self.setupPreviewLayer()
+                self.makeMask()
+            }
+        }
+    }
+    
+    // 停止鏡頭
+    func setupInputAndOutput(){
+        guard let avInput = avInput else {
+            return
+        }
+        if captureSession.canAddInput(avInput) {
+            captureSession.addInput(avInput)
+        }
+        if captureSession.canAddOutput(videoOutput) {
+            captureSession.addOutput(videoOutput)
+        }
+        videoOutput.connections.first?.videoOrientation = .portrait
+    }
+    
+    // 啟動鏡頭
+    func dismissInputAndOutput() {
+        guard let avInput = avInput else {
+            return
+        }
+        captureSession.removeInput(avInput)
+        captureSession.removeOutput(videoOutput)
+    }
+    
+    // 預覽
+    func setupPreviewLayer(){
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        cameraView.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.cameraView.layer.frame
+        previewLayer.videoGravity = .resizeAspectFill
+    }
+    
+    func setupAndStartCaptureSession(){
+        //init session
+        self.captureSession = AVCaptureSession()
+        //start configuration
+        self.captureSession.beginConfiguration()
+        
+        //session specific configuration
+        //before setting a session presets, we should check if the session supports it
+        if self.captureSession.canSetSessionPreset(.photo) {
+            self.captureSession.sessionPreset = .photo
+        }
+        self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
+        
+        //commit configuration
+        self.captureSession.commitConfiguration()
+        //start running it
+        self.captureSession.startRunning()
+    }
+    
+    func addPinchGesture() {
+        let pinch = UIPinchGestureRecognizer()
+        cameraView.addGestureRecognizer(pinch)
+        pinch.rx.event.subscribe(onNext: { [weak self] recognizer in
+            guard let self = self else { return }
+            guard let device = self.device else { return }
+            switch recognizer.state {
+            case .began:
+                self.currentVideoZoomFactor = device.videoZoomFactor
+            case .changed:
+                let newFactor = self.currentVideoZoomFactor * recognizer.scale
+                self.zoom(videoZoomFactor: newFactor)
+            default:
+                break
+            }
+        }).disposed(by: disposeBag)
+    }
 }
 
 extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
