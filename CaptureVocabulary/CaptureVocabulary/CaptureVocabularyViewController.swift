@@ -92,20 +92,23 @@ class CaptureVocabularyViewController: UIViewController {
     }
     
     private func bindAction() {
-        scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.captureViewController.setScanActiveState(isActive: true)
-            self.captureViewController.startAutoFocus()
-        }).disposed(by: disposeBag)
+        captureViewController.setScanActiveState(isActive: true)
+        captureViewController.startAutoFocus()
+        
+//        scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
+//            guard let self = self else { return }
+//            self.captureViewController.setScanActiveState(isActive: true)
+//            self.captureViewController.startAutoFocus()
+//        }).disposed(by: disposeBag)
         
         scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.captureViewController.setScanActiveState(isActive: false)
+//            self.captureViewController.setScanActiveState(isActive: false)
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
-            self.captureViewController.stopAutoFocus()
-            self.removeMarking()
+//            self.captureViewController.stopAutoFocus()
+//            self.removeMarking()
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self
