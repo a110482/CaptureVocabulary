@@ -31,6 +31,11 @@ class CaptureVocabularyViewController: UIViewController {
         $0.setTitle("scan", for: .normal)
         $0.backgroundColor = .gray
     }
+    let versionLabel = UILabel().then {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        $0.text = "ver: \(appVersion ?? "")"
+        $0.backgroundColor = .gray
+    }
     
     
     private let disposeBag = DisposeBag()
@@ -127,6 +132,8 @@ extension CaptureVocabularyViewController {
             queryStringTextField,
             mainStackView.padding(gap: 70),
             scanButton,
+            mainStackView.padding(gap: 20),
+            versionLabel,
             UIView()
         ])
         
