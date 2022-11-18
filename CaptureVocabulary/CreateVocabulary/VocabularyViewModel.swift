@@ -75,6 +75,12 @@ class VocabularyViewModel {
         output.showEditListNameAlert.accept(())
     }
     
+    // 建立預設清單
+    func createDefaultList() {
+        guard let orm = VocabularyCardListORM.ORM.createDefaultList() else { return }
+        selected(orm: orm)
+    }
+    
     // 刪除當前清單
     func cancelNewListORM() {
         output.vocabularyListORM.value?.delete()

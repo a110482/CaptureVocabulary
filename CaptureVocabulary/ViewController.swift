@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     // SQLite
     private func sql() {
         SQLCore.shared.createTables()
+        VocabularyCardListORM.ORM.createDefaultList()
     }
     
     private func mainCoordinator() {

@@ -60,9 +60,7 @@ class VocabularyViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if viewModel?.output.vocabularyListORM.value == nil {
-            viewModel?.cerateNewListORM()
-        }
+        viewModel?.createDefaultList()
     }
     
     private weak var viewModel: VocabularyViewModel?
