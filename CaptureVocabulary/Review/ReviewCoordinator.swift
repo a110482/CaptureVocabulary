@@ -27,7 +27,7 @@ class ReviewCoordinator: Coordinator<UIViewController> {
 // MARK: -
 class ReviewViewModel {
     struct Output {
-        let scrollToIndex = PublishRelay<Int>()
+        let scrollToIndex = PublishRelay<(index: Int, animated: Bool)>()
         let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
     }
     let output = Output()
@@ -44,7 +44,7 @@ class ReviewViewModel {
     
     func loadVocabularyCard() {
         let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
-        output.scrollToIndex.accept(index + middleIndex)
+        output.scrollToIndex.accept((index + middleIndex, false))
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
@@ -80,8 +80,7 @@ class ReviewViewModel {
         while (middleIndex - newIndex) > cellModelsCount {
             newIndex += cellModelsCount
         }
-        guard newIndex != index else { return }
-        output.scrollToIndex.accept(newIndex)
+        output.scrollToIndex.accept((newIndex, newIndex == index))
     }
     
     func queryLocalDictionary(vocabulary: String) {
@@ -93,15 +92,15 @@ class ReviewViewModel {
 
 // MARK: -
 class ReviewViewController: UIViewController {
-    
+    private static let cellGape = CGFloat(12)
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 0
     }
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = cellGape
+        flowLayout.minimumInteritemSpacing = cellGape
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -129,11 +128,13 @@ class ReviewViewController: UIViewController {
     func bind(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
         
-        viewModel.output.scrollToIndex.subscribe(onNext: { [weak self] indexRow in
+        viewModel.output.scrollToIndex
+            .debounce(.microseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (indexRow, animated) in
             guard let self = self else { return }
             self.collectionView.scrollToItem(at: IndexPath(row: indexRow, section: 0),
                                              at: .centeredHorizontally,
-                                             animated: false)
+                                             animated: animated)
         }).disposed(by: disposeBag)
         
         viewModel.output.dictionaryData.subscribe(onNext: { [weak self] data in
@@ -146,6 +147,7 @@ class ReviewViewController: UIViewController {
 // UI
 private extension ReviewViewController {
     func configUI() {
+        collectionView.backgroundColor = .lightGray
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -167,7 +169,6 @@ private extension ReviewViewController {
     func configCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isPagingEnabled = true
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
     }
 }
@@ -186,7 +187,7 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.width, height: collectionView.height)
+        CGSize(width: collectionView.width * 0.7, height: collectionView.height)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -204,8 +205,20 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     private func centralCellIndex() -> Int? {
-        guard let cell = collectionView.visibleCells.first else { return nil }
-        guard let index = collectionView.indexPath(for: cell) else { return nil }
+        let cells = collectionView.visibleCells
+        guard cells.count > 0 else { return nil }
+        var centralCell: UICollectionViewCell? = nil
+        var centralDistance = CGFloat.greatestFiniteMagnitude
+        for cell in cells {
+            let c = collectionView.convert(cell.center, to: nil)
+            let dis = collectionView.center.distance(from: c)
+            if dis < centralDistance {
+                centralCell = cell
+                centralDistance = dis
+            }
+        }
+        
+        guard let index = collectionView.indexPath(for: centralCell!) else { return nil }
         return index.row
     }
     
