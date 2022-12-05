@@ -93,9 +93,15 @@ class ReviewViewModel {
 // MARK: -
 class ReviewViewController: UIViewController {
     private static let cellGape = CGFloat(12)
+    private let topBackgroundView = UIView().then {
+        $0.backgroundColor = UIColor(hexString: "5669FF")
+    }
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 0
+    }
+    private let headerView = UIView().then {
+        $0.backgroundColor = .clear
     }
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -106,9 +112,6 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private let translateResultView = TranslateResultView().then {
-        $0.backgroundColor = .white
-    }
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
     
@@ -136,18 +139,14 @@ class ReviewViewController: UIViewController {
                                              at: .centeredHorizontally,
                                              animated: animated)
         }).disposed(by: disposeBag)
-        
-        viewModel.output.dictionaryData.subscribe(onNext: { [weak self] data in
-            guard let self = self else { return }
-            self.translateResultView.config(model: data)
-        }).disposed(by: disposeBag)
     }
 }
 
 // UI
 private extension ReviewViewController {
     func configUI() {
-        collectionView.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(hexString: "E5E5E5")
+        configTopBackground()
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -155,18 +154,34 @@ private extension ReviewViewController {
         }
         
         mainStackView.addArrangedSubviews([
+            headerView,
             collectionView,
-            translateResultView
+            UIView()
         ])
         
-        collectionView.snp.makeConstraints {
-            $0.height.equalTo(view).multipliedBy(0.35)
-        }
-        
+        configHeaderView()
         configCollectionView()
     }
     
+    func configTopBackground() {
+        view.addSubview(topBackgroundView)
+        topBackgroundView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(222)
+        }
+    }
+    
+    func configHeaderView() {
+        headerView.snp.makeConstraints {
+            $0.height.equalTo(108)
+        }
+    }
+    
     func configCollectionView() {
+        collectionView.snp.makeConstraints {
+            $0.height.equalTo(140)
+        }
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
@@ -268,8 +283,9 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }
     
     private func configUI() {
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .white
         contentView.addSubview(mainStackView)
+        contentView.cornerRadius = 12
         mainStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
