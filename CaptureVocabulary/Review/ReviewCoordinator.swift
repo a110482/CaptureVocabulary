@@ -31,7 +31,7 @@ class ReviewViewModel {
         let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
     }
     let output = Output()
-    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 100)
+    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 30)
     private var middleIndex: Int { indexCount/2 }
     private var lastReadCardId: Int? {
         get {
@@ -80,7 +80,14 @@ class ReviewViewModel {
         while (middleIndex - newIndex) > cellModelsCount {
             newIndex += cellModelsCount
         }
-        output.scrollToIndex.accept((newIndex, newIndex == index))
+        
+        output.scrollToIndex.accept((index, true))
+        if newIndex != index {
+            // 重新校正 index
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 ) {
+                self.output.scrollToIndex.accept((newIndex, false))
+            }
+        }
     }
     
     func queryLocalDictionary(vocabulary: String) {
@@ -184,6 +191,7 @@ private extension ReviewViewController {
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.decelerationRate = .fast
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
     }
 }
@@ -207,13 +215,16 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            getIndexOfCentralCell()
-            adjustIndex()
-            displayCurrentCellVocabularyTranslate()
+            didEndSwapCollectionView()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        didEndSwapCollectionView()
+    }
+    
+    // 結束拖曳單字卡之後的流程
+    private func didEndSwapCollectionView() {
         getIndexOfCentralCell()
         adjustIndex()
         displayCurrentCellVocabularyTranslate()
