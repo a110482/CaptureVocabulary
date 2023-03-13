@@ -18,27 +18,24 @@ protocol VocabularyCardCellDelegate: AnyObject {
 class VocabularyCardCell: UITableViewCell {
     weak var delegate: VocabularyCardCellDelegate?
     
-    private let mainStack = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 10
-    }
+    private let mainStack = UIStackView()
+    
+    private let firstLineStack = UIStackView()
     
     private let sourceLabel = UILabel().then {
-        $0.textAlignment = .center
+        $0.textAlignment = .left
     }
+    
+    private let memorizedSwitchButton = ActiveSwitchButton()
+    
+    private let secondLineStack = UIStackView()
     
     private let translateLabel = UILabel().then {
-        $0.textAlignment = .center
+        $0.textAlignment = .left
+        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
     
-    private let speakerButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
-    }
-    
-    private let memorizedSwitchButton = ActiveSwitchButton().then {
-        $0.setTitle("已記憶".localized(), for: .normal)
-        $0.setTitleColor(UILabel().textColor, for: .normal)
-    }
+    private let speakerButton = UIButton()
     
     private var cellModel: VocabularyCardORM.ORM?
     
@@ -59,36 +56,10 @@ class VocabularyCardCell: UITableViewCell {
         sourceLabel.text = cellModel.normalizedSource
         translateLabel.text = cellModel.normalizedTarget
         let memorized = cellModel.memorized ?? false
-        memorizedSwitchButton.setActive(!memorized)
-    }
-}
-
-private extension VocabularyCardCell {
-    func configUI() {
-        contentView.addSubview(mainStack)
-        mainStack.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.left.equalTo(10)
-            $0.top.equalTo(10)
-        }
-        
-        mainStack.addArrangedSubviews([
-            sourceLabel,
-            translateLabel,
-            speakerButton,
-            memorizedSwitchButton
-        ])
-        
-        speakerButton.snp.makeConstraints {
-            $0.height.equalTo(50)
-        }
-        
-        memorizedSwitchButton.snp.makeConstraints {
-            $0.height.equalTo(50)
-        }
+        memorizedSwitchButton.setActive(memorized)
     }
     
-    func bindAction() {
+    private func bindAction() {
         speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
             Speaker.speak(self?.sourceLabel.text ?? "", language: .en_US)
         }).disposed(by: disposeBag)
@@ -98,5 +69,73 @@ private extension VocabularyCardCell {
             guard let cellModel = self.cellModel else { return }
             self.delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         }).disposed(by: disposeBag)
+    }
+}
+
+// UI
+private extension VocabularyCardCell {
+    func configUI() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        contentView.addSubview(mainStack)
+        configMainStackView()
+        
+        mainStack.addArrangedSubviews([
+            firstLineStack.padding(gap: 18),
+            firstLineStack,
+            secondLineStack,
+            firstLineStack.padding(gap: 18),
+        ])
+        
+        configFirstLineStackView()
+        configSecondLineStackView()
+        configSpeakerButton()
+        configMemorizedSwitchButton()
+    }
+    
+    func configMainStackView() {
+        mainStack.axis = .vertical
+        mainStack.spacing = 10
+        mainStack.backgroundColor = .white
+        mainStack.cornerRadius = 10
+        mainStack.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.left.equalTo(24)
+            $0.top.equalTo(5)
+        }
+    }
+    
+    func configFirstLineStackView() {
+        firstLineStack.axis = .horizontal
+        firstLineStack.addArrangedSubviews([
+            firstLineStack.padding(gap: 20),
+            memorizedSwitchButton,
+            firstLineStack.padding(gap: 13),
+            sourceLabel,
+            firstLineStack.padding(gap: 20),
+        ])
+    }
+    
+    func configSecondLineStackView() {
+        secondLineStack.axis = .horizontal
+        secondLineStack.addArrangedSubviews([
+            firstLineStack.padding(gap: 20),
+            translateLabel,
+            speakerButton,
+            firstLineStack.padding(gap: 20),
+        ])
+    }
+    
+    func configSpeakerButton() {
+        speakerButton.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
+        speakerButton.snp.makeConstraints {
+            $0.height.equalTo(24)
+        }
+    }
+    
+    func configMemorizedSwitchButton() {
+        memorizedSwitchButton.snp.makeConstraints {
+            $0.size.equalTo(20)
+        }
     }
 }
