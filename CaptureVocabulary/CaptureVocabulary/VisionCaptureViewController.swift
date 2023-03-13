@@ -36,7 +36,7 @@ class VisionCaptureViewController: UIViewController {
     
     var previewLayer : AVCaptureVideoPreviewLayer!
     
-    let textRecognitionWorkQueue =  DispatchQueue (label: "TextRecognitionQueue", qos: .userInitiated , attributes: [], autoreleaseFrequency: .workItem )
+    let textRecognitionWorkQueue = DispatchQueue (label: "TextRecognitionQueue", qos: .userInteractive , attributes: [], autoreleaseFrequency: .workItem )
     
     var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
     
@@ -49,7 +49,7 @@ class VisionCaptureViewController: UIViewController {
                       size: CGSize(width: width, height: height))
     }()
     
-    let loadQueue = DispatchQueue(label: "loadQueue")
+    let loadQueue = DispatchQueue(label: "loadQueue", qos: .userInteractive)
     
     private let disposeBag = DisposeBag()
     
@@ -125,7 +125,9 @@ class VisionCaptureViewController: UIViewController {
     private func setTextRecognitionRequest() {
         textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-            self?.action.accept(.identifyText(observations: observations))
+            DispatchQueue.main.async {
+                self?.action.accept(.identifyText(observations: observations))
+            }
         }
     }
     

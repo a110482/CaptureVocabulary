@@ -18,12 +18,14 @@
 		F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C528297B90000C74B0 /* VocabularyListViewController.swift */; };
 		F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C728297BC9000C74B0 /* VocabularyListViewModel.swift */; };
 		F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C928297E1A000C74B0 /* VocabularyListCell.swift */; };
+		F50D2BB2293DF67100EF4CEB /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = F50D2BB1293DF67100EF4CEB /* OpenCC */; };
 		F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A6548283DDC540094357B /* VocabularyCardCell.swift */; };
 		F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A654B2843A2730094357B /* ActiveSwitchButton.swift */; };
 		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
 		F53771CF2812B4D7003F892D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CC2812B4D7003F892D /* Request.swift */; };
+		F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5641817293DECB70068DA9E /* UIColorSetting.swift */; };
 		F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */; };
 		F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */; };
 		F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860528140ED10005CD34 /* AzureRequest.swift */; };
@@ -87,6 +89,7 @@
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
 		F53771CC2812B4D7003F892D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		F5641817293DECB70068DA9E /* UIColorSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorSetting.swift; sourceTree = "<group>"; };
 		F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyViewController.swift; sourceTree = "<group>"; };
 		F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyViewModel.swift; sourceTree = "<group>"; };
 		F58A860528140ED10005CD34 /* AzureRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureRequest.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50D2BB2293DF67100EF4CEB /* OpenCC in Frameworks */,
 				D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */,
+				F5641817293DECB70068DA9E /* UIColorSetting.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -382,6 +387,9 @@
 			dependencies = (
 			);
 			name = CaptureVocabulary;
+			packageProductDependencies = (
+				F50D2BB1293DF67100EF4CEB /* OpenCC */,
+			);
 			productName = CaptureVocabulary;
 			productReference = F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */;
 			productType = "com.apple.product-type.application";
@@ -410,6 +418,9 @@
 				Base,
 			);
 			mainGroup = F5C2005C28071DE200A3AAB6;
+			packageReferences = (
+				F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
+			);
 			productRefGroup = F5C2006628071DE200A3AAB6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -488,6 +499,7 @@
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
+				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
@@ -762,6 +774,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/SwiftyOpenCC";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F50D2BB1293DF67100EF4CEB /* OpenCC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
+			productName = OpenCC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F5C2005D28071DE200A3AAB6 /* Project object */;
 }

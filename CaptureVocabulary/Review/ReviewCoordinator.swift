@@ -27,11 +27,11 @@ class ReviewCoordinator: Coordinator<UIViewController> {
 // MARK: -
 class ReviewViewModel {
     struct Output {
-        let scrollToIndex = PublishRelay<Int>()
+        let scrollToIndex = PublishRelay<(index: Int, animated: Bool)>()
         let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
     }
     let output = Output()
-    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 100)
+    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 30)
     private var middleIndex: Int { indexCount/2 }
     private var lastReadCardId: Int? {
         get {
@@ -44,7 +44,7 @@ class ReviewViewModel {
     
     func loadVocabularyCard() {
         let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
-        output.scrollToIndex.accept(index + middleIndex)
+        output.scrollToIndex.accept((index + middleIndex, false))
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
@@ -80,8 +80,14 @@ class ReviewViewModel {
         while (middleIndex - newIndex) > cellModelsCount {
             newIndex += cellModelsCount
         }
-        guard newIndex != index else { return }
-        output.scrollToIndex.accept(newIndex)
+        
+        output.scrollToIndex.accept((index, true))
+        if newIndex != index {
+            // 重新校正 index
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 ) {
+                self.output.scrollToIndex.accept((newIndex, false))
+            }
+        }
     }
     
     func queryLocalDictionary(vocabulary: String) {
@@ -93,23 +99,26 @@ class ReviewViewModel {
 
 // MARK: -
 class ReviewViewController: UIViewController {
-    
+    private static let cellGape = CGFloat(12)
+    private let topBackgroundView = UIView().then {
+        $0.backgroundColor = UIColor(hexString: "5669FF")
+    }
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 0
     }
+    private let headerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = cellGape
+        flowLayout.minimumInteritemSpacing = cellGape
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private let translateResultView = TranslateResultView().then {
-        $0.backgroundColor = .white
-    }
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
     
@@ -129,16 +138,13 @@ class ReviewViewController: UIViewController {
     func bind(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
         
-        viewModel.output.scrollToIndex.subscribe(onNext: { [weak self] indexRow in
+        viewModel.output.scrollToIndex
+            .debounce(.microseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (indexRow, animated) in
             guard let self = self else { return }
             self.collectionView.scrollToItem(at: IndexPath(row: indexRow, section: 0),
                                              at: .centeredHorizontally,
-                                             animated: false)
-        }).disposed(by: disposeBag)
-        
-        viewModel.output.dictionaryData.subscribe(onNext: { [weak self] data in
-            guard let self = self else { return }
-            self.translateResultView.config(model: data)
+                                             animated: animated)
         }).disposed(by: disposeBag)
     }
 }
@@ -146,6 +152,8 @@ class ReviewViewController: UIViewController {
 // UI
 private extension ReviewViewController {
     func configUI() {
+        view.backgroundColor = UIColor(hexString: "E5E5E5")
+        configTopBackground()
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -153,21 +161,37 @@ private extension ReviewViewController {
         }
         
         mainStackView.addArrangedSubviews([
+            headerView,
             collectionView,
-            translateResultView
+            UIView()
         ])
         
-        collectionView.snp.makeConstraints {
-            $0.height.equalTo(view).multipliedBy(0.35)
-        }
-        
+        configHeaderView()
         configCollectionView()
     }
     
+    func configTopBackground() {
+        view.addSubview(topBackgroundView)
+        topBackgroundView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(222)
+        }
+    }
+    
+    func configHeaderView() {
+        headerView.snp.makeConstraints {
+            $0.height.equalTo(108)
+        }
+    }
+    
     func configCollectionView() {
+        collectionView.snp.makeConstraints {
+            $0.height.equalTo(140)
+        }
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isPagingEnabled = true
+        collectionView.decelerationRate = .fast
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
     }
 }
@@ -186,26 +210,41 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.width, height: collectionView.height)
+        CGSize(width: collectionView.width * 0.7, height: collectionView.height)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            getIndexOfCentralCell()
-            adjustIndex()
-            displayCurrentCellVocabularyTranslate()
+            didEndSwapCollectionView()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        didEndSwapCollectionView()
+    }
+    
+    // 結束拖曳單字卡之後的流程
+    private func didEndSwapCollectionView() {
         getIndexOfCentralCell()
         adjustIndex()
         displayCurrentCellVocabularyTranslate()
     }
     
     private func centralCellIndex() -> Int? {
-        guard let cell = collectionView.visibleCells.first else { return nil }
-        guard let index = collectionView.indexPath(for: cell) else { return nil }
+        let cells = collectionView.visibleCells
+        guard cells.count > 0 else { return nil }
+        var centralCell: UICollectionViewCell? = nil
+        var centralDistance = CGFloat.greatestFiniteMagnitude
+        for cell in cells {
+            let c = collectionView.convert(cell.center, to: nil)
+            let dis = collectionView.center.distance(from: c)
+            if dis < centralDistance {
+                centralCell = cell
+                centralDistance = dis
+            }
+        }
+        
+        guard let index = collectionView.indexPath(for: centralCell!) else { return nil }
         return index.row
     }
     
@@ -255,8 +294,9 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }
     
     private func configUI() {
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .white
         contentView.addSubview(mainStackView)
+        contentView.cornerRadius = 12
         mainStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }

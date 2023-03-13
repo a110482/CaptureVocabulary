@@ -37,6 +37,8 @@ class CaptureVocabularyViewController: UIViewController {
         $0.backgroundColor = .gray
     }
     
+    private let shapeLayer = CAShapeLayer()
+    
     
     private let disposeBag = DisposeBag()
     
@@ -61,36 +63,45 @@ class CaptureVocabularyViewController: UIViewController {
         
         viewModel.output.identifyWord.subscribe(onNext: { [weak self] recognizedItem in
             guard let self = self else { return }
-            self.removeMarking()
+            self.drawMarking(recognizedItem?.observation)
             guard let recognizedItem = recognizedItem else { return }
             self.queryStringTextField.text = recognizedItem.word
-            self.drawMarking(recognizedItem.observation)
+            
         }).disposed(by: disposeBag)
     }
-    
-    private func removeMarking() {
-        capContainerView.layer.sublayers?.filter { $0.isKind(of: CAShapeLayer.self) }.forEach {
-            $0.removeFromSuperlayer()
-        }
-    }
-    
+
     /// 標示掃描到的文字區域
-    private func drawMarking(_ observation: VNRectangleObservation) {
+    private func drawMarking(_ observation: VNRectangleObservation?) {
+        guard let observation = observation else {
+            let path2 = UIBezierPath()
+            path2.move(to: .zero)
+            path2.addLine(to: CGPoint(x: 0, y: 10))
+            path2.addLine(to: CGPoint(x: 10, y: 0))
+            path2.close()
+            shapeLayer.path = path2.cgPath
+            shapeLayer.fillColor = UIColor.green.withAlphaComponent(0.3).cgColor
+            capContainerView.layer.addSublayer(shapeLayer)
+            return
+        }
         let c = capContainerView
         let transform = CGAffineTransform.identity
             .scaledBy(x: 1, y: -1)
             .translatedBy(x: 0, y: -c.bounds.size.height)
             .scaledBy(x: c.bounds.size.width, y: c.bounds.size.height)
         
-        
+        let offsetDistance = CGFloat(5)
         let path = UIBezierPath()
-        path.move(to: observation.topLeft.applying(transform))
-        path.addLine(to: observation.topRight.applying(transform))
-        path.addLine(to: observation.bottomRight.applying(transform))
-        path.addLine(to: observation.bottomLeft.applying(transform))
+        path.move(to: observation.bottomRight
+            .applying(transform).offset(x: -offsetDistance, y: -offsetDistance))
+        path.addLine(to: observation.bottomLeft
+            .applying(transform).offset(x: offsetDistance, y: -offsetDistance))
+        path.addLine(to: observation.topLeft
+            .applying(transform).offset(x: offsetDistance, y: offsetDistance))
+        path.addLine(to: observation.topRight
+            .applying(transform).offset(x: -offsetDistance, y: offsetDistance))
+        
         path.close()
         
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.green.withAlphaComponent(0.3).cgColor
         c.layer.addSublayer(shapeLayer)
@@ -100,20 +111,11 @@ class CaptureVocabularyViewController: UIViewController {
         captureViewController.setScanActiveState(isActive: true)
         captureViewController.startAutoFocus()
         
-//        scanButton.rx.controlEvent(.touchDown).subscribe(onNext: { [weak self] _ in
-//            guard let self = self else { return }
-//            self.captureViewController.setScanActiveState(isActive: true)
-//            self.captureViewController.startAutoFocus()
-//        }).disposed(by: disposeBag)
-        
         scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-//            self.captureViewController.setScanActiveState(isActive: false)
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
-//            self.captureViewController.stopAutoFocus()
-//            self.removeMarking()
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self
