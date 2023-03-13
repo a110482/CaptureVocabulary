@@ -54,7 +54,7 @@ class VocabularyCardsViewModel {
     func loadCards() {
         guard let listId = selectedList.id else { return }
         let cards = VocabularyCardORM.ORM.allList(listId: listId) ?? []
-        output.cards.accept(cards)
+        output.cards.accept(cards.reversed())
     }
 }
 
