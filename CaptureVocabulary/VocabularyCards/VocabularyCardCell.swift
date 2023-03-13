@@ -75,6 +75,7 @@ class VocabularyCardCell: UITableViewCell {
 // UI
 private extension VocabularyCardCell {
     func configUI() {
+        selectionStyle = .none
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.addSubview(mainStack)

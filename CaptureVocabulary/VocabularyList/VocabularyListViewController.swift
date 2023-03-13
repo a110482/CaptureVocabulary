@@ -17,12 +17,14 @@ private enum DisplayModel {
     case deleteMode
 }
 
-class VocabularyListViewController: UITableViewController {
+class VocabularyListViewController: UIViewController {
     enum Action {
         case selectedList(orm: VocabularyCardListORM.ORM)
     }
     
     let action = PublishRelay<Action>()
+    
+    private let tableView = UITableView()
     
     private let disposeBag = DisposeBag()
     
@@ -32,7 +34,7 @@ class VocabularyListViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "單字卡清單".localized()
-        configTable()
+        configUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,38 +108,53 @@ class VocabularyListViewController: UITableViewController {
             alertVC.textFields?.first?.selectAll(nil)
         })
     }
+}
+
+// UI
+extension VocabularyListViewController {
+    func configUI() {
+        view.addSubview(tableView)
+        configTable()
+    }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func configTable() {
+        tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
+        tableView.register(cellWithClass: VocabularyListCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+}
+
+// delegate
+extension VocabularyListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellModels.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: VocabularyListCell.self)
         let cellModel = cellModels[indexPath.row]
         cell.bind(cellModel)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellModel = cellModels[indexPath.row]
         action.accept(.selectedList(orm: cellModel))
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let cellModel = cellModels[indexPath.row]
         cellModel.delete()
         viewModel?.loadList()
-    }
-}
-
-// UI
-extension VocabularyListViewController {
-    func configTable() {
-        tableView.register(cellWithClass: VocabularyListCell.self)
     }
 }
