@@ -11,6 +11,7 @@ import SwifterSwift
 import RxCocoa
 import RxSwift
 import MapKit
+import Then
 
 class VocabularyCardsCoordinator: Coordinator<UINavigationController> {
     private var viewController: VocabularyCardsViewController!
@@ -54,7 +55,7 @@ class VocabularyCardsViewModel {
     func loadCards() {
         guard let listId = selectedList.id else { return }
         let cards = VocabularyCardORM.ORM.allList(listId: listId) ?? []
-        output.cards.accept(cards)
+        output.cards.accept(cards.reversed())
     }
 }
 
@@ -69,7 +70,12 @@ extension VocabularyCardsViewModel: VocabularyCardCellDelegate {
 }
 
 // MARK: -
-class VocabularyCardsViewController: UITableViewController {
+class VocabularyCardsViewController: UIViewController {
+    private let mainStackView = UIStackView().then {
+        $0.axis = .vertical
+    }
+    
+    private let tableView = UITableView()
     
     private weak var viewModel: VocabularyCardsViewModel?
     
@@ -111,13 +117,41 @@ class VocabularyCardsViewController: UITableViewController {
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
     }
+}
+
+//UI
+extension VocabularyCardsViewController {
+    func configUI() {
+        view.addSubview(mainStackView)
+        configMainStack()
+        mainStackView.addArrangedSubviews([
+            tableView
+        ])
+        configTableView()
+    }
     
-    //delegate
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func configMainStack() {
+        mainStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func configTableView() {
+        tableView.register(cellWithClass: VocabularyCardCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
+    }
+}
+
+// Delegate
+extension VocabularyCardsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cellModels.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
         let cellModel = cellModels[indexPath.row]
         cell.bind(cellModel: cellModel)
@@ -125,22 +159,14 @@ class VocabularyCardsViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let cellModel = cellModels[indexPath.row]
         cellModel.delete()
         viewModel?.loadCards()
     }
 }
-
-//UI
-extension VocabularyCardsViewController {
-    func configUI() {
-        tableView.register(cellWithClass: VocabularyCardCell.self)
-    }
-}
-

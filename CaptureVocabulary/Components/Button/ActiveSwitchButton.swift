@@ -12,7 +12,11 @@ import RxCocoa
 import RxSwift
 
 class ActiveSwitchButton: UIButton {
-    private var active = true
+    private var active = false
+    
+    private let starFill = UIImage(named: "StarFill")
+    
+    private let starWire = UIImage(named: "StarWire")
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -32,24 +36,14 @@ class ActiveSwitchButton: UIButton {
 
 private extension ActiveSwitchButton {
     func configUI() {
-        
+        setImage(starWire, for: .normal)
     }
     
     func updateUI() {
         if active {
-            layoutActiveStyle()
+            setImage(starFill, for: .normal)
         } else {
-            layoutInactiveStyle()
+            setImage(starWire, for: .normal)
         }
-    }
-    
-    func layoutActiveStyle() {
-        backgroundColor = .white
-        setTitleColor(.black, for: .normal)
-    }
-    
-    func layoutInactiveStyle() {
-        backgroundColor = .darkGray
-        setTitleColor(.gray, for: .normal)
     }
 }

@@ -28,8 +28,10 @@ class VocabularyListCell: UITableViewCell {
     }
     
     private let memorizedSwitchButton = ActiveSwitchButton().then {
-        $0.setTitle("已記憶".localized(), for: .normal)
         $0.setTitleColor(UILabel().textColor, for: .normal)
+        $0.snp.makeConstraints {
+            $0.size.equalTo(24)
+        }
     }
     
     private let disposeBag = DisposeBag()
@@ -56,22 +58,32 @@ class VocabularyListCell: UITableViewCell {
 // UI
 private extension VocabularyListCell {
     func updateUI() {
+        selectionStyle = .none
         let memorized = self.cellModel?.memorized ?? false
-        backgroundColor = memorized ? .gray : .systemBackground
-        memorizedSwitchButton.setActive(!memorized)
+        memorizedSwitchButton.setActive(memorized)
     }
     
     func configUI() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
         contentView.addSubview(mainStack)
+        
+        mainStack.backgroundColor = .white
+        mainStack.cornerRadius = 10
+        mainStack.alignment = .center
         mainStack.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.top.left.equalTo(5)
+            $0.left.equalTo(24)
+            $0.top.equalTo(5)
+            $0.height.equalTo(60)
         }
         
         mainStack.addArrangedSubviews([
+            mainStack.padding(gap: 24),
+            memorizedSwitchButton,
+            mainStack.padding(gap: 24),
             nameLabel,
-            UIView(),
-            memorizedSwitchButton
+            mainStack.padding(gap: 24),
         ])
     }
     
