@@ -205,7 +205,11 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
         guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
         cell.sourceLabel.text = cellModel.normalizedSource
-        cell.translateLabel.text = cellModel.normalizedTarget
+        
+        Task {
+            cell.translateLabel.text = await cellModel.normalizedTarget?.localized()
+        }
+        
         return cell
     }
     
@@ -290,7 +294,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        [sourceLabel, translateLabel].forEach { $0.text = nil }
+        [sourceLabel, translateLabel].forEach { $0.text = " " }
     }
     
     private func configUI() {

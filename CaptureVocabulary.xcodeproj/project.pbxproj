@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C02D275F29BF2E4500CC26C4 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = C02D274D29BF2E4500CC26C4 /* makefile */; };
+		C02D276029BF2E4500CC26C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C02D274E29BF2E4500CC26C4 /* README.md */; };
+		C02D276129BF2E4500CC26C4 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D274F29BF2E4500CC26C4 /* Package.swift */; };
+		C02D276229BF2E4500CC26C4 /* HotenkaChineseConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */; };
+		C02D276329BF2E4500CC26C4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C02D275329BF2E4500CC26C4 /* LICENSE */; };
+		C02D276529BF2E4500CC26C4 /* convdict.plist in Resources */ = {isa = PBXBuildFile; fileRef = C02D275829BF2E4500CC26C4 /* convdict.plist */; };
+		C02D276629BF2E4500CC26C4 /* zh2HK.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275929BF2E4500CC26C4 /* zh2HK.txt */; };
+		C02D276729BF2E4500CC26C4 /* zh2JP.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275A29BF2E4500CC26C4 /* zh2JP.txt */; };
+		C02D276829BF2E4500CC26C4 /* zh2SG.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275B29BF2E4500CC26C4 /* zh2SG.txt */; };
+		C02D276929BF2E4500CC26C4 /* zh2CN.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275C29BF2E4500CC26C4 /* zh2CN.txt */; };
+		C02D276A29BF2E4500CC26C4 /* zh2TW.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275D29BF2E4500CC26C4 /* zh2TW.txt */; };
+		C02D276B29BF2E4500CC26C4 /* zh2KX.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275E29BF2E4500CC26C4 /* zh2KX.txt */; };
+		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
+		C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -69,10 +83,35 @@
 		F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C02D277429BF2F3200CC26C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5C2005D28071DE200A3AAB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5C2006428071DE200A3AAB6;
+			remoteInfo = CaptureVocabulary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C02D274D29BF2E4500CC26C4 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "../../../../../Desktop/Hotenka-main/makefile"; sourceTree = "<group>"; };
+		C02D274E29BF2E4500CC26C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../Desktop/Hotenka-main/README.md"; sourceTree = "<group>"; };
+		C02D274F29BF2E4500CC26C4 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = "../../../../../Desktop/Hotenka-main/Package.swift"; sourceTree = "<group>"; };
+		C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotenkaChineseConverter.swift; sourceTree = "<group>"; };
+		C02D275329BF2E4500CC26C4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../Desktop/Hotenka-main/LICENSE"; sourceTree = "<group>"; };
+		C02D275829BF2E4500CC26C4 /* convdict.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = convdict.plist; sourceTree = "<group>"; };
+		C02D275929BF2E4500CC26C4 /* zh2HK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2HK.txt; sourceTree = "<group>"; };
+		C02D275A29BF2E4500CC26C4 /* zh2JP.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2JP.txt; sourceTree = "<group>"; };
+		C02D275B29BF2E4500CC26C4 /* zh2SG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2SG.txt; sourceTree = "<group>"; };
+		C02D275C29BF2E4500CC26C4 /* zh2CN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2CN.txt; sourceTree = "<group>"; };
+		C02D275D29BF2E4500CC26C4 /* zh2TW.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2TW.txt; sourceTree = "<group>"; };
+		C02D275E29BF2E4500CC26C4 /* zh2KX.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2KX.txt; sourceTree = "<group>"; };
+		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
+		C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotenkaTests.swift; sourceTree = "<group>"; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
@@ -136,6 +175,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C02D276D29BF2F3200CC26C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5C2006228071DE200A3AAB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +200,76 @@
 				80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C02D274C29BF2E2400CC26C4 /* Hotenka */ = {
+			isa = PBXGroup;
+			children = (
+				C02D275329BF2E4500CC26C4 /* LICENSE */,
+				C02D274D29BF2E4500CC26C4 /* makefile */,
+				C02D274F29BF2E4500CC26C4 /* Package.swift */,
+				C02D274E29BF2E4500CC26C4 /* README.md */,
+				C02D275029BF2E4500CC26C4 /* Sources */,
+				C02D275429BF2E4500CC26C4 /* Tests */,
+			);
+			path = Hotenka;
+			sourceTree = "<group>";
+		};
+		C02D275029BF2E4500CC26C4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C02D275129BF2E4500CC26C4 /* Hotenka */,
+			);
+			name = Sources;
+			path = "../../../../../Desktop/Hotenka-main/Sources";
+			sourceTree = "<group>";
+		};
+		C02D275129BF2E4500CC26C4 /* Hotenka */ = {
+			isa = PBXGroup;
+			children = (
+				C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */,
+			);
+			path = Hotenka;
+			sourceTree = "<group>";
+		};
+		C02D275429BF2E4500CC26C4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C02D275729BF2E4500CC26C4 /* TestDictData */,
+			);
+			name = Tests;
+			path = "../../../../../Desktop/Hotenka-main/Tests";
+			sourceTree = "<group>";
+		};
+		C02D275729BF2E4500CC26C4 /* TestDictData */ = {
+			isa = PBXGroup;
+			children = (
+				C02D275829BF2E4500CC26C4 /* convdict.plist */,
+				C02D275929BF2E4500CC26C4 /* zh2HK.txt */,
+				C02D275A29BF2E4500CC26C4 /* zh2JP.txt */,
+				C02D275B29BF2E4500CC26C4 /* zh2SG.txt */,
+				C02D275C29BF2E4500CC26C4 /* zh2CN.txt */,
+				C02D275D29BF2E4500CC26C4 /* zh2TW.txt */,
+				C02D275E29BF2E4500CC26C4 /* zh2KX.txt */,
+			);
+			path = TestDictData;
+			sourceTree = "<group>";
+		};
+		C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */ = {
+			isa = PBXGroup;
+			children = (
+				C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */,
+				C02D277929BF2F8E00CC26C4 /* HotenkaTests */,
+			);
+			path = CaptureVocabularyTests;
+			sourceTree = "<group>";
+		};
+		C02D277929BF2F8E00CC26C4 /* HotenkaTests */ = {
+			isa = PBXGroup;
+			children = (
+				C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */,
+			);
+			path = HotenkaTests;
 			sourceTree = "<group>";
 		};
 		C7B333893350BF009DE1DD2F /* Pods */ = {
@@ -279,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C2006728071DE200A3AAB6 /* CaptureVocabulary */,
+				C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */,
 				F5C2006628071DE200A3AAB6 /* Products */,
 				C7B333893350BF009DE1DD2F /* Pods */,
 				BF02FDD175A511553E67A71A /* Frameworks */,
@@ -289,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */,
+				C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,6 +414,7 @@
 		F5C2006728071DE200A3AAB6 /* CaptureVocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				C02D274C29BF2E2400CC26C4 /* Hotenka */,
 				F5C2006828071DE200A3AAB6 /* AppDelegate.swift */,
 				F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */,
 				F5C2006C28071DE200A3AAB6 /* ViewController.swift */,
@@ -372,6 +491,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C02D276F29BF2F3200CC26C4 /* CaptureVocabularyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C02D277629BF2F3200CC26C4 /* Build configuration list for PBXNativeTarget "CaptureVocabularyTests" */;
+			buildPhases = (
+				C02D276C29BF2F3200CC26C4 /* Sources */,
+				C02D276D29BF2F3200CC26C4 /* Frameworks */,
+				C02D276E29BF2F3200CC26C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C02D277529BF2F3200CC26C4 /* PBXTargetDependency */,
+			);
+			name = CaptureVocabularyTests;
+			productName = CaptureVocabularyTests;
+			productReference = C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F5C2006428071DE200A3AAB6 /* CaptureVocabulary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5C2007928071DE400A3AAB6 /* Build configuration list for PBXNativeTarget "CaptureVocabulary" */;
@@ -401,9 +538,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					C02D276F29BF2F3200CC26C4 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = F5C2006428071DE200A3AAB6;
+					};
 					F5C2006428071DE200A3AAB6 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -426,20 +567,37 @@
 			projectRoot = "";
 			targets = (
 				F5C2006428071DE200A3AAB6 /* CaptureVocabulary */,
+				C02D276F29BF2F3200CC26C4 /* CaptureVocabularyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C02D276E29BF2F3200CC26C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5C2006328071DE200A3AAB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02D276029BF2E4500CC26C4 /* README.md in Resources */,
 				F53771C82812985B003F892D /* key.plist in Resources */,
+				C02D276A29BF2E4500CC26C4 /* zh2TW.txt in Resources */,
+				C02D276529BF2E4500CC26C4 /* convdict.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
+				C02D276929BF2E4500CC26C4 /* zh2CN.txt in Resources */,
+				C02D276329BF2E4500CC26C4 /* LICENSE in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
+				C02D276B29BF2E4500CC26C4 /* zh2KX.txt in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
+				C02D276629BF2E4500CC26C4 /* zh2HK.txt in Resources */,
+				C02D276829BF2E4500CC26C4 /* zh2SG.txt in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
+				C02D276729BF2E4500CC26C4 /* zh2JP.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +646,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C02D276C29BF2F3200CC26C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */,
+				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5C2006128071DE200A3AAB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +679,7 @@
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
+				C02D275F29BF2E4500CC26C4 /* makefile in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
 				F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */,
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
@@ -522,7 +690,9 @@
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
+				C02D276129BF2E4500CC26C4 /* Package.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
+				C02D276229BF2E4500CC26C4 /* HotenkaChineseConverter.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
@@ -550,6 +720,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C02D277529BF2F3200CC26C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5C2006428071DE200A3AAB6 /* CaptureVocabulary */;
+			targetProxy = C02D277429BF2F3200CC26C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		F5C2006E28071DE200A3AAB6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -570,6 +748,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C02D277729BF2F3200CC26C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3HQW65S535;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elijah.CaptureVocabularyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CaptureVocabulary.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CaptureVocabulary";
+			};
+			name = Debug;
+		};
+		C02D277829BF2F3200CC26C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3HQW65S535;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elijah.CaptureVocabularyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CaptureVocabulary.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CaptureVocabulary";
+			};
+			name = Release;
+		};
 		F5C2007728071DE400A3AAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -755,6 +973,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C02D277629BF2F3200CC26C4 /* Build configuration list for PBXNativeTarget "CaptureVocabularyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C02D277729BF2F3200CC26C4 /* Debug */,
+				C02D277829BF2F3200CC26C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F5C2006028071DE200A3AAB6 /* Build configuration list for PBXProject "CaptureVocabulary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OpenCC
 
 extension String {
     func regularMatches(for regex: String, in text: String? = nil) -> [String] {
@@ -30,18 +31,6 @@ extension String {
         return normalizedString ?? self
     }
     
-    func localized() -> String {
-        let preferredLanguages = Locale.preferredLanguages
-        let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
-        let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
-        if hantIndex == nil && hansIndex == nil { return self }
-        if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
-            return self.big5
-        } else {
-            return self.gb
-        }
-    }
-    
     func sha256() -> String{
         if let stringData = self.data(using: String.Encoding.utf8) {
             return stringData.sha256()
@@ -63,5 +52,46 @@ extension String {
         let string = NSMutableString(string: self) as CFMutableString
         CFStringTransform(string, nil, kCFStringTransformFullwidthHalfwidth, reverse)
         return string as String
+    }
+}
+
+// MARK: - 繁簡互換
+
+extension String {
+    func localized() -> String {
+        let preferredLanguages = Locale.preferredLanguages
+        let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
+        let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
+        if hantIndex == nil && hansIndex == nil { return self }
+        
+        let converter: ChineseConverter
+        if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
+            converter = try! ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
+        } else {
+            converter = try! ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
+        }
+        let res = converter.convert(self)
+        return res
+    }
+    
+    func localized() async -> String {
+        return await withCheckedContinuation({ result in
+            Task {
+                let preferredLanguages = Locale.preferredLanguages
+                let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
+                let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
+                if hantIndex == nil && hansIndex == nil {
+                    result.resume(returning: self)
+                    return
+                }
+                let converter: ChineseConverter
+                if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
+                    converter = try! ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
+                } else {
+                    converter = try! ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
+                }
+                result.resume(returning: converter.convert(self))
+            }
+        })
     }
 }
