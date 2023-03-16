@@ -7,20 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C02D275F29BF2E4500CC26C4 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = C02D274D29BF2E4500CC26C4 /* makefile */; };
-		C02D276029BF2E4500CC26C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C02D274E29BF2E4500CC26C4 /* README.md */; };
-		C02D276129BF2E4500CC26C4 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D274F29BF2E4500CC26C4 /* Package.swift */; };
-		C02D276229BF2E4500CC26C4 /* HotenkaChineseConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */; };
-		C02D276329BF2E4500CC26C4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C02D275329BF2E4500CC26C4 /* LICENSE */; };
-		C02D276529BF2E4500CC26C4 /* convdict.plist in Resources */ = {isa = PBXBuildFile; fileRef = C02D275829BF2E4500CC26C4 /* convdict.plist */; };
-		C02D276629BF2E4500CC26C4 /* zh2HK.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275929BF2E4500CC26C4 /* zh2HK.txt */; };
-		C02D276729BF2E4500CC26C4 /* zh2JP.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275A29BF2E4500CC26C4 /* zh2JP.txt */; };
-		C02D276829BF2E4500CC26C4 /* zh2SG.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275B29BF2E4500CC26C4 /* zh2SG.txt */; };
-		C02D276929BF2E4500CC26C4 /* zh2CN.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275C29BF2E4500CC26C4 /* zh2CN.txt */; };
-		C02D276A29BF2E4500CC26C4 /* zh2TW.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275D29BF2E4500CC26C4 /* zh2TW.txt */; };
-		C02D276B29BF2E4500CC26C4 /* zh2KX.txt in Resources */ = {isa = PBXBuildFile; fileRef = C02D275E29BF2E4500CC26C4 /* zh2KX.txt */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
 		C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */; };
+		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
+		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
+		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -97,21 +88,12 @@
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C02D274D29BF2E4500CC26C4 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "../../../../../Desktop/Hotenka-main/makefile"; sourceTree = "<group>"; };
-		C02D274E29BF2E4500CC26C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../Desktop/Hotenka-main/README.md"; sourceTree = "<group>"; };
-		C02D274F29BF2E4500CC26C4 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = "../../../../../Desktop/Hotenka-main/Package.swift"; sourceTree = "<group>"; };
-		C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotenkaChineseConverter.swift; sourceTree = "<group>"; };
-		C02D275329BF2E4500CC26C4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../Desktop/Hotenka-main/LICENSE"; sourceTree = "<group>"; };
-		C02D275829BF2E4500CC26C4 /* convdict.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = convdict.plist; sourceTree = "<group>"; };
-		C02D275929BF2E4500CC26C4 /* zh2HK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2HK.txt; sourceTree = "<group>"; };
-		C02D275A29BF2E4500CC26C4 /* zh2JP.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2JP.txt; sourceTree = "<group>"; };
-		C02D275B29BF2E4500CC26C4 /* zh2SG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2SG.txt; sourceTree = "<group>"; };
-		C02D275C29BF2E4500CC26C4 /* zh2CN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2CN.txt; sourceTree = "<group>"; };
-		C02D275D29BF2E4500CC26C4 /* zh2TW.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2TW.txt; sourceTree = "<group>"; };
-		C02D275E29BF2E4500CC26C4 /* zh2KX.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zh2KX.txt; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
 		C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotenkaTests.swift; sourceTree = "<group>"; };
+		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
@@ -200,59 +182,6 @@
 				80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C02D274C29BF2E2400CC26C4 /* Hotenka */ = {
-			isa = PBXGroup;
-			children = (
-				C02D275329BF2E4500CC26C4 /* LICENSE */,
-				C02D274D29BF2E4500CC26C4 /* makefile */,
-				C02D274F29BF2E4500CC26C4 /* Package.swift */,
-				C02D274E29BF2E4500CC26C4 /* README.md */,
-				C02D275029BF2E4500CC26C4 /* Sources */,
-				C02D275429BF2E4500CC26C4 /* Tests */,
-			);
-			path = Hotenka;
-			sourceTree = "<group>";
-		};
-		C02D275029BF2E4500CC26C4 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				C02D275129BF2E4500CC26C4 /* Hotenka */,
-			);
-			name = Sources;
-			path = "../../../../../Desktop/Hotenka-main/Sources";
-			sourceTree = "<group>";
-		};
-		C02D275129BF2E4500CC26C4 /* Hotenka */ = {
-			isa = PBXGroup;
-			children = (
-				C02D275229BF2E4500CC26C4 /* HotenkaChineseConverter.swift */,
-			);
-			path = Hotenka;
-			sourceTree = "<group>";
-		};
-		C02D275429BF2E4500CC26C4 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C02D275729BF2E4500CC26C4 /* TestDictData */,
-			);
-			name = Tests;
-			path = "../../../../../Desktop/Hotenka-main/Tests";
-			sourceTree = "<group>";
-		};
-		C02D275729BF2E4500CC26C4 /* TestDictData */ = {
-			isa = PBXGroup;
-			children = (
-				C02D275829BF2E4500CC26C4 /* convdict.plist */,
-				C02D275929BF2E4500CC26C4 /* zh2HK.txt */,
-				C02D275A29BF2E4500CC26C4 /* zh2JP.txt */,
-				C02D275B29BF2E4500CC26C4 /* zh2SG.txt */,
-				C02D275C29BF2E4500CC26C4 /* zh2CN.txt */,
-				C02D275D29BF2E4500CC26C4 /* zh2TW.txt */,
-				C02D275E29BF2E4500CC26C4 /* zh2KX.txt */,
-			);
-			path = TestDictData;
 			sourceTree = "<group>";
 		};
 		C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */ = {
@@ -414,7 +343,6 @@
 		F5C2006728071DE200A3AAB6 /* CaptureVocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				C02D274C29BF2E2400CC26C4 /* Hotenka */,
 				F5C2006828071DE200A3AAB6 /* AppDelegate.swift */,
 				F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */,
 				F5C2006C28071DE200A3AAB6 /* ViewController.swift */,
@@ -475,6 +403,9 @@
 			isa = PBXGroup;
 			children = (
 				F5E660302830DFD100277222 /* ReviewCoordinator.swift */,
+				C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */,
+				C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */,
+				C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -584,20 +515,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C02D276029BF2E4500CC26C4 /* README.md in Resources */,
 				F53771C82812985B003F892D /* key.plist in Resources */,
-				C02D276A29BF2E4500CC26C4 /* zh2TW.txt in Resources */,
-				C02D276529BF2E4500CC26C4 /* convdict.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
-				C02D276929BF2E4500CC26C4 /* zh2CN.txt in Resources */,
-				C02D276329BF2E4500CC26C4 /* LICENSE in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
-				C02D276B29BF2E4500CC26C4 /* zh2KX.txt in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
-				C02D276629BF2E4500CC26C4 /* zh2HK.txt in Resources */,
-				C02D276829BF2E4500CC26C4 /* zh2SG.txt in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
-				C02D276729BF2E4500CC26C4 /* zh2JP.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +583,7 @@
 			files = (
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */,
+				C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
 				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
@@ -679,9 +602,9 @@
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
-				C02D275F29BF2E4500CC26C4 /* makefile in Sources */,
 				F5C2006928071DE200A3AAB6 /* AppDelegate.swift in Sources */,
 				F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */,
+				C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */,
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
@@ -690,9 +613,7 @@
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
-				C02D276129BF2E4500CC26C4 /* Package.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
-				C02D276229BF2E4500CC26C4 /* HotenkaChineseConverter.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
@@ -707,6 +628,7 @@
 				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
 				F50952C12827BEB8000C74B0 /* VocabularyListCoordinator.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
+				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,

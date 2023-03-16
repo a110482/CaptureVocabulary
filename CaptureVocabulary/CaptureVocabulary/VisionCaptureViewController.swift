@@ -117,7 +117,7 @@ class VisionCaptureViewController: UIViewController {
             do {
                 try requestHandler.perform([self.textRecognitionRequest])
             } catch {
-                print(error)
+                Log.debug("影像辨識錯誤", error)
             }
         }
     }
