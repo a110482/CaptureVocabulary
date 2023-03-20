@@ -69,7 +69,6 @@ class Speaker: NSObject {
 private class SpeakerDelegate: NSObject, AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         Speaker.speakSequences()
-        print(#line, Date())
     }
 }
 

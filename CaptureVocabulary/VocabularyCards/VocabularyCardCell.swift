@@ -84,10 +84,10 @@ private extension VocabularyCardCell {
         configMainStackView()
         
         mainStack.addArrangedSubviews([
-            firstLineStack.padding(gap: 18),
+            mainStack.padding(gap: 5),
             firstLineStack,
             secondLineStack,
-            firstLineStack.padding(gap: 18),
+            mainStack.padding(gap: 5),
         ])
         
         configFirstLineStackView()
