@@ -10,7 +10,7 @@ import Foundation
 struct PlistReader {
     static func read<Model: Codable>(fileName: String, modelType: Model.Type) -> Model? {
         guard let keyPlistPath = Bundle.main.path(
-            forResource: "key", ofType: "plist") else {
+            forResource: fileName, ofType: "plist") else {
             return nil
         }
         guard let data = try? Data(

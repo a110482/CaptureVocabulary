@@ -30,14 +30,14 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         #if DEBUG
-//        SQLCore.shared.dropTables()
+        devPanelButton()
         #endif
-        sql()
+        createDefaultList()
         mainCoordinator()
     }
     
     // SQLite
-    private func sql() {
+    private func createDefaultList() {
         SQLCore.shared.createTables()
         VocabularyCardListORM.ORM.createDefaultList()
     }
@@ -48,3 +48,23 @@ class ViewController: UIViewController {
     }
 }
 
+#if DEBUG
+private extension ViewController {
+    func devPanelButton() {
+        let btn = UIButton()
+        view.addSubview(btn)
+        btn.snp.makeConstraints {
+            $0.size.equalTo(100)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(100)
+        }
+        btn.backgroundColor = .gray
+        btn.setTitle("DevPanel", for: .normal)
+        
+        btn.rx.tap.subscribe(onNext: {
+            let vc = DevPanelViewController()
+            self.present(vc, animated: true)
+        }).disposed(by: disposeBag)
+    }
+}
+#endif
