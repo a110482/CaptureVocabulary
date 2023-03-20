@@ -40,7 +40,9 @@ class VisionCaptureViewController: UIViewController {
     
     var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
     
-    var takePicture = false
+    private var isIdentifyingImage = false
+    
+    private var identifyImageCompletedTime = Date().timeIntervalSince1970
     
     lazy var identifyArea: CGRect = {
         let width: CGFloat = cameraView.bounds.width * 0.8
@@ -108,27 +110,27 @@ class VisionCaptureViewController: UIViewController {
     func stopAutoFocus() {
         timer?.cancel()
     }
-    
-    private func recognizeTextInImage(_ image: UIImage) {
-        guard let cgImage = image.cgImage else { return }
-        
+
+    private func recognizeTextInImage(_ image: UIImage, req: VNRecognizeTextRequest) {
         textRecognitionWorkQueue.async {
+            guard let cgImage = image.cgImage else { return }
             let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-            do {
-                try requestHandler.perform([self.textRecognitionRequest])
-            } catch {
-                Log.debug("影像辨識錯誤", error)
-            }
+            try? requestHandler.perform([req])
         }
     }
     
     private func setTextRecognitionRequest() {
-        textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error) in
+        textRecognitionRequest = VNRecognizeTextRequest { [weak self] (request, error)
+            in
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
             DispatchQueue.main.async {
-                self?.action.accept(.identifyText(observations: observations))
+                guard let self = self else { return }
+                self.action.accept(.identifyText(observations: observations))
+                self.isIdentifyingImage = false
+                self.identifyImageCompletedTime = Date().timeIntervalSince1970
             }
         }
+        textRecognitionRequest.recognitionLevel = .accurate
     }
     
     private func focusPoint() {
@@ -322,17 +324,21 @@ private extension VisionCaptureViewController {
             }
         }).disposed(by: disposeBag)
     }
+    
+    func isAllowedNextImage() -> Bool {
+        let now = Date().timeIntervalSince1970
+        return !isIdentifyingImage &&
+        (now - identifyImageCompletedTime) > 0.5
+    }
 }
 
 extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard isScanActive.value else { return }
-        guard !takePicture else { return }
+        guard isAllowedNextImage() else { return }
         connection.videoOrientation = .portrait
-        takePicture = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.takePicture = false
-        }
+        isIdentifyingImage = true
+        
         guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
@@ -340,11 +346,13 @@ extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDeleg
         let context = CIContext()
         guard let ref = context.createCGImage(ciImage, from: ciImage.extent) else { return }
         let uiImage = UIImage(cgImage: ref)
+        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             guard let croppedImage = self.croppedImage(image: uiImage) else { return }
             self.capturedImageView.image = croppedImage
-            self.recognizeTextInImage(croppedImage)
+            self.setTextRecognitionRequest()
+            self.recognizeTextInImage(croppedImage, req: self.textRecognitionRequest)
         }
     }
 }
