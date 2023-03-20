@@ -118,17 +118,12 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
         guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
-        cell.sourceLabel.text = cellModel.normalizedSource
-        
-        Task {
-            cell.translateLabel.text = await cellModel.normalizedTarget?.localized()
-        }
-        
+        cell.set(cellModel: cellModel)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.width * 0.7, height: collectionView.height)
+        CGSize(width: collectionView.width * 0.85, height: collectionView.height)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

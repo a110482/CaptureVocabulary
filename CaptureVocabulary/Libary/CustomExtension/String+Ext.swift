@@ -84,12 +84,13 @@ extension String {
                     result.resume(returning: self)
                     return
                 }
-                let converter: ChineseConverter
+                let converter: ChineseConverter?
                 if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
-                    converter = try! ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
+                    converter = try? ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
                 } else {
-                    converter = try! ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
+                    converter = try? ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
                 }
+                guard let converter = converter else { return }
                 result.resume(returning: converter.convert(self))
             }
         })
