@@ -162,7 +162,7 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
         return orm
     }
     
-    static func createDefaultList() -> Self? {
+    @discardableResult static func createDefaultList() -> Self? {
         guard (allList()?.count ?? 0) == 0 else { return nil }
         return newList()
     }

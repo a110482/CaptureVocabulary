@@ -54,7 +54,9 @@ class VocabularyCardCell: UITableViewCell {
     func bind(cellModel: VocabularyCardORM.ORM) {
         self.cellModel = cellModel
         sourceLabel.text = cellModel.normalizedSource
-        translateLabel.text = cellModel.normalizedTarget
+        Task {
+            translateLabel.text = await cellModel.normalizedTarget?.localized()
+        }
         let memorized = cellModel.memorized ?? false
         memorizedSwitchButton.setActive(memorized)
     }
@@ -82,10 +84,10 @@ private extension VocabularyCardCell {
         configMainStackView()
         
         mainStack.addArrangedSubviews([
-            firstLineStack.padding(gap: 18),
+            mainStack.padding(gap: 5),
             firstLineStack,
             secondLineStack,
-            firstLineStack.padding(gap: 18),
+            mainStack.padding(gap: 5),
         ])
         
         configFirstLineStackView()

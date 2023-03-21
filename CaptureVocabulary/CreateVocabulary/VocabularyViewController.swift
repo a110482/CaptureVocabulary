@@ -272,9 +272,13 @@ class TranslateResultView: UIStackView {
             let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
             for speech in partOfSpeech {
                 explainsTextView.text = speech.reduce(explainsTextView.text ?? "", {
-                    $0 + ($0.isEmpty ? "" : "\n") + String($1).localized().trimmed
+                    $0 + ($0.isEmpty ? "" : "\n") + String($1).trimmed
                 })
                 explainsTextView.text = (explainsTextView.text ?? "") + "\n\n"
+            }
+            
+            Task {
+                explainsTextView.text = await explainsTextView.text.localized()
             }
         }
         
