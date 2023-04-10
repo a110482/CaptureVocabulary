@@ -9,19 +9,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-// ActiveSwitchButton
+protocol ReviewCollectionViewCellDelegate: AnyObject {
+    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM)
+}
+
 class ReviewCollectionViewCell: UICollectionViewCell {
+    weak var delegate: ReviewCollectionViewCellDelegate?
     private let activeSwitchButton = ActiveSwitchButton()
     private let mainStackView = UIStackView()
     private let pronunciationStackView = UIStackView()
     private let speakerButton = UIButton()
+    private let sourceLabel = UILabel()
+    private let translateLabel = UILabel()
     private var cellModel: VocabularyCardORM.ORM?
     private let disposeBag = DisposeBag()
-    
-    
-    // 暫時開放, 等ＵＩ設計完成再封裝
-    let sourceLabel = UILabel()
-    let translateLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +36,9 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        [sourceLabel, translateLabel].forEach { $0.text = " " }
+        activeSwitchButton.setActive(false)
+        sourceLabel.text = "--"
+        translateLabel.text = "--"
     }
     
     func set(cellModel: VocabularyCardORM.ORM) {
@@ -126,9 +129,8 @@ private extension ReviewCollectionViewCell {
     }
     
     func tapActiveSwitchButton() {
-        guard var cellModel = cellModel else { return }
-        cellModel.memorized = true
-        cellModel.update()
+        guard let cellModel = cellModel else { return }
+        delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         activeSwitchButton.setActive(true)
     }
 }

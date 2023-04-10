@@ -58,6 +58,7 @@ extension String {
 // MARK: - 繁簡互換
 
 extension String {
+    #warning("製作緩存, 解決翻譯速度太慢")
     func localized() -> String {
         let preferredLanguages = Locale.preferredLanguages
         let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
@@ -74,6 +75,7 @@ extension String {
         return res
     }
     
+    #warning("製作緩存, 解決翻譯速度太慢")
     func localized() async -> String {
         return await withCheckedContinuation({ result in
             Task {

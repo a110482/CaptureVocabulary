@@ -19,7 +19,7 @@ class DevPanelViewController: UIViewController {
         $0.setTitle("resetDatabase", for: .normal)
     }
     private let mockWords = UIButton().then {
-        $0.setTitle("mockWordf", for: .normal)
+        $0.setTitle("mockVocabularyCard", for: .normal)
     }
     
     override func viewDidLoad() {
