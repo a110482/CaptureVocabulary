@@ -44,7 +44,7 @@ class ReviewViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.reloadData {
-            self.viewModel?.loadVocabularyCard()
+            self.viewModel?.loadLastReadVocabularyCard()
             self.displayCurrentCellVocabularyTranslate()
         }
     }
@@ -54,11 +54,14 @@ class ReviewViewController: UIViewController {
         
         viewModel.output.scrollToIndex
             .debounce(.microseconds(100), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (indexRow, animated) in
+            .subscribe(onNext: { [weak self] (indexRow, animation) in
+                guard let self = self else { return }
+                self.scrollCellTo(index: indexRow, animated: animation)
+            }).disposed(by: disposeBag)
+        
+        viewModel.output.needReloadDate.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            self.collectionView.scrollToItem(at: IndexPath(row: indexRow, section: 0),
-                                             at: .centeredHorizontally,
-                                             animated: animated)
+            self.collectionView.reloadData()
         }).disposed(by: disposeBag)
     }
 }
@@ -119,6 +122,7 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
         guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
         cell.set(cellModel: cellModel)
+        cell.delegate = viewModel
         return cell
     }
     
@@ -128,18 +132,22 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            didEndSwapCollectionView()
+            didEndDraggingCollectionView()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndSwapCollectionView()
+        didEndDraggingCollectionView()
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        updateLastReadCardId()
+        adjustIndex()
     }
     
     // 結束拖曳單字卡之後的流程
-    private func didEndSwapCollectionView() {
-        getIndexOfCentralCell()
-        adjustIndex()
+    private func didEndDraggingCollectionView() {
+        scrollCellTo(index: centralCellIndex())
         displayCurrentCellVocabularyTranslate()
     }
     
@@ -161,16 +169,23 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         return index.row
     }
     
-    private func getIndexOfCentralCell() {
+    private func updateLastReadCardId() {
         guard let index = centralCellIndex() else { return }
         viewModel?.updateLastReadCardId(index: index)
     }
     
     private func adjustIndex() {
-        guard let index = centralCellIndex() else { return }
-        viewModel?.adjustIndex(index: index)
+        viewModel?.adjustIndex()
     }
     
+    private func scrollCellTo(index: Int?, animated: Bool = true) {
+        let centralIndexPath = IndexPath(row: index ?? 0, section: 0)
+        collectionView.scrollToItem(at: centralIndexPath,
+                                    at: .centeredHorizontally,
+                                    animated: animated)
+    }
+    
+    /// 單字詳細翻譯
     private func displayCurrentCellVocabularyTranslate() {
         guard let currentCell = collectionView.visibleCells.first else { return }
         guard let index = collectionView.indexPath(for: currentCell) else { return }

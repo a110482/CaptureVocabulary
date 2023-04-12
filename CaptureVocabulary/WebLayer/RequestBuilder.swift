@@ -99,6 +99,7 @@ internal extension Data {
                 print("Failed to read JSON Object.")
                 return ""
         }
+        AF.sessionConfiguration.timeoutIntervalForRequest = 5
         return prettyJSONString
     }
 }

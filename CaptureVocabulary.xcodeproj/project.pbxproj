@@ -16,6 +16,8 @@
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
+		C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
+		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -102,6 +104,8 @@
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewModel.swift; sourceTree = "<group>"; };
+		C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewController.swift; sourceTree = "<group>"; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				F50952C328280B62000C74B0 /* VocabularyCardsCoordinator.swift */,
+				C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */,
+				C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */,
 				F52A6548283DDC540094357B /* VocabularyCardCell.swift */,
 			);
 			path = VocabularyCards;
@@ -615,6 +621,7 @@
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
+				C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
 				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
@@ -640,6 +647,7 @@
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
+				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,

@@ -22,36 +22,36 @@ class VisionCaptureViewController: UIViewController {
     
     let action = PublishRelay<Action>()
     
-    private let isScanActive = BehaviorRelay<Bool>(value: false)
+    private let isScanActive = BehaviorRelay<Bool>(value: true)
     
-    let capturedImageView = UIImageView()
+    private let capturedImageView = UIImageView()
     
-    let cameraView = UIView()
+    private let cameraView = UIView()
     
     private let mask = UIView()
     
-    var captureSession: AVCaptureSession!
+    private var captureSession: AVCaptureSession!
     
-    var videoOutput : AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
+    private var videoOutput : AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
     
-    var previewLayer : AVCaptureVideoPreviewLayer!
+    private var previewLayer : AVCaptureVideoPreviewLayer!
     
-    let textRecognitionWorkQueue = DispatchQueue (label: "TextRecognitionQueue", qos: .userInteractive , attributes: [], autoreleaseFrequency: .workItem )
+    private let textRecognitionWorkQueue = DispatchQueue (label: "TextRecognitionQueue", qos: .userInteractive , attributes: [], autoreleaseFrequency: .workItem )
     
-    var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
+    private var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
     
     private var isIdentifyingImage = false
     
     private var identifyImageCompletedTime = Date().timeIntervalSince1970
     
-    lazy var identifyArea: CGRect = {
+    private lazy var identifyArea: CGRect = {
         let width: CGFloat = cameraView.bounds.width * 0.8
         let height: CGFloat = 100
         return CGRect(origin: cameraView.center.offset(x: -width/2, y: -height/2),
                       size: CGSize(width: width, height: height))
     }()
     
-    let loadQueue = DispatchQueue(label: "loadQueue", qos: .userInteractive)
+    private let loadQueue = DispatchQueue(label: "loadQueue", qos: .userInteractive)
     
     private let disposeBag = DisposeBag()
     
@@ -161,8 +161,10 @@ class VisionCaptureViewController: UIViewController {
 private extension VisionCaptureViewController {
     func configUI() {
         view.addSubview(cameraView)
-        cameraView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        #if DEBUG
+        cameraView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        #if block //DEBUG
         setPreviewImage()
         #endif
     }

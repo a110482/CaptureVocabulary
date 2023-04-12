@@ -12,12 +12,13 @@ import RxSwift
 // MARK: -
 class ReviewViewModel {
     struct Output {
-        let scrollToIndex = PublishRelay<(index: Int, animated: Bool)>()
+        let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
         let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
+        let needReloadDate = PublishRelay<Void>()
     }
     let output = Output()
-    let indexCount = max(VocabularyCardORM.ORM.cardNumbers() * 3, 30)
-    private var middleIndex: Int { indexCount/2 }
+    let indexCount = 200
+    private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
         get {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId]
@@ -27,26 +28,21 @@ class ReviewViewModel {
         }
     }
     
-    func loadVocabularyCard() {
-        let index = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
-        output.scrollToIndex.accept((index + middleIndex, false))
+    func loadLastReadVocabularyCard() {
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
+                                     animation: false))
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
-        let cellModelsCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
-        guard cellModelsCount > 0 else { return nil }
-        var absIndex = (index - middleIndex)
-        while absIndex < 0 {
-            absIndex += cellModelsCount
-        }
-        absIndex = absIndex % cellModelsCount
-        let orm = VocabularyCardORM.ORM.get(by: absIndex, memorized: false)
+        let dataBaseIndex = getCardDatabaseIndexBy(tableIndex: index)
+        let orm = VocabularyCardORM.ORM.get(by: dataBaseIndex, memorized: false)
         return orm
     }
     
     func updateLastReadCardId(index: Int) {
         guard let orm = queryVocabularyCard(index: index) else { return }
         guard let id = orm.id else { return }
+        lastReadCardTableIndex = index
         lastReadCardId = Int(id)
     }
     
@@ -55,29 +51,57 @@ class ReviewViewModel {
     }
     
     /// 重新校正 index 以維持無線滾動維持在中央
-    func adjustIndex(index: Int) {
-        let cellModelsCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
-        guard cellModelsCount > 0 else { return }
-        var newIndex = index
-        while (newIndex - middleIndex) > cellModelsCount {
-            newIndex -= cellModelsCount
-        }
-        while (middleIndex - newIndex) > cellModelsCount {
-            newIndex += cellModelsCount
-        }
+    /// 整個無限滾動原理:
+    /// 所有 cell 資料向 database 拿資料時, 都是基於 database 裡的排序
+    /// collection index 是會映射到資料庫裡的某段順序
+    /// 例如:                                                                ▼ 這就是 lastReadCardTableIndex
+    /// collection index:                   [0      1     2     ... 50   ... 99   100 ]
+    /// database Index: [0 1 2 ...      107  108 109 ... 157 ... 206 207 108 ... 500]
+    /// 然後當 collection 滾動到第 52 筆資料時, 實際是向 database 取用第 52 + 107 = 159 筆資料
+    func adjustIndex() {
+        let tableIndexDelta = min(
+            indexCount - lastReadCardTableIndex,
+            lastReadCardTableIndex)
         
-        output.scrollToIndex.accept((index, true))
-        if newIndex != index {
-            // 重新校正 index
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 ) {
-                self.output.scrollToIndex.accept((newIndex, false))
-            }
-        }
+        // 位移不大不調整
+        guard tableIndexDelta <= indexCount/3 else { return }
+        // 重設參考點
+        lastReadCardTableIndex = indexCount / 2
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
+                                     animation: false))
     }
     
     func queryLocalDictionary(vocabulary: String) {
         let queryModel = YDTranslateAPIQueryModel(queryString: vocabulary)
         let response = StringTranslateAPIResponse.load(queryModel: queryModel)
         output.dictionaryData.accept(response)
+    }
+    
+    private func getCardDatabaseIndexBy(tableIndex: Int) -> Int {
+        let allVocabularyCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
+        guard allVocabularyCount > 0 else { return 0 }
+        let lastReadDataBaseIndex = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
+        let indexDelta = tableIndex - lastReadCardTableIndex
+        var databaseIndex = lastReadDataBaseIndex + indexDelta
+        while databaseIndex < 0 {
+            databaseIndex += allVocabularyCount
+        }
+        while databaseIndex > (allVocabularyCount - 1) {
+            databaseIndex -= allVocabularyCount
+        }
+        return databaseIndex
+    }
+}
+
+// delegate
+extension ReviewViewModel: ReviewCollectionViewCellDelegate {
+    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
+        let currentMemorized = cellModel.memorized ?? false
+        var newCellModel = cellModel
+        newCellModel.memorized = !currentMemorized
+        newCellModel.update()
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
+                                     animation: true))
+        output.needReloadDate.accept(())
     }
 }

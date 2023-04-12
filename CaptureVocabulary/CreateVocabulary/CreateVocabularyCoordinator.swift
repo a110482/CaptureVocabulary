@@ -15,6 +15,10 @@ import Then
 
 
 class CreateVocabularyCoordinator: Coordinator<UIViewController> {
+    enum Action {
+        case dismiss
+    }
+    let action = PublishRelay<Action>()
     var viewController: PopupViewController!
     var viewModel: VocabularyViewModel!
     private let disposeBag = DisposeBag()
@@ -35,6 +39,7 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
         guard !started else { return }
         super.start()
         viewController = PopupViewController()
+        viewController.delegate = self
         viewModel = VocabularyViewModel(vocabulary: vocabulary)
         let vc = VocabularyViewController()
         handleAction(vc)
@@ -45,6 +50,7 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
     
     override func stop() {
         viewController.presentingViewController?.dismiss(animated: true, completion: nil)
+        action.accept(.dismiss)
         super.stop()
     }
     
@@ -58,3 +64,10 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
         }).disposed(by: disposeBag)
     }
 }
+
+extension CreateVocabularyCoordinator: PopupViewControllerDelegate {
+    func tapBackground() {
+        stop()
+    }
+}
+

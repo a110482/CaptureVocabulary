@@ -51,6 +51,14 @@ class VocabularyCardCell: UITableViewCell {
         fatalError()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        [sourceLabel, translateLabel].forEach {
+            $0.text = ""
+        }
+        memorizedSwitchButton.setActive(false)
+    }
+    
     func bind(cellModel: VocabularyCardORM.ORM) {
         self.cellModel = cellModel
         sourceLabel.text = cellModel.normalizedSource
@@ -138,7 +146,7 @@ private extension VocabularyCardCell {
     
     func configMemorizedSwitchButton() {
         memorizedSwitchButton.snp.makeConstraints {
-            $0.size.equalTo(20)
+            $0.size.equalTo(25)
         }
     }
 }
