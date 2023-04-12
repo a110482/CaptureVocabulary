@@ -24,6 +24,23 @@ class VocabularyCardsViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private lazy var dataSource: UITableViewDiffableDataSource<Int, VocabularyCardORM.ORM> = {
+        let dataSource = UITableViewDiffableDataSource<Int, VocabularyCardORM.ORM>(
+            tableView: self.tableView) { (tableView, indexPath, cellModel) in
+                let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
+                cell.bind(cellModel: cellModel)
+                cell.delegate = self.viewModel
+                return cell
+            }
+        return dataSource
+    }()
+    
+    private var snapshot: NSDiffableDataSourceSnapshot<Int, VocabularyCardORM.ORM> = {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, VocabularyCardORM.ORM>()
+        snapshot.appendSections([0])
+        return snapshot
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel?.selectedList.name
@@ -50,9 +67,12 @@ class VocabularyCardsViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyCardsViewModel) {
         self.viewModel = viewModel
-        viewModel.output.cards.subscribe(onNext: { [weak self] _ in
+        viewModel.output.cards.subscribe(onNext: { [weak self] cellModels in
             guard let self = self else { return }
-            self.tableView.reloadData()
+            self.snapshot.deleteAllItems()
+            self.snapshot.appendSections([0])
+            self.snapshot.appendItems(cellModels)
+            self.dataSource.apply(self.snapshot, animatingDifferences: false)
         }).disposed(by: disposeBag)
     }
 }
@@ -77,26 +97,13 @@ extension VocabularyCardsViewController {
     func configTableView() {
         tableView.register(cellWithClass: VocabularyCardCell.self)
         tableView.delegate = self
-        tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
     }
 }
 
 // Delegate
-extension VocabularyCardsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellModels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
-        let cellModel = cellModels[indexPath.row]
-        cell.bind(cellModel: cellModel)
-        cell.delegate = self.viewModel
-        return cell
-    }
-    
+extension VocabularyCardsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
@@ -106,5 +113,18 @@ extension VocabularyCardsViewController: UITableViewDelegate, UITableViewDataSou
         let cellModel = cellModels[indexPath.row]
         cellModel.delete()
         viewModel?.loadCards()
+    }
+}
+
+
+/// 為了 data span shot
+extension VocabularyCardORM.ORM: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(memorized)
+    }
+    
+    static func == (lhs: VocabularyCardORM.ORM, rhs: VocabularyCardORM.ORM) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }

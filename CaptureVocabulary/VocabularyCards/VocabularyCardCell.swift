@@ -146,7 +146,7 @@ private extension VocabularyCardCell {
     
     func configMemorizedSwitchButton() {
         memorizedSwitchButton.snp.makeConstraints {
-            $0.size.equalTo(20)
+            $0.size.equalTo(25)
         }
     }
 }
