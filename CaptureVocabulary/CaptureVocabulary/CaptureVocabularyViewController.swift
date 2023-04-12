@@ -17,21 +17,21 @@ class CaptureVocabularyViewController: UIViewController {
     }
     let action = PublishRelay<Action>()
     
-    let captureViewController = VisionCaptureViewController()
-    let mainStackView = UIStackView().then {
+    private let captureViewController = VisionCaptureViewController()
+    private let mainStackView = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .center
     }
-    let capContainerView = UIView()
-    let queryStringTextField = UITextField().then {
+    private let capContainerView = UIView()
+    private let queryStringTextField = UITextField().then {
         $0.textAlignment = .center
         $0.backgroundColor = .lightGray
     }
-    let scanButton = UIButton().then {
+    private let scanButton = UIButton().then {
         $0.setTitle("scan", for: .normal)
         $0.backgroundColor = .gray
     }
-    let versionLabel = UILabel().then {
+    private let versionLabel = UILabel().then {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         $0.text = "ver: \(appVersion ?? "")"
         $0.backgroundColor = .gray
@@ -73,21 +73,14 @@ class CaptureVocabularyViewController: UIViewController {
     /// 標示掃描到的文字區域
     private func drawMarking(_ observation: VNRectangleObservation?) {
         guard let observation = observation else {
-            let path2 = UIBezierPath()
-            path2.move(to: .zero)
-            path2.addLine(to: CGPoint(x: 0, y: 10))
-            path2.addLine(to: CGPoint(x: 10, y: 0))
-            path2.close()
-            shapeLayer.path = path2.cgPath
-            shapeLayer.fillColor = UIColor.green.withAlphaComponent(0.3).cgColor
-            capContainerView.layer.addSublayer(shapeLayer)
+            shapeLayer.removeFromSuperlayer()
             return
         }
-        let c = capContainerView
+
         let transform = CGAffineTransform.identity
             .scaledBy(x: 1, y: -1)
-            .translatedBy(x: 0, y: -c.bounds.size.height)
-            .scaledBy(x: c.bounds.size.width, y: c.bounds.size.height)
+            .translatedBy(x: 0, y: -capContainerView.bounds.size.height)
+            .scaledBy(x: capContainerView.bounds.size.width, y: capContainerView.bounds.size.height)
         
         let offsetDistance = CGFloat(5)
         let path = UIBezierPath()
@@ -104,11 +97,10 @@ class CaptureVocabularyViewController: UIViewController {
         
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.green.withAlphaComponent(0.3).cgColor
-        c.layer.addSublayer(shapeLayer)
+        capContainerView.layer.addSublayer(shapeLayer)
     }
     
     private func bindAction() {
-        captureViewController.setScanActiveState(isActive: true)
         captureViewController.startAutoFocus()
         
         scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
@@ -120,6 +112,10 @@ class CaptureVocabularyViewController: UIViewController {
         
         queryStringTextField.delegate = self
     }
+    
+    func setScanActiveState(isActive: Bool) {
+        captureViewController.setScanActiveState(isActive: isActive)
+    }
 }
 
 // UI
@@ -127,7 +123,8 @@ extension CaptureVocabularyViewController {
     func configUI() {
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.left.right.bottom.equalToSuperview()
         }
         mainStackView.addArrangedSubviews([
             capContainerView,

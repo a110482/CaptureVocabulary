@@ -22,7 +22,7 @@ class VisionCaptureViewController: UIViewController {
     
     let action = PublishRelay<Action>()
     
-    private let isScanActive = BehaviorRelay<Bool>(value: false)
+    private let isScanActive = BehaviorRelay<Bool>(value: true)
     
     private let capturedImageView = UIImageView()
     
@@ -161,8 +161,10 @@ class VisionCaptureViewController: UIViewController {
 private extension VisionCaptureViewController {
     func configUI() {
         view.addSubview(cameraView)
-        cameraView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        #if DEBUG
+        cameraView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        #if block //DEBUG
         setPreviewImage()
         #endif
     }
