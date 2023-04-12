@@ -55,7 +55,7 @@ class VocabularyCardsViewModel {
     func loadCards() {
         guard let listId = selectedList.id else { return }
         let cards = VocabularyCardORM.ORM.allList(listId: listId) ?? []
-        output.cards.accept(cards.reversed())
+        output.cards.accept(Array(cards.reversed()))
     }
 }
 
@@ -111,7 +111,6 @@ class VocabularyCardsViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyCardsViewModel) {
         self.viewModel = viewModel
-        
         viewModel.output.cards.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()

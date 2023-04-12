@@ -102,5 +102,6 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         newCellModel.update()
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
                                      animation: true))
+        output.needReloadDate.accept(())
     }
 }
