@@ -67,13 +67,13 @@ class VocabularyListViewController: UIViewController {
     }
     
     private var cellModels: [VocabularyCardListORM.ORM] {
-        viewModel?.output.allList.value ?? []
+        viewModel?.output.cardListModels.value ?? []
     }
     
     func bind(_ viewModel: VocabularyListViewModel) {
         self.viewModel = viewModel
         
-        viewModel.output.allList.subscribe(onNext: { [weak self] _ in
+        viewModel.output.cardListModels.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
@@ -82,6 +82,11 @@ class VocabularyListViewController: UIViewController {
             guard let self = self else { return }
             self.showEditListNameAlert()
         }).disposed(by: disposeBag)
+        
+        viewModel.output.needReloadTableview.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
     }
     
     private func showEditListNameAlert() {
@@ -89,7 +94,7 @@ class VocabularyListViewController: UIViewController {
         alertVC.title = "請輸入新的清單名稱".localized()
         alertVC.addTextField { [weak self] textField in
             guard let self = self else { return }
-            textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
+            textField.text = self.viewModel?.output.newVocabularyListORM.value?.name?.localized()
         }
         
         let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
@@ -139,6 +144,7 @@ extension VocabularyListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withClass: VocabularyListCell.self)
         let cellModel = cellModels[indexPath.row]
         cell.bind(cellModel)
+        cell.delegate = viewModel
         return cell
     }
     
