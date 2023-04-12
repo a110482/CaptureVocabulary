@@ -58,8 +58,11 @@ extension String {
 // MARK: - 繁簡互換
 
 extension String {
-    #warning("製作緩存, 解決翻譯速度太慢")
     func localized() -> String {
+        if let cache = TranslateCache.getCache(key: self) {
+            return cache
+        }
+        
         let preferredLanguages = Locale.preferredLanguages
         let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
         let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
@@ -72,13 +75,17 @@ extension String {
             converter = try! ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
         }
         let res = converter.convert(self)
+        TranslateCache.setCache(key: self, value: res)
         return res
     }
     
-    #warning("製作緩存, 解決翻譯速度太慢")
     func localized() async -> String {
         return await withCheckedContinuation({ result in
             Task {
+                if let cache = TranslateCache.getCache(key: self) {
+                    result.resume(returning: cache)
+                    return
+                }
                 let preferredLanguages = Locale.preferredLanguages
                 let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
                 let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
@@ -93,8 +100,24 @@ extension String {
                     converter = try? ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
                 }
                 guard let converter = converter else { return }
-                result.resume(returning: converter.convert(self))
+                let convertResult = converter.convert(self)
+                TranslateCache.setCache(key: self, value: convertResult)
+                result.resume(returning: convertResult)
             }
         })
+    }
+}
+
+fileprivate actor TranslateCache {
+    private static var cache = NSCache<NSString, NSString>()
+    
+    static func setCache(key: String, value: String) {
+        guard key.count < 30 else { return }
+        cache.setObject(value.nsString, forKey: key.nsString)
+    }
+    
+    static func getCache(key: String) -> String? {
+        guard key.count < 30 else { return nil }
+        return cache.object(forKey: key.nsString) as String?
     }
 }
