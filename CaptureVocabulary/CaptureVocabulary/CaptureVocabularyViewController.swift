@@ -177,7 +177,11 @@ extension CaptureVocabularyViewController {
     }
 }
 
+
 extension CaptureVocabularyViewController: UITextFieldDelegate {
+#if WIDGET
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { return true }
+#else
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         if let text = self.queryStringTextField.text, !text.isEmpty {
@@ -185,4 +189,6 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
         }
         return true
     }
+#endif
 }
+
