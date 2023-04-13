@@ -23,17 +23,11 @@ class CaptureVocabularyViewController: UIViewController {
         $0.alignment = .center
     }
     private let capContainerView = UIView()
-    private let queryStringTextField = UITextField().then {
-        $0.textAlignment = .center
-        $0.backgroundColor = .lightGray
-    }
-    private let scanButton = UIButton().then {
-        $0.setTitle("scan", for: .normal)
-        $0.backgroundColor = .gray
-    }
+    private let queryStringTextField = UITextField()
+    private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        $0.text = "ver: \(appVersion ?? "")"
+        let appVersion = AppInfo.versino
+        $0.text = "ver: \(appVersion)"
         $0.backgroundColor = .gray
     }
     
@@ -103,7 +97,7 @@ class CaptureVocabularyViewController: UIViewController {
     private func bindAction() {
         captureViewController.startAutoFocus()
         
-        scanButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
+        queryButton.rx.controlEvent([.touchUpInside, .touchUpOutside]).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
@@ -121,6 +115,7 @@ class CaptureVocabularyViewController: UIViewController {
 // UI
 extension CaptureVocabularyViewController {
     func configUI() {
+        view.backgroundColor = .white
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -128,23 +123,22 @@ extension CaptureVocabularyViewController {
         }
         mainStackView.addArrangedSubviews([
             capContainerView,
+            mainStackView.padding(gap: 20),
             queryStringTextField,
-            mainStackView.padding(gap: 70),
-            scanButton,
+            mainStackView.padding(gap: 50),
+            queryButton,
             mainStackView.padding(gap: 20),
             versionLabel,
             UIView()
         ])
         
         addCaptureViewController()
-        configQueryStringLabel()
+        configQueryTextField()
+        configQueryButton()
         
-        scanButton.snp.makeConstraints {
+        queryButton.snp.makeConstraints {
             $0.size.equalTo(150)
         }
-        #if DEBUG
-        queryStringTextField.alpha = 0.5
-        #endif
     }
     
     func addCaptureViewController() {
@@ -159,11 +153,27 @@ extension CaptureVocabularyViewController {
             $0.edges.equalToSuperview()
         }
     }
-    func configQueryStringLabel() {
+    
+    func configQueryTextField() {
         queryStringTextField.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.height.equalTo(30)
+            $0.width.equalToSuperview().multipliedBy(0.8)
+            $0.height.equalTo(50)
         }
+        queryStringTextField.textAlignment = .center
+        queryStringTextField.cornerRadius = 5
+        queryStringTextField.backgroundColor = UIColor(hexString: "5669FF")
+        queryStringTextField.textColor = .white
+        queryStringTextField.tintColor = .white
+    }
+    
+    func configQueryButton() {
+        Task {
+            let title = await "查詢".localized()
+            queryButton.setTitle(title, for: .normal)
+        }
+        
+        queryButton.backgroundColor = .gray
+        queryButton.cornerRadius = 5
     }
 }
 
