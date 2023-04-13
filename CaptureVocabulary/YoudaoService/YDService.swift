@@ -11,19 +11,12 @@ import SwifterSwift
 
 class YDService {
     static let shared = YDService()
-    let appKey: String
-    private let secret: String
-    
-    private init() {
-        let key = PlistReader.read(fileName: "key", modelType: KeyPlistModel.self)
-        appKey = key?.YDAppKey ?? ""
-        secret = key?.YDSecret ?? ""
-        if key?.YDAppKey == nil || key?.YDSecret == nil {
-            assert(false, "key.plist can not read value")
-        }
-    }
+
+    private init() {}
     
     func sing(query: String, uuid: String, time: String) -> String {
+        let appKey = AppParameters.shared.model.YDAppKey
+        let secret = AppParameters.shared.model.YDSecret
         let singStr = appKey + truncate(query) + uuid + time + secret
         return singStr.sha256()
     }
@@ -37,7 +30,3 @@ private extension YDService {
         return String(query.prefix(10) + query.suffix(10))
     }
 }
-
-
-
-

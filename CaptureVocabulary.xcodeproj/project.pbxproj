@@ -13,6 +13,7 @@
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
 		C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */; };
+		C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
@@ -32,7 +33,7 @@
 		F50D2BB2293DF67100EF4CEB /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = F50D2BB1293DF67100EF4CEB /* OpenCC */; };
 		F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A6548283DDC540094357B /* VocabularyCardCell.swift */; };
 		F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A654B2843A2730094357B /* ActiveSwitchButton.swift */; };
-		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
+		F53771C82812985B003F892D /* appParametersDev.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* appParametersDev.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
 		F53771CF2812B4D7003F892D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CC2812B4D7003F892D /* Request.swift */; };
@@ -101,6 +102,7 @@
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
 		C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotenkaTests.swift; sourceTree = "<group>"; };
+		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		F50952C928297E1A000C74B0 /* VocabularyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListCell.swift; sourceTree = "<group>"; };
 		F52A6548283DDC540094357B /* VocabularyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardCell.swift; sourceTree = "<group>"; };
 		F52A654B2843A2730094357B /* ActiveSwitchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSwitchButton.swift; sourceTree = "<group>"; };
-		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
+		F53771C72812985B003F892D /* appParametersDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = appParametersDev.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
 		F53771CC2812B4D7003F892D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -375,7 +377,7 @@
 				F5C2007128071DE400A3AAB6 /* Assets.xcassets */,
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
-				F53771C72812985B003F892D /* key.plist */,
+				F53771C72812985B003F892D /* appParametersDev.plist */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
@@ -399,6 +401,7 @@
 				F52A654A2843A23D0094357B /* Button */,
 				F5CBF58F2815718E0088C801 /* PopupViewController.swift */,
 				F50952B928267A43000C74B0 /* UIPickerViewController.swift */,
+				C06078CD29E7DB0800434A2E /* AppParameters.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -541,7 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F53771C82812985B003F892D /* key.plist in Resources */,
+				F53771C82812985B003F892D /* appParametersDev.plist in Resources */,
 				C001389329C83BD800D2E4BA /* mockWords.json in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
@@ -639,6 +642,7 @@
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
+				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
