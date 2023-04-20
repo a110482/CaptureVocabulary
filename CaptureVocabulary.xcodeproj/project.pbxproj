@@ -7,17 +7,97 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */; };
 		C001389329C83BD800D2E4BA /* mockWords.json in Resources */ = {isa = PBXBuildFile; fileRef = C001389229C83BD700D2E4BA /* mockWords.json */; };
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
 		C001389729C83EB100D2E4BA /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389629C83EB100D2E4BA /* MockWords.swift */; };
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
-		C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */; };
+		C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
+		C06078D029E7E64500434A2E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CF29E7E64500434A2E /* AppInfo.swift */; };
+		C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D629E7FADF00434A2E /* WidgetKit.framework */; };
+		C06078D929E7FADF00434A2E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D829E7FADF00434A2E /* SwiftUI.framework */; };
+		C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */; };
+		C06078DE29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */; };
+		C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */; };
+		C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06078E229E7FAE000434A2E /* Assets.xcassets */; };
+		C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
+		C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
+		C06078E929E7FAE000434A2E /* CaptureVocabularyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */; };
+		C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
+		C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7B28E6FC0400600E21 /* YDTranslateAPI.swift */; };
+		C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */; };
+		C060793729E8057E00434A2E /* SQLCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B7281FE865000C74B0 /* SQLCore.swift */; };
+		C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
+		C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
+		C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */; };
+		C060793C29E805D900434A2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2006C28071DE200A3AAB6 /* ViewController.swift */; };
+		C060793D29E805D900434A2E /* YDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599B36528E3014100C551D8 /* YDService.swift */; };
+		C060793E29E805D900434A2E /* YDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7728E5A6A100600E21 /* YDRequest.swift */; };
+		C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E660302830DFD100277222 /* ReviewCoordinator.swift */; };
+		C060794029E805D900434A2E /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
+		C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952BD282781CA000C74B0 /* TabBarCoordinator.swift */; };
+		C060794229E805D900434A2E /* VocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C328280B62000C74B0 /* VocabularyCardsCoordinator.swift */; };
+		C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
+		C060794429E805DA00434A2E /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
+		C060794529E805DA00434A2E /* VocabularyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A6548283DDC540094357B /* VocabularyCardCell.swift */; };
+		C060794629E805DA00434A2E /* VocabularyListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C02827BEB8000C74B0 /* VocabularyListCoordinator.swift */; };
+		C060794729E805DA00434A2E /* VocabularyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C528297B90000C74B0 /* VocabularyListViewController.swift */; };
+		C060794829E805DA00434A2E /* VocabularyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C728297BC9000C74B0 /* VocabularyListViewModel.swift */; };
+		C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C928297E1A000C74B0 /* VocabularyListCell.swift */; };
+		C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16306280AE4FB00257ABF /* VisionCaptureViewController.swift */; };
+		C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16310280C759600257ABF /* CaptureVocabularyCoordinator.swift */; };
+		C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F806F29140E4B00B6FD9E /* CaptureVocabularyViewController.swift */; };
+		C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57F807129140EA400B6FD9E /* CaptureVocabularyViewModel.swift */; };
+		C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF59328159FE30088C801 /* VocabularyViewController.swift */; };
+		C060794F29E805DA00434A2E /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */; };
+		C060795029E805DA00434A2E /* VocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */; };
+		C060795129E805DA00434A2E /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
+		C060795229E805DA00434A2E /* StanderDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860A281428670005CD34 /* StanderDecision.swift */; };
+		C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
+		C060795429E805DA00434A2E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CC2812B4D7003F892D /* Request.swift */; };
+		C060795529E805DA00434A2E /* HeaderStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A8607281411080005CD34 /* HeaderStorage.swift */; };
+		C060795629E805DA00434A2E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860C28142A110005CD34 /* RequestBuilder.swift */; };
+		C060795729E805DA00434A2E /* AzureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58A860528140ED10005CD34 /* AzureRequest.swift */; };
+		C060795829E805DA00434A2E /* AzureTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */; };
+		C060795929E805DA00434A2E /* AzureDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD828145720000DD57B /* AzureDictionary.swift */; };
+		C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16313280DBAFA00257ABF /* Array+Ext.swift */; };
+		C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58C28156B940088C801 /* UIStackView+Ext.swift */; };
+		C060795C29E805DA00434A2E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64828281E70CA00F8F423 /* String+Ext.swift */; };
+		C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599B36728E306EB00C551D8 /* Data+Ext.swift */; };
+		C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */; };
+		C060795F29E805DA00434A2E /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16309280BF13300257ABF /* Coordinating.swift */; };
+		C060796029E805DA00434A2E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A16308280BF13300257ABF /* Coordinator.swift */; };
+		C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */; };
+		C060796229E805DA00434A2E /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EADA28145B6C000DD57B /* PlistReader.swift */; };
+		C060796329E805DA00434A2E /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
+		C060796429E805DA00434A2E /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
+		C060796529E805DA00434A2E /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
+		C060796629E805DA00434A2E /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
+		C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E66032283108CB00277222 /* UserDefaultUtility.swift */; };
+		C060796829E805DA00434A2E /* AzureDictionaryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */; };
+		C060796929E805DA00434A2E /* YDTranslateORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */; };
+		C060796A29E805DA00434A2E /* ActiveSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A654B2843A2730094357B /* ActiveSwitchButton.swift */; };
+		C060796B29E805DA00434A2E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF58F2815718E0088C801 /* PopupViewController.swift */; };
+		C060796C29E805DA00434A2E /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B928267A43000C74B0 /* UIPickerViewController.swift */; };
+		C060796D29E805DA00434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
+		C060796E29E805DA00434A2E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CF29E7E64500434A2E /* AppInfo.swift */; };
+		C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6603528311BEE00277222 /* UserDefaultsKeys.swift */; };
+		C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5641817293DECB70068DA9E /* UIColorSetting.swift */; };
+		C060797129E805DA00434A2E /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389629C83EB100D2E4BA /* MockWords.swift */; };
+		C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
+		C060797729E8072A00434A2E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = C060797629E8072A00434A2E /* OpenCC */; };
+		C060797929E8080700434A2E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = C060797829E8080700434A2E /* OpenCC */; };
+		C060797B29E808BD00434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
+		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
 		C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
 		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
+		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
+		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -29,10 +109,9 @@
 		F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C528297B90000C74B0 /* VocabularyListViewController.swift */; };
 		F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C728297BC9000C74B0 /* VocabularyListViewModel.swift */; };
 		F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952C928297E1A000C74B0 /* VocabularyListCell.swift */; };
-		F50D2BB2293DF67100EF4CEB /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = F50D2BB1293DF67100EF4CEB /* OpenCC */; };
 		F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A6548283DDC540094357B /* VocabularyCardCell.swift */; };
 		F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A654B2843A2730094357B /* ActiveSwitchButton.swift */; };
-		F53771C82812985B003F892D /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* key.plist */; };
+		F53771C82812985B003F892D /* appParametersDev.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* appParametersDev.plist */; };
 		F53771CD2812B4D7003F892D /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CA2812B4D7003F892D /* Decision.swift */; };
 		F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */; };
 		F53771CF2812B4D7003F892D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53771CC2812B4D7003F892D /* Request.swift */; };
@@ -88,9 +167,32 @@
 			remoteGlobalIDString = F5C2006428071DE200A3AAB6;
 			remoteInfo = CaptureVocabulary;
 		};
+		C06078E729E7FAE000434A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5C2005D28071DE200A3AAB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C06078D429E7FADF00434A2E;
+			remoteInfo = CaptureVocabularyWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C06078E929E7FAE000434A2E /* CaptureVocabularyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,12 +202,28 @@
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
-		C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotenkaTests.swift; sourceTree = "<group>"; };
+		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
+		C06078CF29E7E64500434A2E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaptureVocabularyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06078D629E7FADF00434A2E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C06078D829E7FADF00434A2E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetBundle.swift; sourceTree = "<group>"; };
+		C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidget.swift; sourceTree = "<group>"; };
+		C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
+		C06078E229E7FAE000434A2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C06078E429E7FAE000434A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
+		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewModel.swift; sourceTree = "<group>"; };
 		C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewController.swift; sourceTree = "<group>"; };
+		C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabularyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C0D3B04A29F10B2200634C6F /* CaptureVocabulary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabulary.entitlements; sourceTree = "<group>"; };
+		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
+		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
 		F50952B7281FE865000C74B0 /* SQLCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCore.swift; sourceTree = "<group>"; };
@@ -118,7 +236,7 @@
 		F50952C928297E1A000C74B0 /* VocabularyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListCell.swift; sourceTree = "<group>"; };
 		F52A6548283DDC540094357B /* VocabularyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardCell.swift; sourceTree = "<group>"; };
 		F52A654B2843A2730094357B /* ActiveSwitchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSwitchButton.swift; sourceTree = "<group>"; };
-		F53771C72812985B003F892D /* key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
+		F53771C72812985B003F892D /* appParametersDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = appParametersDev.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
 		F53771CC2812B4D7003F892D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -176,11 +294,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C06078D229E7FADF00434A2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06078D929E7FADF00434A2E /* SwiftUI.framework in Frameworks */,
+				C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */,
+				C060797929E8080700434A2E /* OpenCC in Frameworks */,
+				2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5C2006228071DE200A3AAB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F50D2BB2293DF67100EF4CEB /* OpenCC in Frameworks */,
+				C060797729E8072A00434A2E /* OpenCC in Frameworks */,
 				D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +321,9 @@
 			isa = PBXGroup;
 			children = (
 				80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */,
+				C06078D629E7FADF00434A2E /* WidgetKit.framework */,
+				C06078D829E7FADF00434A2E /* SwiftUI.framework */,
+				F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,17 +342,22 @@
 			isa = PBXGroup;
 			children = (
 				C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */,
-				C02D277929BF2F8E00CC26C4 /* HotenkaTests */,
 			);
 			path = CaptureVocabularyTests;
 			sourceTree = "<group>";
 		};
-		C02D277929BF2F8E00CC26C4 /* HotenkaTests */ = {
+		C06078DA29E7FADF00434A2E /* CaptureVocabularyWidget */ = {
 			isa = PBXGroup;
 			children = (
-				C02D277A29BF2F8E00CC26C4 /* HotenkaTests.swift */,
+				C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */,
+				C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */,
+				C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */,
+				C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */,
+				C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */,
+				C06078E229E7FAE000434A2E /* Assets.xcassets */,
+				C06078E429E7FAE000434A2E /* Info.plist */,
 			);
-			path = HotenkaTests;
+			path = CaptureVocabularyWidget;
 			sourceTree = "<group>";
 		};
 		C7B333893350BF009DE1DD2F /* Pods */ = {
@@ -228,6 +365,8 @@
 			children = (
 				382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */,
 				4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */,
+				25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */,
+				03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -348,8 +487,10 @@
 		F5C2005C28071DE200A3AAB6 = {
 			isa = PBXGroup;
 			children = (
+				C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */,
 				F5C2006728071DE200A3AAB6 /* CaptureVocabulary */,
 				C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */,
+				C06078DA29E7FADF00434A2E /* CaptureVocabularyWidget */,
 				F5C2006628071DE200A3AAB6 /* Products */,
 				C7B333893350BF009DE1DD2F /* Pods */,
 				BF02FDD175A511553E67A71A /* Frameworks */,
@@ -361,6 +502,7 @@
 			children = (
 				F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */,
 				C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */,
+				C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,6 +510,7 @@
 		F5C2006728071DE200A3AAB6 /* CaptureVocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				C0D3B04A29F10B2200634C6F /* CaptureVocabulary.entitlements */,
 				F5C2006828071DE200A3AAB6 /* AppDelegate.swift */,
 				F5C2006A28071DE200A3AAB6 /* SceneDelegate.swift */,
 				F5C2006C28071DE200A3AAB6 /* ViewController.swift */,
@@ -375,7 +518,7 @@
 				F5C2007128071DE400A3AAB6 /* Assets.xcassets */,
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
-				F53771C72812985B003F892D /* key.plist */,
+				F53771C72812985B003F892D /* appParametersDev.plist */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
@@ -399,6 +542,9 @@
 				F52A654A2843A23D0094357B /* Button */,
 				F5CBF58F2815718E0088C801 /* PopupViewController.swift */,
 				F50952B928267A43000C74B0 /* UIPickerViewController.swift */,
+				C06078CD29E7DB0800434A2E /* AppParameters.swift */,
+				C06078CF29E7E64500434A2E /* AppInfo.swift */,
+				C060797A29E808BD00434A2E /* Log.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -417,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				F50952B7281FE865000C74B0 /* SQLCore.swift */,
+				C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
@@ -466,6 +613,27 @@
 			productReference = C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C06078D429E7FADF00434A2E /* CaptureVocabularyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C06078EA29E7FAE000434A2E /* Build configuration list for PBXNativeTarget "CaptureVocabularyWidgetExtension" */;
+			buildPhases = (
+				CF707AE10C723596C612977C /* [CP] Check Pods Manifest.lock */,
+				C06078D129E7FADF00434A2E /* Sources */,
+				C06078D229E7FADF00434A2E /* Frameworks */,
+				C06078D329E7FADF00434A2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaptureVocabularyWidgetExtension;
+			packageProductDependencies = (
+				C060797829E8080700434A2E /* OpenCC */,
+			);
+			productName = CaptureVocabularyWidgetExtension;
+			productReference = C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F5C2006428071DE200A3AAB6 /* CaptureVocabulary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5C2007928071DE400A3AAB6 /* Build configuration list for PBXNativeTarget "CaptureVocabulary" */;
@@ -475,14 +643,16 @@
 				F5C2006228071DE200A3AAB6 /* Frameworks */,
 				F5C2006328071DE200A3AAB6 /* Resources */,
 				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
+				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C06078E829E7FAE000434A2E /* PBXTargetDependency */,
 			);
 			name = CaptureVocabulary;
 			packageProductDependencies = (
-				F50D2BB1293DF67100EF4CEB /* OpenCC */,
+				C060797629E8072A00434A2E /* OpenCC */,
 			);
 			productName = CaptureVocabulary;
 			productReference = F5C2006528071DE200A3AAB6 /* CaptureVocabulary.app */;
@@ -502,6 +672,9 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = F5C2006428071DE200A3AAB6;
 					};
+					C06078D429E7FADF00434A2E = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					F5C2006428071DE200A3AAB6 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -517,7 +690,7 @@
 			);
 			mainGroup = F5C2005C28071DE200A3AAB6;
 			packageReferences = (
-				F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
+				C060797529E8072A00434A2E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */,
 			);
 			productRefGroup = F5C2006628071DE200A3AAB6 /* Products */;
 			projectDirPath = "";
@@ -525,6 +698,7 @@
 			targets = (
 				F5C2006428071DE200A3AAB6 /* CaptureVocabulary */,
 				C02D276F29BF2F3200CC26C4 /* CaptureVocabularyTests */,
+				C06078D429E7FADF00434A2E /* CaptureVocabularyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -537,11 +711,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C06078D329E7FADF00434A2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5C2006328071DE200A3AAB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F53771C82812985B003F892D /* key.plist in Resources */,
+				F53771C82812985B003F892D /* appParametersDev.plist in Resources */,
 				C001389329C83BD800D2E4BA /* mockWords.json in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
@@ -568,6 +750,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF707AE10C723596C612977C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CaptureVocabularyWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D8837390B48C67253C3626CA /* [CP] Check Pods Manifest.lock */ = {
@@ -599,8 +803,83 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C02D277B29BF2F8E00CC26C4 /* HotenkaTests.swift in Sources */,
 				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06078D129E7FADF00434A2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
+				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
+				C060793D29E805D900434A2E /* YDService.swift in Sources */,
+				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
+				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
+				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
+				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
+				C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */,
+				C060794229E805D900434A2E /* VocabularyCardsCoordinator.swift in Sources */,
+				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
+				C060794429E805DA00434A2E /* VocabularyCardsViewController.swift in Sources */,
+				C060794529E805DA00434A2E /* VocabularyCardCell.swift in Sources */,
+				C060794629E805DA00434A2E /* VocabularyListCoordinator.swift in Sources */,
+				C060794729E805DA00434A2E /* VocabularyListViewController.swift in Sources */,
+				C060794829E805DA00434A2E /* VocabularyListViewModel.swift in Sources */,
+				C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */,
+				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
+				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
+				C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */,
+				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
+				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
+				C060794F29E805DA00434A2E /* CreateVocabularyCoordinator.swift in Sources */,
+				C060795029E805DA00434A2E /* VocabularyViewModel.swift in Sources */,
+				C060795129E805DA00434A2E /* Decision.swift in Sources */,
+				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
+				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
+				C060795429E805DA00434A2E /* Request.swift in Sources */,
+				C060795529E805DA00434A2E /* HeaderStorage.swift in Sources */,
+				C060795629E805DA00434A2E /* RequestBuilder.swift in Sources */,
+				C060795729E805DA00434A2E /* AzureRequest.swift in Sources */,
+				C060795829E805DA00434A2E /* AzureTranslate.swift in Sources */,
+				C060795929E805DA00434A2E /* AzureDictionary.swift in Sources */,
+				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
+				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
+				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
+				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
+				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
+				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
+				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
+				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
+				C060796229E805DA00434A2E /* PlistReader.swift in Sources */,
+				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
+				C060796429E805DA00434A2E /* Operators.swift in Sources */,
+				C060796529E805DA00434A2E /* GBig.swift in Sources */,
+				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
+				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
+				C060796829E805DA00434A2E /* AzureDictionaryORM.swift in Sources */,
+				C060796929E805DA00434A2E /* YDTranslateORM.swift in Sources */,
+				C060797C29E8094300434A2E /* Log.swift in Sources */,
+				C060796A29E805DA00434A2E /* ActiveSwitchButton.swift in Sources */,
+				C060796B29E805DA00434A2E /* PopupViewController.swift in Sources */,
+				C060796C29E805DA00434A2E /* UIPickerViewController.swift in Sources */,
+				C060796D29E805DA00434A2E /* AppParameters.swift in Sources */,
+				C060796E29E805DA00434A2E /* AppInfo.swift in Sources */,
+				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
+				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
+				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
+				C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */,
+				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
+				C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */,
+				C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */,
+				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
+				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
+				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
+				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				C06078DE29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift in Sources */,
+				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
+				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
+				C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +889,7 @@
 			files = (
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */,
+				C060797B29E808BD00434A2E /* Log.swift in Sources */,
 				C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
 				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
@@ -639,7 +919,9 @@
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
+				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
+				C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
@@ -669,6 +951,8 @@
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
+				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
+				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +963,11 @@
 			isa = PBXTargetDependency;
 			target = F5C2006428071DE200A3AAB6 /* CaptureVocabulary */;
 			targetProxy = C02D277429BF2F3200CC26C4 /* PBXContainerItemProxy */;
+		};
+		C06078E829E7FAE000434A2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C06078D429E7FADF00434A2E /* CaptureVocabularyWidgetExtension */;
+			targetProxy = C06078E729E7FAE000434A2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -739,6 +1028,72 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CaptureVocabulary.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CaptureVocabulary";
+			};
+			name = Release;
+		};
+		C06078EB29E7FAE000434A2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabularyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 473T6T639P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.CaptureVocabularyWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C06078EC29E7FAE000434A2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabularyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 473T6T639P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.CaptureVocabularyWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -862,8 +1217,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -877,6 +1234,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -895,8 +1253,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -910,6 +1270,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -936,6 +1297,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		C06078EA29E7FAE000434A2E /* Build configuration list for PBXNativeTarget "CaptureVocabularyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06078EB29E7FAE000434A2E /* Debug */,
+				C06078EC29E7FAE000434A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F5C2006028071DE200A3AAB6 /* Build configuration list for PBXProject "CaptureVocabulary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -957,7 +1327,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */ = {
+		C060797529E8072A00434A2E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ddddxxx/SwiftyOpenCC";
 			requirement = {
@@ -968,9 +1338,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F50D2BB1293DF67100EF4CEB /* OpenCC */ = {
+		C060797629E8072A00434A2E /* OpenCC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F50D2BB0293DF67100EF4CEB /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
+			package = C060797529E8072A00434A2E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
+			productName = OpenCC;
+		};
+		C060797829E8080700434A2E /* OpenCC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C060797529E8072A00434A2E /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
 			productName = OpenCC;
 		};
 /* End XCSwiftPackageProductDependency section */

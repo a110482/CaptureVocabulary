@@ -14,15 +14,12 @@ struct YDTranslateAPIQueryModel: Encodable {
     let q: String
     let from = "en"
     let to = "zh-CHS"
-    let appKey = Self.key?.YDAppKey ?? ""
+    let appKey = AppParameters.shared.model.YDAppKey
     let salt: String
     let signType = "v3"
     let curtime: String
     let sign: String
     
-    static private let key: KeyPlistModel? = {
-        PlistReader.read(fileName: "key", modelType: KeyPlistModel.self)
-    }()
     init(queryString: String) {
         q = queryString
         let salt = UUID().uuidString

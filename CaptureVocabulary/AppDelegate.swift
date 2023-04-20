@@ -6,11 +6,6 @@
 //
 
 import UIKit
-import Log
-
-// 設定
-let Log = Logger()
-
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

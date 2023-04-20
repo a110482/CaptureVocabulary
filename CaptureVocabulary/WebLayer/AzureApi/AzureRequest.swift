@@ -9,12 +9,6 @@ import Foundation
 import Moya
 
 
-struct KeyPlistModel: Codable {
-    let azureKey: String?
-    let YDAppKey: String?
-    let YDSecret: String?
-}
-
 protocol AzureRequest: Request {
     
 }
@@ -23,9 +17,8 @@ extension AzureRequest {
     var baseURL: URL { URL(string: "https://api.cognitive.microsofttranslator.com/")! }
     
     var headers: [String : String]? {
-        let key = PlistReader.read(fileName: "key", modelType: KeyPlistModel.self)
-        
-        return ["Ocp-Apim-Subscription-Key": key?.azureKey ?? "",
+        let azureKey = AppParameters.shared.model.azureKey
+        return ["Ocp-Apim-Subscription-Key": azureKey,
          "Ocp-Apim-Subscription-Region": "eastasia",
          "Content-type": "application/json"
         ]
