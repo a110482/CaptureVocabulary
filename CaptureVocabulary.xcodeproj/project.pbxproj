@@ -18,7 +18,6 @@
 		C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D629E7FADF00434A2E /* WidgetKit.framework */; };
 		C06078D929E7FADF00434A2E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D829E7FADF00434A2E /* SwiftUI.framework */; };
 		C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */; };
-		C06078DE29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */; };
 		C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */; };
 		C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06078E229E7FAE000434A2E /* Assets.xcassets */; };
 		C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
@@ -208,7 +207,6 @@
 		C06078D629E7FADF00434A2E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C06078D829E7FADF00434A2E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetBundle.swift; sourceTree = "<group>"; };
-		C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidget.swift; sourceTree = "<group>"; };
 		C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
 		C06078E229E7FAE000434A2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */,
-				C06078DD29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift */,
 				C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */,
 				C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */,
 				C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */,
@@ -876,7 +873,6 @@
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
-				C06078DE29E7FADF00434A2E /* CaptureVocabularyWidgetLiveActivity.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
 				C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */,
@@ -1047,7 +1043,7 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1060,7 +1056,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1080,7 +1076,7 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1093,7 +1089,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

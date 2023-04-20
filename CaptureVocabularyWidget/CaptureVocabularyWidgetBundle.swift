@@ -12,6 +12,5 @@ import SwiftUI
 struct CaptureVocabularyWidgetBundle: WidgetBundle {
     var body: some Widget {
         CaptureVocabularyWidget()
-        CaptureVocabularyWidgetLiveActivity()
     }
 }

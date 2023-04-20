@@ -15,7 +15,6 @@ end
 target 'CaptureVocabulary' do
   use_frameworks!
   shared_pods
-  
 end
 
 target 'CaptureVocabularyWidgetExtension' do
