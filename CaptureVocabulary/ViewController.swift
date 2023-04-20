@@ -30,9 +30,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         #if DEBUG
-//        devPanelButton()
+        devPanelButton()
         #endif
-        createDefaultList()
+        SQLCoreMigration.checkVersion()
         mainCoordinator()
     }
     

@@ -96,24 +96,19 @@ struct CaptureVocabularyWidgetProvider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var currentDate = Date()
-        var entries: [Entry] = [
-            Entry(date: currentDate, configuration: configuration),
-            Entry(date: currentDate, configuration: configuration),
-            Entry(date: currentDate, configuration: configuration),
-        ]
-        
-        
+        var entries: [Entry] = []
         let calendar = Calendar.current
-        for index in entries.indices {
+        for _ in 0 ..< 30 {
+            var entry = Entry(date: currentDate, configuration: configuration)
             if let modifiedDate = calendar.date(
-                byAdding: .second,
-                value: 30,
+                byAdding: .minute,
+                value: 10,
                 to: currentDate) {
                 currentDate = modifiedDate
-                entries[index].date = currentDate
+                entry.date = currentDate
+                entries.append(entry)
             }
         }
-        
         let timeline = Timeline(entries: entries, policy: .after(currentDate))
         completion(timeline)
     }

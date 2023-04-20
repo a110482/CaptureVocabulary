@@ -13,11 +13,17 @@ class AppParameters {
         let azureKey: String
         let YDAppKey: String
         let YDSecret: String
+        let lastDatabaseVersion: Int
         
-        init(azureKey: String = "", YDAppKey: String = "", YDSecret: String = "") {
+        init(azureKey: String = "",
+             YDAppKey: String = "",
+             YDSecret: String = "",
+             lastDatabaseVersion: Int = 0
+        ) {
             self.azureKey = azureKey
             self.YDAppKey = YDAppKey
             self.YDSecret = YDSecret
+            self.lastDatabaseVersion = lastDatabaseVersion
         }
     }
     let model: Model

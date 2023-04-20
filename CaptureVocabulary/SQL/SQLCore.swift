@@ -8,15 +8,27 @@
 import SQLite
 
 class SQLCore {
-    static let shared = SQLCore()
-    let db: Connection
-    
-    private init() {
-        let path = NSSearchPathForDirectoriesInDomains(
+    static var groupDatabaseURL: URL {
+        let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.capture-vocabulary")!
+
+        // 資料庫路徑
+        return sharedContainerURL.appendingPathComponent("db.sqlite3")
+    }
+    static var firstVersionDatabaseURL: URL {
+        let url = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
         ).first!
         
-        db = try! Connection("\(path)/db.sqlite3")
+        let sourcePath = "\(url)/db.sqlite3"
+        return URL(fileURLWithPath: sourcePath)
+    }
+    static let shared = SQLCore(url: groupDatabaseURL)
+    static let oldDatabase = SQLCore(url: firstVersionDatabaseURL)
+    let db: Connection
+    
+    private init(url: URL) {
+        let path = url.path
+        db = try! Connection(path)
         try? db.execute("PRAGMA foreign_keys=ON")
     }
     
@@ -31,7 +43,6 @@ class SQLCore {
     }
     
     func createTables() {
-        #warning("資料庫版本遷移功能")
         tables.forEach {
             $0.createTable(db: db)
         }
@@ -46,6 +57,33 @@ class SQLCore {
     func deleteTables() {
         tables.forEach {
             $0.deleteTable()
+        }
+    }
+    
+    static func copyFile() {
+        let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.capture-vocabulary")!
+
+        // 資料庫路徑
+        let target = sharedContainerURL.appendingPathComponent("db.sqlite3")
+        
+        let url = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+        ).first!
+        
+        let sourcePath = "\(url)/db.sqlite3"
+        let sourceURL = URL(fileURLWithPath: sourcePath)
+        
+        do {
+            if FileManager.default.fileExists(atPath: target.path) {
+                try FileManager.default.removeItem(at: target)
+            }
+            
+            try FileManager.default.copyItem(at: sourceURL, to: target)
+//            try? db.execute("PRAGMA foreign_keys=ON")
+            
+            print("File copied successfully!")
+        } catch {
+            print("Error while copying file: \(error.localizedDescription)")
         }
     }
 }
@@ -123,3 +161,5 @@ extension TableType {
         catch { print(error) }
     }
 }
+
+

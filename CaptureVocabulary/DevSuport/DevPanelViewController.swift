@@ -15,6 +15,9 @@ class DevPanelViewController: UIViewController {
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
     }
+    private let dropAllTables = UIButton().then {
+        $0.setTitle("dropAllTables", for: .normal)
+    }
     private let resetDatabase = UIButton().then {
         $0.setTitle("resetDatabase", for: .normal)
     }
@@ -32,6 +35,7 @@ class DevPanelViewController: UIViewController {
         }
         
         mainStack.addArrangedSubviews([
+            dropAllTables,
             resetDatabase,
             mockWords,
             UIView()
@@ -43,16 +47,21 @@ class DevPanelViewController: UIViewController {
     }
     
     private func actions() {
+        dropAllTables.rx.tap.subscribe(onNext: {
+            SQLCore.shared.dropTables()
+            Log.debug("resetDatabase")
+        }).disposed(by: disposeBag)
+        
         resetDatabase.rx.tap.subscribe(onNext: {
             SQLCore.shared.dropTables()
             SQLCore.shared.createTables()
             VocabularyCardListORM.ORM.createDefaultList()
-            Log.debug("tap resetDatabase")
+            Log.debug("resetDatabase")
         }).disposed(by: disposeBag)
         
         mockWords.rx.tap.subscribe(onNext: {
             MockWords.makeDataBaseData()
-            Log.debug("tap mockWords")
+            Log.debug("mockWords")
         }).disposed(by: disposeBag)
     }
 }
