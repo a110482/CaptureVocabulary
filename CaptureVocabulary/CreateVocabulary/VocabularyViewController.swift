@@ -298,14 +298,10 @@ class TranslateResultView: UIStackView {
 }
 
 extension TranslateResultView: UITextFieldDelegate {
-#if WIDGET
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool { return true }
-#else
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        translate.resignFirstResponder()
         customTranslate.accept(textField.text)
         return true
     }
-#endif
 }
 
