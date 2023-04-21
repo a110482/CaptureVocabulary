@@ -24,7 +24,7 @@ class CaptureVocabularyViewController: UIViewController {
     }
     private let capContainerView = UIView()
     private let queryStringStackView = UIStackView()
-    private let queryStringStackViewButtonLine = UIView()
+    private let queryStringButtonLine = UIView()
     private let queryStringTextField = UITextField()
     private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
@@ -61,8 +61,9 @@ class CaptureVocabularyViewController: UIViewController {
             guard let self = self else { return }
             self.drawMarking(recognizedItem?.observation)
             guard let recognizedItem = recognizedItem else { return }
+            guard !self.queryStringTextField.isFirstResponder else { return }
             self.queryStringTextField.text = recognizedItem.word
-            
+            self.updateQueryStringButtonLineColor()
         }).disposed(by: disposeBag)
     }
 
@@ -128,7 +129,7 @@ extension CaptureVocabularyViewController {
             capContainerView,
             mainStackView.padding(gap: 20),
             queryStringStackView,
-            queryStringStackViewButtonLine,
+            queryStringButtonLine,
             mainStackView.padding(gap: 50),
             queryButton,
             mainStackView.padding(gap: 20),
@@ -187,11 +188,11 @@ extension CaptureVocabularyViewController {
         }
         
         // 底線
-        queryStringStackViewButtonLine.snp.makeConstraints {
+        queryStringButtonLine.snp.makeConstraints {
             $0.height.equalTo(1)
             $0.width.equalTo(queryStringStackView.snp.width)
         }
-        queryStringStackViewButtonLine.backgroundColor = UIColor(hexString: "5669FF")
+        updateQueryStringButtonLineColor()
     }
     
     func configQueryButton() {
@@ -202,6 +203,16 @@ extension CaptureVocabularyViewController {
         
         queryButton.backgroundColor = .gray
         queryButton.cornerRadius = 5
+    }
+    
+    func updateQueryStringButtonLineColor() {
+        let colorString: String
+        if let text = queryStringTextField.text, !text.isEmpty {
+            colorString = "#5669FF"
+        } else {
+            colorString = "#BDBDBD"
+        }
+        queryStringButtonLine.backgroundColor = UIColor(hexString: colorString)
     }
 }
 
@@ -233,7 +244,9 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
         return true
     }
     
-    // 文字只要有變, 把 queryStringStackViewButtonLine 換顏色
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        updateQueryStringButtonLineColor()
+    }
 }
 
 
