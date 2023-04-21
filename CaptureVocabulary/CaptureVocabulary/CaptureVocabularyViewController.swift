@@ -23,6 +23,8 @@ class CaptureVocabularyViewController: UIViewController {
         $0.alignment = .center
     }
     private let capContainerView = UIView()
+    private let queryStringStackView = UIStackView()
+    private let queryStringStackViewButtonLine = UIView()
     private let queryStringTextField = UITextField()
     private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
@@ -121,10 +123,12 @@ extension CaptureVocabularyViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.left.right.bottom.equalToSuperview()
         }
+        
         mainStackView.addArrangedSubviews([
             capContainerView,
             mainStackView.padding(gap: 20),
-            queryStringTextField,
+            queryStringStackView,
+            queryStringStackViewButtonLine,
             mainStackView.padding(gap: 50),
             queryButton,
             mainStackView.padding(gap: 20),
@@ -133,7 +137,7 @@ extension CaptureVocabularyViewController {
         ])
         
         addCaptureViewController()
-        configQueryTextField()
+        configQueryStringStackView()
         configQueryButton()
         
         queryButton.snp.makeConstraints {
@@ -154,16 +158,40 @@ extension CaptureVocabularyViewController {
         }
     }
     
-    func configQueryTextField() {
-        queryStringTextField.snp.makeConstraints {
+    func configQueryStringStackView() {
+        queryStringStackView.snp.makeConstraints {
             $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(50)
+            $0.height.equalTo(40)
+        }
+        
+        
+        queryStringStackView.axis = .horizontal
+        queryStringStackView.alignment = .bottom
+        
+        let textFiledImageView = UIImageView(image: UIImage(named: "textFiledPan"))
+        textFiledImageView.snp.makeConstraints {
+            $0.size.equalTo(24)
         }
         queryStringTextField.textAlignment = .center
-        queryStringTextField.cornerRadius = 5
-        queryStringTextField.backgroundColor = UIColor(hexString: "5669FF")
-        queryStringTextField.textColor = .white
-        queryStringTextField.tintColor = .white
+        queryStringTextField.textColor = .black
+        queryStringTextField.snp.makeConstraints {
+            $0.height.equalTo(40)
+        }
+        
+        queryStringStackView.addArrangedSubviews([
+            queryStringTextField, textFiledImageView
+        ])
+        
+        Task {
+            queryStringTextField.placeholder = await "輸入查詢".localized()
+        }
+        
+        // 底線
+        queryStringStackViewButtonLine.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.width.equalTo(queryStringStackView.snp.width)
+        }
+        queryStringStackViewButtonLine.backgroundColor = UIColor(hexString: "5669FF")
     }
     
     func configQueryButton() {
@@ -204,6 +232,8 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
         }).disposed(by: disposeBag)
         return true
     }
+    
+    // 文字只要有變, 把 queryStringStackViewButtonLine 換顏色
 }
 
 
