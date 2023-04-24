@@ -10,6 +10,9 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import Vision
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 class CaptureVocabularyViewController: UIViewController {
     enum Action {
@@ -33,6 +36,7 @@ class CaptureVocabularyViewController: UIViewController {
         $0.backgroundColor = .gray
         $0.isHidden = true
     }
+    private var adBannerView = GADBannerView(adSize: GADAdSizeBanner)
     
     private let shapeLayer = CAShapeLayer()
     
@@ -43,6 +47,7 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
+        requestIDFA()
         #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.action.accept(.selected(vocabulary: "shift"))
@@ -114,6 +119,16 @@ class CaptureVocabularyViewController: UIViewController {
     func setScanActiveState(isActive: Bool) {
         captureViewController.setScanActiveState(isActive: isActive)
     }
+    
+    private func requestIDFA() {
+        ATTrackingManager.requestTrackingAuthorization(
+            completionHandler: { [weak self] status in
+                guard let self = self else { return }
+                let width = self.view.bounds.width
+                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
+                self.adBannerView.load(GADRequest())
+        })
+    }
 }
 
 // UI
@@ -136,12 +151,14 @@ extension CaptureVocabularyViewController {
             queryButton,
             mainStackView.padding(gap: 20),
             versionLabel,
-            mainStackView.padding(gap: 30)
+            mainStackView.padding(gap: 30),
+            adBannerView,
         ])
         
         addCaptureViewController()
         configQueryStringStackView()
         configQueryButton()
+        configAdView()
         
         queryButton.snp.makeConstraints {
             $0.width.equalTo(150)
@@ -217,6 +234,11 @@ extension CaptureVocabularyViewController {
             colorString = "#BDBDBD"
         }
         queryStringButtonLine.backgroundColor = UIColor(hexString: colorString)
+    }
+    
+    func configAdView() {
+        adBannerView.adUnitID = AppParameters.shared.model.adUnitID
+        adBannerView.rootViewController = self
     }
 }
 
