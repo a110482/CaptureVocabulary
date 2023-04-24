@@ -8,6 +8,7 @@
 import UIKit
 
 class QueryStringTextField: UITextField {
+    private static let inset = UIEdgeInsets(top: 0, left: 5, bottom: 5, right: 24)
     private let textFieldImageView = UIImageView(image: UIImage(named: "textFiledPan"))
     private let underLine = UIView()
     
@@ -34,15 +35,11 @@ class QueryStringTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(
-            top: 0, left: 5, bottom: 0, right: 24)
-        )
+        return bounds.inset(by: QueryStringTextField.inset)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(
-            top: 0, left: 5, bottom: 0, right: 24)
-        )
+        return bounds.inset(by: QueryStringTextField.inset)
     }
 
     
