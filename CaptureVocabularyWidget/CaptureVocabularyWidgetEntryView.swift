@@ -21,17 +21,16 @@ struct CaptureVocabularyWidgetEntryView : View {
         ZStack {
             VStack {
                 Text(entry.vocabularyCard?.normalizedSource ?? "")
-                    .font(.title)
                     .foregroundColor(.black)
                 
                 Color.black.frame(height: 1)
                     .padding([.leading, .trailing], 20)
                 
                 Text(entry.vocabularyCard?.normalizedTarget ?? "")
-                    .font(.headline)
                     .foregroundColor(.black)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
     }
 }
