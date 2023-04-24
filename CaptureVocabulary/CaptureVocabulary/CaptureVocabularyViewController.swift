@@ -31,6 +31,7 @@ class CaptureVocabularyViewController: UIViewController {
         let appVersion = AppInfo.versino
         $0.text = "ver: \(appVersion)"
         $0.backgroundColor = .gray
+        $0.isHidden = true
     }
     
     private let shapeLayer = CAShapeLayer()
@@ -122,7 +123,8 @@ extension CaptureVocabularyViewController {
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.left.right.bottom.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.left.right.equalToSuperview()
         }
         
         mainStackView.addArrangedSubviews([
@@ -130,11 +132,11 @@ extension CaptureVocabularyViewController {
             mainStackView.padding(gap: 20),
             queryStringStackView,
             queryStringButtonLine,
-            mainStackView.padding(gap: 50),
+            UIView(),
             queryButton,
             mainStackView.padding(gap: 20),
             versionLabel,
-            UIView()
+            mainStackView.padding(gap: 30)
         ])
         
         addCaptureViewController()
@@ -142,7 +144,8 @@ extension CaptureVocabularyViewController {
         configQueryButton()
         
         queryButton.snp.makeConstraints {
-            $0.size.equalTo(150)
+            $0.width.equalTo(150)
+            $0.height.equalTo(60)
         }
     }
     
@@ -201,10 +204,11 @@ extension CaptureVocabularyViewController {
             queryButton.setTitle(title, for: .normal)
         }
         
-        queryButton.backgroundColor = .gray
+        queryButton.hexColorString = "3D5CFF"
         queryButton.cornerRadius = 5
     }
     
+    /// 查詢欄位的底線顏色
     func updateQueryStringButtonLineColor() {
         let colorString: String
         if let text = queryStringTextField.text, !text.isEmpty {
@@ -248,5 +252,3 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
         updateQueryStringButtonLineColor()
     }
 }
-
-

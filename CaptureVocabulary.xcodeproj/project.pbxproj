@@ -98,6 +98,8 @@
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
+		C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */; };
+		C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -223,6 +225,7 @@
 		C0D3B04A29F10B2200634C6F /* CaptureVocabulary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabulary.entitlements; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
+		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
@@ -479,6 +482,7 @@
 				F5E64828281E70CA00F8F423 /* String+Ext.swift */,
 				F599B36728E306EB00C551D8 /* Data+Ext.swift */,
 				F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */,
+				C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -847,6 +851,7 @@
 				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
 				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
 				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
+				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
@@ -917,6 +922,7 @@
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
+				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
