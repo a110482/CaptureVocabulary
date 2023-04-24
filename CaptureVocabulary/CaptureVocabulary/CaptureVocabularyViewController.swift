@@ -26,9 +26,7 @@ class CaptureVocabularyViewController: UIViewController {
         $0.alignment = .center
     }
     private let capContainerView = UIView()
-    private let queryStringStackView = UIStackView()
-    private let queryStringButtonLine = UIView()
-    private let queryStringTextField = UITextField()
+    private let queryStringTextField = QueryStringTextField()
     private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
         let appVersion = AppInfo.versino
@@ -69,7 +67,7 @@ class CaptureVocabularyViewController: UIViewController {
             guard let recognizedItem = recognizedItem else { return }
             guard !self.queryStringTextField.isFirstResponder else { return }
             self.queryStringTextField.text = recognizedItem.word
-            self.updateQueryStringButtonLineColor()
+            self.queryStringTextField.updateUnderLineColor()
         }).disposed(by: disposeBag)
     }
 
@@ -145,8 +143,7 @@ extension CaptureVocabularyViewController {
         mainStackView.addArrangedSubviews([
             capContainerView,
             mainStackView.padding(gap: 20),
-            queryStringStackView,
-            queryStringButtonLine,
+            queryStringTextField,
             UIView(),
             queryButton,
             mainStackView.padding(gap: 20),
@@ -156,7 +153,7 @@ extension CaptureVocabularyViewController {
         ])
         
         addCaptureViewController()
-        configQueryStringStackView()
+        configQueryStringTextField()
         configQueryButton()
         configAdView()
         
@@ -179,40 +176,17 @@ extension CaptureVocabularyViewController {
         }
     }
     
-    func configQueryStringStackView() {
-        queryStringStackView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(40)
-        }
-        
-        
-        queryStringStackView.axis = .horizontal
-        queryStringStackView.alignment = .bottom
-        
-        let textFiledImageView = UIImageView(image: UIImage(named: "textFiledPan"))
-        textFiledImageView.snp.makeConstraints {
-            $0.size.equalTo(24)
-        }
+    func configQueryStringTextField() {
+        queryStringTextField.delegate = self
         queryStringTextField.textAlignment = .center
         queryStringTextField.textColor = .black
         queryStringTextField.snp.makeConstraints {
             $0.height.equalTo(40)
+            $0.width.equalToSuperview().multipliedBy(0.7)
         }
-        
-        queryStringStackView.addArrangedSubviews([
-            queryStringTextField, textFiledImageView
-        ])
-        
         Task {
             queryStringTextField.placeholder = await "輸入查詢".localized()
         }
-        
-        // 底線
-        queryStringButtonLine.snp.makeConstraints {
-            $0.height.equalTo(1)
-            $0.width.equalTo(queryStringStackView.snp.width)
-        }
-        updateQueryStringButtonLineColor()
     }
     
     func configQueryButton() {
@@ -223,17 +197,6 @@ extension CaptureVocabularyViewController {
         
         queryButton.hexColorString = "3D5CFF"
         queryButton.cornerRadius = 5
-    }
-    
-    /// 查詢欄位的底線顏色
-    func updateQueryStringButtonLineColor() {
-        let colorString: String
-        if let text = queryStringTextField.text, !text.isEmpty {
-            colorString = "#5669FF"
-        } else {
-            colorString = "#BDBDBD"
-        }
-        queryStringButtonLine.backgroundColor = UIColor(hexString: colorString)
     }
     
     func configAdView() {
@@ -268,9 +231,5 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
             
         }).disposed(by: disposeBag)
         return true
-    }
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        updateQueryStringButtonLineColor()
     }
 }
