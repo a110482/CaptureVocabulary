@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    var hexColorString: String? {
+    var backgroundColorHex: String? {
         set {
             guard let str = newValue,
                 let color = UIColor(hexString: str) else { return }

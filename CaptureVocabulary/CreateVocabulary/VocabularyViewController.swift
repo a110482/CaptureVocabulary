@@ -21,21 +21,29 @@ class VocabularyViewController: UIViewController {
     private let mainStack = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .center
-        $0.spacing = 20
+        $0.spacing = 0
     }
-    private let buttonStack = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 1
-    }
+    private let buttonStack = UIStackView()
     private let newListButton = UIButton().then {
-        $0.backgroundColor = .gray
-        $0.setTitle("+", for: .normal)
+        $0.backgroundColorHex = "#EBF1FF"
+        $0.setImage(UIImage(named: "addNewList"), for: .normal)
     }
-    private let listButton = UIButton().then {
-        $0.backgroundColor = .gray
-        $0.setTitle(" ", for: .normal)
+    private let listButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title = " "
+        config.baseBackgroundColor = UIColor(hexString: "#EBF1FF")
+        config.background.cornerRadius = 0
+        config.cornerStyle = .fixed
+        let listButton = UIButton(configuration: config)
+        listButton.titleLabel?.font = .systemFont(ofSize: 14)
+        listButton.setTitleColor(UIColor(hexString: "#3D5CFF"), for: .normal)
+        return listButton
+    }()
+    private let arrowDownButton = UIButton().then {
+        $0.backgroundColorHex = "#EBF1FF"
+        $0.setImage(UIImage(named: "downArrow"), for: .normal)
     }
-    private let sourceTextField = UITextField().then {
+    private let sourceTextField = QueryStringTextField().then {
         $0.textColor = UILabel().textColor
         $0.font = .systemFont(ofSize: 25)
         $0.textAlignment = .center
@@ -45,8 +53,10 @@ class VocabularyViewController: UIViewController {
     }
     private let translateResultView = TranslateResultView()
     private let saveButton = UIButton().then {
-        $0.setTitle("儲存".localized(), for: .normal)
-        $0.setTitleColor(UILabel().textColor, for: .normal)
+        $0.setTitle("添加".localized(), for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 20)
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColorHex = "3D5CFF"
     }
     
     
@@ -67,7 +77,12 @@ class VocabularyViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyViewModel) {
         self.viewModel = viewModel
-        viewModel.inout.vocabulary.bind(to: sourceTextField.rx.text).disposed(by: disposeBag)
+        viewModel.inout.vocabulary.subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.sourceTextField.text = text
+            self.sourceTextField.updateUnderLineColor()
+        }).disposed(by: disposeBag)
+    
         sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
         viewModel.inout.translateData.subscribe(onNext: { [weak self] translateData in
@@ -141,48 +156,78 @@ extension VocabularyViewController {
             $0.left.equalToSuperview()
             $0.top.equalTo(10)
         }
-        
-        let separateLine = UIView().then {
-            $0.backgroundColor = UILabel().textColor
-        }
-        
+
         mainStack.addArrangedSubviews([
-            buttonStack,
+            mainStack.padding(gap: 20),
             sourceTextField,
-            separateLine,
+            mainStack.padding(gap: 10),
             speakerButton,
+            mainStack.padding(gap: 10),
             translateResultView,
-            saveButton
+            mainStack.padding(gap: 10),
+            buttonStack,
+            mainStack.padding(gap: 10),
         ])
-        buttonStack.snp.makeConstraints {
-            $0.width.equalToSuperview()
-        }
         
-        separateLine.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(1)
+        configSourceTextField()
+        configTranslateResultView()
+        layoutButtonStack()
+        configSaveButton()
+    }
+    
+    private func configSourceTextField() {
+        sourceTextField.snp.makeConstraints { view in
+            view.width.equalToSuperview().multipliedBy(0.8)
         }
-        [sourceTextField].forEach {
-            $0.snp.makeConstraints { view in
-                view.width.equalToSuperview()
-            }
-        }
+        sourceTextField.delegate = self
+    }
+    
+    private func configTranslateResultView() {
         translateResultView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.left.equalTo(10)
             let screenHeight = UIScreen.main.bounds.height
             $0.height.equalTo(screenHeight * 0.3)
         }
-        sourceTextField.delegate = self
-        layoutButtonStack()
     }
     
     private func layoutButtonStack() {
+        buttonStack.axis = .horizontal
+        buttonStack.spacing = 0
+        buttonStack.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
+        
         buttonStack.addArrangedSubviews([
-            listButton, newListButton
+            buttonStack.padding(gap: 20),
+            newListButton,
+            buttonStack.padding(gap: 1),
+            listButton,
+            arrowDownButton,
+            buttonStack.padding(gap: 20),
         ])
+        
         newListButton.snp.makeConstraints {
-            $0.width.equalTo(50)
+            $0.size.equalTo(44)
+        }
+        
+        newListButton.cornerRadius = 5
+        newListButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
+        arrowDownButton.snp.makeConstraints {
+            $0.size.equalTo(newListButton)
+        }
+        
+        arrowDownButton.cornerRadius = 5
+        arrowDownButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+    }
+    
+    private func configSaveButton() {
+        saveButton.cornerRadius = 25
+        saveButton.clipsToBounds = true
+        saveButton.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(50)
         }
     }
 }
@@ -197,10 +242,12 @@ extension VocabularyViewController {
     }
     
     func listButtonAction() {
-        listButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.showListPicker()
-        }).disposed(by: disposeBag)
+        [listButton, arrowDownButton].forEach {
+            $0.rx.tap.subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.showListPicker()
+            }).disposed(by: disposeBag)
+        }
     }
     
     func newListButtonAction() {
@@ -239,7 +286,7 @@ class TranslateResultView: UIStackView {
     let translate = UITextField()
     private let explainsTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 17)
-        $0.backgroundColor = .lightGray
+        $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
     }
     let customTranslate = BehaviorRelay<String?>(value: nil)

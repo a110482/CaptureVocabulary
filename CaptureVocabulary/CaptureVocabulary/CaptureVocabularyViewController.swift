@@ -195,7 +195,7 @@ extension CaptureVocabularyViewController {
             queryButton.setTitle(title, for: .normal)
         }
         
-        queryButton.hexColorString = "3D5CFF"
+        queryButton.backgroundColorHex = "3D5CFF"
         queryButton.cornerRadius = 5
     }
     
