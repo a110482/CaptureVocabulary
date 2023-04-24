@@ -74,8 +74,9 @@ class ReviewViewController: UIViewController {
         ATTrackingManager.requestTrackingAuthorization(
             completionHandler: { [weak self] status in
                 guard let self = self else { return }
+                let width = self.view.bounds.width
+                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
                 self.adBannerView.load(GADRequest())
-                Log.debug(">>>", "adBannerView.load")
         })
     }
 }
