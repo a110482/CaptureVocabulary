@@ -10,9 +10,6 @@ import SnapKit
 import SwifterSwift
 import RxCocoa
 import RxSwift
-import GoogleMobileAds
-import AppTrackingTransparency
-import AdSupport
 
 // MARK: -
 class ReviewViewController: UIViewController {
@@ -36,14 +33,13 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private var adBannerView = GADBannerView(adSize: GADAdSizeBanner)
+    private var adBannerView = UIView()
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        requestIDFA()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,6 +48,11 @@ class ReviewViewController: UIViewController {
             self.viewModel?.loadLastReadVocabularyCard()
             self.displayCurrentCellVocabularyTranslate()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AdsManager.shared.rootViewController = self
     }
     
     func bind(viewModel: ReviewViewModel) {
@@ -68,16 +69,6 @@ class ReviewViewController: UIViewController {
             guard let self = self else { return }
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
-    }
-    
-    private func requestIDFA() {
-        ATTrackingManager.requestTrackingAuthorization(
-            completionHandler: { [weak self] status in
-                guard let self = self else { return }
-                let width = self.view.bounds.width
-                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
-                self.adBannerView.load(GADRequest())
-        })
     }
 }
 
@@ -131,8 +122,9 @@ private extension ReviewViewController {
     }
     
     func configAdView() {
-        adBannerView.adUnitID = AppParameters.shared.model.adUnitID
-        adBannerView.rootViewController = self
+        adBannerView.snp.makeConstraints {
+            $0.height.equalTo(50)
+        }
     }
 }
 
@@ -215,5 +207,12 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         guard let cellModel = viewModel?.queryVocabularyCard(index: index.row) else { return }
         guard let vocabulary = cellModel.normalizedSource else { return }
         viewModel?.queryLocalDictionary(vocabulary: vocabulary)
+    }
+}
+
+// google ad
+extension ReviewViewController: AdSimpleBannerPowered {
+    var placeholder: UIView? {
+        adBannerView
     }
 }
