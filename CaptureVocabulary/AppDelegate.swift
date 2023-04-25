@@ -6,13 +6,23 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // log 設定
         Log.enabled = true
         Log.minLevel = .debug
+        
+        // google 廣告設定
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        #if DEBUG
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
+            [ "cb559a1d2a23be3dcf18b870e5ff9c2d" ]
+        #endif
+        
         return true
     }
 

@@ -146,7 +146,7 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
     
     static func newList() -> Self? {
         let dateString = Date().string(withFormat: "yyyy/MM/dd")
-        var defaultName = "我的單字".localized() + dateString
+        var defaultName = "單字".localized() + dateString
         let defaultNameScalar = ORMModel.table.filter(ORMModel.name.like("\(defaultName)%")).count
         let count = ORMModel.scalar(defaultNameScalar, type: Int.self) ?? 0
         if count > 0 {
