@@ -167,6 +167,8 @@ extension VocabularyViewController {
             mainStack.padding(gap: 10),
             buttonStack,
             mainStack.padding(gap: 10),
+            saveButton,
+            mainStack.padding(gap: 10),
         ])
         
         configSourceTextField()

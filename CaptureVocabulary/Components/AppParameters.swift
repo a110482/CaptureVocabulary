@@ -19,11 +19,11 @@ class AppParameters {
     let model: Model
     static let shared = AppParameters()
     private init() {
-        #if DEBUG
+//        #if DEBUG
         let fileName = "appParametersDev"
-        #else
-        let fileName = "appParametersProd"
-        #endif
+//        #else
+//        let fileName = "appParametersProd"
+//        #endif
         let model = PlistReader.read(fileName: fileName,
                                    modelType: Model.self)
         self.model = model!
