@@ -10,6 +10,7 @@ def shared_pods
   pod 'Then'
   pod 'SnapKit'
   pod 'SwifterSwift'
+  pod 'Google-Mobile-Ads-SDK'
 end
 
 target 'CaptureVocabulary' do

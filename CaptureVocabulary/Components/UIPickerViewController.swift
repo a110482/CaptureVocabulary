@@ -118,6 +118,9 @@ extension UIPickerViewController {
         pickerView.snp.makeConstraints {
             $0.height.equalTo(150)
         }
+        okButton.snp.makeConstraints {
+            $0.height.equalTo(40)
+        }
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = .systemBackground
@@ -135,7 +138,7 @@ extension UIPickerViewController {
     
     func showAnimate() {
         mainStack.snp.updateConstraints {
-            $0.bottom.equalToSuperview().offset(-5)
+            $0.bottom.equalToSuperview().offset(-25)
         }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()

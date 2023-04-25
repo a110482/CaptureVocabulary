@@ -10,6 +10,9 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import Vision
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 class CaptureVocabularyViewController: UIViewController {
     enum Action {
@@ -23,13 +26,15 @@ class CaptureVocabularyViewController: UIViewController {
         $0.alignment = .center
     }
     private let capContainerView = UIView()
-    private let queryStringTextField = UITextField()
+    private let queryStringTextField = QueryStringTextField()
     private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
         let appVersion = AppInfo.versino
         $0.text = "ver: \(appVersion)"
         $0.backgroundColor = .gray
+        $0.isHidden = true
     }
+    private var adBannerView = GADBannerView(adSize: GADAdSizeBanner)
     
     private let shapeLayer = CAShapeLayer()
     
@@ -40,6 +45,7 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
+        requestIDFA()
         #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.action.accept(.selected(vocabulary: "shift"))
@@ -59,8 +65,9 @@ class CaptureVocabularyViewController: UIViewController {
             guard let self = self else { return }
             self.drawMarking(recognizedItem?.observation)
             guard let recognizedItem = recognizedItem else { return }
+            guard !self.queryStringTextField.isFirstResponder else { return }
             self.queryStringTextField.text = recognizedItem.word
-            
+            self.queryStringTextField.updateUnderLineColor()
         }).disposed(by: disposeBag)
     }
 
@@ -110,6 +117,16 @@ class CaptureVocabularyViewController: UIViewController {
     func setScanActiveState(isActive: Bool) {
         captureViewController.setScanActiveState(isActive: isActive)
     }
+    
+    private func requestIDFA() {
+        ATTrackingManager.requestTrackingAuthorization(
+            completionHandler: { [weak self] status in
+                guard let self = self else { return }
+                let width = self.view.bounds.width
+                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
+                self.adBannerView.load(GADRequest())
+        })
+    }
 }
 
 // UI
@@ -119,25 +136,30 @@ extension CaptureVocabularyViewController {
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.left.right.bottom.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.left.right.equalToSuperview()
         }
+        
         mainStackView.addArrangedSubviews([
             capContainerView,
             mainStackView.padding(gap: 20),
             queryStringTextField,
-            mainStackView.padding(gap: 50),
+            UIView(),
             queryButton,
             mainStackView.padding(gap: 20),
             versionLabel,
-            UIView()
+            mainStackView.padding(gap: 30),
+            adBannerView,
         ])
         
         addCaptureViewController()
-        configQueryTextField()
+        configQueryStringTextField()
         configQueryButton()
+        configAdView()
         
         queryButton.snp.makeConstraints {
-            $0.size.equalTo(150)
+            $0.width.equalTo(150)
+            $0.height.equalTo(60)
         }
     }
     
@@ -154,16 +176,17 @@ extension CaptureVocabularyViewController {
         }
     }
     
-    func configQueryTextField() {
-        queryStringTextField.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(50)
-        }
+    func configQueryStringTextField() {
+        queryStringTextField.delegate = self
         queryStringTextField.textAlignment = .center
-        queryStringTextField.cornerRadius = 5
-        queryStringTextField.backgroundColor = UIColor(hexString: "5669FF")
-        queryStringTextField.textColor = .white
-        queryStringTextField.tintColor = .white
+        queryStringTextField.textColor = .black
+        queryStringTextField.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.width.equalToSuperview().multipliedBy(0.7)
+        }
+        Task {
+            queryStringTextField.placeholder = await "輸入查詢".localized()
+        }
     }
     
     func configQueryButton() {
@@ -172,23 +195,41 @@ extension CaptureVocabularyViewController {
             queryButton.setTitle(title, for: .normal)
         }
         
-        queryButton.backgroundColor = .gray
+        queryButton.backgroundColorHex = "3D5CFF"
         queryButton.cornerRadius = 5
+    }
+    
+    func configAdView() {
+        adBannerView.adUnitID = AppParameters.shared.model.adUnitID
+        adBannerView.rootViewController = self
     }
 }
 
-
 extension CaptureVocabularyViewController: UITextFieldDelegate {
-#if WIDGET
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool { return true }
-#else
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        queryStringTextField.resignFirstResponder()
         if let text = self.queryStringTextField.text, !text.isEmpty {
             self.action.accept(.selected(vocabulary: text))
         }
         return true
     }
-#endif
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let closeGestureView = UIView()
+        closeGestureView.backgroundColor = .clear
+        view.addSubview(closeGestureView)
+        closeGestureView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        let gesture = UITapGestureRecognizer()
+        closeGestureView.addGestureRecognizer(gesture)
+        gesture.rx.event.subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
+            guard event.state == .ended else { return }
+            closeGestureView.removeFromSuperview()
+            self.queryStringTextField.resignFirstResponder()
+            
+        }).disposed(by: disposeBag)
+        return true
+    }
 }
-

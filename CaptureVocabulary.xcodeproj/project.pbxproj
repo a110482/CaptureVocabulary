@@ -97,6 +97,11 @@
 		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
+		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
+		C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */; };
+		C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */; };
+		C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECF529F68C440064F647 /* QueryStringTextField.swift */; };
+		C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECF529F68C440064F647 /* QueryStringTextField.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -221,6 +226,9 @@
 		C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabularyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C0D3B04A29F10B2200634C6F /* CaptureVocabulary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabulary.entitlements; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
+		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
+		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		C0EFECF529F68C440064F647 /* QueryStringTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryStringTextField.swift; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
@@ -477,6 +485,7 @@
 				F5E64828281E70CA00F8F423 /* String+Ext.swift */,
 				F599B36728E306EB00C551D8 /* Data+Ext.swift */,
 				F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */,
+				C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -516,6 +525,7 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* appParametersDev.plist */,
+				C0EFECE729F270930064F647 /* appParametersProd.plist */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
@@ -542,6 +552,7 @@
 				C06078CD29E7DB0800434A2E /* AppParameters.swift */,
 				C06078CF29E7E64500434A2E /* AppInfo.swift */,
 				C060797A29E808BD00434A2E /* Log.swift */,
+				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -722,6 +733,7 @@
 			files = (
 				F53771C82812985B003F892D /* appParametersDev.plist in Resources */,
 				C001389329C83BD800D2E4BA /* mockWords.json in Resources */,
+				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
@@ -843,6 +855,7 @@
 				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
 				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
 				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
+				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
@@ -874,6 +887,7 @@
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
+				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
 				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
 				C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */,
 			);
@@ -913,6 +927,7 @@
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
+				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
@@ -929,6 +944,7 @@
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
+				C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
 				F5A4CF7C28E6FC0400600E21 /* YDTranslateAPI.swift in Sources */,
 				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,

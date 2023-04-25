@@ -10,6 +10,9 @@ import SnapKit
 import SwifterSwift
 import RxCocoa
 import RxSwift
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 // MARK: -
 class ReviewViewController: UIViewController {
@@ -33,12 +36,14 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
+    private var adBannerView = GADBannerView(adSize: GADAdSizeBanner)
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        requestIDFA()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +69,16 @@ class ReviewViewController: UIViewController {
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
     }
+    
+    private func requestIDFA() {
+        ATTrackingManager.requestTrackingAuthorization(
+            completionHandler: { [weak self] status in
+                guard let self = self else { return }
+                let width = self.view.bounds.width
+                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
+                self.adBannerView.load(GADRequest())
+        })
+    }
 }
 
 // UI
@@ -74,17 +89,20 @@ private extension ReviewViewController {
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.left.right.bottom.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.left.right.equalToSuperview()
         }
         
         mainStackView.addArrangedSubviews([
             headerView,
             collectionView,
-            UIView()
+            UIView(),
+            adBannerView
         ])
         
         configHeaderView()
         configCollectionView()
+        configAdView()
     }
     
     func configTopBackground() {
@@ -110,6 +128,11 @@ private extension ReviewViewController {
         collectionView.dataSource = self
         collectionView.decelerationRate = .fast
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
+    }
+    
+    func configAdView() {
+        adBannerView.adUnitID = AppParameters.shared.model.adUnitID
+        adBannerView.rootViewController = self
     }
 }
 
