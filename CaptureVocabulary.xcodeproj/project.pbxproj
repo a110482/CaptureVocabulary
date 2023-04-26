@@ -13,6 +13,8 @@
 		C001389729C83EB100D2E4BA /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389629C83EB100D2E4BA /* MockWords.swift */; };
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
+		C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
+		C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
 		C06078D029E7E64500434A2E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CF29E7E64500434A2E /* AppInfo.swift */; };
 		C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D629E7FADF00434A2E /* WidgetKit.framework */; };
@@ -206,6 +208,7 @@
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
+		C0347D3329F8CBAA004A1133 /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
 		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
 		C06078CF29E7E64500434A2E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaptureVocabularyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +556,7 @@
 				C06078CF29E7E64500434A2E /* AppInfo.swift */,
 				C060797A29E808BD00434A2E /* Log.swift */,
 				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
+				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -822,6 +826,7 @@
 			files = (
 				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
+				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
@@ -910,6 +915,7 @@
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
+				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,

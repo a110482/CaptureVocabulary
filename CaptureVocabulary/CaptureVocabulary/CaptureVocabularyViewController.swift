@@ -10,9 +10,6 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import Vision
-import GoogleMobileAds
-import AppTrackingTransparency
-import AdSupport
 
 class CaptureVocabularyViewController: UIViewController {
     enum Action {
@@ -34,7 +31,7 @@ class CaptureVocabularyViewController: UIViewController {
         $0.backgroundColor = .gray
         $0.isHidden = true
     }
-    private var adBannerView = GADBannerView(adSize: GADAdSizeBanner)
+    private var adBannerView = UIView()
     
     private let shapeLayer = CAShapeLayer()
     
@@ -45,12 +42,16 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
-        requestIDFA()
         #if block//DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.action.accept(.selected(vocabulary: "shift"))
         }
         #endif
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AdsManager.shared.rootViewController = self
     }
     
     func bind(viewModel: CaptureVocabularyViewModel) {
@@ -116,16 +117,6 @@ class CaptureVocabularyViewController: UIViewController {
     
     func setScanActiveState(isActive: Bool) {
         captureViewController.setScanActiveState(isActive: isActive)
-    }
-    
-    private func requestIDFA() {
-        ATTrackingManager.requestTrackingAuthorization(
-            completionHandler: { [weak self] status in
-                guard let self = self else { return }
-                let width = self.view.bounds.width
-                self.adBannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
-                self.adBannerView.load(GADRequest())
-        })
     }
 }
 
@@ -200,8 +191,10 @@ extension CaptureVocabularyViewController {
     }
     
     func configAdView() {
-        adBannerView.adUnitID = AppParameters.shared.model.adUnitID
-        adBannerView.rootViewController = self
+        adBannerView.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
+        }
     }
 }
 
@@ -231,5 +224,12 @@ extension CaptureVocabularyViewController: UITextFieldDelegate {
             
         }).disposed(by: disposeBag)
         return true
+    }
+}
+
+// google ad
+extension CaptureVocabularyViewController: AdSimpleBannerPowered {
+    var placeholder: UIView? {
+        adBannerView
     }
 }

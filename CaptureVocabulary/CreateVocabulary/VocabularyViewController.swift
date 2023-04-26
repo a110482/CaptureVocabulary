@@ -229,7 +229,7 @@ extension VocabularyViewController {
         saveButton.clipsToBounds = true
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
-            $0.height.equalTo(50)
+            $0.height.equalTo(44)
         }
     }
 }
