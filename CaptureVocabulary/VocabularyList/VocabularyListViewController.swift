@@ -45,11 +45,7 @@ class VocabularyListViewController: UIViewController {
                                   style: .plain,
                                   target: self,
                                   action: #selector(tapAddList))
-        
-        let deleteMode = UIBarButtonItem(title: "刪除模式".localized(), style: .plain, target: nil, action: nil)
-        
         navigationItem.leftBarButtonItems = [add]
-        navigationItem.rightBarButtonItems = [deleteMode]
     }
     
     override func viewDidAppear(_ animated: Bool) {

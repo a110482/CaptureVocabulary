@@ -344,6 +344,7 @@ class TranslateResultView: UIStackView {
         
         if let translation = model?.translation?.first {
             translate.text = translation.localized()
+            translate.updateUnderLineColor()
         }
     }
     

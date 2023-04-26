@@ -50,9 +50,6 @@ class VocabularyCardsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        let deleteMode = UIBarButtonItem(title: "刪除模式".localized(), style: .plain, target: nil, action: nil)
-        
-        navigationItem.rightBarButtonItems = [deleteMode]
     }
     
     override func viewDidAppear(_ animated: Bool) {
