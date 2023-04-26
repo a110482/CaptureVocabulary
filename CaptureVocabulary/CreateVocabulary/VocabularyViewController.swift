@@ -225,7 +225,7 @@ extension VocabularyViewController {
     }
     
     private func configSaveButton() {
-        saveButton.cornerRadius = 25
+        saveButton.cornerRadius = 22
         saveButton.clipsToBounds = true
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
