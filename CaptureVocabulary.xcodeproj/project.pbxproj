@@ -1241,7 +1241,7 @@
 				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
@@ -1277,7 +1277,7 @@
 				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
