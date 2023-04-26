@@ -20,6 +20,7 @@ class VocabularyViewModel {
     struct Output {
         let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
         let showEditListNameAlert = PublishRelay<Void>()
+        let phonetic = BehaviorRelay<String>(value: "")
     }
     
     let output = Output()
@@ -66,6 +67,9 @@ class VocabularyViewModel {
     private func updateData(model: StringTranslateAPIResponse) {
         setNormalizedSource(model)
         `inout`.translateData.accept(model)
+        if let phonetic = model.basic?.usPhonetic {
+            output.phonetic.accept("[\(phonetic)]")
+        }
     }
     
     // 建立新的清單
