@@ -48,9 +48,16 @@ class VocabularyViewController: UIViewController {
         $0.font = .systemFont(ofSize: 25)
         $0.textAlignment = .center
     }
-    private let speakerButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
-    }
+    private let speakerButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "speaker.wave.3")
+        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 13)
+        config.imagePadding = 5
+        config.baseBackgroundColor = UIColor(hexString: "EBF1FF")
+        config.baseForegroundColor = UIColor(hexString: "3D5CFF")
+        let button = UIButton(configuration: config)
+        return button
+    }()
     private let translateResultView = TranslateResultView()
     private let saveButton = UIButton().then {
         $0.setTitle("添加".localized(), for: .normal)
@@ -58,7 +65,6 @@ class VocabularyViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColorHex = "3D5CFF"
     }
-    
     
     private let disposeBag = DisposeBag()
     
@@ -99,6 +105,8 @@ class VocabularyViewController: UIViewController {
             guard let self = self else { return }
             self.showEditListNameAlert()
         }).disposed(by: disposeBag)
+        
+        viewModel.output.phonetic.bind(to: speakerButton.rx.title()).disposed(by: disposeBag)
         
         translateResultView.customTranslate
             .bind(to: viewModel.input.customTranslate)
@@ -290,8 +298,9 @@ extension VocabularyViewController: UITextFieldDelegate {
 
 // MARK: -
 class TranslateResultView: UIStackView {
-    private let phonetic = UILabel()
-    let translate = UITextField()
+    let translate = QueryStringTextField().then {
+        $0.font = .systemFont(ofSize: 17)
+    }
     private let explainsTextView = UITextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
@@ -303,6 +312,7 @@ class TranslateResultView: UIStackView {
         super.init(frame: frame)
         axis = .vertical
         spacing = 8
+        alignment = .leading
         configUI()
     }
     
@@ -312,17 +322,12 @@ class TranslateResultView: UIStackView {
     
     func prepareForReuse() {
         explainsTextView.text = nil
-        phonetic.text = nil
         translate.text = nil
         explainsTextView.contentOffset = .zero
     }
     
     func config(model: StringTranslateAPIResponse?) {
         prepareForReuse()
-        if let usPhonetic = model?.basic?.usPhonetic {
-            phonetic.text = "[US] \(usPhonetic)"
-        }
-        
         if let explains = model?.basic?.explains {
             let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
             for speech in partOfSpeech {
@@ -344,11 +349,14 @@ class TranslateResultView: UIStackView {
     
     private func configUI() {
         addArrangedSubviews([
-            phonetic,
             translate,
-            explainsTextView
+            padding(gap: 10),
+            explainsTextView,
         ])
         translate.delegate = self
+        explainsTextView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
     }
 }
 
