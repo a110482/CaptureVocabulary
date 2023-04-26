@@ -264,6 +264,12 @@ extension VocabularyViewController {
             guard let self = self else { return }
             self.viewModel?.saveVocabularyCard()
             self.action.accept(.dismiss)
+            
+            // 創建UIImpactFeedbackGenerator
+            let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+            // 開始震動
+            impactFeedbackGenerator.prepare()
+            impactFeedbackGenerator.impactOccurred()
         }).disposed(by: disposeBag)
     }
     
