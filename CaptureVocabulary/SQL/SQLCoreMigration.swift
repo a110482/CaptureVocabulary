@@ -8,6 +8,17 @@
 import SQLite
 
 // MARK: -
+enum SQLCoreMigrationError: Error {
+    case noMigrationScript
+    
+    var localizedDescription: String {
+        switch self {
+        case .noMigrationScript:
+            return "無對應更新腳本"
+        }
+    }
+}
+
 class SQLCoreMigration {
     private static let lastDatabaseVersion = AppParameters.shared.model.lastDatabaseVersion
     private static var currentDatabaseVersion: Int { UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] ?? 0
@@ -16,34 +27,39 @@ class SQLCoreMigration {
         SQLCoreMigration_1(),
     ]
     
-    static func checkVersion() {
+    private static weak var statusLabel: UILabel?
+    
+    
+    static func checkVersion(statusLabel: UILabel? = nil, _ completion: () -> Void) throws {
+        Self.statusLabel = statusLabel
         guard lastDatabaseVersion > currentDatabaseVersion else {
+            completion()
             return
         }
-        migration()
-        checkVersion()
+        try migration()
+        try checkVersion(completion)
     }
     
     static func reset() {
         UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = 0
     }
     
-    private static func migration() {
-        Log.debug("目前資料庫版本 \(currentDatabaseVersion)")
+    private static func migration() throws {
+        Self.statusLabel?.text = "目前資料庫版本 \(currentDatabaseVersion)"
         guard let script = migrationScripts[safe: currentDatabaseVersion] else {
-            assert(false, "資料庫更新 version: \(currentDatabaseVersion), 無對應腳本")
-            return
+            // 拋出 error
+            throw SQLCoreMigrationError.noMigrationScript
         }
-        Log.debug("正在更新資料庫版本 \(currentDatabaseVersion)")
-        script.process()
+        Self.statusLabel?.text = "正在更新資料庫版本 \(currentDatabaseVersion)"
+        try script.process()
         script.updateVersionNumber()
-        Log.debug("已更新資料庫版本 \(currentDatabaseVersion)")
+        Self.statusLabel?.text = "已更新資料庫版本 \(currentDatabaseVersion)"
     }
 }
 
 
 protocol MigrationProcess {
-    func process()
+    func process() throws
     func updateVersionNumber()
 }
 

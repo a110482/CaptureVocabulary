@@ -20,11 +20,17 @@ struct User: Codable {
 }
 
 class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private let statusLabel = UILabel()
     var coor: Coordinator<UIViewController>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(statusLabel)
+        statusLabel.text = "正在初始化"
+        statusLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,8 +38,21 @@ class ViewController: UIViewController {
         #if DEBUG
         devPanelButton()
         #endif
-        SQLCoreMigration.checkVersion()
-        mainCoordinator()
+        do {
+            try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
+                statusLabel.text = "初始化完成"
+                mainCoordinator()
+            }
+        } catch {
+            if let error = error as? SQLCoreMigrationError {
+                statusLabel.text = "初始化錯誤: \(error.localizedDescription)"
+                #if DEBUG
+                showStartManuallyButton()
+                #else
+                mainCoordinator()
+                #endif
+            }
+        }
     }
     
     // SQLite
@@ -66,5 +85,50 @@ private extension ViewController {
             self.present(vc, animated: true)
         }).disposed(by: disposeBag)
     }
+    
+    func showStartManuallyButton() {
+        let button = UIButton()
+        view.addSubview(button)
+        button.setTitle("手動載入", for: .normal)
+        button.backgroundColor = .lightGray
+        button.snp.makeConstraints {
+            $0.top.equalTo(statusLabel.snp.bottom).offset(50)
+            $0.centerX.equalTo(statusLabel)
+        }
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.mainCoordinator()
+        }).disposed(by: disposeBag)
+    }
 }
 #endif
+
+enum VersionError: Error {
+    case invalidResponse, invalidBundleInfo
+}
+
+/// 版本檢查
+func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> URLSessionDataTask {
+    guard let info = Bundle.main.infoDictionary,
+        let currentVersion = info["CFBundleShortVersionString"] as? String,
+        let identifier = info["CFBundleIdentifier"] as? String,
+        let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(identifier)") else {
+            throw VersionError.invalidBundleInfo
+    }
+    Log.debug(currentVersion)
+    let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        do {
+            if let error = error { throw error }
+            guard let data = data else { throw VersionError.invalidResponse }
+            let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]
+            guard let result = (json?["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String else {
+                throw VersionError.invalidResponse
+            }
+            completion(version != currentVersion, nil)
+        } catch {
+            completion(nil, error)
+        }
+    }
+    task.resume()
+    return task
+}
