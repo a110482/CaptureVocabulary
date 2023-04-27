@@ -24,8 +24,8 @@ class VocabularyCardsViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private lazy var dataSource: UITableViewDiffableDataSource<Int, VocabularyCardORM.ORM> = {
-        let dataSource = UITableViewDiffableDataSource<Int, VocabularyCardORM.ORM>(
+    private lazy var dataSource: EditableTableViewDiffableDataSource = {
+        let dataSource = EditableTableViewDiffableDataSource(
             tableView: self.tableView) { (tableView, indexPath, cellModel) in
                 let cell = tableView.dequeueReusableCell(withClass: VocabularyCardCell.self)
                 cell.bind(cellModel: cellModel)
@@ -50,9 +50,6 @@ class VocabularyCardsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        let deleteMode = UIBarButtonItem(title: "刪除模式".localized(), style: .plain, target: nil, action: nil)
-        
-        navigationItem.rightBarButtonItems = [deleteMode]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,6 +96,7 @@ extension VocabularyCardsViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
+        dataSource.delegate = self
     }
 }
 
@@ -107,15 +105,15 @@ extension VocabularyCardsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
+}
+
+extension VocabularyCardsViewController: DataSourceDelegate {
+    func deleteCell(at indexPath: IndexPath) {
         let cellModel = cellModels[indexPath.row]
         cellModel.delete()
         viewModel?.loadCards()
     }
 }
-
 
 /// 為了 data span shot
 extension VocabularyCardORM.ORM: Hashable {
@@ -126,5 +124,21 @@ extension VocabularyCardORM.ORM: Hashable {
     
     static func == (lhs: VocabularyCardORM.ORM, rhs: VocabularyCardORM.ORM) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+}
+
+protocol DataSourceDelegate: AnyObject {
+    func deleteCell(at indexPath: IndexPath)
+}
+
+class EditableTableViewDiffableDataSource: UITableViewDiffableDataSource<Int, VocabularyCardORM.ORM> {
+    weak var delegate: DataSourceDelegate?
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        delegate?.deleteCell(at: indexPath)
     }
 }
