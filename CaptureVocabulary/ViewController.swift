@@ -20,11 +20,17 @@ struct User: Codable {
 }
 
 class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private let statusLabel = UILabel()
     var coor: Coordinator<UIViewController>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(statusLabel)
+        statusLabel.text = "正在初始化"
+        statusLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,8 +38,22 @@ class ViewController: UIViewController {
         #if DEBUG
         devPanelButton()
         #endif
-        SQLCoreMigration.checkVersion()
-        mainCoordinator()
+        do {
+            try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
+                mainCoordinator()
+                statusLabel.text = "初始化完成"
+                mainCoordinator()
+            }
+        } catch {
+            if let error = error as? SQLCoreMigrationError {
+                statusLabel.text = "初始化錯誤: \(error.localizedDescription)"
+                #if DEBUG
+                showStartManuallyButton()
+                #else
+                mainCoordinator()
+                #endif
+            }
+        }
     }
     
     // SQLite
@@ -64,6 +84,21 @@ private extension ViewController {
         btn.rx.tap.subscribe(onNext: {
             let vc = DevPanelViewController()
             self.present(vc, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    func showStartManuallyButton() {
+        let button = UIButton()
+        view.addSubview(button)
+        button.setTitle("手動載入", for: .normal)
+        button.backgroundColor = .lightGray
+        button.snp.makeConstraints {
+            $0.top.equalTo(statusLabel.snp.bottom).offset(50)
+            $0.centerX.equalTo(statusLabel)
+        }
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.mainCoordinator()
         }).disposed(by: disposeBag)
     }
 }
