@@ -104,6 +104,10 @@
 		C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */; };
 		C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECF529F68C440064F647 /* QueryStringTextField.swift */; };
 		C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECF529F68C440064F647 /* QueryStringTextField.swift */; };
+		C0F413B229FA5BCB00378E17 /* appParametersUat.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B129FA5BCA00378E17 /* appParametersUat.plist */; };
+		C0F413B629FA5BD500378E17 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B329FA5BD500378E17 /* Debug.xcconfig */; };
+		C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B429FA5BD500378E17 /* Release.xcconfig */; };
+		C0F413B829FA5BD500378E17 /* Uat.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B529FA5BD500378E17 /* Uat.xcconfig */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -232,6 +236,10 @@
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C0EFECF529F68C440064F647 /* QueryStringTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryStringTextField.swift; sourceTree = "<group>"; };
+		C0F413B129FA5BCA00378E17 /* appParametersUat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersUat.plist; sourceTree = "<group>"; };
+		C0F413B329FA5BD500378E17 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		C0F413B429FA5BD500378E17 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		C0F413B529FA5BD500378E17 /* Uat.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Uat.xcconfig; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
@@ -529,6 +537,10 @@
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* appParametersDev.plist */,
 				C0EFECE729F270930064F647 /* appParametersProd.plist */,
+				C0F413B129FA5BCA00378E17 /* appParametersUat.plist */,
+				C0F413B329FA5BD500378E17 /* Debug.xcconfig */,
+				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
+				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
@@ -739,9 +751,13 @@
 				C001389329C83BD800D2E4BA /* mockWords.json in Resources */,
 				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
+				C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
+				C0F413B829FA5BD500378E17 /* Uat.xcconfig in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
+				C0F413B229FA5BCB00378E17 /* appParametersUat.plist in Resources */,
+				C0F413B629FA5BD500378E17 /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,8 +1131,154 @@
 			};
 			name = Release;
 		};
+		C0F413B929FA5BF400378E17 /* Uat */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0F413B529FA5BD500378E17 /* Uat.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Uat;
+		};
+		C0F413BA29FA5BF400378E17 /* Uat */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 473T6T639P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Uat;
+		};
+		C0F413BB29FA5BF400378E17 /* Uat */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3HQW65S535;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elijah.CaptureVocabularyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CaptureVocabulary.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CaptureVocabulary";
+			};
+			name = Uat;
+		};
+		C0F413BC29FA5BF400378E17 /* Uat */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = CaptureVocabularyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 473T6T639P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.CaptureVocabularyWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Uat;
+		};
 		F5C2007728071DE400A3AAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0F413B329FA5BD500378E17 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1178,6 +1340,7 @@
 		};
 		F5C2007828071DE400A3AAB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0F413B429FA5BD500378E17 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1311,6 +1474,7 @@
 			buildConfigurations = (
 				C02D277729BF2F3200CC26C4 /* Debug */,
 				C02D277829BF2F3200CC26C4 /* Release */,
+				C0F413BB29FA5BF400378E17 /* Uat */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1320,6 +1484,7 @@
 			buildConfigurations = (
 				C06078EB29E7FAE000434A2E /* Debug */,
 				C06078EC29E7FAE000434A2E /* Release */,
+				C0F413BC29FA5BF400378E17 /* Uat */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1329,6 +1494,7 @@
 			buildConfigurations = (
 				F5C2007728071DE400A3AAB6 /* Debug */,
 				F5C2007828071DE400A3AAB6 /* Release */,
+				C0F413B929FA5BF400378E17 /* Uat */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1338,6 +1504,7 @@
 			buildConfigurations = (
 				F5C2007A28071DE400A3AAB6 /* Debug */,
 				F5C2007B28071DE400A3AAB6 /* Release */,
+				C0F413BA29FA5BF400378E17 /* Uat */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
