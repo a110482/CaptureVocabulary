@@ -668,6 +668,7 @@
 				F5C2006328071DE200A3AAB6 /* Resources */,
 				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
+				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
 			);
 			buildRules = (
 			);
@@ -764,6 +765,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C0F413BF29FA71F000378E17 /* copy appParameters.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "copy appParameters.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersDev.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersUat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersProd.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n*)\n;;\nesac\n";
+		};
 		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,7 +1212,7 @@
 			baseConfigurationReference = 4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconUat;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1202,6 +1221,7 @@
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
 				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1402,7 +1422,7 @@
 			baseConfigurationReference = 382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1411,6 +1431,7 @@
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
 				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1448,6 +1469,7 @@
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
 				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
