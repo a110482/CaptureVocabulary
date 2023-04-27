@@ -40,7 +40,6 @@ class ViewController: UIViewController {
         #endif
         do {
             try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
-                mainCoordinator()
                 statusLabel.text = "初始化完成"
                 mainCoordinator()
             }
