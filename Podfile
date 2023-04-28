@@ -11,6 +11,9 @@ def shared_pods
   pod 'SnapKit'
   pod 'SwifterSwift'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseAnalytics'
 end
 
 target 'CaptureVocabulary' do
