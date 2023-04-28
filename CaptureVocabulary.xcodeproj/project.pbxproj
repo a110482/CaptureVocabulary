@@ -108,6 +108,9 @@
 		C0F413B629FA5BD500378E17 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B329FA5BD500378E17 /* Debug.xcconfig */; };
 		C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B429FA5BD500378E17 /* Release.xcconfig */; };
 		C0F413B829FA5BD500378E17 /* Uat.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B529FA5BD500378E17 /* Uat.xcconfig */; };
+		C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */; };
+		C0F413CC29FBAAC400378E17 /* GoogleService-Info-uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */; };
+		C0F413CE29FBAB2600378E17 /* GoogleService-Info-release.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -206,6 +209,7 @@
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
 		80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabulary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7816011CD666C8E3CDE5354 /* Pods-CaptureVocabularyWidgetExtension.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.uat.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.uat.xcconfig"; sourceTree = "<group>"; };
 		C001389229C83BD700D2E4BA /* mockWords.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockWords.json; sourceTree = "<group>"; };
 		C001389429C83CE500D2E4BA /* JsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonReader.swift; sourceTree = "<group>"; };
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
@@ -240,6 +244,10 @@
 		C0F413B329FA5BD500378E17 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		C0F413B429FA5BD500378E17 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		C0F413B529FA5BD500378E17 /* Uat.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Uat.xcconfig; sourceTree = "<group>"; };
+		C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-debug.plist"; sourceTree = "<group>"; };
+		C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-uat.plist"; sourceTree = "<group>"; };
+		C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-release.plist"; sourceTree = "<group>"; };
+		C48DF0B175048C1F58E59DE0 /* Pods-CaptureVocabulary.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.uat.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.uat.xcconfig"; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORMTranslateAble.swift; sourceTree = "<group>"; };
@@ -383,6 +391,8 @@
 				4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */,
 				25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */,
 				03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */,
+				C48DF0B175048C1F58E59DE0 /* Pods-CaptureVocabulary.uat.xcconfig */,
+				A7816011CD666C8E3CDE5354 /* Pods-CaptureVocabularyWidgetExtension.uat.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -538,6 +548,9 @@
 				F53771C72812985B003F892D /* appParametersDev.plist */,
 				C0EFECE729F270930064F647 /* appParametersProd.plist */,
 				C0F413B129FA5BCA00378E17 /* appParametersUat.plist */,
+				C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */,
+				C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */,
+				C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */,
 				C0F413B329FA5BD500378E17 /* Debug.xcconfig */,
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
@@ -669,6 +682,7 @@
 				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
+				C0F413CA29FBA9E100378E17 /* copy google info plist */,
 			);
 			buildRules = (
 			);
@@ -753,11 +767,14 @@
 				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */,
+				C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
+				C0F413CC29FBAAC400378E17 /* GoogleService-Info-uat.plist in Resources */,
 				C0F413B829FA5BD500378E17 /* Uat.xcconfig in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
 				C0F413B229FA5BCB00378E17 /* appParametersUat.plist in Resources */,
+				C0F413CE29FBAB2600378E17 /* GoogleService-Info-release.plist in Resources */,
 				C0F413B629FA5BD500378E17 /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -781,7 +798,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersDev.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersUat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersProd.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n*)\n;;\nesac\n";
+			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersDev.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersUat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersProd.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n*)\n;;\nesac\n";
+		};
+		C0F413CA29FBA9E100378E17 /* copy google info plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "copy google info plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-uat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n*)\n;;\nesac\n";
 		};
 		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1209,7 +1244,7 @@
 		};
 		C0F413BA29FA5BF400378E17 /* Uat */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */;
+			baseConfigurationReference = C48DF0B175048C1F58E59DE0 /* Pods-CaptureVocabulary.uat.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconUat;
@@ -1267,7 +1302,7 @@
 		};
 		C0F413BC29FA5BF400378E17 /* Uat */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */;
+			baseConfigurationReference = A7816011CD666C8E3CDE5354 /* Pods-CaptureVocabularyWidgetExtension.uat.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
