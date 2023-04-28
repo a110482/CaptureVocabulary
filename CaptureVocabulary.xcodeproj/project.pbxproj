@@ -687,6 +687,7 @@
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
 				C0F413CA29FBA9E100378E17 /* copy google info plist */,
+				C0F413D329FBCF8300378E17 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -821,6 +822,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-uat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n*)\n;;\nesac\n";
+		};
+		C0F413D329FBCF8300378E17 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/newInputFile",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1469,6 +1489,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
