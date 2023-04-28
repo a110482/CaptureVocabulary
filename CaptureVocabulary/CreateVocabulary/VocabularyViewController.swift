@@ -107,10 +107,6 @@ class VocabularyViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         viewModel.output.phonetic.bind(to: speakerButton.rx.title()).disposed(by: disposeBag)
-        
-        translateResultView.customTranslate
-            .bind(to: viewModel.input.customTranslate)
-            .disposed(by: disposeBag)
     }
     
     private func showEditListNameAlert() {
@@ -199,6 +195,7 @@ extension VocabularyViewController {
             let screenHeight = UIScreen.main.bounds.height
             $0.height.equalTo(screenHeight * 0.3)
         }
+        translateResultView.translate.delegate = self
     }
     
     private func layoutButtonStack() {
@@ -238,6 +235,14 @@ extension VocabularyViewController {
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(44)
+        }
+    }
+    
+    private func saveChanged(_ textField: UITextField) {
+        if textField === sourceTextField {
+            viewModel?.sentQueryRequest()
+        } else if textField === translateResultView.translate {
+            viewModel?.input.customTranslate.accept(textField.text)
         }
     }
 }
@@ -292,7 +297,17 @@ extension VocabularyViewController {
 
 extension VocabularyViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        viewModel?.sentQueryRequest()
+        removeBackgroundCloseView()
+        saveChanged(textField)
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        addBackgroundCloseView(
+            textField,
+            disposeBag: disposeBag) { [weak self] in
+                self?.saveChanged(textField)
+            }
+        return true
     }
 }
 
@@ -306,7 +321,6 @@ class TranslateResultView: UIStackView {
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
     }
-    let customTranslate = BehaviorRelay<String?>(value: nil)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -354,18 +368,8 @@ class TranslateResultView: UIStackView {
             padding(gap: 10),
             explainsTextView,
         ])
-        translate.delegate = self
         explainsTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
         }
     }
 }
-
-extension TranslateResultView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        translate.resignFirstResponder()
-        customTranslate.accept(textField.text)
-        return true
-    }
-}
-
