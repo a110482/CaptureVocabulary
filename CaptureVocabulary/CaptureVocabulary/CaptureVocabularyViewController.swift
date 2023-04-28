@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Vision
 
+
 class CaptureVocabularyViewController: UIViewController {
     enum Action {
         case selected(vocabulary: String)
@@ -34,7 +35,6 @@ class CaptureVocabularyViewController: UIViewController {
     private var adBannerView = UIView()
     
     private let shapeLayer = CAShapeLayer()
-    
     
     private let disposeBag = DisposeBag()
     
@@ -110,6 +110,7 @@ class CaptureVocabularyViewController: UIViewController {
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
+            GAManager.log(item: .visionPageQueryButton)
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self

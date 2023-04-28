@@ -111,6 +111,8 @@
 		C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */; };
 		C0F413CC29FBAAC400378E17 /* GoogleService-Info-uat.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */; };
 		C0F413CE29FBAB2600378E17 /* GoogleService-Info-release.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */; };
+		C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */; };
+		C0F413D129FBB00400378E17 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -247,6 +249,7 @@
 		C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-debug.plist"; sourceTree = "<group>"; };
 		C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-uat.plist"; sourceTree = "<group>"; };
 		C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-release.plist"; sourceTree = "<group>"; };
+		C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsKeys.swift; sourceTree = "<group>"; };
 		C48DF0B175048C1F58E59DE0 /* Pods-CaptureVocabulary.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.uat.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.uat.xcconfig"; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
@@ -582,6 +585,7 @@
 				C060797A29E808BD00434A2E /* Log.swift */,
 				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
 				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
+				C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -936,6 +940,7 @@
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
 				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
 				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
+				C0F413D129FBB00400378E17 /* AnalyticsKeys.swift in Sources */,
 				C060796229E805DA00434A2E /* PlistReader.swift in Sources */,
 				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
@@ -980,6 +985,7 @@
 				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
+				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
