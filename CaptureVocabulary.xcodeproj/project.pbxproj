@@ -113,6 +113,8 @@
 		C0F413CE29FBAB2600378E17 /* GoogleService-Info-release.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */; };
 		C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */; };
 		C0F413D129FBB00400378E17 /* AnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */; };
+		C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413D429FBD69B00378E17 /* UITextField+Ext.swift */; };
+		C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F413D429FBD69B00378E17 /* UITextField+Ext.swift */; };
 		D4B8218B14678D89E5910205 /* Pods_CaptureVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DD2698807B9C9A236E78A2 /* Pods_CaptureVocabulary.framework */; };
 		F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */; };
@@ -250,6 +252,7 @@
 		C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-uat.plist"; sourceTree = "<group>"; };
 		C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-release.plist"; sourceTree = "<group>"; };
 		C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsKeys.swift; sourceTree = "<group>"; };
+		C0F413D429FBD69B00378E17 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		C48DF0B175048C1F58E59DE0 /* Pods-CaptureVocabulary.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.uat.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.uat.xcconfig"; sourceTree = "<group>"; };
 		F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVocabularyWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5071C9D282BBD8F00813841 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
@@ -510,6 +513,7 @@
 				F599B36728E306EB00C551D8 /* Data+Ext.swift */,
 				F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */,
 				C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */,
+				C0F413D429FBD69B00378E17 /* UITextField+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -922,6 +926,7 @@
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
+				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
@@ -1059,6 +1064,7 @@
 				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
+				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
@@ -1167,7 +1173,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.16;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1201,7 +1207,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.16;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.release.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1348,7 +1354,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.16;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

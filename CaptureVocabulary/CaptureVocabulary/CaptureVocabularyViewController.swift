@@ -119,6 +119,12 @@ class CaptureVocabularyViewController: UIViewController {
     func setScanActiveState(isActive: Bool) {
         captureViewController.setScanActiveState(isActive: isActive)
     }
+    
+    private func sendQuery() {
+        if let text = self.queryStringTextField.text, !text.isEmpty {
+            self.action.accept(.selected(vocabulary: text))
+        }
+    }
 }
 
 // UI
@@ -201,29 +207,16 @@ extension CaptureVocabularyViewController {
 
 extension CaptureVocabularyViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        removeBackgroundCloseView()
         queryStringTextField.resignFirstResponder()
-        if let text = self.queryStringTextField.text, !text.isEmpty {
-            self.action.accept(.selected(vocabulary: text))
-        }
+        sendQuery()
         return true
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let closeGestureView = UIView()
-        closeGestureView.backgroundColor = .clear
-        view.addSubview(closeGestureView)
-        closeGestureView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        let gesture = UITapGestureRecognizer()
-        closeGestureView.addGestureRecognizer(gesture)
-        gesture.rx.event.subscribe(onNext: { [weak self] event in
-            guard let self = self else { return }
-            guard event.state == .ended else { return }
-            closeGestureView.removeFromSuperview()
-            self.queryStringTextField.resignFirstResponder()
-            
-        }).disposed(by: disposeBag)
+        addBackgroundCloseView(
+            textField,
+            disposeBag: disposeBag)
         return true
     }
 }
