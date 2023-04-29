@@ -21,6 +21,12 @@ extension AdSimpleBannerPowered {
 
 final class AdsManager : NSObject {
     static let shared = AdsManager()
+    
+    let adSize: GADAdSize = {
+        let width = UIScreen.main.bounds.width
+        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
+        return adSize
+    }()
 
     var loadedSimpleBannerAd = false
 
@@ -38,8 +44,6 @@ final class AdsManager : NSObject {
     }
 
     private func configureSimpleBanner() {
-        let width = UIScreen.main.bounds.width
-        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
         bannerView = GADBannerView(adSize: adSize)
         bannerView?.delegate = self
         bannerView?.adUnitID = AppParameters.shared.model.adUnitID
