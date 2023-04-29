@@ -15,6 +15,7 @@ import SwifterSwift
 class VocabularyViewController: UIViewController {
     enum Action {
         case dismiss
+        case dismissWithAnimate
     }
     let action = PublishRelay<Action>()
     
@@ -276,13 +277,13 @@ extension VocabularyViewController {
         saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.viewModel?.saveVocabularyCard()
-            self.action.accept(.dismiss)
             
             // 創建UIImpactFeedbackGenerator
             let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
             // 開始震動
             impactFeedbackGenerator.prepare()
             impactFeedbackGenerator.impactOccurred()
+            self.action.accept(.dismissWithAnimate)
         }).disposed(by: disposeBag)
     }
     
