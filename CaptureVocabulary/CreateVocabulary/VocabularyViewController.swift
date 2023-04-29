@@ -295,10 +295,11 @@ extension VocabularyViewController {
     }
 }
 
-extension VocabularyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+extension VocabularyViewController: UITextFieldDelegate {    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         removeBackgroundCloseView()
         saveChanged(textField)
+        return true
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -316,7 +317,7 @@ class TranslateResultView: UIStackView {
     let translate = QueryStringTextField().then {
         $0.font = .systemFont(ofSize: 17)
     }
-    private let explainsTextView = UITextView().then {
+    private let explainsTextView = ExplainsTextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
@@ -335,31 +336,16 @@ class TranslateResultView: UIStackView {
     }
     
     func prepareForReuse() {
-        explainsTextView.text = nil
         translate.text = nil
-        explainsTextView.contentOffset = .zero
     }
     
     func config(model: StringTranslateAPIResponse?) {
         prepareForReuse()
-        if let explains = model?.basic?.explains {
-            let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
-            for speech in partOfSpeech {
-                explainsTextView.text = speech.reduce(explainsTextView.text ?? "", {
-                    $0 + ($0.isEmpty ? "" : "\n") + String($1).trimmed
-                })
-                explainsTextView.text = (explainsTextView.text ?? "") + "\n\n"
-            }
-            
-            Task {
-                explainsTextView.text = await explainsTextView.text.localized()
-            }
-        }
-        
         if let translation = model?.translation?.first {
             translate.text = translation.localized()
             translate.updateUnderLineColor()
         }
+        explainsTextView.config(model: model)
     }
     
     private func configUI() {
@@ -370,6 +356,40 @@ class TranslateResultView: UIStackView {
         ])
         explainsTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
+        }
+    }
+}
+
+// MARK: -
+class ExplainsTextView: UITextView {
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        cornerRadius = 5
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func prepareForReuse() {
+        text = nil
+        contentOffset = .zero
+    }
+    
+    func config(model: StringTranslateAPIResponse?) {
+        prepareForReuse()
+        if let explains = model?.basic?.explains {
+            let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
+            for speech in partOfSpeech {
+                text = speech.reduce(text ?? "", {
+                    $0 + ($0.isEmpty ? "" : "\n") + String($1).trimmed
+                })
+                text = (text ?? "") + "\n\n"
+            }
+            
+            Task {
+                text = await text.localized()
+            }
         }
     }
 }
