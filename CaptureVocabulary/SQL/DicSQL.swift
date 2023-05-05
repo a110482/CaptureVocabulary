@@ -27,11 +27,6 @@ class DicSQL {
         db = try! Connection(Self.dbUrl!.path)
     }
     
-    func test() {
-        let res = StarDictORM.query(word: "message")
-        print(">>>", res)
-    }
-    
     private static func copyDB() {
         guard let allBundleSources = try? fileManager.contentsOfDirectory(at: Bundle.main.bundleURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) else { return }
         guard let zip = allBundleSources.first(where: { $0.path.contains("Resource.zip")}) else { return }
@@ -52,12 +47,14 @@ struct StarDictORM {
     static let word = Expression<String>("word")
     static let phonetic = Expression<String>("phonetic")
     static let translation = Expression<String>("translation")
+    static let sw = Expression<String>("sw")
     
     struct ORM: ORMProtocol {
         var id: Int64?
         var word: String?
         var phonetic: String?
         var translation: String?
+        var sw: String?
     }
     
     static func query(word: String) -> ORM? {
@@ -66,6 +63,20 @@ struct StarDictORM {
         )
         do {
             return try result?.map({ try $0.decode() }).first
+        } catch {
+            return nil
+        }
+    }
+    
+    /// 模糊比對查詢
+    static func match(word: String, limit: Int = 10) -> [ORM]? {
+        let result = try? DicSQL.shared.db.prepare(
+            table.filter(Self.sw >= word)
+                .order([sw, word])
+                .limit(limit)
+        )
+        do {
+            return try result?.map({ try $0.decode() })
         } catch {
             return nil
         }
