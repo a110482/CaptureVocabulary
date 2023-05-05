@@ -37,7 +37,6 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         #if DEBUG
         devPanelButton()
-        DicSQL.shared.test()
         #endif
         do {
             try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
