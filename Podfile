@@ -15,6 +15,7 @@ def shared_pods
   pod 'FirebaseFirestore'
   pod 'FirebaseAnalytics'
   pod 'FirebaseCrashlytics'
+  pod 'SSZipArchive'
 end
 
 target 'CaptureVocabulary' do

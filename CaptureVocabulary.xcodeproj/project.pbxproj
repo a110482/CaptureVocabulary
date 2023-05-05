@@ -12,6 +12,10 @@
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
 		C001389729C83EB100D2E4BA /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389629C83EB100D2E4BA /* MockWords.swift */; };
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
+		C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
+		C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
+		C0297F102A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
+		C0297F112A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
 		C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
@@ -220,6 +224,8 @@
 		C001389429C83CE500D2E4BA /* JsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonReader.swift; sourceTree = "<group>"; };
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
+		C0297F092A03939D000F4A71 /* DicSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicSQL.swift; sourceTree = "<group>"; };
+		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
 		C0347D3329F8CBAA004A1133 /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
@@ -564,6 +570,7 @@
 				C0F413B329FA5BD500378E17 /* Debug.xcconfig */,
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
+				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
@@ -617,6 +624,7 @@
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
+				C0297F092A03939D000F4A71 /* DicSQL.swift */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */,
+				C0297F112A039CC3000F4A71 /* Resource.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +789,7 @@
 				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */,
+				C0297F102A039CC3000F4A71 /* Resource.zip in Resources */,
 				C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
 				C0F413CC29FBAAC400378E17 /* GoogleService-Info-uat.plist in Resources */,
@@ -955,6 +965,7 @@
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
 				C060795429E805DA00434A2E /* Request.swift in Sources */,
+				C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */,
 				C060795529E805DA00434A2E /* HeaderStorage.swift in Sources */,
 				C060795629E805DA00434A2E /* RequestBuilder.swift in Sources */,
 				C060795729E805DA00434A2E /* AzureRequest.swift in Sources */,
@@ -1055,6 +1066,7 @@
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
+				C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */,
