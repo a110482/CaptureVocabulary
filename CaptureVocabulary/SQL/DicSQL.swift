@@ -38,6 +38,12 @@ class DicSQL {
             SSZipArchive.unzipFile(atPath: zip.path, toDestination: workSpace.path)
         }
     }
+    
+    #if DEBUG
+    func test() {
+        
+    }
+    #endif
 }
 
 /// 僅提供查詢
@@ -55,6 +61,16 @@ struct StarDictORM {
         var phonetic: String?
         var translation: String?
         var sw: String?
+        
+        func getMainTranslation() -> String? {
+            guard let translation = translation,
+                  !translation.isEmpty else { return nil }
+            guard let firstLine = translation.split(separator: "\n").first else { return nil }
+            guard let firstWord = firstLine.split(whereSeparator: {
+                return [",", ";"].contains($0)
+            }).first else { return nil }
+            return String(firstWord)
+        }
     }
     
     static func query(word: String) -> ORM? {
