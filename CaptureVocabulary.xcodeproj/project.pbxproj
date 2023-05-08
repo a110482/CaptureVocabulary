@@ -12,6 +12,8 @@
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
 		C001389729C83EB100D2E4BA /* MockWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389629C83EB100D2E4BA /* MockWords.swift */; };
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
+		C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
+		C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
 		C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
 		C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
 		C0297F102A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
@@ -224,6 +226,7 @@
 		C001389429C83CE500D2E4BA /* JsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonReader.swift; sourceTree = "<group>"; };
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
+		C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		C0297F092A03939D000F4A71 /* DicSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicSQL.swift; sourceTree = "<group>"; };
 		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,6 +526,7 @@
 				F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */,
 				C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */,
 				C0F413D429FBD69B00378E17 /* UITextField+Ext.swift */,
+				C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */,
 			);
 			path = CustomExtension;
 			sourceTree = "<group>";
@@ -963,6 +967,7 @@
 				C060795029E805DA00434A2E /* VocabularyViewModel.swift in Sources */,
 				C060795129E805DA00434A2E /* Decision.swift in Sources */,
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
+				C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
 				C060795429E805DA00434A2E /* Request.swift in Sources */,
 				C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */,
@@ -1049,6 +1054,7 @@
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
 				F5AEE81E29FD54A700EA3B6F /* TranslateTextView.swift in Sources */,
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
+				C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
 				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
@@ -1320,7 +1326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.17;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1531,7 +1537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.17;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1569,7 +1575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.17;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

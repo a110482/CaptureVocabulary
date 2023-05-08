@@ -8,12 +8,23 @@
 import SQLite
 
 class SQLCore {
+    /// 資料庫位置
     static var groupDatabaseURL: URL {
         let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.capture-vocabulary")!
 
         // 資料庫路徑
         return sharedContainerURL.appendingPathComponent("db.sqlite3")
     }
+    
+    /// 備份資料庫位置
+    static var backupDatabaseURL: URL {
+        let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.capture-vocabulary")!
+
+        // 資料庫路徑
+        return sharedContainerURL.appendingPathComponent("backup_db.sqlite3")
+    }
+    
+    /// 第一版資料庫位置
     static var firstVersionDatabaseURL: URL {
         let url = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true

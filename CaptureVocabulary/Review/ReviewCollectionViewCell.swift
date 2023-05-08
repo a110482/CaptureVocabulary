@@ -17,8 +17,11 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     weak var delegate: ReviewCollectionViewCellDelegate?
     private let activeSwitchButton = ActiveSwitchButton()
     private let mainStackView = UIStackView()
-    private let pronunciationStackView = UIStackView()
-    private let speakerButton = UIButton()
+    private let speakerButton: UIButton = {
+        let config = UIButton.Configuration.speakerButtonConfiguration
+        let button = UIButton(configuration: config)
+        return button
+    }()
     private let sourceLabel = UILabel()
     private let translateLabel = UILabel()
     private var cellModel: VocabularyCardORM.ORM?
@@ -48,6 +51,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
             translateLabel.text = await cellModel.normalizedTarget?.localized()
         }
         activeSwitchButton.setActive(cellModel.memorized ?? false)
+        speakerButton.setTitle(cellModel.phonetic, for: .normal)
     }
 }
 
@@ -82,22 +86,11 @@ private extension ReviewCollectionViewCell {
 
         mainStackView.addArrangedSubviews([
             sourceLabel,
-            pronunciationStackView,
+            speakerButton,
             translateLabel,
             UIView()
         ])
-        configPronunciationStackView()
-    }
-    
-    func configPronunciationStackView() {
-        pronunciationStackView.axis = .horizontal
-        pronunciationStackView.addArrangedSubviews([
-            UIView(),
-            speakerButton,
-        ])
-        pronunciationStackView.snp.makeConstraints {
-            $0.width.equalToSuperview()
-        }
+        
         configSpeakerButton()
     }
     

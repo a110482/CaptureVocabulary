@@ -50,12 +50,7 @@ class VocabularyViewController: UIViewController {
         $0.textAlignment = .center
     }
     private let speakerButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-        config.image = UIImage(systemName: "speaker.wave.3")
-        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 13)
-        config.imagePadding = 5
-        config.baseBackgroundColor = UIColor(hexString: "EBF1FF")
-        config.baseForegroundColor = UIColor(hexString: "3D5CFF")
+        let config = UIButton.Configuration.speakerButtonConfiguration
         let button = UIButton(configuration: config)
         return button
     }()

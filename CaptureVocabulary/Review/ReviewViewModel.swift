@@ -46,10 +46,6 @@ class ReviewViewModel {
         lastReadCardId = Int(id)
     }
     
-    func updateTranslateData(vocabulary: String) {
-        
-    }
-    
     /// 重新校正 index 以維持無線滾動維持在中央
     /// 整個無限滾動原理:
     /// 所有 cell 資料向 database 拿資料時, 都是基於 database 裡的排序
