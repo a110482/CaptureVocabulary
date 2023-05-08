@@ -25,6 +25,7 @@ class SQLCoreMigration {
     }
     private static let migrationScripts: [MigrationProcess] = [
         SQLCoreMigration_1(),
+        SQLCoreMigration_2()
     ]
     
     private static weak var statusLabel: UILabel?
@@ -55,6 +56,41 @@ class SQLCoreMigration {
         script.updateVersionNumber()
         Self.statusLabel?.text = "已更新資料庫版本 \(currentDatabaseVersion)"
     }
+    
+    static func debugTest() {
+        recoverDatabase()
+        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = 1
+    }
+    
+    static func backDataBase() {
+        let databaseURL = SQLCore.groupDatabaseURL
+        let backupURL = SQLCore.backupDatabaseURL
+        
+        do {
+            if FileManager.default.fileExists(atPath: backupURL.path) {
+                try FileManager.default.removeItem(at: backupURL)
+            }
+            try FileManager.default.copyItem(at: databaseURL, to: backupURL)
+            Log.debug("backDataBase completed")
+        } catch {
+            assert(false, error.localizedDescription)
+        }
+    }
+    
+    static func recoverDatabase() {
+        let databaseURL = SQLCore.groupDatabaseURL
+        let backupURL = SQLCore.backupDatabaseURL
+        
+        do {
+            if FileManager.default.fileExists(atPath: databaseURL.path) {
+                try FileManager.default.removeItem(at: databaseURL)
+            }
+            try FileManager.default.copyItem(at: backupURL, to: databaseURL)
+            Log.debug("recoverDatabase completed")
+        } catch {
+            assert(false, error.localizedDescription)
+        }
+    }
 }
 
 
@@ -71,6 +107,7 @@ extension MigrationProcess {
     }
 }
 
+// 新建 db 或是拷貝舊版 db
 struct SQLCoreMigration_1: MigrationProcess {
     func process() {
         let count = try! SQLCore.oldDatabase.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
@@ -95,6 +132,39 @@ struct SQLCoreMigration_1: MigrationProcess {
             try FileManager.default.copyItem(at: sourceURL, to: targetURL)
         } catch {
             assert(false, error.localizedDescription)
+        }
+    }
+}
+
+// 新增音標到單字庫裡
+struct SQLCoreMigration_2: MigrationProcess {
+    typealias Card = VocabularyCardORM
+    func process() {
+        do {
+            try addColumn()
+            updateDateBase()
+        } catch {
+            assert(false, error.localizedDescription)
+        }
+    }
+    
+    private func addColumn() throws {
+        let addColumn = Card.table.addColumn(
+            Card.phonetic, defaultValue: "")
+        try SQLCore.shared.db.run(addColumn)
+    }
+    
+    // 查詢所有單字
+    private func updateDateBase() {
+        guard let allCards = Card.prepare(Card.table) else {
+            return
+        }
+        allCards.forEach {
+            var card = $0
+            guard let source = card.normalizedSource else { return }
+            let phonetic = StarDictORM.query(word: source)?.phonetic
+            card.phonetic = phonetic
+            card.update()
         }
     }
 }

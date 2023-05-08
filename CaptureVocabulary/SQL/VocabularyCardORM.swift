@@ -21,6 +21,9 @@ struct VocabularyCardORM: TableType {
     static let timestamp = Expression<Double>("timestamp")
     static let cardListId = Expression<Int64>("cardListId")
     
+    /// version 2 以後新增欄位 參見: SQLCoreMigration_2
+    static let phonetic = Expression<String>("phonetic")
+    
     private var db: Connection {
         SQLCore.shared.db
     }
@@ -33,6 +36,7 @@ struct VocabularyCardORM: TableType {
         var memorized: Bool?
         var timestamp: TimeInterval = Date().timeIntervalSince1970
         var cardListId: Int64?
+        var phonetic: String?
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
