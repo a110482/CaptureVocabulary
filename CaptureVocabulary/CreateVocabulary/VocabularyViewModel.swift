@@ -13,7 +13,6 @@ import RxSwift
 class VocabularyViewModel {
     struct Inout {
         let vocabulary = BehaviorRelay<String?>(value: nil)
-        let translateData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
     }
     let `inout` = Inout()
     
@@ -21,6 +20,7 @@ class VocabularyViewModel {
         let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
         let showEditListNameAlert = PublishRelay<Void>()
         let phonetic = BehaviorRelay<String>(value: "")
+        let translateData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
     }
     
     let output = Output()
@@ -40,34 +40,40 @@ class VocabularyViewModel {
     }
     
     // 等按 return 再查詢, 不然流量太兇
+//    func sentQueryRequest() {
+//        guard let vocabulary = `inout`.vocabulary.value else { return }
+//        typealias Req = YDTranslateAPI
+//
+//        let normalized = vocabulary.normalized
+//        let queryModel = YDTranslateAPIQueryModel(queryString: normalized)
+//
+//        if let saveModel = Req.ResponseModel.load(queryModel: queryModel) {
+//            updateData(model: saveModel)
+//        } else {
+//            let request = Req(queryModel: queryModel)
+//            let api = RequestBuilder<Req>()
+//            api.result.subscribe(onNext: { [weak self] res in
+//                guard let self = self else { return }
+//                guard let res = res else { return }
+//                guard res.isWord ?? false else { return }
+//                res.create(nil)
+//                self.updateData(model: res)
+//            }).disposed(by: disposeBag)
+//            api.send(req: request)
+//        }
+//
+//    }
+    
     func sentQueryRequest() {
         guard let vocabulary = `inout`.vocabulary.value else { return }
-        typealias Req = YDTranslateAPI
-
-        let normalized = vocabulary.normalized
-        let queryModel = YDTranslateAPIQueryModel(queryString: normalized)
-        
-        if let saveModel = Req.ResponseModel.load(queryModel: queryModel) {
-            updateData(model: saveModel)
-        } else {
-            let request = Req(queryModel: queryModel)
-            let api = RequestBuilder<Req>()
-            api.result.subscribe(onNext: { [weak self] res in
-                guard let self = self else { return }
-                guard let res = res else { return }
-                guard res.isWord ?? false else { return }
-                res.create(nil)
-                self.updateData(model: res)
-            }).disposed(by: disposeBag)
-            api.send(req: request)
-        }
-
+        guard let result = StarDictORM.query(word: vocabulary) else { return }
+        updateData(model: result)
     }
     
-    private func updateData(model: StringTranslateAPIResponse) {
+    private func updateData(model: StarDictORM.ORM) {
         setNormalizedSource(model)
-        `inout`.translateData.accept(model)
-        if let phonetic = model.basic?.usPhonetic {
+        output.translateData.accept(model)
+        if let phonetic = model.phonetic {
             output.phonetic.accept("[\(phonetic)]")
         }
     }
@@ -108,7 +114,7 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
-        guard let translate = input.customTranslate.value ?? `inout`.translateData.value?.translation?.first else {
+        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation() else {
             return
         }
         guard let vocabulary = `inout`.vocabulary.value,
@@ -125,9 +131,8 @@ class VocabularyViewModel {
         VocabularyCardListORM.update(listObj)
     }
     
-    private func setNormalizedSource(_ translateData: StringTranslateAPIResponse) {
-        guard let normalizedSource = translateData.returnPhrase?.first else { return }
-        `inout`.vocabulary.accept(normalizedSource)
+    private func setNormalizedSource(_ model: StarDictORM.ORM) {
+        `inout`.vocabulary.accept(model.word)
     }
     
     private func getVocabularyListObject() {

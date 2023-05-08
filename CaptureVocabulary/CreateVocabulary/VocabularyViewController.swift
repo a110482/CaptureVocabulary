@@ -92,7 +92,7 @@ class VocabularyViewController: UIViewController {
     
         sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
-        viewModel.inout.translateData.subscribe(onNext: { [weak self] translateData in
+        viewModel.output.translateData.subscribe(onNext: { [weak self] translateData in
             guard let self = self else { return }
             self.translateResultView.config(model: translateData)
         }).disposed(by: disposeBag)
@@ -196,7 +196,7 @@ extension VocabularyViewController {
             let screenHeight = UIScreen.main.bounds.height
             $0.height.equalTo(screenHeight * 0.3)
         }
-        translateResultView.translate.delegate = self
+        translateResultView.mainTranslate.delegate = self
     }
     
     private func layoutButtonStack() {
@@ -242,7 +242,7 @@ extension VocabularyViewController {
     private func saveChanged(_ textField: UITextField) {
         if textField === sourceTextField {
             viewModel?.sentQueryRequest()
-        } else if textField === translateResultView.translate {
+        } else if textField === translateResultView.mainTranslate {
             viewModel?.input.customTranslate.accept(textField.text)
         }
     }
@@ -315,10 +315,10 @@ extension VocabularyViewController: UITextFieldDelegate {
 
 // MARK: -
 class TranslateResultView: UIStackView {
-    let translate = QueryStringTextField().then {
+    let mainTranslate = QueryStringTextField().then {
         $0.font = .systemFont(ofSize: 17)
     }
-    private let explainsTextView = ExplainsTextView().then {
+    private let translateTextView = TranslateTextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
@@ -337,25 +337,23 @@ class TranslateResultView: UIStackView {
     }
     
     func prepareForReuse() {
-        translate.text = nil
+        mainTranslate.text = nil
     }
     
-    func config(model: StringTranslateAPIResponse?) {
+    func config(model: StarDictORM.ORM?) {
         prepareForReuse()
-        if let translation = model?.translation?.first {
-            translate.text = translation.localized()
-            translate.updateUnderLineColor()
-        }
-        explainsTextView.config(model: model)
+        mainTranslate.text = model?.getMainTranslation()
+        mainTranslate.updateUnderLineColor()
+        translateTextView.config(model: model)
     }
     
     private func configUI() {
         addArrangedSubviews([
-            translate,
+            mainTranslate,
             padding(gap: 10),
-            explainsTextView,
+            translateTextView,
         ])
-        explainsTextView.snp.makeConstraints {
+        translateTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
         }
     }
