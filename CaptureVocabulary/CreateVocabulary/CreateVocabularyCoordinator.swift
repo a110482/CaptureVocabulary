@@ -60,8 +60,33 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
             switch action {
             case .dismiss:
                 self.stop()
+            case .dismissWithAnimate:
+                self.dismissAnimation()
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func dismissAnimation() {
+        guard let view = viewController.children.first?.view else {
+            self.stop()
+            return
+        }
+        guard let tabBar = rootViewController.tabBarController?.tabBar else {
+            self.stop()
+            return
+        }
+        
+        let screenHeight = UIScreen.main.bounds.height
+        let y = screenHeight - tabBar.bounds.height - 10
+        // 共有三個 item 要取第一個的中心點
+        let x = tabBar.bounds.width/3/2
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            view.frame.origin = CGPoint(x: x, y: y)
+        }) { _ in
+            self.stop()
+        }
     }
 }
 

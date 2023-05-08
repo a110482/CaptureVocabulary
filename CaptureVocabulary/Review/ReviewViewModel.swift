@@ -13,7 +13,7 @@ import RxSwift
 class ReviewViewModel {
     struct Output {
         let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
-        let dictionaryData = BehaviorRelay<StringTranslateAPIResponse?>(value: nil)
+        let dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
         let needReloadDate = PublishRelay<Void>()
     }
     let output = Output()
@@ -72,8 +72,7 @@ class ReviewViewModel {
     }
     
     func queryLocalDictionary(vocabulary: String) {
-        let queryModel = YDTranslateAPIQueryModel(queryString: vocabulary)
-        let response = StringTranslateAPIResponse.load(queryModel: queryModel)
+        let response = StarDictORM.query(word: vocabulary)
         output.dictionaryData.accept(response)
     }
     

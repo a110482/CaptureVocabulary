@@ -20,6 +20,7 @@ class ReviewViewController: UIViewController {
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 0
+        $0.alignment = .center
     }
     private let headerView = UIView().then {
         $0.backgroundColor = .clear
@@ -33,6 +34,11 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
+    private let explainsTextView = TranslateTextView().then {
+        $0.font = .systemFont(ofSize: 17)
+        $0.backgroundColorHex = "#F8F7F7"
+        $0.isEditable = false
+    }
     private var adBannerView = UIView()
     private weak var viewModel: ReviewViewModel?
     private let disposeBag = DisposeBag()
@@ -46,7 +52,9 @@ class ReviewViewController: UIViewController {
         super.viewDidAppear(animated)
         collectionView.reloadData {
             self.viewModel?.loadLastReadVocabularyCard()
-            self.displayCurrentCellVocabularyTranslate()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.displayCurrentCellVocabularyTranslate()
+            }
         }
     }
     
@@ -69,6 +77,12 @@ class ReviewViewController: UIViewController {
             guard let self = self else { return }
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
+        
+        viewModel.output.dictionaryData.subscribe(onNext: { [weak self] (dictionaryData) in
+            guard let self = self else { return }
+            self.explainsTextView.config(model: dictionaryData)
+        }).disposed(by: disposeBag)
+        
     }
 }
 
@@ -87,12 +101,15 @@ private extension ReviewViewController {
         mainStackView.addArrangedSubviews([
             headerView,
             collectionView,
-            UIView(),
+            mainStackView.padding(gap: 20),
+            explainsTextView,
+            mainStackView.padding(gap: 20),
             adBannerView
         ])
         
         configHeaderView()
         configCollectionView()
+        configExplainsTextView()
         configAdView()
     }
     
@@ -113,6 +130,7 @@ private extension ReviewViewController {
     func configCollectionView() {
         collectionView.snp.makeConstraints {
             $0.height.equalTo(140)
+            $0.width.equalToSuperview()
         }
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
@@ -121,9 +139,17 @@ private extension ReviewViewController {
         collectionView.register(cellWithClass: ReviewCollectionViewCell.self)
     }
     
+    func configExplainsTextView() {
+        explainsTextView.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.95)
+        }
+    }
+    
     func configAdView() {
+        let height = AdsManager.shared.adSize.size.height
         adBannerView.snp.makeConstraints {
-            $0.height.equalTo(50)
+            $0.height.equalTo(height)
+            $0.width.equalToSuperview()
         }
     }
 }
@@ -147,22 +173,17 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            didEndDraggingCollectionView()
+            scrollCellTo(index: centralCellIndex())
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndDraggingCollectionView()
+        scrollCellTo(index: centralCellIndex())
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         updateLastReadCardId()
         adjustIndex()
-    }
-    
-    // 結束拖曳單字卡之後的流程
-    private func didEndDraggingCollectionView() {
-        scrollCellTo(index: centralCellIndex())
         displayCurrentCellVocabularyTranslate()
     }
     
@@ -202,9 +223,8 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     /// 單字詳細翻譯
     private func displayCurrentCellVocabularyTranslate() {
-        guard let currentCell = collectionView.visibleCells.first else { return }
-        guard let index = collectionView.indexPath(for: currentCell) else { return }
-        guard let cellModel = viewModel?.queryVocabularyCard(index: index.row) else { return }
+        guard let index = centralCellIndex() else { return }
+        guard let cellModel = viewModel?.queryVocabularyCard(index: index) else { return }
         guard let vocabulary = cellModel.normalizedSource else { return }
         viewModel?.queryLocalDictionary(vocabulary: vocabulary)
     }

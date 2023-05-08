@@ -7,6 +7,9 @@
 
 import UIKit
 import GoogleMobileAds
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
             [ "cb559a1d2a23be3dcf18b870e5ff9c2d" ]
         #endif
+        
+        FirebaseApp.configure()
         
         return true
     }

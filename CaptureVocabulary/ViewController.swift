@@ -55,12 +55,6 @@ class ViewController: UIViewController {
         }
     }
     
-    // SQLite
-    private func createDefaultList() {
-        SQLCore.shared.createTables()
-        VocabularyCardListORM.ORM.createDefaultList()
-    }
-    
     private func mainCoordinator() {
         coor = TabBarCoordinator(rootViewController: self)
         coor.start()
