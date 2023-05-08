@@ -41,9 +41,9 @@ private extension ActiveSwitchButton {
     
     func updateUI() {
         if active {
-            setImage(starFill, for: .normal)
-        } else {
             setImage(starWire, for: .normal)
+        } else {
+            setImage(starFill, for: .normal)
         }
     }
 }

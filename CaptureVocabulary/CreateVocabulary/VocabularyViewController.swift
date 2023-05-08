@@ -15,6 +15,7 @@ import SwifterSwift
 class VocabularyViewController: UIViewController {
     enum Action {
         case dismiss
+        case dismissWithAnimate
     }
     let action = PublishRelay<Action>()
     
@@ -91,7 +92,7 @@ class VocabularyViewController: UIViewController {
     
         sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
-        viewModel.inout.translateData.subscribe(onNext: { [weak self] translateData in
+        viewModel.output.translateData.subscribe(onNext: { [weak self] translateData in
             guard let self = self else { return }
             self.translateResultView.config(model: translateData)
         }).disposed(by: disposeBag)
@@ -107,10 +108,6 @@ class VocabularyViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         viewModel.output.phonetic.bind(to: speakerButton.rx.title()).disposed(by: disposeBag)
-        
-        translateResultView.customTranslate
-            .bind(to: viewModel.input.customTranslate)
-            .disposed(by: disposeBag)
     }
     
     private func showEditListNameAlert() {
@@ -199,6 +196,7 @@ extension VocabularyViewController {
             let screenHeight = UIScreen.main.bounds.height
             $0.height.equalTo(screenHeight * 0.3)
         }
+        translateResultView.mainTranslate.delegate = self
     }
     
     private func layoutButtonStack() {
@@ -240,6 +238,14 @@ extension VocabularyViewController {
             $0.height.equalTo(44)
         }
     }
+    
+    private func saveChanged(_ textField: UITextField) {
+        if textField === sourceTextField {
+            viewModel?.sentQueryRequest()
+        } else if textField === translateResultView.mainTranslate {
+            viewModel?.input.customTranslate.accept(textField.text)
+        }
+    }
 }
 
 // user action
@@ -271,13 +277,13 @@ extension VocabularyViewController {
         saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.viewModel?.saveVocabularyCard()
-            self.action.accept(.dismiss)
             
             // 創建UIImpactFeedbackGenerator
             let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
             // 開始震動
             impactFeedbackGenerator.prepare()
             impactFeedbackGenerator.impactOccurred()
+            self.action.accept(.dismissWithAnimate)
         }).disposed(by: disposeBag)
     }
     
@@ -290,23 +296,33 @@ extension VocabularyViewController {
     }
 }
 
-extension VocabularyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        viewModel?.sentQueryRequest()
+extension VocabularyViewController: UITextFieldDelegate {    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        removeBackgroundCloseView()
+        saveChanged(textField)
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        addBackgroundCloseView(
+            textField,
+            disposeBag: disposeBag) { [weak self] in
+                self?.saveChanged(textField)
+            }
+        return true
     }
 }
 
 // MARK: -
 class TranslateResultView: UIStackView {
-    let translate = QueryStringTextField().then {
+    let mainTranslate = QueryStringTextField().then {
         $0.font = .systemFont(ofSize: 17)
     }
-    private let explainsTextView = UITextView().then {
+    private let translateTextView = TranslateTextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
     }
-    let customTranslate = BehaviorRelay<String?>(value: nil)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -321,51 +337,24 @@ class TranslateResultView: UIStackView {
     }
     
     func prepareForReuse() {
-        explainsTextView.text = nil
-        translate.text = nil
-        explainsTextView.contentOffset = .zero
+        mainTranslate.text = nil
     }
     
-    func config(model: StringTranslateAPIResponse?) {
+    func config(model: StarDictORM.ORM?) {
         prepareForReuse()
-        if let explains = model?.basic?.explains {
-            let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
-            for speech in partOfSpeech {
-                explainsTextView.text = speech.reduce(explainsTextView.text ?? "", {
-                    $0 + ($0.isEmpty ? "" : "\n") + String($1).trimmed
-                })
-                explainsTextView.text = (explainsTextView.text ?? "") + "\n\n"
-            }
-            
-            Task {
-                explainsTextView.text = await explainsTextView.text.localized()
-            }
-        }
-        
-        if let translation = model?.translation?.first {
-            translate.text = translation.localized()
-            translate.updateUnderLineColor()
-        }
+        mainTranslate.text = model?.getMainTranslation()
+        mainTranslate.updateUnderLineColor()
+        translateTextView.config(model: model)
     }
     
     private func configUI() {
         addArrangedSubviews([
-            translate,
+            mainTranslate,
             padding(gap: 10),
-            explainsTextView,
+            translateTextView,
         ])
-        translate.delegate = self
-        explainsTextView.snp.makeConstraints {
+        translateTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
         }
     }
 }
-
-extension TranslateResultView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        translate.resignFirstResponder()
-        customTranslate.accept(textField.text)
-        return true
-    }
-}
-
