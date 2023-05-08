@@ -34,7 +34,7 @@ class ReviewViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private let explainsTextView = ExplainsTextView().then {
+    private let explainsTextView = TranslateTextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
@@ -52,7 +52,9 @@ class ReviewViewController: UIViewController {
         super.viewDidAppear(animated)
         collectionView.reloadData {
             self.viewModel?.loadLastReadVocabularyCard()
-            self.displayCurrentCellVocabularyTranslate()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.displayCurrentCellVocabularyTranslate()
+            }
         }
     }
     
@@ -171,22 +173,17 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            didEndDraggingCollectionView()
+            scrollCellTo(index: centralCellIndex())
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndDraggingCollectionView()
+        scrollCellTo(index: centralCellIndex())
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         updateLastReadCardId()
         adjustIndex()
-    }
-    
-    // 結束拖曳單字卡之後的流程
-    private func didEndDraggingCollectionView() {
-        scrollCellTo(index: centralCellIndex())
         displayCurrentCellVocabularyTranslate()
     }
     

@@ -154,8 +154,8 @@
 		F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7728E5A6A100600E21 /* YDRequest.swift */; };
 		F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */; };
 		F5A4CF7C28E6FC0400600E21 /* YDTranslateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A4CF7B28E6FC0400600E21 /* YDTranslateAPI.swift */; };
-		F5AEE81E29FD54A700EA3B6F /* ExplainsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AEE81D29FD54A700EA3B6F /* ExplainsTextView.swift */; };
-		F5AEE81F29FD55F000EA3B6F /* ExplainsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AEE81D29FD54A700EA3B6F /* ExplainsTextView.swift */; };
+		F5AEE81E29FD54A700EA3B6F /* TranslateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AEE81D29FD54A700EA3B6F /* TranslateTextView.swift */; };
+		F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AEE81D29FD54A700EA3B6F /* TranslateTextView.swift */; };
 		F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */; };
 		F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EAD828145720000DD57B /* AzureDictionary.swift */; };
 		F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EADA28145B6C000DD57B /* PlistReader.swift */; };
@@ -297,7 +297,7 @@
 		F5A4CF7728E5A6A100600E21 /* YDRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDRequest.swift; sourceTree = "<group>"; };
 		F5A4CF7928E6FA0D00600E21 /* Encodable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Ext.swift"; sourceTree = "<group>"; };
 		F5A4CF7B28E6FC0400600E21 /* YDTranslateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDTranslateAPI.swift; sourceTree = "<group>"; };
-		F5AEE81D29FD54A700EA3B6F /* ExplainsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplainsTextView.swift; sourceTree = "<group>"; };
+		F5AEE81D29FD54A700EA3B6F /* TranslateTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextView.swift; sourceTree = "<group>"; };
 		F5B5EAD6281454B7000DD57B /* AzureTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureTranslate.swift; sourceTree = "<group>"; };
 		F5B5EAD828145720000DD57B /* AzureDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDictionary.swift; sourceTree = "<group>"; };
 		F5B5EADA28145B6C000DD57B /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
@@ -610,7 +610,7 @@
 				F5CBF59328159FE30088C801 /* VocabularyViewController.swift */,
 				F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */,
 				F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */,
-				F5AEE81D29FD54A700EA3B6F /* ExplainsTextView.swift */,
+				F5AEE81D29FD54A700EA3B6F /* TranslateTextView.swift */,
 			);
 			path = CreateVocabulary;
 			sourceTree = "<group>";
@@ -1006,7 +1006,7 @@
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
-				F5AEE81F29FD55F000EA3B6F /* ExplainsTextView.swift in Sources */,
+				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
 				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
@@ -1047,7 +1047,7 @@
 				F57F807029140E4B00B6FD9E /* CaptureVocabularyViewController.swift in Sources */,
 				C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */,
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
-				F5AEE81E29FD54A700EA3B6F /* ExplainsTextView.swift in Sources */,
+				F5AEE81E29FD54A700EA3B6F /* TranslateTextView.swift in Sources */,
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
