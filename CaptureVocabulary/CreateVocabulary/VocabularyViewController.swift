@@ -337,7 +337,7 @@ class TranslateResultView: UIStackView {
     
     func config(model: StarDictORM.ORM?) {
         prepareForReuse()
-        mainTranslate.text = model?.getMainTranslation()
+        mainTranslate.text = model?.getMainTranslation()?.localized()
         mainTranslate.updateUnderLineColor()
         translateTextView.config(model: model)
     }
