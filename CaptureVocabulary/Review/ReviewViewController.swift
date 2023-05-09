@@ -97,9 +97,9 @@ private extension ReviewViewController {
         
         mainStackView.addArrangedSubviews([
             headerView,
-            collectionView,
-            mainStackView.padding(gap: 20),
             explainsTextView,
+            mainStackView.padding(gap: 20),
+            collectionView,
             mainStackView.padding(gap: 20),
             adBannerView
         ])
