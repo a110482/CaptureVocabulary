@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         view.addSubview(statusLabel)
         statusLabel.numberOfLines = 2
         statusLabel.textAlignment = .center
-        statusLabel.text = "正在準備啟動...\n首次啟動需要更長時間"
+        statusLabel.text = "正在準備啟動...\n首次啟動需要更長時間".localized()
         statusLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
