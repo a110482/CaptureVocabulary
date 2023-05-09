@@ -39,31 +39,6 @@ class VocabularyViewModel {
         getVocabularyListObject()
     }
     
-    // 等按 return 再查詢, 不然流量太兇
-//    func sentQueryRequest() {
-//        guard let vocabulary = `inout`.vocabulary.value else { return }
-//        typealias Req = YDTranslateAPI
-//
-//        let normalized = vocabulary.normalized
-//        let queryModel = YDTranslateAPIQueryModel(queryString: normalized)
-//
-//        if let saveModel = Req.ResponseModel.load(queryModel: queryModel) {
-//            updateData(model: saveModel)
-//        } else {
-//            let request = Req(queryModel: queryModel)
-//            let api = RequestBuilder<Req>()
-//            api.result.subscribe(onNext: { [weak self] res in
-//                guard let self = self else { return }
-//                guard let res = res else { return }
-//                guard res.isWord ?? false else { return }
-//                res.create(nil)
-//                self.updateData(model: res)
-//            }).disposed(by: disposeBag)
-//            api.send(req: request)
-//        }
-//
-//    }
-    
     func sentQueryRequest() {
         guard let vocabulary = `inout`.vocabulary.value else { return }
         guard let result = StarDictORM.query(word: vocabulary) else { return }
@@ -74,7 +49,7 @@ class VocabularyViewModel {
         setNormalizedSource(model)
         output.translateData.accept(model)
         if let phonetic = model.phonetic {
-            output.phonetic.accept("[\(phonetic)]")
+            output.phonetic.accept("\(phonetic)")
         }
     }
     

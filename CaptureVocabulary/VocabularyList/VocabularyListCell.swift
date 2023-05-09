@@ -30,7 +30,7 @@ class VocabularyListCell: UITableViewCell {
     private let memorizedSwitchButton = ActiveSwitchButton().then {
         $0.setTitleColor(UILabel().textColor, for: .normal)
         $0.snp.makeConstraints {
-            $0.size.equalTo(24)
+            $0.size.equalTo(44)
         }
     }
     
@@ -79,9 +79,9 @@ private extension VocabularyListCell {
         }
         
         mainStack.addArrangedSubviews([
-            mainStack.padding(gap: 24),
+            mainStack.padding(gap: 14),
             memorizedSwitchButton,
-            mainStack.padding(gap: 24),
+            mainStack.padding(gap: 14),
             nameLabel,
             mainStack.padding(gap: 24),
         ])
