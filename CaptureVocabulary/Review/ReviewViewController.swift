@@ -138,7 +138,7 @@ private extension ReviewViewController {
     
     func configExplainsTextView() {
         explainsTextView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.95)
+            $0.width.equalToSuperview().multipliedBy(0.85)
         }
     }
     
