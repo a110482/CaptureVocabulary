@@ -137,7 +137,7 @@ struct SQLCoreMigration_2: MigrationProcess {
             try addColumn()
             updateDateBase()
         } catch {
-            assert(false, error.localizedDescription)
+            Log.debug(error.localizedDescription)
         }
     }
     
