@@ -18,22 +18,12 @@ class TranslateTextView: UITextView {
     }
     
     func config(model: StarDictORM.ORM?) {
-        guard let explains = model?.translation else { return }
+        guard let explains = model?.translation else {
+            text = nil
+            return
+        }
         Task {
             self.text = await explains.localized()
         }
-//        if let explains = model?.basic?.explains {
-//            let partOfSpeech = explains.map { $0.halfWidth.split(separator: ";") }
-//            var text = ""
-//            for speech in partOfSpeech {
-//                text = speech.reduce(text, {
-//                    $0 + ($0.isEmpty ? "" : "\n") + String($1).trimmed
-//                })
-//                text = (text) + "\n\n"
-//            }
-//            Task {
-//                self.text = await text.localized()
-//            }
-//        }
     }
 }

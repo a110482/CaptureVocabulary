@@ -22,15 +22,26 @@ struct User: Codable {
 class ViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let statusLabel = UILabel()
+    private let indicator = UIActivityIndicatorView()
     var coor: Coordinator<UIViewController>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(statusLabel)
-        statusLabel.text = "正在初始化"
+        statusLabel.numberOfLines = 2
+        statusLabel.textAlignment = .center
+        statusLabel.text = "正在準備啟動...\n首次啟動需要更長時間".localized()
         statusLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
+        view.addSubview(indicator)
+        indicator.snp.makeConstraints {
+            $0.top.equalTo(statusLabel.snp.bottom).offset(50)
+            $0.centerX.equalTo(statusLabel)
+        }
+        indicator.startAnimating()
+        indicator.style = .large
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +50,7 @@ class ViewController: UIViewController {
         devPanelButton()
         #endif
         do {
-            try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
+            try SQLCoreMigration.checkVersion() {
                 statusLabel.text = "初始化完成"
                 mainCoordinator()
             }

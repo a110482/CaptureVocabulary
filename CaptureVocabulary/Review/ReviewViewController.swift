@@ -52,9 +52,6 @@ class ReviewViewController: UIViewController {
         super.viewDidAppear(animated)
         collectionView.reloadData {
             self.viewModel?.loadLastReadVocabularyCard()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.displayCurrentCellVocabularyTranslate()
-            }
         }
     }
     
@@ -100,9 +97,9 @@ private extension ReviewViewController {
         
         mainStackView.addArrangedSubviews([
             headerView,
-            collectionView,
-            mainStackView.padding(gap: 20),
             explainsTextView,
+            mainStackView.padding(gap: 20),
+            collectionView,
             mainStackView.padding(gap: 20),
             adBannerView
         ])
@@ -182,9 +179,8 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        updateLastReadCardId()
+        updateLastReadCard()
         adjustIndex()
-        displayCurrentCellVocabularyTranslate()
     }
     
     private func centralCellIndex() -> Int? {
@@ -205,9 +201,9 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         return index.row
     }
     
-    private func updateLastReadCardId() {
+    private func updateLastReadCard() {
         guard let index = centralCellIndex() else { return }
-        viewModel?.updateLastReadCardId(index: index)
+        viewModel?.updateLastReadCard(index: index)
     }
     
     private func adjustIndex() {
@@ -219,14 +215,6 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         collectionView.scrollToItem(at: centralIndexPath,
                                     at: .centeredHorizontally,
                                     animated: animated)
-    }
-    
-    /// 單字詳細翻譯
-    private func displayCurrentCellVocabularyTranslate() {
-        guard let index = centralCellIndex() else { return }
-        guard let cellModel = viewModel?.queryVocabularyCard(index: index) else { return }
-        guard let vocabulary = cellModel.normalizedSource else { return }
-        viewModel?.queryLocalDictionary(vocabulary: vocabulary)
     }
 }
 

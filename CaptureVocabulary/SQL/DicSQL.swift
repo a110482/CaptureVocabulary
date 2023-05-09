@@ -17,7 +17,7 @@ class DicSQL {
         return defaultUrl.appendingPathComponent("workSpace", conformingTo: .folder)
     }
     private static var dbUrl: URL? {
-        Self.workSpace?.appendingPathComponent("resource.db", conformingTo: .item)
+        Self.workSpace?.appendingPathComponent("ecdict.db", conformingTo: .item)
     }
     fileprivate let db: Connection
     
@@ -30,9 +30,7 @@ class DicSQL {
     private static func copyDB() {
         guard let allBundleSources = try? fileManager.contentsOfDirectory(at: Bundle.main.bundleURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) else { return }
         guard let zip = allBundleSources.first(where: { $0.path.contains("Resource.zip")}) else { return }
-        guard let defaultUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let workSpace = defaultUrl.appendingPathComponent("workSpace", conformingTo: .folder)
-        let dbUrl = workSpace.appendingPathComponent("resource.db", conformingTo: .item)
+        guard let workSpace = workSpace, let dbUrl = dbUrl else { return }
         
         if !fileManager.fileExists(atPath: dbUrl.path) {
             SSZipArchive.unzipFile(atPath: zip.path, toDestination: workSpace.path)
@@ -99,3 +97,4 @@ struct StarDictORM {
     }
 }
 
+//ecdict.db

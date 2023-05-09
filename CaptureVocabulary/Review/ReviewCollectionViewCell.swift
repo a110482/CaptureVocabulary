@@ -31,6 +31,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configUI()
         bindAction()
+        resetToDefaultStatus()
     }
     
     required init?(coder: NSCoder) {
@@ -39,9 +40,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        activeSwitchButton.setActive(false)
-        sourceLabel.text = "--"
-        translateLabel.text = "--"
+        resetToDefaultStatus()
     }
     
     func set(cellModel: VocabularyCardORM.ORM) {
@@ -52,6 +51,13 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         }
         activeSwitchButton.setActive(cellModel.memorized ?? false)
         speakerButton.setTitle(cellModel.phonetic, for: .normal)
+    }
+    
+    private func resetToDefaultStatus() {
+        activeSwitchButton.setActive(false)
+        sourceLabel.text = "word house".localized()
+        translateLabel.text = "你的單字屋, 快去新增單字吧".localized()
+        speakerButton.setTitle("", for: .normal)
     }
 }
 

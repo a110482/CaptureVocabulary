@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>157424237766-jv0stgkd5jaq2hafg2rmce3ksr1jpc98.apps.googleusercontent.com</string>
+	<string>157424237766-40i01hhhu1olk2erdckf3tbnl1kn8klb.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.157424237766-jv0stgkd5jaq2hafg2rmce3ksr1jpc98</string>
+	<string>com.googleusercontent.apps.157424237766-40i01hhhu1olk2erdckf3tbnl1kn8klb</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCqPByHsohmjqrDafcPB0AFKl5j_1eu2Hk</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.elijahTan.capture-vocabulary.CaptureVocabulary.release</string>
+	<string>com.elijahTan.capture-vocabulary.CaptureVocabulary</string>
 	<key>PROJECT_ID</key>
 	<string>wordhouse-9aeba</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:157424237766:ios:d850b90989c212b843ebc7</string>
+	<string>1:157424237766:ios:d891e7b4f54576fd43ebc7</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-2284881143202826~2573540837</string>
 </dict>
 </plist>
