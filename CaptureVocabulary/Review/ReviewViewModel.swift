@@ -27,6 +27,7 @@ class ReviewViewModel {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId] = newValue
         }
     }
+    private let disposeBag = DisposeBag()
     
     func loadLastReadVocabularyCard() {
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
@@ -98,6 +99,17 @@ class ReviewViewModel {
             databaseIndex -= allVocabularyCount
         }
         return databaseIndex
+    }
+    
+    #warning("版本檢查函數, 目前沒有使用")
+    private func versionCheck() {
+        typealias Req = VersionCheck
+        let api = Req()
+        let request = RequestBuilder<Req>()
+        request.result.subscribe(onNext: { model in
+            print(model)
+        }).disposed(by: disposeBag)
+        request.send(req: api)
     }
 }
 
