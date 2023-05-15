@@ -48,6 +48,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         #if DEBUG
         devPanelButton()
+        test()
         #endif
         do {
             try SQLCoreMigration.checkVersion() {
@@ -105,6 +106,9 @@ private extension ViewController {
             self.mainCoordinator()
         }).disposed(by: disposeBag)
     }
+    
+    func test() {
+    }
 }
 #endif
 
@@ -112,7 +116,7 @@ enum VersionError: Error {
     case invalidResponse, invalidBundleInfo
 }
 
-/// 版本檢查
+/// app store 版本檢查
 func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> URLSessionDataTask {
     guard let info = Bundle.main.infoDictionary,
         let currentVersion = info["CFBundleShortVersionString"] as? String,
@@ -137,3 +141,5 @@ func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> 
     task.resume()
     return task
 }
+
+
