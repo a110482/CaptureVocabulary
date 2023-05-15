@@ -13,6 +13,10 @@ import RxSwift
 
 // MARK: -
 class ReviewViewController: UIViewController {
+    enum Action {
+        case settingPage
+    }
+    let action = PublishRelay<Action>()
     private static let cellGape = CGFloat(12)
     private let topBackgroundView = UIView().then {
         $0.backgroundColor = UIColor(hexString: "5669FF")
@@ -22,9 +26,7 @@ class ReviewViewController: UIViewController {
         $0.spacing = 0
         $0.alignment = .center
     }
-    private let headerView = UIView().then {
-        $0.backgroundColor = .clear
-    }
+    private let headerView = UIStackView()
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = cellGape
@@ -119,9 +121,18 @@ private extension ReviewViewController {
     }
     
     func configHeaderView() {
+        headerView.axis = .horizontal
+        headerView.alignment = .center
+        headerView.backgroundColor = .clear
         headerView.snp.makeConstraints {
-            $0.height.equalTo(108)
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
         }
+        headerView.addArrangedSubviews([
+            UIView(),
+            gearButton(),
+            headerView.padding(gap: 20)
+        ])
     }
     
     func configCollectionView() {
@@ -138,7 +149,7 @@ private extension ReviewViewController {
     
     func configExplainsTextView() {
         explainsTextView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.95)
+            $0.width.equalToSuperview().multipliedBy(0.85)
         }
     }
     
@@ -148,6 +159,26 @@ private extension ReviewViewController {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()
         }
+    }
+    
+    func gearButton() -> UIButton {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "gearshape.fill")
+        config.baseBackgroundColor = .clear
+        let gearButton = UIButton(configuration: config)
+        gearButton.snp.makeConstraints {
+            $0.size.equalTo(44)
+        }
+        gearButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.action.accept(.settingPage)
+        }).disposed(by: disposeBag)
+        
+        #if DEBUG
+        #else
+        gearButton.isHidden = true
+        #endif
+        return gearButton
     }
 }
 

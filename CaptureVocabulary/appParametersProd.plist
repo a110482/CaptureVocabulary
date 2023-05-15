@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>versionUrl</key>
+	<string>https://raw.githubusercontent.com/a110482/version/main/versionProd.json</string>
 	<key>adUnitID</key>
 	<string>ca-app-pub-2284881143202826/4302012328</string>
 	<key>lastDatabaseVersion</key>
