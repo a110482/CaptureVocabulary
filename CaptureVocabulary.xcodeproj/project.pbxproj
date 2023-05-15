@@ -98,6 +98,8 @@
 		C060797929E8080700434A2E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = C060797829E8080700434A2E /* OpenCC */; };
 		C060797B29E808BD00434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
+		C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
+		C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
@@ -244,6 +246,7 @@
 		C06078E429E7FAE000434A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
 		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C0A974D72A121E0400196064 /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -463,6 +466,7 @@
 				F58A8607281411080005CD34 /* HeaderStorage.swift */,
 				F58A860C28142A110005CD34 /* RequestBuilder.swift */,
 				F58A86092814191A0005CD34 /* AzureApi */,
+				C0A974D72A121E0400196064 /* VersionCheck.swift */,
 			);
 			path = WebLayer;
 			sourceTree = "<group>";
@@ -952,6 +956,7 @@
 				C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */,
 				C060794229E805D900434A2E /* VocabularyCardsCoordinator.swift in Sources */,
 				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
+				C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */,
 				C060794429E805DA00434A2E /* VocabularyCardsViewController.swift in Sources */,
 				C060794529E805DA00434A2E /* VocabularyCardCell.swift in Sources */,
 				C060794629E805DA00434A2E /* VocabularyListCoordinator.swift in Sources */,
@@ -1084,6 +1089,7 @@
 				F50952BA28267A43000C74B0 /* UIPickerViewController.swift in Sources */,
 				F50952C12827BEB8000C74B0 /* VocabularyListCoordinator.swift in Sources */,
 				C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */,
+				C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
 				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
@@ -1326,7 +1332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1537,7 +1543,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1575,7 +1581,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

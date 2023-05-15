@@ -15,6 +15,7 @@ class AppParameters {
         let YDSecret: String
         let lastDatabaseVersion: Int
         let adUnitID: String
+        let versionUrl: String
     }
     let model: Model
     static let shared = AppParameters()
