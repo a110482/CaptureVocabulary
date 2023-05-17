@@ -13,6 +13,10 @@ import RxSwift
 
 // MARK: -
 class ReviewViewController: UIViewController {
+    enum Action {
+        case settingPage
+    }
+    let action = PublishRelay<Action>()
     private static let cellGape = CGFloat(12)
     private let topBackgroundView = UIView().then {
         $0.backgroundColor = UIColor(hexString: "5669FF")
@@ -22,9 +26,7 @@ class ReviewViewController: UIViewController {
         $0.spacing = 0
         $0.alignment = .center
     }
-    private let headerView = UIView().then {
-        $0.backgroundColor = .clear
-    }
+    private let headerView = UIStackView()
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = cellGape
@@ -52,9 +54,6 @@ class ReviewViewController: UIViewController {
         super.viewDidAppear(animated)
         collectionView.reloadData {
             self.viewModel?.loadLastReadVocabularyCard()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.displayCurrentCellVocabularyTranslate()
-            }
         }
     }
     
@@ -100,9 +99,9 @@ private extension ReviewViewController {
         
         mainStackView.addArrangedSubviews([
             headerView,
-            collectionView,
-            mainStackView.padding(gap: 20),
             explainsTextView,
+            mainStackView.padding(gap: 20),
+            collectionView,
             mainStackView.padding(gap: 20),
             adBannerView
         ])
@@ -122,9 +121,18 @@ private extension ReviewViewController {
     }
     
     func configHeaderView() {
+        headerView.axis = .horizontal
+        headerView.alignment = .center
+        headerView.backgroundColor = .clear
         headerView.snp.makeConstraints {
-            $0.height.equalTo(108)
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
         }
+        headerView.addArrangedSubviews([
+            UIView(),
+            gearButton(),
+            headerView.padding(gap: 20)
+        ])
     }
     
     func configCollectionView() {
@@ -141,7 +149,7 @@ private extension ReviewViewController {
     
     func configExplainsTextView() {
         explainsTextView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.95)
+            $0.width.equalToSuperview().multipliedBy(0.85)
         }
     }
     
@@ -151,6 +159,26 @@ private extension ReviewViewController {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()
         }
+    }
+    
+    func gearButton() -> UIButton {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "gearshape.fill")
+        config.baseBackgroundColor = .clear
+        let gearButton = UIButton(configuration: config)
+        gearButton.snp.makeConstraints {
+            $0.size.equalTo(44)
+        }
+        gearButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.action.accept(.settingPage)
+        }).disposed(by: disposeBag)
+        
+        #if DEBUG
+        #else
+        gearButton.isHidden = true
+        #endif
+        return gearButton
     }
 }
 
@@ -182,9 +210,8 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        updateLastReadCardId()
+        updateLastReadCard()
         adjustIndex()
-        displayCurrentCellVocabularyTranslate()
     }
     
     private func centralCellIndex() -> Int? {
@@ -205,9 +232,9 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         return index.row
     }
     
-    private func updateLastReadCardId() {
+    private func updateLastReadCard() {
         guard let index = centralCellIndex() else { return }
-        viewModel?.updateLastReadCardId(index: index)
+        viewModel?.updateLastReadCard(index: index)
     }
     
     private func adjustIndex() {
@@ -219,14 +246,6 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         collectionView.scrollToItem(at: centralIndexPath,
                                     at: .centeredHorizontally,
                                     animated: animated)
-    }
-    
-    /// 單字詳細翻譯
-    private func displayCurrentCellVocabularyTranslate() {
-        guard let index = centralCellIndex() else { return }
-        guard let cellModel = viewModel?.queryVocabularyCard(index: index) else { return }
-        guard let vocabulary = cellModel.normalizedSource else { return }
-        viewModel?.queryLocalDictionary(vocabulary: vocabulary)
     }
 }
 

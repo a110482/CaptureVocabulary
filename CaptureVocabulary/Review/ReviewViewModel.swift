@@ -27,10 +27,12 @@ class ReviewViewModel {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId] = newValue
         }
     }
+    private let disposeBag = DisposeBag()
     
     func loadLastReadVocabularyCard() {
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
                                      animation: false))
+        queryLocalDictionary()
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
@@ -39,11 +41,15 @@ class ReviewViewModel {
         return orm
     }
     
-    func updateLastReadCardId(index: Int) {
+    func updateLastReadCard(index: Int) {
+        // 更新 id & index 給無限滾動機制
         guard let orm = queryVocabularyCard(index: index) else { return }
         guard let id = orm.id else { return }
         lastReadCardTableIndex = index
         lastReadCardId = Int(id)
+        
+        // 更新字典頁面
+        queryLocalDictionary()
     }
     
     /// 重新校正 index 以維持無線滾動維持在中央
@@ -67,7 +73,15 @@ class ReviewViewModel {
                                      animation: false))
     }
     
-    func queryLocalDictionary(vocabulary: String) {
+    private func queryLocalDictionary() {
+        guard let cellModel = queryVocabularyCard(index: lastReadCardTableIndex) else {
+            output.dictionaryData.accept(nil)
+            return
+        }
+        guard let vocabulary = cellModel.normalizedSource else {
+            output.dictionaryData.accept(nil)
+            return
+        }
         let response = StarDictORM.query(word: vocabulary)
         output.dictionaryData.accept(response)
     }
@@ -85,6 +99,17 @@ class ReviewViewModel {
             databaseIndex -= allVocabularyCount
         }
         return databaseIndex
+    }
+    
+    #warning("版本檢查函數, 目前沒有使用")
+    private func versionCheck() {
+        typealias Req = VersionCheck
+        let api = Req()
+        let request = RequestBuilder<Req>()
+        request.result.subscribe(onNext: { model in
+            print(model)
+        }).disposed(by: disposeBag)
+        request.send(req: api)
     }
 }
 

@@ -28,11 +28,7 @@ class SQLCoreMigration {
         SQLCoreMigration_2()
     ]
     
-    private static weak var statusLabel: UILabel?
-    
-    
-    static func checkVersion(statusLabel: UILabel? = nil, _ completion: () -> Void) throws {
-        Self.statusLabel = statusLabel
+    static func checkVersion(_ completion: () -> Void) throws {
         guard lastDatabaseVersion > currentDatabaseVersion else {
             completion()
             return
@@ -46,15 +42,12 @@ class SQLCoreMigration {
     }
     
     private static func migration() throws {
-        Self.statusLabel?.text = "目前資料庫版本 \(currentDatabaseVersion)"
         guard let script = migrationScripts[safe: currentDatabaseVersion] else {
             // 拋出 error
             throw SQLCoreMigrationError.noMigrationScript
         }
-        Self.statusLabel?.text = "正在更新資料庫版本 \(currentDatabaseVersion)"
         try script.process()
         script.updateVersionNumber()
-        Self.statusLabel?.text = "已更新資料庫版本 \(currentDatabaseVersion)"
     }
     
     static func debugTest() {
@@ -144,7 +137,7 @@ struct SQLCoreMigration_2: MigrationProcess {
             try addColumn()
             updateDateBase()
         } catch {
-            assert(false, error.localizedDescription)
+            Log.debug(error.localizedDescription)
         }
     }
     

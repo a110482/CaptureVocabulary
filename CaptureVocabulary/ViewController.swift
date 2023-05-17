@@ -22,24 +22,36 @@ struct User: Codable {
 class ViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let statusLabel = UILabel()
+    private let indicator = UIActivityIndicatorView()
     var coor: Coordinator<UIViewController>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(statusLabel)
-        statusLabel.text = "正在初始化"
+        statusLabel.numberOfLines = 2
+        statusLabel.textAlignment = .center
+        statusLabel.text = "正在準備啟動...\n首次啟動需要更長時間".localized()
         statusLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
+        view.addSubview(indicator)
+        indicator.snp.makeConstraints {
+            $0.top.equalTo(statusLabel.snp.bottom).offset(50)
+            $0.centerX.equalTo(statusLabel)
+        }
+        indicator.startAnimating()
+        indicator.style = .large
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         #if DEBUG
         devPanelButton()
+        test()
         #endif
         do {
-            try SQLCoreMigration.checkVersion(statusLabel: statusLabel) {
+            try SQLCoreMigration.checkVersion() {
                 statusLabel.text = "初始化完成"
                 mainCoordinator()
             }
@@ -94,6 +106,9 @@ private extension ViewController {
             self.mainCoordinator()
         }).disposed(by: disposeBag)
     }
+    
+    func test() {
+    }
 }
 #endif
 
@@ -101,7 +116,7 @@ enum VersionError: Error {
     case invalidResponse, invalidBundleInfo
 }
 
-/// 版本檢查
+/// app store 版本檢查
 func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> URLSessionDataTask {
     guard let info = Bundle.main.infoDictionary,
         let currentVersion = info["CFBundleShortVersionString"] as? String,
@@ -126,3 +141,5 @@ func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> 
     task.resume()
     return task
 }
+
+
