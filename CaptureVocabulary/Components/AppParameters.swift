@@ -16,6 +16,7 @@ class AppParameters {
         let lastDatabaseVersion: Int
         let adUnitID: String
         let versionUrl: String
+        let feedbackEmail: String
     }
     let model: Model
     static let shared = AppParameters()
