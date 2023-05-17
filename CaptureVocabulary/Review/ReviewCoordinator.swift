@@ -10,29 +10,73 @@ import SnapKit
 import SwifterSwift
 import RxCocoa
 import RxSwift
+import MessageUI
 
 class ReviewCoordinator: Coordinator<UIViewController> {
     private(set) var viewController: ReviewViewController!
     private(set) var viewModel: ReviewViewModel!
+    private let disposeBag = DisposeBag()
+    private let mailDelegator = MailDelegator()
     
     override func start() {
         guard !started else { return }
         viewController = ReviewViewController()
         viewModel = ReviewViewModel()
         viewController.bind(viewModel: viewModel)
+        bindAction(viewController: viewController)
         super.start()
+    }
+}
+
+// actions
+private extension ReviewCoordinator {
+    func bindAction(viewController: ReviewViewController) {
+        viewController.action
+            .subscribe(onNext: { [weak self] action in
+                guard let self = self else { return }
+                switch action {
+                case .settingPage:
+                    self.settingPage()
+                case .feedback:
+                    self.feedback()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    #warning("TODO: - 設定頁面")
+    func settingPage() {
+        
+    }
+    
+    func feedback() {
+        guard MFMailComposeViewController.canSendMail() else {
+            alertEmailNotSetting()
+            return
+        }
+        let mailVC = MFMailComposeViewController()
+        mailVC.setToRecipients([AppParameters.shared.model.feedbackEmail])
+        mailVC.setSubject("[意見回饋]".localized())
+        viewController.present(mailVC, animated: true, completion: nil)
+        mailVC.mailComposeDelegate = mailDelegator
+    }
+    
+    func alertEmailNotSetting() {
+        let alert = UIAlertController(
+            title: "無法寄信".localized(),
+            message: "請先設定郵件帳號".localized(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "確定".localized(),
+            style: .default, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
 
 
 
-
-// MARK: - 開 mail 的程式碼
-// import MessageUI
-//if MFMailComposeViewController.canSendMail() {
-//    let mailComposeViewController = MFMailComposeViewController()
-//    mailComposeViewController.setToRecipients(["example@example.com"])
-//    mailComposeViewController.setSubject("Example Subject")
-//    mailComposeViewController.setMessageBody("Example Message", isHTML: false)
-//    self.present(mailComposeViewController, animated: true, completion: nil)
-//}
+// MARK: - mail delegate
+private class MailDelegator: NSObject, MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.presentingViewController?.dismiss(animated: true)
+    }
+}
