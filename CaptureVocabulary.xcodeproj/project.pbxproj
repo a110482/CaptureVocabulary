@@ -28,8 +28,6 @@
 		C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */; };
 		C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */; };
 		C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06078E229E7FAE000434A2E /* Assets.xcassets */; };
-		C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
-		C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
 		C06078E929E7FAE000434A2E /* CaptureVocabularyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */; };
 		C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
@@ -100,6 +98,8 @@
 		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
+		C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
+		C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
@@ -241,12 +241,13 @@
 		C06078D829E7FADF00434A2E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetBundle.swift; sourceTree = "<group>"; };
 		C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidget.swift; sourceTree = "<group>"; };
-		C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
 		C06078E229E7FAE000434A2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06078E429E7FAE000434A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
 		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C0A974D72A121E0400196064 /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
+		C0A974DC2A15C9FD00196064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
+		C0A974DF2A15CA0400196064 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CaptureVocabularyWidget.strings; sourceTree = "<group>"; };
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -398,7 +399,7 @@
 				C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */,
 				C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */,
 				C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */,
-				C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */,
+				C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */,
 				C06078E229E7FAE000434A2E /* Assets.xcassets */,
 				C06078E429E7FAE000434A2E /* Info.plist */,
 			);
@@ -1015,7 +1016,7 @@
 				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
-				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
@@ -1067,7 +1068,7 @@
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
-				C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
@@ -1122,6 +1123,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0A974DC2A15C9FD00196064 /* Base */,
+				C0A974DF2A15CA0400196064 /* en */,
+			);
+			name = CaptureVocabularyWidget.intentdefinition;
+			sourceTree = "<group>";
+		};
 		F5C2006E28071DE200A3AAB6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
