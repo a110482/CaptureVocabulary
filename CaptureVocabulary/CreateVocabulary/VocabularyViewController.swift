@@ -295,6 +295,7 @@ extension VocabularyViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         removeBackgroundCloseView()
         saveChanged(textField)
+        textField.resignFirstResponder()
         return true
     }
     
@@ -343,6 +344,7 @@ class TranslateResultView: UIStackView {
     }
     
     private func configUI() {
+        mainTranslate.returnKeyType = .done
         addArrangedSubviews([
             mainTranslate,
             padding(gap: 10),
