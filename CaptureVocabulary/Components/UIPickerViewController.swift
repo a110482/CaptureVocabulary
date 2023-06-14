@@ -54,7 +54,7 @@ class UIPickerViewController<M: UIPickerViewModelProtocol>: UIViewController,
     }
     private let pickerView = UIPickerView()
     private let okButton = UIButton().then {
-        $0.setTitle("確認".localized(), for: .normal)
+        $0.setTitle(NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"), for: .normal)
         $0.setTitleColor(UILabel().textColor, for: .normal)
         $0.backgroundColor = .systemBackground
     }
