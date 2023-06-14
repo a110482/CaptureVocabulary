@@ -56,7 +56,7 @@ class VocabularyViewController: UIViewController {
     }()
     private let translateResultView = TranslateResultView()
     private let saveButton = UIButton().then {
-        $0.setTitle("添加".localized(), for: .normal)
+        $0.setTitle(NSLocalizedString("VocabularyViewController.add", comment: "添加"), for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 20)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColorHex = "3D5CFF"
@@ -107,18 +107,18 @@ class VocabularyViewController: UIViewController {
     
     private func showEditListNameAlert() {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alertVC.title = "請輸入新的清單名稱".localized()
+        alertVC.title = NSLocalizedString("VocabularyListViewController.enterNewListName", comment: "請輸入新的清單名稱")
         alertVC.addTextField { [weak self] textField in
             guard let self = self else { return }
-            textField.text = self.viewModel?.output.vocabularyListORM.value?.name?.localized()
+            textField.text = self.viewModel?.output.vocabularyListORM.value?.name
         }
-        let ok = UIAlertAction(title: "確認".localized(),
+        let ok = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"),
                                style: .default) { [weak self] _ in
             guard let self = self else { return }
             guard let newName = alertVC.textFields?.first?.text else { return }
             self.viewModel?.setListORMName(newName)
         }
-        let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
+        let cancel = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.cancel", comment: "取消"), style: .default) { [weak self] _ in
             self?.viewModel?.cancelNewListORM()
         }
         
@@ -291,10 +291,11 @@ extension VocabularyViewController {
     }
 }
 
-extension VocabularyViewController: UITextFieldDelegate {    
+extension VocabularyViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         removeBackgroundCloseView()
         saveChanged(textField)
+        textField.resignFirstResponder()
         return true
     }
     
@@ -343,6 +344,7 @@ class TranslateResultView: UIStackView {
     }
     
     private func configUI() {
+        mainTranslate.returnKeyType = .done
         addArrangedSubviews([
             mainTranslate,
             padding(gap: 10),

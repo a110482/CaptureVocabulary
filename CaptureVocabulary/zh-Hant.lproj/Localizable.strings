@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  CaptureVocabulary
+
+  Created by Tan Elijah on 2023/6/14.
+  
+*/
+"ViewController.prepareLaunch" = "正在準備啟動...\n首次啟動可能需要更長時間";
+
+"ReviewCoordinator.feedback" = "[意見回饋]";
+"ReviewCoordinator.emailFailure" = "無法使用郵件";
+"ReviewCoordinator.setUpYourEmailAccount" = "請先設定郵件帳號";
+"ReviewCoordinator.ok" = "確定";
+
+"ReviewViewController.review" = "複習";
+"ReviewViewController.feedback" = "意見回饋";
+
+"ReviewCollectionViewCell.addNewWords" = "你的單字屋, 快去新增單字吧";
+
+"TabBarCoordinator.capture" = "捕捉";
+"TabBarCoordinator.review" = "複習";
+"TabBarCoordinator.flashcards" = "單字卡";
+
+"VocabularyListViewController.flashcardList" = "單字卡清單";
+"VocabularyListViewController.addNew" = "+新增";
+"VocabularyListViewController.enterNewListName" = "請輸入新的清單名稱";
+"VocabularyListViewController.cancel" = "取消";
+"VocabularyListViewController.confirm" = "確認";
+
+"CaptureVocabularyViewController.enterQuery" = "輸入查詢";
+"CaptureVocabularyViewController.search" = "查詢";
+
+"VocabularyViewController.add" = "添加";
+"VocabularyCardListORM.ORM.word" = "單字";

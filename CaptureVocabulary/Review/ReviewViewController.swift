@@ -15,6 +15,7 @@ import RxSwift
 class ReviewViewController: UIViewController {
     enum Action {
         case settingPage
+        case feedback
     }
     let action = PublishRelay<Action>()
     private static let cellGape = CGFloat(12)
@@ -26,7 +27,7 @@ class ReviewViewController: UIViewController {
         $0.spacing = 0
         $0.alignment = .center
     }
-    private let headerView = UIStackView()
+    private let headerView = UIView()
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = cellGape
@@ -89,7 +90,6 @@ class ReviewViewController: UIViewController {
 private extension ReviewViewController {
     func configUI() {
         view.backgroundColor = UIColor(hexString: "E5E5E5")
-        configTopBackground()
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -110,29 +110,46 @@ private extension ReviewViewController {
         configCollectionView()
         configExplainsTextView()
         configAdView()
+        
+        view.insertSubview(topBackgroundView, belowSubview: mainStackView)
+        configTopBackground()
     }
     
     func configTopBackground() {
-        view.addSubview(topBackgroundView)
         topBackgroundView.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
-            $0.height.equalTo(222)
+            $0.bottom.equalTo(collectionView.snp.centerY)
         }
     }
     
     func configHeaderView() {
-        headerView.axis = .horizontal
-        headerView.alignment = .center
         headerView.backgroundColor = .clear
         headerView.snp.makeConstraints {
             $0.height.equalTo(50)
-            $0.width.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(0.85)
         }
-        headerView.addArrangedSubviews([
-            UIView(),
-            gearButton(),
-            headerView.padding(gap: 20)
-        ])
+        let leftButton = gearButton()
+        headerView.addSubview(leftButton)
+        leftButton.snp.makeConstraints {
+            $0.left.centerY.equalToSuperview()
+        }
+        
+        let titleLabel = UILabel().then {
+            $0.text = NSLocalizedString("ReviewViewController.review", comment: "複習")
+            $0.font = .systemFont(ofSize: 20)
+            $0.textColor = .white
+        }
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        let rightButton = feedbackButton()
+        headerView.addSubview(rightButton)
+        rightButton.snp.makeConstraints {
+            $0.right.centerY.equalToSuperview()
+        }
+        
     }
     
     func configCollectionView() {
@@ -179,6 +196,17 @@ private extension ReviewViewController {
         gearButton.isHidden = true
         #endif
         return gearButton
+    }
+    
+    func feedbackButton() -> UIButton {
+        let feedbackButton = UIButton()
+        feedbackButton.setTitle(NSLocalizedString("ReviewViewController.feedback", comment: "意見回饋"), for: .normal)
+        feedbackButton.setTitleColor(.white, for: .normal)
+        feedbackButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.action.accept(.feedback)
+        }).disposed(by: disposeBag)
+        return feedbackButton
     }
 }
 
