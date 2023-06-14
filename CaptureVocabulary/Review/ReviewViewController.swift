@@ -135,7 +135,7 @@ private extension ReviewViewController {
         }
         
         let titleLabel = UILabel().then {
-            $0.text = "複習".localized()
+            $0.text = NSLocalizedString("ReviewViewController.review", comment: "複習")
             $0.font = .systemFont(ofSize: 20)
             $0.textColor = .white
         }
@@ -200,7 +200,7 @@ private extension ReviewViewController {
     
     func feedbackButton() -> UIButton {
         let feedbackButton = UIButton()
-        feedbackButton.setTitle("意見回饋".localized(), for: .normal)
+        feedbackButton.setTitle(NSLocalizedString("ReviewViewController.feedback", comment: "意見回饋"), for: .normal)
         feedbackButton.setTitleColor(.white, for: .normal)
         feedbackButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
