@@ -56,17 +56,17 @@ private extension ReviewCoordinator {
         }
         let mailVC = MFMailComposeViewController()
         mailVC.setToRecipients([AppParameters.shared.model.feedbackEmail])
-        mailVC.setSubject("[意見回饋]".localized())
+        mailVC.setSubject(NSLocalizedString("ReviewCoordinator.feedback", comment: "[意見回饋]"))
         viewController.present(mailVC, animated: true, completion: nil)
         mailVC.mailComposeDelegate = mailDelegator
     }
     
     func alertEmailNotSetting() {
         let alert = UIAlertController(
-            title: "無法寄信".localized(),
-            message: "請先設定郵件帳號".localized(), preferredStyle: .alert)
+            title: NSLocalizedString("ReviewCoordinator.emailFailure", comment: "無法使用郵件"),
+            message: NSLocalizedString("ReviewCoordinator.setUpYourEmailAccount", comment: "請先設定郵件帳號"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(
-            title: "確定".localized(),
+            title: NSLocalizedString("ReviewCoordinator.ok", comment: "確定"),
             style: .default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
