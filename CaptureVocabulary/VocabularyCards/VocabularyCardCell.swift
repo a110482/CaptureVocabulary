@@ -62,9 +62,7 @@ class VocabularyCardCell: UITableViewCell {
     func bind(cellModel: VocabularyCardORM.ORM) {
         self.cellModel = cellModel
         sourceLabel.text = cellModel.normalizedSource
-        Task {
-            translateLabel.text = await cellModel.normalizedTarget?.localized()
-        }
+        translateLabel.text = cellModel.normalizedTarget
         let memorized = cellModel.memorized ?? false
         memorizedSwitchButton.setActive(memorized)
     }

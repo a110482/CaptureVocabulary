@@ -33,7 +33,7 @@ class VocabularyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = "單字卡清單".localized()
+        title = NSLocalizedString("VocabularyListViewController.flashcardList", comment: "單字卡清單")
         configUI()
     }
     
@@ -41,10 +41,12 @@ class VocabularyListViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        let add = UIBarButtonItem(title: "+新增".localized(),
-                                  style: .plain,
-                                  target: self,
-                                  action: #selector(tapAddList))
+        let add = UIBarButtonItem(
+            title: NSLocalizedString("VocabularyListViewController.addNew",
+                                     comment: "+新增"),
+            style: .plain,
+            target: self,
+            action: #selector(tapAddList))
         navigationItem.leftBarButtonItems = [add]
     }
     
@@ -87,17 +89,17 @@ class VocabularyListViewController: UIViewController {
     
     private func showEditListNameAlert() {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alertVC.title = "請輸入新的清單名稱".localized()
+        alertVC.title = NSLocalizedString("VocabularyListViewController.enterNewListName", comment: "請輸入新的清單名稱")
         alertVC.addTextField { [weak self] textField in
             guard let self = self else { return }
-            textField.text = self.viewModel?.output.newVocabularyListORM.value?.name?.localized()
+            textField.text = self.viewModel?.output.newVocabularyListORM.value?.name
         }
         
-        let cancel = UIAlertAction(title: "取消".localized(), style: .default) { [weak self] _ in
+        let cancel = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.cancel", comment: "取消"), style: .default) { [weak self] _ in
             self?.viewModel?.cancelNewListORM()
         }
         
-        let ok = UIAlertAction(title: "確認".localized(),
+        let ok = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"),
                                style: .default) { [weak self] _ in
             guard let self = self else { return }
             guard let newName = alertVC.textFields?.first?.text else { return }

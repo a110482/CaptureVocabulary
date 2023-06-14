@@ -46,17 +46,15 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     func set(cellModel: VocabularyCardORM.ORM) {
         self.cellModel = cellModel
         sourceLabel.text = cellModel.normalizedSource
-        Task {
-            translateLabel.text = await cellModel.normalizedTarget?.localized()
-        }
+        translateLabel.text = cellModel.normalizedTarget
         activeSwitchButton.setActive(cellModel.memorized ?? false)
         speakerButton.setTitle(cellModel.phonetic, for: .normal)
     }
     
     private func resetToDefaultStatus() {
         activeSwitchButton.setActive(false)
-        sourceLabel.text = "word house".localized()
-        translateLabel.text = "你的單字屋, 快去新增單字吧".localized()
+        sourceLabel.text = "word house"
+        translateLabel.text = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
         speakerButton.setTitle("", for: .normal)
     }
 }
