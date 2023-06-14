@@ -11,10 +11,14 @@ import SQLite
 enum SQLCoreMigrationError: Error {
     case noMigrationScript
     
+    case test
+    
     var localizedDescription: String {
         switch self {
         case .noMigrationScript:
             return "無對應更新腳本"
+        case .test:
+            return "測試引發錯誤"
         }
     }
 }
@@ -25,7 +29,8 @@ class SQLCoreMigration {
     }
     private static let migrationScripts: [MigrationProcess] = [
         SQLCoreMigration_1(),
-        SQLCoreMigration_2()
+        SQLCoreMigration_2(),
+        SQLCoreMigration_3(),
     ]
     
     static func checkVersion(_ completion: () -> Void) throws {
@@ -88,20 +93,21 @@ class SQLCoreMigration {
 
 
 protocol MigrationProcess {
+    var dbVersionNumber: Int { get }
     func process() throws
     func updateVersionNumber()
 }
 
 extension MigrationProcess {
     func updateVersionNumber() {
-        let currentDatabaseVersion =  UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] ?? 0
-        
-        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = currentDatabaseVersion + 1
+        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = dbVersionNumber
     }
 }
 
 // 新建 db 或是拷貝舊版 db
 struct SQLCoreMigration_1: MigrationProcess {
+    let dbVersionNumber: Int = 1
+    
     func process() {
         let count = try! SQLCore.oldDatabase.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
         if count == 0 {
@@ -132,6 +138,9 @@ struct SQLCoreMigration_1: MigrationProcess {
 // 新增音標到單字庫裡
 struct SQLCoreMigration_2: MigrationProcess {
     typealias Card = VocabularyCardORM
+    
+    let dbVersionNumber: Int = 2
+    
     func process() {
         do {
             try addColumn()
@@ -161,3 +170,23 @@ struct SQLCoreMigration_2: MigrationProcess {
         }
     }
 }
+
+// 本地化資料庫內容
+struct SQLCoreMigration_3: MigrationProcess {
+    typealias Card = VocabularyCardORM
+    
+    let dbVersionNumber: Int = 3
+    
+    func process() throws {
+        guard let cards = Card.prepare(Card.table) else {
+            return
+        }
+        for card in cards {
+            var cardCopy = card
+            cardCopy.normalizedTarget = card.normalizedTarget?.localized()
+            cardCopy.update()
+        }
+    }
+}
+
+extension String: Error {}
