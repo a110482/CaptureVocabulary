@@ -18,18 +18,13 @@ class TabBarCoordinator: Coordinator<UIViewController> {
     override func start() {
         guard !started else { return }
         viewController = TabBarViewController()
-        viewController.viewControllers = [
+        viewController.setViewControllers([
             vocabularyList(),
             review(),
             captureVocabulary(),
-        ]
+        ], animated: false)
         super.start()
         present(viewController: viewController, animated: false)
-        #if block//DEBUG
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.viewController.selectedIndex = 2
-        }
-        #endif
     }
     
     private func captureVocabulary() -> UIViewController {
@@ -68,8 +63,8 @@ class TabBarCoordinator: Coordinator<UIViewController> {
 class TabBarViewController: UITabBarController {
     override var shouldAutorotate: Bool { false }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         selectedIndex = 1
     }
     

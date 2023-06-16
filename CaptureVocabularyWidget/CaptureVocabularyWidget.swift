@@ -11,6 +11,20 @@ import Intents
 
 struct CaptureVocabularyWidget: Widget {
     let kind: String = "CaptureVocabularyWidget"
+    var families: [WidgetFamily] {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [
+                .systemSmall,
+                .systemMedium,
+                .accessoryRectangular,
+            ]
+        } else {
+            return [
+                .systemSmall,
+                .systemMedium,
+            ]
+        }
+    }
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: CaptureVocabularyWidgetProvider()) { entry in
@@ -18,6 +32,7 @@ struct CaptureVocabularyWidget: Widget {
         }
         .configurationDisplayName("WordHouse")
         .description("隨時複習單字")
+        .supportedFamilies(families)
     }
 }
 
