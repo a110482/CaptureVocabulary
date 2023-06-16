@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
             [ "cb559a1d2a23be3dcf18b870e5ff9c2d" ]
         #endif
-        
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
         return true
