@@ -100,6 +100,7 @@ class VocabularyViewModel {
         cardObj.normalizedSource = vocabulary
         cardObj.normalizedTarget = translate
         cardObj.cardListId = cardListId
+        cardObj.phonetic = output.translateData.value?.phonetic
         VocabularyCardORM.create(cardObj)
         guard var listObj = output.vocabularyListORM.value else { return }
         listObj.timestamp = Date().timeIntervalSince1970

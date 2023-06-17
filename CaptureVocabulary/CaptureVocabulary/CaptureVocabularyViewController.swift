@@ -182,16 +182,14 @@ extension CaptureVocabularyViewController {
             $0.height.equalTo(40)
             $0.width.equalToSuperview().multipliedBy(0.7)
         }
-        Task {
-            queryStringTextField.placeholder = await "輸入查詢".localized()
-        }
+        
+        queryStringTextField.placeholder = NSLocalizedString("CaptureVocabularyViewController.enterQuery", comment: "輸入查詢")
+        
     }
     
     func configQueryButton() {
-        Task {
-            let title = await "查詢".localized()
-            queryButton.setTitle(title, for: .normal)
-        }
+        let title = NSLocalizedString("CaptureVocabularyViewController.search", comment: "查詢")
+        queryButton.setTitle(title, for: .normal)
         
         queryButton.backgroundColorHex = "3D5CFF"
         queryButton.cornerRadius = 5

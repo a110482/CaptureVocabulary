@@ -28,8 +28,6 @@
 		C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */; };
 		C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */; };
 		C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06078E229E7FAE000434A2E /* Assets.xcassets */; };
-		C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
-		C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */; };
 		C06078E929E7FAE000434A2E /* CaptureVocabularyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */; };
 		C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
@@ -100,11 +98,17 @@
 		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
+		C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
+		C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
 		C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
 		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
+		C0EA89682A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
+		C0EA89692A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
+		C0EA896C2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
+		C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
@@ -241,12 +245,13 @@
 		C06078D829E7FADF00434A2E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetBundle.swift; sourceTree = "<group>"; };
 		C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidget.swift; sourceTree = "<group>"; };
-		C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
 		C06078E229E7FAE000434A2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06078E429E7FAE000434A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
 		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C0A974D72A121E0400196064 /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
+		C0A974DC2A15C9FD00196064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
+		C0A974DF2A15CA0400196064 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CaptureVocabularyWidget.strings; sourceTree = "<group>"; };
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -254,6 +259,20 @@
 		C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewController.swift; sourceTree = "<group>"; };
 		C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabularyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C0D3B04A29F10B2200634C6F /* CaptureVocabulary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabulary.entitlements; sourceTree = "<group>"; };
+		C0EA896A2A399E990089C360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0EA896E2A399E9E0089C360 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C0EA89702A399ECA0089C360 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		C0EA89712A399ECA0089C360 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C0EA89722A399ECA0089C360 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0EA89732A399ECA0089C360 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0EA89742A399ED10089C360 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C0EA89752A399ED10089C360 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C0EA89762A399ED10089C360 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0EA89772A399ED10089C360 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0EA89782A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
+		C0EA89792A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C0EA897A2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C0EA897B2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -398,7 +417,7 @@
 				C06078DB29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift */,
 				C06078DF29E7FADF00434A2E /* CaptureVocabularyWidget.swift */,
 				C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */,
-				C06078E129E7FADF00434A2E /* CaptureVocabularyWidget.intentdefinition */,
+				C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */,
 				C06078E229E7FAE000434A2E /* Assets.xcassets */,
 				C06078E429E7FAE000434A2E /* Info.plist */,
 			);
@@ -592,6 +611,8 @@
 				F5CBF58E281571510088C801 /* Components */,
 				F5E6603428311BD400277222 /* Settings */,
 				C001389129C83AAC00D2E4BA /* DevSuport */,
+				C0EA896B2A399E990089C360 /* Localizable.strings */,
+				C0EA896F2A399E9E0089C360 /* InfoPlist.strings */,
 			);
 			path = CaptureVocabulary;
 			sourceTree = "<group>";
@@ -755,6 +776,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
+				"zh-HK",
 			);
 			mainGroup = F5C2005C28071DE200A3AAB6;
 			packageReferences = (
@@ -784,6 +808,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */,
+				C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */,
+				C0EA89692A399E990089C360 /* Localizable.strings in Resources */,
 				C0297F112A039CC3000F4A71 /* Resource.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,6 +823,7 @@
 				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
 				F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */,
 				C0F413B729FA5BD500378E17 /* Release.xcconfig in Resources */,
+				C0EA896C2A399E9E0089C360 /* InfoPlist.strings in Resources */,
 				C0297F102A039CC3000F4A71 /* Resource.zip in Resources */,
 				C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
@@ -805,6 +832,7 @@
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
 				C0F413B229FA5BCB00378E17 /* appParametersUat.plist in Resources */,
+				C0EA89682A399E990089C360 /* Localizable.strings in Resources */,
 				C0F413CE29FBAB2600378E17 /* GoogleService-Info-release.plist in Resources */,
 				C0F413B629FA5BD500378E17 /* Debug.xcconfig in Resources */,
 			);
@@ -1015,7 +1043,7 @@
 				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
-				C06078E529E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
@@ -1067,7 +1095,7 @@
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
-				C06078E629E7FAE000434A2E /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
@@ -1122,10 +1150,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0A974DC2A15C9FD00196064 /* Base */,
+				C0A974DF2A15CA0400196064 /* en */,
+			);
+			name = CaptureVocabularyWidget.intentdefinition;
+			sourceTree = "<group>";
+		};
+		C0EA896B2A399E990089C360 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA896A2A399E990089C360 /* en */,
+				C0EA89722A399ECA0089C360 /* zh-Hans */,
+				C0EA89762A399ED10089C360 /* zh-Hant */,
+				C0EA897A2A399ED40089C360 /* zh-HK */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C0EA896F2A399E9E0089C360 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0EA896E2A399E9E0089C360 /* en */,
+				C0EA89732A399ECA0089C360 /* zh-Hans */,
+				C0EA89772A399ED10089C360 /* zh-Hant */,
+				C0EA897B2A399ED40089C360 /* zh-HK */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		F5C2006E28071DE200A3AAB6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F5C2006F28071DE200A3AAB6 /* Base */,
+				C0EA89702A399ECA0089C360 /* zh-Hans */,
+				C0EA89742A399ED10089C360 /* zh-Hant */,
+				C0EA89782A399ED40089C360 /* zh-HK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1134,6 +1196,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5C2007428071DE400A3AAB6 /* Base */,
+				C0EA89712A399ECA0089C360 /* zh-Hans */,
+				C0EA89752A399ED10089C360 /* zh-Hant */,
+				C0EA89792A399ED40089C360 /* zh-HK */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1203,7 +1268,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1237,7 +1302,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1253,6 +1318,7 @@
 			baseConfigurationReference = C0F413B529FA5BD500378E17 /* Uat.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1332,7 +1398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.19;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1384,7 +1450,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.16;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1401,6 +1467,7 @@
 			baseConfigurationReference = C0F413B329FA5BD500378E17 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1463,6 +1530,7 @@
 			baseConfigurationReference = C0F413B429FA5BD500378E17 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1543,7 +1611,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.19;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1581,7 +1649,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.19;
+				MARKETING_VERSION = 1.0.21;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

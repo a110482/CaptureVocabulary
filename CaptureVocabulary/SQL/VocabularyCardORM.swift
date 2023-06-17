@@ -150,7 +150,7 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
     
     static func newList() -> Self? {
         let dateString = Date().string(withFormat: "yyyy/MM/dd")
-        var defaultName = "單字".localized() + dateString
+        var defaultName = NSLocalizedString("VocabularyCardListORM.ORM.word", comment: "單字") + dateString
         let defaultNameScalar = ORMModel.table.filter(ORMModel.name.like("\(defaultName)%")).count
         let count = ORMModel.scalar(defaultNameScalar, type: Int.self) ?? 0
         if count > 0 {

@@ -18,25 +18,20 @@ class TabBarCoordinator: Coordinator<UIViewController> {
     override func start() {
         guard !started else { return }
         viewController = TabBarViewController()
-        viewController.viewControllers = [
+        viewController.setViewControllers([
             vocabularyList(),
             review(),
             captureVocabulary(),
-        ]
+        ], animated: false)
         super.start()
         present(viewController: viewController, animated: false)
-        #if block//DEBUG
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.viewController.selectedIndex = 2
-        }
-        #endif
     }
     
     private func captureVocabulary() -> UIViewController {
         let coordinator = CaptureVocabularyCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
-            title: "捕捉".localized(),
+            title: NSLocalizedString("TabBarCoordinator.capture", comment: "捕捉"),
             image: UIImage(systemName: "camera.on.rectangle"),
             tag: 2)
         return coordinator.viewController
@@ -46,7 +41,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         let coordinator = ReviewCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
-            title: "複習".localized(),
+            title: NSLocalizedString("TabBarCoordinator.review", comment: "複習"),
             image: UIImage(systemName: "doc.text"),
             tag: 1)
         return coordinator.viewController
@@ -56,7 +51,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         let coordinator = VocabularyListCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
-            title: "單字卡".localized(),
+            title: NSLocalizedString("TabBarCoordinator.flashcards", comment: "單字卡"),
             image: UIImage(systemName: "list.bullet.indent"),
             tag: 0)
         return coordinator.viewController
@@ -68,8 +63,8 @@ class TabBarCoordinator: Coordinator<UIViewController> {
 class TabBarViewController: UITabBarController {
     override var shouldAutorotate: Bool { false }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         selectedIndex = 1
     }
     
