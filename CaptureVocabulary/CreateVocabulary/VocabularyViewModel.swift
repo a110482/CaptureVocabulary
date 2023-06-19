@@ -89,7 +89,7 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
-        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation() else {
+        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation()?.localized() else {
             return
         }
         guard let vocabulary = `inout`.vocabulary.value,
