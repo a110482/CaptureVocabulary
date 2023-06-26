@@ -7,3 +7,4 @@
 */
 "CFBundleDisplayName" = "WordeHouse";
 "NSUserTrackingUsageDescription" = "This identifier will be used to deliver personalized ads to you.";
+"NSCameraUsageDescription" = "This app uses the camera to scan words.";
