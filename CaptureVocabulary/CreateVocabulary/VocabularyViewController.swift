@@ -319,6 +319,11 @@ class TranslateResultView: UIStackView {
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
     }
+    private let noDataIcon = UIImageView().then {
+        $0.isHidden = true
+        $0.image = UIImage(systemName: "exclamationmark.triangle")
+        $0.tintColor = .gray
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -341,7 +346,9 @@ class TranslateResultView: UIStackView {
         mainTranslate.text = model?.getMainTranslation()?.localized()
         mainTranslate.updateUnderLineColor()
         translateTextView.config(model: model)
+        noDataIcon.isHidden = (model != nil)
     }
+    
     
     private func configUI() {
         mainTranslate.returnKeyType = .done
@@ -352,6 +359,13 @@ class TranslateResultView: UIStackView {
         ])
         translateTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
+        }
+        
+        addSubview(noDataIcon)
+        noDataIcon.snp.makeConstraints {
+            $0.center.equalTo(translateTextView)
+            $0.left.equalTo(80)
+            $0.width.equalTo(noDataIcon.snp.height)
         }
     }
 }

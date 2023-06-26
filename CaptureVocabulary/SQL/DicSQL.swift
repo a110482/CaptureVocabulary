@@ -65,9 +65,28 @@ struct StarDictORM {
                   !translation.isEmpty else { return nil }
             guard let firstLine = translation.split(separator: "\n").first else { return nil }
             guard let firstWord = firstLine.split(whereSeparator: {
-                return [",", ";"].contains($0)
+                return [",", ";", "；"].contains($0)
             }).first else { return nil }
-            return String(firstWord)
+            // 移除括號內文字 ex: abc(def) => abc
+            var refineWord = refineWords(source: String(firstWord))
+            print(">>>", refineWord)
+            return refineWord
+        }
+        
+        // 移除括號內文字 ex: abc(def) => abc
+        private func refineWords(source: String) -> String {
+            var refineWord = ""
+            var isRemove = false
+            for char in source {
+                if ["(", "（", "["].contains(char) {
+                    isRemove = true
+                } else if [")", "）", "]"].contains(char) {
+                    isRemove = false
+                } else if !isRemove {
+                    refineWord.append(char)
+                }
+            }
+            return refineWord
         }
     }
     

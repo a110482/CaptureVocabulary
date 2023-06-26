@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMobileAds
+import AppTrackingTransparency
 
 protocol AdSimpleBannerPowered: UIViewController {
     var placeholder: UIView? { get }
@@ -50,6 +51,9 @@ final class AdsManager : NSObject {
     }
 
     private func setupSimpleBannerAdsIfPossible() {
+        if ATTrackingManager.trackingAuthorizationStatus != .authorized {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+        }
         assert(self.bannerView != nil, "WTF: simple banner has not been configured (call Ads.configure() before any usage)!")
         if let root = rootViewController as? AdSimpleBannerPowered {
             if let banner = self.bannerView {
