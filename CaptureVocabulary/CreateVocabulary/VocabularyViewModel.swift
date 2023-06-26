@@ -41,16 +41,19 @@ class VocabularyViewModel {
     
     func sentQueryRequest() {
         guard let vocabulary = `inout`.vocabulary.value else { return }
-        guard let result = StarDictORM.query(word: vocabulary) else { return }
+        // nil 表示查不到資料, 要顯示無資料畫面
+        let result = StarDictORM.query(word: vocabulary)
         updateData(model: result)
     }
     
-    private func updateData(model: StarDictORM.ORM) {
-        setNormalizedSource(model)
+    private func updateData(model: StarDictORM.ORM?) {
         output.translateData.accept(model)
-        if let phonetic = model.phonetic {
-            output.phonetic.accept("\(phonetic)")
+        guard let model else {
+            output.phonetic.accept("")
+            return
         }
+        setNormalizedSource(model)
+        output.phonetic.accept(model.phonetic ?? "")
     }
     
     // 建立新的清單
@@ -89,7 +92,7 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
-        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation() else {
+        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation()?.localized() else {
             return
         }
         guard let vocabulary = `inout`.vocabulary.value,
