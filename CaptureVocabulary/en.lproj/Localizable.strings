@@ -5,3 +5,30 @@
   Created by Tan Elijah on 2023/6/14.
   
 */
+"ViewController.prepareLaunch" = "Preparing to Launch...\nFirst launch may take longer";
+
+"ReviewCoordinator.feedback" = "[Feedback]";
+"ReviewCoordinator.emailFailure" = "Unable to Use Email";
+"ReviewCoordinator.setUpYourEmailAccount" = "Please Set Up Your Email Account";
+"ReviewCoordinator.ok" = "OK";
+
+"ReviewViewController.review" = "Review";
+"ReviewViewController.feedback" = "Feedback";
+
+"ReviewCollectionViewCell.addNewWords" = "Your Word House, Add New Words Now";
+
+"TabBarCoordinator.capture" = "Capture";
+"TabBarCoordinator.review" = "Review";
+"TabBarCoordinator.flashcards" = "Flashcards";
+
+"VocabularyListViewController.flashcardList" = "Flashcard List";
+"VocabularyListViewController.addNew" = "+ Add New";
+"VocabularyListViewController.enterNewListName" = "Enter New List Name";
+"VocabularyListViewController.cancel" = "Cancel";
+"VocabularyListViewController.confirm" = "Confirm";
+
+"CaptureVocabularyViewController.enterQuery" = "Enter Query";
+"CaptureVocabularyViewController.search" = "Search";
+
+"VocabularyViewController.add" = "Add";
+"VocabularyCardListORM.ORM.word" = "Word";
