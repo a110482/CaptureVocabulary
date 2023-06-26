@@ -1385,7 +1385,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1598,7 +1598,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1636,7 +1635,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSCameraUsageDescription = "調用相機掃描單字";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
