@@ -6,3 +6,4 @@
   
 */
 "CFBundleDisplayName" = "单字屋";
+"NSUserTrackingUsageDescription" = "应用追踪您的用户ID，以用于个人化广告";
