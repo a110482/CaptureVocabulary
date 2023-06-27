@@ -31,8 +31,8 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         let coordinator = CaptureVocabularyCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
-            title: NSLocalizedString("TabBarCoordinator.capture", comment: "捕捉"),
-            image: UIImage(systemName: "camera.on.rectangle"),
+            title: NSLocalizedString("TabBarCoordinator.scan", comment: "掃單字"),
+            image: UIImage(named: "tabBar.scan"),
             tag: 2)
         return coordinator.viewController
     }
@@ -42,7 +42,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("TabBarCoordinator.review", comment: "複習"),
-            image: UIImage(systemName: "doc.text"),
+            image: UIImage(named: "tabBar.review"),
             tag: 1)
         return coordinator.viewController
     }
@@ -51,8 +51,8 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         let coordinator = VocabularyListCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
         coordinator.viewController.tabBarItem = UITabBarItem(
-            title: NSLocalizedString("TabBarCoordinator.flashcards", comment: "單字卡"),
-            image: UIImage(systemName: "list.bullet.indent"),
+            title: NSLocalizedString("TabBarCoordinator.flashcards", comment: "單字庫"),
+            image: UIImage(named: "tabBar.flashCards"),
             tag: 0)
         return coordinator.viewController
     }
