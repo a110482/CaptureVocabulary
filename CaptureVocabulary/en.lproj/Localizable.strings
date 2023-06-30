@@ -17,7 +17,7 @@
 
 "ReviewCollectionViewCell.addNewWords" = "Your Word House, Add New Words Now";
 
-"TabBarCoordinator.capture" = "Capture";
+"TabBarCoordinator.scan" = "Scan";
 "TabBarCoordinator.review" = "Review";
 "TabBarCoordinator.flashcards" = "Flashcards";
 

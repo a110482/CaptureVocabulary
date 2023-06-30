@@ -17,9 +17,9 @@
 
 "ReviewCollectionViewCell.addNewWords" = "你的單字屋, 快去新增單字吧";
 
-"TabBarCoordinator.capture" = "捕捉";
+"TabBarCoordinator.scan" = "掃單字";
 "TabBarCoordinator.review" = "複習";
-"TabBarCoordinator.flashcards" = "單字卡";
+"TabBarCoordinator.flashcards" = "單字庫";
 
 "VocabularyListViewController.flashcardList" = "單字卡清單";
 "VocabularyListViewController.addNew" = "+新增";
