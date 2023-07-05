@@ -1,16 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "Frame 97.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Search Folder@2x.png",
+      "filename" : "Frame 97@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Search Folder@3x.png",
+      "filename" : "Frame 97@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
