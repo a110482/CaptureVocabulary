@@ -21,7 +21,7 @@
 "TabBarCoordinator.review" = "複習";
 "TabBarCoordinator.flashcards" = "單字庫";
 
-"VocabularyListViewController.flashcardList" = "單字卡清單";
+"VocabularyListViewController.flashcards" = "單字庫";
 "VocabularyListViewController.addNew" = "+新增";
 "VocabularyListViewController.enterNewListName" = "請輸入新的清單名稱";
 "VocabularyListViewController.cancel" = "取消";
