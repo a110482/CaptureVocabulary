@@ -33,7 +33,7 @@ class VocabularyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = NSLocalizedString("VocabularyListViewController.flashcardList", comment: "單字卡清單")
+        title = NSLocalizedString("VocabularyListViewController.flashcards", comment: "單字庫")
         configUI()
     }
     

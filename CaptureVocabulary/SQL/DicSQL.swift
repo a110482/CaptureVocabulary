@@ -69,7 +69,6 @@ struct StarDictORM {
             }).first else { return nil }
             // 移除括號內文字 ex: abc(def) => abc
             var refineWord = refineWords(source: String(firstWord))
-            print(">>>", refineWord)
             return refineWord
         }
         
