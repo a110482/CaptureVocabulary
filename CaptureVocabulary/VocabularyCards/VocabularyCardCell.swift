@@ -95,6 +95,7 @@ private extension VocabularyCardCell {
             secondLineStack,
             mainStack.padding(gap: 5),
         ])
+        mainStack.addSubview(speakerButton)
         
         configFirstLineStackView()
         configSecondLineStackView()
@@ -129,16 +130,16 @@ private extension VocabularyCardCell {
         secondLineStack.axis = .horizontal
         secondLineStack.addArrangedSubviews([
             firstLineStack.padding(gap: 20),
-            translateLabel,
-            speakerButton,
-            firstLineStack.padding(gap: 20),
+            translateLabel
         ])
     }
     
     func configSpeakerButton() {
         speakerButton.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
         speakerButton.snp.makeConstraints {
-            $0.height.equalTo(24)
+            $0.size.equalTo(24)
+            $0.right.equalTo(-24)
+            $0.centerY.equalToSuperview()
         }
     }
     
