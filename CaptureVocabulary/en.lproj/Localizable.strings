@@ -21,7 +21,7 @@
 "TabBarCoordinator.review" = "Review";
 "TabBarCoordinator.flashcards" = "Flashcards";
 
-"VocabularyListViewController.flashcardList" = "Flashcard List";
+"VocabularyListViewController.flashcards" = "Flashcard List";
 "VocabularyListViewController.addNew" = "+ Add New";
 "VocabularyListViewController.enterNewListName" = "Enter New List Name";
 "VocabularyListViewController.cancel" = "Cancel";
