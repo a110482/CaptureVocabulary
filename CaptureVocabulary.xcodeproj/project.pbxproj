@@ -233,6 +233,7 @@
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
 		C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		C0225DB42A7A342900AF693D /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		C0297F092A03939D000F4A71 /* DicSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicSQL.swift; sourceTree = "<group>"; };
 		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -557,6 +558,7 @@
 		F5C2005C28071DE200A3AAB6 = {
 			isa = PBXGroup;
 			children = (
+				C0225DB42A7A342900AF693D /* Gemfile */,
 				C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */,
 				F5C2006728071DE200A3AAB6 /* CaptureVocabulary */,
 				C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */,
