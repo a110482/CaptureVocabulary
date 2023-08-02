@@ -218,3 +218,8 @@ xcuserdata/
 Pods
 xcshareddata
 CaptureVocabulary.xcworkspace
+vendor
+.bundle
+*.ipa
+fastlane/report.xml
+fastlane/README.md
