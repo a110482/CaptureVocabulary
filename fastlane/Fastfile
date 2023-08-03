@@ -18,6 +18,7 @@ default_platform(:ios)
 platform :ios do
     desc "Description of what the lane does"
     lane :uat do
+	sh 'git reset –hard'
         sh 'git checkout uat'
         git_pull
         cocoapods(repo_update: false)
@@ -29,6 +30,7 @@ platform :ios do
     end
   
     lane :dev do
+	sh 'git reset –hard'
         sh 'git checkout dev'
         git_pull
         cocoapods(repo_update: false)
