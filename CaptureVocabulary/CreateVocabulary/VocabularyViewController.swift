@@ -79,15 +79,13 @@ class VocabularyViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyViewModel) {
         self.viewModel = viewModel
-        viewModel.inout.vocabulary.subscribe(onNext: { [weak self] text in
+        viewModel.output.vocabulary.drive(onNext: { [weak self] text in
             guard let self = self else { return }
             self.sourceTextField.text = text
             self.sourceTextField.updateUnderLineColor()
         }).disposed(by: disposeBag)
-    
-        sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
-        viewModel.output.translateData.subscribe(onNext: { [weak self] translateData in
+        viewModel.output.translateData.drive(onNext: { [weak self] translateData in
             guard let self = self else { return }
             self.translateResultView.config(model: translateData)
         }).disposed(by: disposeBag)
@@ -236,6 +234,7 @@ extension VocabularyViewController {
     
     private func saveChanged(_ textField: UITextField) {
         if textField === sourceTextField {
+            viewModel?.set(vocabulary: textField.text ?? "")
             viewModel?.sentQueryRequest()
         } else if textField === translateResultView.mainTranslate {
             viewModel?.input.customTranslate.accept(textField.text)
