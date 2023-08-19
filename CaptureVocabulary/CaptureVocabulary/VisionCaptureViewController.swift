@@ -57,8 +57,8 @@ class VisionCaptureViewController: UIViewController {
     
     private var timer: DispatchSourceTimer? = nil
     
-    private var device: AVCaptureDevice? {
-        AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+    static private var device: AVCaptureDevice? {
+        AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: .back)
     }
     
     private var currentVideoZoomFactor: CGFloat = 1
@@ -85,7 +85,7 @@ class VisionCaptureViewController: UIViewController {
     }
     
     private let avInput: AVCaptureDeviceInput? = {
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+        guard let device = VisionCaptureViewController.device else {
             return nil
         }
         guard let avInput = try? AVCaptureDeviceInput(device: device) else {
@@ -136,7 +136,7 @@ class VisionCaptureViewController: UIViewController {
     private func focusPoint() {
         do {
             let focusPoint = CGPoint(x: 0.5, y: 0.5)
-            guard let device = device else {
+            guard let device = Self.device else {
                 return
             }
             
@@ -208,8 +208,8 @@ private extension VisionCaptureViewController {
     }
     
     func zoom(videoZoomFactor: CGFloat) {
-        guard videoZoomFactor >= 1, videoZoomFactor < 5 else { return }
-        guard let device = device else { return }
+        guard videoZoomFactor >= 1, videoZoomFactor < 20 else { return }
+        guard let device = Self.device else { return }
         do {
             try device.lockForConfiguration()
             device.videoZoomFactor = videoZoomFactor
@@ -261,7 +261,7 @@ private extension VisionCaptureViewController {
         }
     }
     
-    // 停止鏡頭
+    // 啟動鏡頭
     func setupInputAndOutput(){
         guard let avInput = avInput else {
             return
@@ -275,7 +275,7 @@ private extension VisionCaptureViewController {
         videoOutput.connections.first?.videoOrientation = .portrait
     }
     
-    // 啟動鏡頭
+    // 停止鏡頭
     func dismissInputAndOutput() {
         guard let avInput = avInput else {
             return
@@ -316,7 +316,7 @@ private extension VisionCaptureViewController {
         cameraView.addGestureRecognizer(pinch)
         pinch.rx.event.subscribe(onNext: { [weak self] recognizer in
             guard let self = self else { return }
-            guard let device = self.device else { return }
+            guard let device = Self.device else { return }
             switch recognizer.state {
             case .began:
                 self.currentVideoZoomFactor = device.videoZoomFactor
