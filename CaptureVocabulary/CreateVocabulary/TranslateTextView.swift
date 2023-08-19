@@ -66,7 +66,7 @@ class TranslateTextView: UITextView {
             currentY += lineHeight + lineSpacing
         }
         
-        while currentX < self.bounds.height {
+        while currentX < self.bounds.width {
             linePath.move(to: CGPoint(x: currentX, y: 0))
             linePath.addLine(to: CGPoint(x: currentX, y: self.bounds.height))
             currentX += lineHeight + lineSpacing
