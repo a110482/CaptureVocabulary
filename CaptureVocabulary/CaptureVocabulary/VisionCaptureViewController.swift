@@ -16,6 +16,7 @@ import RxSwift
 class VisionCaptureViewController: UIViewController {
     enum Action {
         case identifyText(observations: [VNRecognizedTextObservation])
+        case videoZoomFactorChanged(factor: CGFloat)
     }
     
     let action = PublishRelay<Action>()
@@ -79,14 +80,14 @@ class VisionCaptureViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadQueue.async {
-            self.setupInputAndOutput()
+            self.captureSession.startRunning()
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         loadQueue.async {
-            self.dismissInputAndOutput()
+            self.captureSession.stopRunning()
         }
     }
     
@@ -115,6 +116,11 @@ class VisionCaptureViewController: UIViewController {
     
     func stopAutoFocus() {
         timer?.cancel()
+    }
+    
+    func setCurrentVideoZoomFactor(factor: CGFloat) {
+        currentVideoZoomFactor = factor
+        zoom(videoZoomFactor: currentVideoZoomFactor)
     }
 
     private func recognizeTextInImage(_ image: UIImage, req: VNRecognizeTextRequest) {
@@ -216,7 +222,6 @@ private extension VisionCaptureViewController {
     }
     
     func zoom(videoZoomFactor: CGFloat) {
-        guard videoZoomFactor >= 1, videoZoomFactor < 20 else { return }
         guard let device = self.device else { return }
         do {
             try device.lockForConfiguration()
@@ -283,15 +288,6 @@ private extension VisionCaptureViewController {
         videoOutput.connections.first?.videoOrientation = .portrait
     }
     
-    // 停止鏡頭
-    func dismissInputAndOutput() {
-        guard let avInput = avInput else {
-            return
-        }
-        captureSession.removeInput(avInput)
-        captureSession.removeOutput(videoOutput)
-    }
-    
     // 預覽
     func setupPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -330,7 +326,9 @@ private extension VisionCaptureViewController {
                 self.currentVideoZoomFactor = device.videoZoomFactor
             case .changed:
                 let newFactor = self.currentVideoZoomFactor * recognizer.scale
-                self.zoom(videoZoomFactor: newFactor)
+                let factor = min(20, max(1, newFactor))
+                self.zoom(videoZoomFactor: factor)
+                self.action.accept(.videoZoomFactorChanged(factor: factor))
             default:
                 break
             }
