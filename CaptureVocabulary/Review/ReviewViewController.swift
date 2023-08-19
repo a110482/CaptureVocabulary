@@ -154,7 +154,7 @@ private extension ReviewViewController {
     
     func configCollectionView() {
         collectionView.snp.makeConstraints {
-            $0.height.equalTo(140)
+            $0.height.equalTo(view.snp.height).multipliedBy(0.2)
             $0.width.equalToSuperview()
         }
         collectionView.backgroundColor = .clear
