@@ -11,16 +11,15 @@ import RxSwift
 
 // MARK: - ViewModel
 class VocabularyViewModel {
-    struct Inout {
-        let vocabulary = BehaviorRelay<String?>(value: nil)
-    }
-    let `inout` = Inout()
-    
     struct Output {
+        fileprivate let _vocabulary = BehaviorRelay<String?>(value: nil)
+        fileprivate let _translateData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
+        
         let vocabularyListORM = BehaviorRelay<VocabularyCardListORM.ORM?>(value: nil)
         let showEditListNameAlert = PublishRelay<Void>()
         let phonetic = BehaviorRelay<String>(value: "")
-        let translateData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
+        var translateData: Driver<StarDictORM.ORM?> { _translateData.asDriver() }
+        var vocabulary: Driver<String?> { _vocabulary.asDriver() }
     }
     
     let output = Output()
@@ -34,25 +33,31 @@ class VocabularyViewModel {
     private let disposeBag = DisposeBag()
     
     init(vocabulary: String) {
-        `inout`.vocabulary.accept(vocabulary)
+        set(vocabulary: vocabulary)
         sentQueryRequest()
         getVocabularyListObject()
     }
     
+    func set(vocabulary: String) {
+        output._vocabulary.accept(vocabulary.normalized)
+    }
+    
     func sentQueryRequest() {
-        guard let vocabulary = `inout`.vocabulary.value else { return }
-        // nil 表示查不到資料, 要顯示無資料畫面
-        let result = StarDictORM.query(word: vocabulary)
-        updateData(model: result)
+        output.vocabulary.drive(onNext: { [weak self] vocabulary in
+            guard let self, let vocabulary else { return }
+            // nil 表示查不到資料, 要顯示無資料畫面
+            let result = StarDictORM.query(word: vocabulary)
+            self.updateData(model: result)
+        }).dispose()
     }
     
     private func updateData(model: StarDictORM.ORM?) {
-        output.translateData.accept(model)
+        output._translateData.accept(model)
         guard let model else {
             output.phonetic.accept("")
             return
         }
-        setNormalizedSource(model)
+        set(vocabulary: model.word ?? "")
         output.phonetic.accept(model.phonetic ?? "")
     }
     
@@ -92,10 +97,10 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
-        guard let translate = input.customTranslate.value ?? output.translateData.value?.getMainTranslation()?.localized() else {
+        guard let translate = input.customTranslate.value ?? output._translateData.value?.getMainTranslation()?.localized() else {
             return
         }
-        guard let vocabulary = `inout`.vocabulary.value,
+        guard let vocabulary = output._vocabulary.value,
               let cardListId = output.vocabularyListORM.value?.id
         else { return }
         
@@ -103,15 +108,11 @@ class VocabularyViewModel {
         cardObj.normalizedSource = vocabulary
         cardObj.normalizedTarget = translate
         cardObj.cardListId = cardListId
-        cardObj.phonetic = output.translateData.value?.phonetic
+        cardObj.phonetic = output._translateData.value?.phonetic
         VocabularyCardORM.create(cardObj)
         guard var listObj = output.vocabularyListORM.value else { return }
         listObj.timestamp = Date().timeIntervalSince1970
         VocabularyCardListORM.update(listObj)
-    }
-    
-    private func setNormalizedSource(_ model: StarDictORM.ORM) {
-        `inout`.vocabulary.accept(model.word)
     }
     
     private func getVocabularyListObject() {
