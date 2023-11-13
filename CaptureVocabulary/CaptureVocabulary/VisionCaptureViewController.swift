@@ -164,7 +164,7 @@ private extension VisionCaptureViewController {
         cameraView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        cameraView.cornerRadius = 10
+        cameraView.roundCorners(.allCorners, radius: 10)
         #if block //DEBUG
         setPreviewImage()
         #endif
@@ -173,11 +173,11 @@ private extension VisionCaptureViewController {
     func makeMask() {
         isScanActive.subscribe(onNext: { [weak self] isScanActive in
             guard let self = self else { return }
-            self.mask.borderColor = isScanActive ? .red : .gray
+            self.mask.layer.borderColor = (isScanActive ? UIColor.red : UIColor.gray).cgColor
         }).disposed(by: disposeBag)
         
-        mask.cornerRadius = 10
-        mask.borderWidth = 2
+        mask.roundCorners(.allCorners, radius: 10)
+        mask.layer.borderWidth = 2
         mask.frame = identifyArea
         let plusImage = UIImage(systemName: "plus")?.withTintColor(.red, renderingMode: .alwaysOriginal)
         let plus = UIImageView(image: plusImage)
@@ -219,8 +219,8 @@ private extension VisionCaptureViewController {
 
     #if DEBUG
     func setPreviewImage() {
-        capturedImageView.borderColor = .green
-        capturedImageView.borderWidth = 2
+        capturedImageView.layer.borderColor = UIColor.green.cgColor
+        capturedImageView.layer.borderWidth = 2
         capturedImageView.backgroundColor = .gray
         capturedImageView.contentMode = .scaleAspectFit
         capturedImageView.alpha = 0.7

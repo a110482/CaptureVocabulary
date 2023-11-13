@@ -106,10 +106,10 @@ extension UIPickerViewController {
         view.addSubview(mainStack)
         mainStack.layer.cornerRadius = 10
         mainStack.layer.masksToBounds = true
-        view.shadowColor = .black
-        view.shadowOffset = CGSize(width: 0, height: -10)
-        view.shadowRadius = 20
-        view.shadowOpacity = 0.3
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: -10)
+        view.layer.shadowRadius = 20
+        view.layer.shadowOpacity = 0.3
         
         mainStack.addArrangedSubviews([
             pickerView,

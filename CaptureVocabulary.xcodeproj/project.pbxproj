@@ -730,11 +730,11 @@
 				F5C2006128071DE200A3AAB6 /* Sources */,
 				F5C2006228071DE200A3AAB6 /* Frameworks */,
 				F5C2006328071DE200A3AAB6 /* Resources */,
-				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
 				C0F413CA29FBA9E100378E17 /* copy google info plist */,
 				C0F413D329FBCF8300378E17 /* ShellScript */,
+				ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -898,23 +898,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF707AE10C723596C612977C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -957,6 +940,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -10,6 +10,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import Vision
+import SwifterSwift
 
 
 class CaptureVocabularyViewController: UIViewController {
@@ -192,7 +193,7 @@ extension CaptureVocabularyViewController {
         queryButton.setTitle(title, for: .normal)
         
         queryButton.backgroundColorHex = "3D5CFF"
-        queryButton.cornerRadius = 5
+        queryButton.roundCorners(.allCorners, radius: 5)
     }
     
     func configAdView() {
