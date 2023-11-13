@@ -8,11 +8,9 @@
 import UIKit
 import SnapKit
 import AVFoundation
-import SwifterSwift
 import Vision
 import RxCocoa
 import RxSwift
-
 
 
 class VisionCaptureViewController: UIViewController {
@@ -38,7 +36,7 @@ class VisionCaptureViewController: UIViewController {
     
     private let textRecognitionWorkQueue = DispatchQueue (label: "TextRecognitionQueue", qos: .userInteractive , attributes: [], autoreleaseFrequency: .workItem )
     
-    private var textRecognitionRequest =  VNRecognizeTextRequest (completionHandler: nil )
+    private var textRecognitionRequest = VNRecognizeTextRequest (completionHandler: nil )
     
     private var isIdentifyingImage = false
     
@@ -57,8 +55,16 @@ class VisionCaptureViewController: UIViewController {
     
     private var timer: DispatchSourceTimer? = nil
     
-    static private var device: AVCaptureDevice? {
-        AVCaptureDevice.default(.builtInTripleCamera, for: .video, position: .back)
+    private var device: AVCaptureDevice? {
+        let deviceTypes: [AVCaptureDevice.DeviceType] = [
+            .builtInTripleCamera,
+            .builtInDualWideCamera,
+            .builtInDualCamera,
+            .builtInTelephotoCamera,
+            .builtInWideAngleCamera,
+        ]
+        let session = AVCaptureDevice.DiscoverySession(deviceTypes: deviceTypes, mediaType: .video, position: .back)
+        return session.devices.first
     }
     
     private var currentVideoZoomFactor: CGFloat = 1
@@ -84,15 +90,15 @@ class VisionCaptureViewController: UIViewController {
         }
     }
     
-    private let avInput: AVCaptureDeviceInput? = {
-        guard let device = VisionCaptureViewController.device else {
+    private var avInput: AVCaptureDeviceInput? {
+        guard let device = self.device else {
             return nil
         }
         guard let avInput = try? AVCaptureDeviceInput(device: device) else {
             return nil
         }
         return avInput
-    }()
+    }
     
     func setScanActiveState(isActive: Bool) {
         isScanActive.accept(isActive)
@@ -130,13 +136,13 @@ class VisionCaptureViewController: UIViewController {
                 self.identifyImageCompletedTime = Date().timeIntervalSince1970
             }
         }
-        textRecognitionRequest.recognitionLevel = .accurate
+        textRecognitionRequest.recognitionLevel = .fast
     }
     
     private func focusPoint() {
         do {
             let focusPoint = CGPoint(x: 0.5, y: 0.5)
-            guard let device = Self.device else {
+            guard let device = self.device else {
                 return
             }
             
@@ -164,7 +170,8 @@ private extension VisionCaptureViewController {
         cameraView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        cameraView.roundCorners(.allCorners, radius: 10)
+        cameraView.layer.cornerRadius = 10
+        cameraView.layer.masksToBounds = true
         #if block //DEBUG
         setPreviewImage()
         #endif
@@ -176,7 +183,8 @@ private extension VisionCaptureViewController {
             self.mask.layer.borderColor = (isScanActive ? UIColor.red : UIColor.gray).cgColor
         }).disposed(by: disposeBag)
         
-        mask.roundCorners(.allCorners, radius: 10)
+        mask.layer.cornerRadius = 10
+        mask.layer.masksToBounds = true
         mask.layer.borderWidth = 2
         mask.frame = identifyArea
         let plusImage = UIImage(systemName: "plus")?.withTintColor(.red, renderingMode: .alwaysOriginal)
@@ -209,7 +217,7 @@ private extension VisionCaptureViewController {
     
     func zoom(videoZoomFactor: CGFloat) {
         guard videoZoomFactor >= 1, videoZoomFactor < 20 else { return }
-        guard let device = Self.device else { return }
+        guard let device = self.device else { return }
         do {
             try device.lockForConfiguration()
             device.videoZoomFactor = videoZoomFactor
@@ -287,8 +295,8 @@ private extension VisionCaptureViewController {
     // 預覽
     func setupPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = self.cameraView.layer.bounds
         cameraView.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.cameraView.layer.frame
         previewLayer.videoGravity = .resizeAspectFill
     }
     
@@ -316,7 +324,7 @@ private extension VisionCaptureViewController {
         cameraView.addGestureRecognizer(pinch)
         pinch.rx.event.subscribe(onNext: { [weak self] recognizer in
             guard let self = self else { return }
-            guard let device = Self.device else { return }
+            guard let device = self.device else { return }
             switch recognizer.state {
             case .began:
                 self.currentVideoZoomFactor = device.videoZoomFactor
