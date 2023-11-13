@@ -12,7 +12,7 @@ class TranslateTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-        cornerRadius = 5
+        roundCorners(.allCorners, radius: 5)
         textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     

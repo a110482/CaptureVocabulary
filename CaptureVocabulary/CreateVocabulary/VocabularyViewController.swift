@@ -212,19 +212,19 @@ extension VocabularyViewController {
             $0.size.equalTo(44)
         }
         
-        newListButton.cornerRadius = 5
+        newListButton.roundCorners(.allCorners, radius: 5)
         newListButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
         arrowDownButton.snp.makeConstraints {
             $0.size.equalTo(newListButton)
         }
         
-        arrowDownButton.cornerRadius = 5
+        arrowDownButton.roundCorners(.allCorners, radius: 5)
         arrowDownButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
     }
     
     private func configSaveButton() {
-        saveButton.cornerRadius = 22
+        saveButton.roundCorners(.allCorners, radius: 22)
         saveButton.clipsToBounds = true
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)

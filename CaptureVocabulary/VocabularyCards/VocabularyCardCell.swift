@@ -107,7 +107,7 @@ private extension VocabularyCardCell {
         mainStack.axis = .vertical
         mainStack.spacing = 10
         mainStack.backgroundColor = .white
-        mainStack.cornerRadius = 10
+        mainStack.roundCorners(.allCorners, radius: 10)
         mainStack.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.left.equalTo(24)
