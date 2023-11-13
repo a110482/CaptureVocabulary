@@ -193,7 +193,8 @@ extension CaptureVocabularyViewController {
         queryButton.setTitle(title, for: .normal)
         
         queryButton.backgroundColorHex = "3D5CFF"
-        queryButton.roundCorners(.allCorners, radius: 5)
+        queryButton.layer.cornerRadius = 5
+        queryButton.layer.masksToBounds = true
     }
     
     func configAdView() {

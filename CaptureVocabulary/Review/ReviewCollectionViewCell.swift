@@ -63,7 +63,8 @@ class ReviewCollectionViewCell: UICollectionViewCell {
 private extension ReviewCollectionViewCell {
     func configUI() {
         contentView.backgroundColor = .white
-        contentView.roundCorners(.allCorners, radius: 12)
+        contentView.layer.cornerRadius = 12
+        contentView.layer.masksToBounds = true
         contentView.addSubview(activeSwitchButton)
         configActiveSwitchButton()
         contentView.addSubview(mainStackView)
