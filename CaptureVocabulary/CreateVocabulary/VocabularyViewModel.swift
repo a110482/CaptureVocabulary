@@ -24,11 +24,8 @@ class VocabularyViewModel {
     
     let output = Output()
     
-    struct Input {
-        let customTranslate = BehaviorRelay<String?>(value: nil)
-    }
-    
-    let input = Input()
+    /// 自訂翻譯預設值, 給用戶編輯
+    var customTranslate: String?
     
     private let disposeBag = DisposeBag()
     
@@ -61,20 +58,20 @@ class VocabularyViewModel {
         output.phonetic.accept(model.phonetic ?? "")
     }
     
-    // 建立新的清單
+    /// 建立新的清單
     func cerateNewListORM() {
         let newORM = VocabularyCardListORM.ORM.newList()
         output.vocabularyListORM.accept(newORM)
         output.showEditListNameAlert.accept(())
     }
     
-    // 建立預設清單
+    /// 建立預設清單
     func createDefaultList() {
         guard let orm = VocabularyCardListORM.ORM.createDefaultList() else { return }
         selected(orm: orm)
     }
     
-    // 刪除當前清單
+    /// 刪除當前清單
     func cancelNewListORM() {
         output.vocabularyListORM.value?.delete()
         output.vocabularyListORM.accept(nil)
@@ -97,7 +94,7 @@ class VocabularyViewModel {
     }
     
     func saveVocabularyCard() {
-        guard let translate = input.customTranslate.value ?? output._translateData.value?.getMainTranslation()?.localized() else {
+        guard let translate = customTranslate ?? output._translateData.value?.getMainTranslation()?.localized() else {
             return
         }
         guard let vocabulary = output._vocabulary.value,
@@ -124,5 +121,42 @@ class VocabularyViewModel {
 extension VocabularyCardListORM.ORM: UIPickerViewModelProtocol {
     var title: String {
         return name ?? ""
+    }
+}
+
+
+// MARK: - EditVocabularyViewModel
+class EditVocabularyViewModel: VocabularyViewModel {
+    
+    private var cardModel: VocabularyCardORM.ORM
+    
+    init(cardModel: VocabularyCardORM.ORM) {
+        self.cardModel = cardModel
+        super.init(vocabulary: cardModel.normalizedSource ?? "")
+        customTranslate = cardModel.normalizedTarget
+    }
+    
+    //@available(*, deprecated, message: "Use init(cardModel: VocabularyCardORM.ORM) instead")
+    override init(vocabulary: String) {
+        fatalError()
+    }
+    
+    override func saveVocabularyCard() {
+        guard let translate = customTranslate ?? output._translateData.value?.getMainTranslation()?.localized() else {
+            return
+        }
+        guard let vocabulary = output._vocabulary.value,
+              let cardListId = output.vocabularyListORM.value?.id
+        else { return }
+        
+        var cardObj = cardModel
+        cardObj.normalizedSource = vocabulary
+        cardObj.normalizedTarget = translate
+        cardObj.cardListId = cardListId
+        cardObj.phonetic = output._translateData.value?.phonetic
+        VocabularyCardORM.update(cardObj)
+        guard var listObj = output.vocabularyListORM.value else { return }
+        listObj.timestamp = Date().timeIntervalSince1970
+        VocabularyCardListORM.update(listObj)
     }
 }

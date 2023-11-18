@@ -1,38 +1,33 @@
 //
-//  CreateVocabularyCoordinator.swift
+//  EditVocabularyCardsCoordinator.swift
 //  CaptureVocabulary
 //
-//  Created by 譚培成 on 2022/4/24.
+//  Created by Tan Elijah on 2023/11/18.
 //
 
-import UIKit
-import SnapKit
-import SwifterSwift
-import Vision
 import RxCocoa
 import RxSwift
-import Then
 
 
-class CreateVocabularyCoordinator: Coordinator<UIViewController> {
+class EditVocabularyCardsCoordinator: Coordinator<UIViewController> {
     enum Action {
         case dismiss
         case saved
     }
     let action = PublishRelay<Action>()
     var viewController: PopupViewController!
-    var viewModel: VocabularyViewModel!
+    var viewModel: EditVocabularyViewModel!
     private let disposeBag = DisposeBag()
     
-    private let vocabulary: String
+    private let cardModel: VocabularyCardORM.ORM
     
     /// init
     /// - Parameters:
     ///   - rootViewController: rootViewController
     ///   - vocabulary: word that you want to query
     required init(rootViewController: UIViewController,
-                  vocabulary: String) {
-        self.vocabulary = vocabulary
+                  cardModel: VocabularyCardORM.ORM) {
+        self.cardModel = cardModel
         super.init(rootViewController: rootViewController)
     }
     
@@ -46,7 +41,7 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
         super.start()
         viewController = PopupViewController()
         viewController.delegate = self
-        viewModel = VocabularyViewModel(vocabulary: vocabulary)
+        viewModel = EditVocabularyViewModel(cardModel: cardModel)
         let vc = VocabularyViewController()
         handleAction(vc)
         vc.bind(viewModel)
@@ -97,10 +92,8 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
     }
 }
 
-extension CreateVocabularyCoordinator: PopupViewControllerDelegate {
+extension EditVocabularyCardsCoordinator: PopupViewControllerDelegate {
     func tapBackground() {
         stop()
-        self.action.accept(.dismiss)
     }
 }
-
