@@ -44,7 +44,7 @@ class CaptureVocabularyCoordinator: Coordinator<UIViewController> {
             guard let self = self else { return }
             self.childActionDisposeBag = nil
             switch action {
-            case .dismiss:
+            case .dismiss, .saved:
                 self.viewController.setScanActiveState(isActive: true)
             }
         }).disposed(by: childActionDisposeBag!)

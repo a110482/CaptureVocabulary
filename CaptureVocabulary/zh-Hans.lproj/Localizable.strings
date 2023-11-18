@@ -30,5 +30,5 @@
 "CaptureVocabularyViewController.enterQuery" = "输入查询";
 "CaptureVocabularyViewController.search" = "查询";
 
-"VocabularyViewController.add" = "添加";
+"VocabularyViewController.save" = "储存";
 "VocabularyCardListORM.ORM.word" = "单字";
