@@ -100,6 +100,7 @@ class CreateVocabularyCoordinator: Coordinator<UIViewController> {
 extension CreateVocabularyCoordinator: PopupViewControllerDelegate {
     func tapBackground() {
         stop()
+        self.action.accept(.dismiss)
     }
 }
 
