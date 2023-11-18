@@ -32,7 +32,7 @@ class VocabularyCardsCoordinator: Coordinator<UINavigationController> {
             guard let self = self else { return }
             switch action {
             case .selectedCell(let cardModel):
-                presentCreateVocabularyCoordinator(cardModel: cardModel)
+                presentEditVocabularyCardsCoordinator(cardModel: cardModel)
             }
         }).disposed(by: disposeBag)
         viewModel = VocabularyCardsViewModel(selectedList: selectedList)
@@ -48,7 +48,7 @@ class VocabularyCardsCoordinator: Coordinator<UINavigationController> {
 }
 
 private extension VocabularyCardsCoordinator {
-    func presentCreateVocabularyCoordinator(cardModel: VocabularyCardORM.ORM) {
+    func presentEditVocabularyCardsCoordinator(cardModel: VocabularyCardORM.ORM) {
         let coordinator = EditVocabularyCardsCoordinator(
             rootViewController: viewController,
             cardModel: cardModel
