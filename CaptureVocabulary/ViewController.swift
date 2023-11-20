@@ -12,6 +12,7 @@ import Vision
 import RxCocoa
 import RxSwift
 import SQLite
+import AVKit
 
 struct User: Codable {
     let name: String?
@@ -46,6 +47,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { _ in })
         #if DEBUG
         devPanelButton()
         test()

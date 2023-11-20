@@ -10,6 +10,12 @@ import RxSwift
 import UIKit
 
 class VocabularyCardsViewController: UIViewController {
+    enum Action {
+        case selectedCell(cardModel: VocabularyCardORM.ORM)
+    }
+    
+    let action = PublishRelay<Action>()
+    
     private let mainStackView = UIStackView().then {
         $0.axis = .vertical
     }
@@ -105,6 +111,13 @@ extension VocabularyCardsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cellModel = cellModels[safe: indexPath.row] else {
+            fatalError("index out of range")
+        }
+        action.accept(.selectedCell(cardModel: cellModel))
+    }
 }
 
 extension VocabularyCardsViewController: DataSourceDelegate {
@@ -120,6 +133,8 @@ extension VocabularyCardORM.ORM: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(memorized)
+        hasher.combine(normalizedSource)
+        hasher.combine(normalizedTarget)
     }
     
     static func == (lhs: VocabularyCardORM.ORM, rhs: VocabularyCardORM.ORM) -> Bool {

@@ -69,7 +69,8 @@ private extension VocabularyListCell {
         contentView.addSubview(mainStack)
         
         mainStack.backgroundColor = .white
-        mainStack.cornerRadius = 10
+        mainStack.layer.cornerRadius = 10
+        mainStack.layer.masksToBounds = true
         mainStack.alignment = .center
         mainStack.snp.makeConstraints {
             $0.center.equalToSuperview()

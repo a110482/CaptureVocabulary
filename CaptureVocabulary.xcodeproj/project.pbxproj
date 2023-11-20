@@ -109,6 +109,8 @@
 		C0EA89692A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
 		C0EA896C2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
 		C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
+		C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
+		C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
@@ -274,6 +276,7 @@
 		C0EA89792A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		C0EA897A2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0EA897B2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVocabularyCardsCoordinator.swift; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -425,6 +428,14 @@
 			path = CaptureVocabularyWidget;
 			sourceTree = "<group>";
 		};
+		C0ECF88F2B08E0B900856828 /* EditVocabularyCards */ = {
+			isa = PBXGroup;
+			children = (
+				C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */,
+			);
+			path = EditVocabularyCards;
+			sourceTree = "<group>";
+		};
 		C7B333893350BF009DE1DD2F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +471,7 @@
 		F50952C228280B33000C74B0 /* VocabularyCards */ = {
 			isa = PBXGroup;
 			children = (
+				C0ECF88F2B08E0B900856828 /* EditVocabularyCards */,
 				F50952C328280B62000C74B0 /* VocabularyCardsCoordinator.swift */,
 				C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */,
 				C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */,
@@ -730,11 +742,11 @@
 				F5C2006128071DE200A3AAB6 /* Sources */,
 				F5C2006228071DE200A3AAB6 /* Frameworks */,
 				F5C2006328071DE200A3AAB6 /* Resources */,
-				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
 				C0F413CA29FBA9E100378E17 /* copy google info plist */,
 				C0F413D329FBCF8300378E17 /* ShellScript */,
+				ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -898,23 +910,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF707AE10C723596C612977C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -957,6 +952,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1024,6 +1036,7 @@
 				C060796229E805DA00434A2E /* PlistReader.swift in Sources */,
 				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
+				C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
@@ -1132,6 +1145,7 @@
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
+				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

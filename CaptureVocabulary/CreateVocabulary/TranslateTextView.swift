@@ -12,7 +12,8 @@ class TranslateTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-        cornerRadius = 5
+        layer.cornerRadius = 5
+        layer.masksToBounds = true
         textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
@@ -65,7 +66,7 @@ class TranslateTextView: UITextView {
             currentY += lineHeight + lineSpacing
         }
         
-        while currentX < self.bounds.height {
+        while currentX < self.bounds.width {
             linePath.move(to: CGPoint(x: currentX, y: 0))
             linePath.addLine(to: CGPoint(x: currentX, y: self.bounds.height))
             currentX += lineHeight + lineSpacing

@@ -10,6 +10,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import Vision
+import SwifterSwift
 
 
 class CaptureVocabularyViewController: UIViewController {
@@ -25,6 +26,8 @@ class CaptureVocabularyViewController: UIViewController {
     }
     private let capContainerView = UIView()
     private let queryStringTextField = QueryStringTextField()
+    private let sliderStackView = UIStackView()
+    private let slider = UISlider()
     private let queryButton = UIButton()
     private let versionLabel = UILabel().then {
         let appVersion = AppInfo.versino
@@ -59,6 +62,8 @@ class CaptureVocabularyViewController: UIViewController {
             switch act {
             case .identifyText(let observations):
                 viewModel?.handleObservations(observations)
+            case .videoZoomFactorChanged(let factor):
+                self.slider.value = Float(factor)
             }
         }).disposed(by: disposeBag)
         
@@ -143,6 +148,8 @@ extension CaptureVocabularyViewController {
             mainStackView.padding(gap: 20),
             queryStringTextField,
             UIView(),
+            sliderStackView,
+            mainStackView.padding(gap: 30),
             queryButton,
             mainStackView.padding(gap: 20),
             versionLabel,
@@ -152,6 +159,7 @@ extension CaptureVocabularyViewController {
         
         addCaptureViewController()
         configQueryStringTextField()
+        configSlider()
         configQueryButton()
         configAdView()
         
@@ -187,12 +195,48 @@ extension CaptureVocabularyViewController {
         
     }
     
+    func configSlider() {
+        let zoomIn = UIImageView(image: UIImage(systemName: "plus.magnifyingglass"))
+        let zoomOut = UIImageView(image: UIImage(systemName: "minus.magnifyingglass"))
+        sliderStackView.axis = .horizontal
+        sliderStackView.alignment = .center
+        sliderStackView.addArrangedSubviews([
+            zoomOut,
+            sliderStackView.padding(gap: 5),
+            slider,
+            sliderStackView.padding(gap: 5),
+            zoomIn
+        ])
+        
+        [zoomIn, zoomOut].forEach { icon in
+            icon.snp.makeConstraints { make in
+                make.size.equalTo(20)
+            }
+            icon.tintColor = .lightGray
+        }
+        
+        slider.minimumValue = 1
+        slider.maximumValue = 15
+        slider.snp.makeConstraints {
+            $0.height.equalTo(40)
+            $0.width.equalTo(view).multipliedBy(0.6)
+        }
+        
+        slider.rx.value.subscribe(onNext: { [weak self] value in
+            guard let self = self else { return }
+            let cgFloat = value.cgFloat
+            self.captureViewController.setCurrentVideoZoomFactor(factor: cgFloat)
+        }).disposed(by: disposeBag)
+        
+    }
+    
     func configQueryButton() {
         let title = NSLocalizedString("CaptureVocabularyViewController.search", comment: "查詢")
         queryButton.setTitle(title, for: .normal)
         
         queryButton.backgroundColorHex = "3D5CFF"
-        queryButton.cornerRadius = 5
+        queryButton.layer.cornerRadius = 5
+        queryButton.layer.masksToBounds = true
     }
     
     func configAdView() {
