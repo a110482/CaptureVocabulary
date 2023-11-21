@@ -17,6 +17,7 @@ class AppParameters {
         let adUnitID: String
         let versionUrl: String
         let feedbackEmail: String
+        let openApiKey: String
     }
     let model: Model
     static let shared = AppParameters()

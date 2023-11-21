@@ -111,6 +111,8 @@
 		C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
 		C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
 		C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
+		C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
+		C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
@@ -277,6 +279,7 @@
 		C0EA897A2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0EA897B2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVocabularyCardsCoordinator.swift; sourceTree = "<group>"; };
+		C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAiRequest.swift; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -436,6 +439,14 @@
 			path = EditVocabularyCards;
 			sourceTree = "<group>";
 		};
+		C0ECF8972B0B78EB00856828 /* OpenAiApi */ = {
+			isa = PBXGroup;
+			children = (
+				C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */,
+			);
+			path = OpenAiApi;
+			sourceTree = "<group>";
+		};
 		C7B333893350BF009DE1DD2F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,8 +508,9 @@
 				F53771CC2812B4D7003F892D /* Request.swift */,
 				F58A8607281411080005CD34 /* HeaderStorage.swift */,
 				F58A860C28142A110005CD34 /* RequestBuilder.swift */,
-				F58A86092814191A0005CD34 /* AzureApi */,
 				C0A974D72A121E0400196064 /* VersionCheck.swift */,
+				F58A86092814191A0005CD34 /* AzureApi */,
+				C0ECF8972B0B78EB00856828 /* OpenAiApi */,
 			);
 			path = WebLayer;
 			sourceTree = "<group>";
@@ -1007,6 +1019,7 @@
 				C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
+				C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */,
 				C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */,
 				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
 				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
@@ -1093,6 +1106,7 @@
 				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
+				C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,

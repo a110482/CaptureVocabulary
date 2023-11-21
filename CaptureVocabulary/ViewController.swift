@@ -13,6 +13,7 @@ import RxCocoa
 import RxSwift
 import SQLite
 import AVKit
+import Moya
 
 struct User: Codable {
     let name: String?
@@ -110,6 +111,18 @@ private extension ViewController {
     }
     
     func test() {
+        let query = "mandate"
+        let provider = MoyaProvider<OpenAiSentences>()
+        provider.send(request: OpenAiSentences(queryWord: query)) { result in
+            guard case .success(let model) = result else {
+                return
+            }
+            let message = model.choices.first?.message.content ?? ""
+            let messageModel = try! JSONDecoder().decode(OpenAiSentences.MessageModels.self, from: message.data(using: .utf8)!)
+            for s in messageModel.sentences {
+                print(">>>", s.sentence, "\n >>>", s.translate)
+            }
+        }
     }
 }
 #endif
@@ -143,5 +156,6 @@ func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> 
     task.resume()
     return task
 }
+
 
 
