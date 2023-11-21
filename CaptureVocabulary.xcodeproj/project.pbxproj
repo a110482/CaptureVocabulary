@@ -113,6 +113,10 @@
 		C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
 		C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
 		C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
+		C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */; };
+		C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */; };
+		C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */; };
+		C0ECF8A32B0D0B9700856828 /* SimpleSentenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
@@ -280,6 +284,8 @@
 		C0EA897B2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVocabularyCardsCoordinator.swift; sourceTree = "<group>"; };
 		C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAiRequest.swift; sourceTree = "<group>"; };
+		C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentencesORM.swift; sourceTree = "<group>"; };
+		C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentenceService.swift; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -549,6 +555,7 @@
 				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
 				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
+				C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -677,6 +684,7 @@
 				C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
+				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
 				C0297F092A03939D000F4A71 /* DicSQL.swift */,
@@ -1012,11 +1020,13 @@
 				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
 				C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */,
 				C060794429E805DA00434A2E /* VocabularyCardsViewController.swift in Sources */,
+				C0ECF8A32B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				C060794529E805DA00434A2E /* VocabularyCardCell.swift in Sources */,
 				C060794629E805DA00434A2E /* VocabularyListCoordinator.swift in Sources */,
 				C060794729E805DA00434A2E /* VocabularyListViewController.swift in Sources */,
 				C060794829E805DA00434A2E /* VocabularyListViewModel.swift in Sources */,
 				C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */,
+				C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
 				C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */,
@@ -1093,10 +1103,12 @@
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
+				C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
+				C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
