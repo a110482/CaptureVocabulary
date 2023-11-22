@@ -23,6 +23,7 @@ enum SQLCoreMigrationError: Error {
     }
 }
 
+// *** 記得修改 Plist file "lastDatabaseVersion" ***
 class SQLCoreMigration {
     private static let lastDatabaseVersion = AppParameters.shared.model.lastDatabaseVersion
     private static var currentDatabaseVersion: Int { UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] ?? 0
