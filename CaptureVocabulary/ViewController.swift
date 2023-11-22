@@ -111,18 +111,9 @@ private extension ViewController {
     }
     
     func test() {
-        let query = "mandate"
-        let provider = MoyaProvider<OpenAiSentences>()
-        provider.send(request: OpenAiSentences(queryWord: query)) { result in
-            guard case .success(let model) = result else {
-                return
-            }
-            let message = model.choices.first?.message.content ?? ""
-            let messageModel = try! JSONDecoder().decode(OpenAiSentences.MessageModels.self, from: message.data(using: .utf8)!)
-            for s in messageModel.sentences {
-                print(">>>", s.sentence, "\n >>>", s.translate)
-            }
-        }
+        print(SimpleSentenceService.shared.querySentence(queryWord: "hello"))
+        print(SimpleSentenceService.shared.querySentence(queryWord: "night"))
+        print(SimpleSentenceService.shared.querySentence(queryWord: "wish"))
     }
 }
 #endif
