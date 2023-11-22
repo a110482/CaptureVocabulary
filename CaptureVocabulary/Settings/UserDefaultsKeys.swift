@@ -14,4 +14,7 @@ enum UserDefaultsKeys {
     // 資料庫版本
     static let currentDatabaseVersion = UserDefaults.Key<Int>(
         rawValue: "currentDatabaseVersion")
+    // 單字例句下載序列
+    static let sentencesDownloadQueue = UserDefaults.Key<Array<String>>(
+    rawValue: "sentencesDownloadQueue")
 }

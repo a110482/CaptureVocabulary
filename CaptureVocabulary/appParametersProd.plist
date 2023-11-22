@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>openApiKey</key>
+	<string></string>
 	<key>feedbackEmail</key>
 	<string>capturevocabulary@gmail.com</string>
 	<key>versionUrl</key>
@@ -9,7 +11,7 @@
 	<key>adUnitID</key>
 	<string>ca-app-pub-2284881143202826/4302012328</string>
 	<key>lastDatabaseVersion</key>
-	<integer>3</integer>
+	<integer>4</integer>
 	<key>azureKey</key>
 	<string></string>
 	<key>YDSecret</key>

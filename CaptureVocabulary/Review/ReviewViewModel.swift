@@ -12,8 +12,11 @@ import RxSwift
 // MARK: -
 class ReviewViewModel {
     struct Output {
+        let _sentences = BehaviorRelay<[SimpleSentencesORM.ORM]?>(value: nil)
+        fileprivate let _dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
         let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
-        let dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
+        var dictionaryData: Driver<StarDictORM.ORM?> { _dictionaryData.asDriver() }
+        var sentences: Driver<[SimpleSentencesORM.ORM]?> { _sentences.asDriver() }
         let needReloadDate = PublishRelay<Void>()
     }
     let output = Output()
@@ -29,10 +32,15 @@ class ReviewViewModel {
     }
     private let disposeBag = DisposeBag()
     
+    init() {
+        SimpleSentenceService.shared.registerObserver(object: self)
+    }
+    
     func loadLastReadVocabularyCard() {
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
                                      animation: false))
         queryLocalDictionary()
+        querySimpleSentences()
     }
     
     func queryVocabularyCard(index: Int) -> VocabularyCardORM.ORM? {
@@ -50,6 +58,7 @@ class ReviewViewModel {
         
         // 更新字典頁面
         queryLocalDictionary()
+        querySimpleSentences()
     }
     
     /// 重新校正 index 以維持無線滾動維持在中央
@@ -75,15 +84,34 @@ class ReviewViewModel {
     
     private func queryLocalDictionary() {
         guard let cellModel = queryVocabularyCard(index: lastReadCardTableIndex) else {
-            output.dictionaryData.accept(nil)
+            output._dictionaryData.accept(nil)
+            output._sentences.accept(nil)
             return
         }
         guard let vocabulary = cellModel.normalizedSource else {
-            output.dictionaryData.accept(nil)
+            output._dictionaryData.accept(nil)
+            output._sentences.accept(nil)
             return
         }
         let response = StarDictORM.query(word: vocabulary)
-        output.dictionaryData.accept(response)
+        output._dictionaryData.accept(response)
+        if response?.word != output._sentences.value?.first?.normalizedSource {
+            output._sentences.accept(nil)
+        }
+    }
+    
+    private func querySimpleSentences() {
+        guard let cellModel = queryVocabularyCard(index: lastReadCardTableIndex) else {
+            return
+        }
+        guard let vocabulary = cellModel.normalizedSource else {
+            return
+        }
+        guard let sentences = SimpleSentenceService.shared.querySentence(queryWord: vocabulary) else {
+            output._sentences.accept(nil)
+            return
+        }
+        output._sentences.accept(sentences)
     }
     
     private func getCardDatabaseIndexBy(tableIndex: Int) -> Int {
@@ -113,7 +141,7 @@ class ReviewViewModel {
     }
 }
 
-// delegate
+// cell delegate
 extension ReviewViewModel: ReviewCollectionViewCellDelegate {
     func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
         let currentMemorized = cellModel.memorized ?? false
@@ -123,5 +151,12 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
                                      animation: true))
         output.needReloadDate.accept(())
+    }
+}
+
+// 例句服務的 delegate
+extension ReviewViewModel: SimpleSentenceServiceDelegate {
+    func sentencesDidLoad(normalizedSource: String) {
+        querySimpleSentences()
     }
 }
