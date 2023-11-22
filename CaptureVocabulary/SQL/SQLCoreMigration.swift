@@ -23,6 +23,7 @@ enum SQLCoreMigrationError: Error {
     }
 }
 
+// *** 記得修改 Plist file "lastDatabaseVersion" ***
 class SQLCoreMigration {
     private static let lastDatabaseVersion = AppParameters.shared.model.lastDatabaseVersion
     private static var currentDatabaseVersion: Int { UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] ?? 0
@@ -31,6 +32,7 @@ class SQLCoreMigration {
         SQLCoreMigration_1(),
         SQLCoreMigration_2(),
         SQLCoreMigration_3(),
+        SQLCoreMigration_4(),
     ]
     
     static func checkVersion(_ completion: () -> Void) throws {
@@ -90,7 +92,6 @@ class SQLCoreMigration {
         }
     }
 }
-
 
 protocol MigrationProcess {
     var dbVersionNumber: Int { get }
@@ -186,6 +187,15 @@ struct SQLCoreMigration_3: MigrationProcess {
             cardCopy.normalizedTarget = card.normalizedTarget?.localized()
             cardCopy.update()
         }
+    }
+}
+
+// 建立例句資料庫
+struct SQLCoreMigration_4: MigrationProcess {
+    let dbVersionNumber: Int = 4
+    
+    func process() throws {
+        SimpleSentencesORM.createTable()
     }
 }
 

@@ -21,13 +21,27 @@ class TranslateTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func config(model: StarDictORM.ORM?) {
+    func config(model: StarDictORM.ORM?, sentences: [SimpleSentencesORM.ORM]?) {
         guard let explains = model?.translation else {
             text = nil
             return
         }
+        
+        // 組裝例句
+        var sentencesString = ""
+        if let sentences = sentences {
+            sentencesString = sentences.reduce(
+                "", {
+                    var simpleSentence = $0 + "\n"
+                    if let sentence = $1.sentence, let translate = $1.translate {
+                        simpleSentence += sentence + "\n" + translate
+                    }
+                    return simpleSentence
+                })
+        }
+        
         Task {
-            let text = await explains.localized()
+            let text = await (explains).localized() + "\n\n" + sentencesString
             let paragraphStyle = NSMutableParagraphStyle()
 
             // 设置行高（行距），例如设置为1.5倍行高
