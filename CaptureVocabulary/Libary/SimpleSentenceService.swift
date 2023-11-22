@@ -6,7 +6,9 @@
 //
 
 import Moya
+import UIKit
 
+#warning("請求兩次失敗就永遠不要再送了")
 
 class SimpleSentenceService {
     static let shared = SimpleSentenceService()
@@ -110,23 +112,29 @@ private extension SimpleSentenceService {
                 return
             }
             let message = model.choices.first?.message.content ?? ""
-            let messageModel = try! JSONDecoder().decode(OpenAiSentences.MessageModels.self, from: message.data(using: .utf8)!)
+            guard let messageModel = try? JSONDecoder().decode(OpenAiSentences.MessageModels.self, from: message.data(using: .utf8)!) else {
+                self.processState = .retry(queryWord: queryWord, retryCount: retryCount - 1)
+                return
+            }
             self.processState = .complete(queryWord: queryWord, model: messageModel)
         }
     }
     
     func complete(queryWord: String, model: OpenAiSentences.MessageModels) {
-        // save to database
-        model.sentences.forEach {
-            var sentenceOrm = SimpleSentencesORM.ORM()
-            sentenceOrm.normalizedSource = queryWord
-            sentenceOrm.sentence = $0.sentence
-            sentenceOrm.translate = $0.translate
-            SimpleSentencesORM.create(sentenceOrm)
+        DispatchQueue.global(qos: .default).async { [weak self] in
+            // save to database
+            model.sentences.forEach {
+                var sentenceOrm = SimpleSentencesORM.ORM()
+                sentenceOrm.normalizedSource = queryWord
+                sentenceOrm.sentence = $0.sentence
+                sentenceOrm.translate = $0.translate.localized()
+                SimpleSentencesORM.create(sentenceOrm)
+            }
+            DispatchQueue.main.async {
+                // notify other observer
+                self?.sentencesDidLoad(normalizedSource: queryWord)
+            }
         }
-        
-        // notify other observer
-        sentencesDidLoad(normalizedSource: queryWord)
         
         processState = .downloadNext
     }

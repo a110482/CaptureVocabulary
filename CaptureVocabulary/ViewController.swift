@@ -52,6 +52,8 @@ class ViewController: UIViewController {
         #if DEBUG
         devPanelButton()
         test()
+        
+//        return
         #endif
         do {
             try SQLCoreMigration.checkVersion() {
@@ -111,9 +113,7 @@ private extension ViewController {
     }
     
     func test() {
-        print(SimpleSentenceService.shared.querySentence(queryWord: "hello"))
-        print(SimpleSentenceService.shared.querySentence(queryWord: "night"))
-        print(SimpleSentenceService.shared.querySentence(queryWord: "wish"))
+//        print(SimpleSentenceService.shared.querySentence(queryWord: "hello"))
     }
 }
 #endif

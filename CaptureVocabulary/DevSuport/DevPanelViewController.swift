@@ -49,14 +49,17 @@ class DevPanelViewController: UIViewController {
     private func actions() {
         dropAllTables.rx.tap.subscribe(onNext: {
             SQLCore.shared.dropTables()
-            Log.debug("resetDatabase")
+            Log.debug("dropAllTables")
         }).disposed(by: disposeBag)
         
         resetDatabase.rx.tap.subscribe(onNext: {
             SQLCore.shared.dropTables()
             SQLCore.shared.createTables()
-            VocabularyCardListORM.ORM.createDefaultList()
-            Log.debug("resetDatabase")
+            try! SQLCoreMigration.checkVersion({
+                SQLCoreMigration.reset()
+                VocabularyCardListORM.ORM.createDefaultList()
+                Log.debug("resetDatabase")
+            })
         }).disposed(by: disposeBag)
         
         mockWords.rx.tap.subscribe(onNext: {
