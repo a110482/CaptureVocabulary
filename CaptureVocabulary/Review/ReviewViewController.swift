@@ -49,22 +49,6 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        #if DEBUG
-        let btn = UIButton()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.view.addSubview(btn)
-            btn.snp.makeConstraints {
-                $0.size.equalTo(100)
-                $0.center.equalToSuperview()
-            }
-        })
-        
-        btn.backgroundColor = .red
-        btn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            viewModel?.output._sentences.accept(nil)
-        }).disposed(by: disposeBag)
-        #endif
     }
     
     override func viewDidAppear(_ animated: Bool) {

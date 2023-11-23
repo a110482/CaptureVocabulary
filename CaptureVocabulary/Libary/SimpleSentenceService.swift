@@ -59,7 +59,6 @@ class SimpleSentenceService {
 // status 流程
 private extension SimpleSentenceService {
     func handleStatus() {
-        print(">>> status", processState)
         switch processState {
         case .padding:
             break
@@ -149,7 +148,6 @@ private extension SimpleSentenceService {
     }
     
     func requestQueueDidChanges() {
-        print(">>> requestQueueDidChanges", requestQueue)
         UserDefaults.standard[UserDefaultsKeys.sentencesDownloadQueue] = requestQueue
         if case .padding = processState {
             processState = .downloadNext
