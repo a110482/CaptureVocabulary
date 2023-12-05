@@ -86,7 +86,12 @@ private extension SimpleSentenceService {
     // 請求例句
     func sendRequest(queryWord: String, retryCount: Int) {
         func isNeedToDownload() -> Bool {
-            guard retryCount >= 0 else { return false }
+            guard retryCount >= 0 else {
+                // 紀錄查詢失敗事件
+                GAManager.GPTError(queryWord: queryWord)
+                return false
+            }
+            
             // 檢查資料庫有沒有已存資料
             guard let _ = SimpleSentencesORM.ORM.get(normalizedSource: queryWord) else {
                 return false
