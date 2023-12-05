@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Log.enabled = true
         Log.minLevel = .debug
         
+        // 初始化繁簡翻譯引擎
+        let _ = OpenCCConverter.shared.converter
+        
         // google 廣告設定
         ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
             GADMobileAds.sharedInstance().start(completionHandler: nil)
