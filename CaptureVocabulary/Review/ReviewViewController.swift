@@ -78,11 +78,12 @@ class ReviewViewController: UIViewController {
             self.collectionView.reloadData()
         }).disposed(by: disposeBag)
         
-        viewModel.output.dictionaryData.subscribe(onNext: { [weak self] (dictionaryData) in
-            guard let self = self else { return }
-            self.explainsTextView.config(model: dictionaryData)
-        }).disposed(by: disposeBag)
-        
+        Driver.combineLatest(
+            viewModel.output.dictionaryData,
+            viewModel.output.sentences).debounce(.milliseconds(100)).drive(onNext: { [weak self] (dictionaryData, sentences) in
+                guard let self = self else { return }
+                self.explainsTextView.config(model: dictionaryData, sentences: sentences)
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -154,7 +155,7 @@ private extension ReviewViewController {
     
     func configCollectionView() {
         collectionView.snp.makeConstraints {
-            $0.height.equalTo(140)
+            $0.height.equalTo(view.snp.height).multipliedBy(0.2)
             $0.width.equalToSuperview()
         }
         collectionView.backgroundColor = .clear

@@ -15,7 +15,7 @@ import SwifterSwift
 class VocabularyViewController: UIViewController {
     enum Action {
         case dismiss
-        case dismissWithAnimate
+        case saved
     }
     let action = PublishRelay<Action>()
     
@@ -56,7 +56,7 @@ class VocabularyViewController: UIViewController {
     }()
     private let translateResultView = TranslateResultView()
     private let saveButton = UIButton().then {
-        $0.setTitle(NSLocalizedString("VocabularyViewController.add", comment: "添加"), for: .normal)
+        $0.setTitle(NSLocalizedString("VocabularyViewController.save", comment: "儲存"), for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 20)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColorHex = "3D5CFF"
@@ -79,17 +79,18 @@ class VocabularyViewController: UIViewController {
     
     func bind(_ viewModel: VocabularyViewModel) {
         self.viewModel = viewModel
-        viewModel.inout.vocabulary.subscribe(onNext: { [weak self] text in
+        viewModel.output.vocabulary.drive(onNext: { [weak self] text in
             guard let self = self else { return }
             self.sourceTextField.text = text
             self.sourceTextField.updateUnderLineColor()
         }).disposed(by: disposeBag)
-    
-        sourceTextField.rx.text.bind(to: viewModel.inout.vocabulary).disposed(by: disposeBag)
         
-        viewModel.output.translateData.subscribe(onNext: { [weak self] translateData in
+        viewModel.output.translateData.drive(onNext: { [weak self] translateData in
             guard let self = self else { return }
             self.translateResultView.config(model: translateData)
+            if let customTranslate = self.viewModel?.customTranslate {
+                self.translateResultView.mainTranslate.text = customTranslate
+            }
         }).disposed(by: disposeBag)
         
         viewModel.output.vocabularyListORM.subscribe(onNext: { [weak self] orm in
@@ -214,19 +215,22 @@ extension VocabularyViewController {
             $0.size.equalTo(44)
         }
         
-        newListButton.cornerRadius = 5
+        newListButton.layer.cornerRadius = 5
+        newListButton.layer.masksToBounds = true
         newListButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         
         arrowDownButton.snp.makeConstraints {
             $0.size.equalTo(newListButton)
         }
         
-        arrowDownButton.cornerRadius = 5
+        arrowDownButton.layer.cornerRadius = 5
+        arrowDownButton.layer.masksToBounds = true
         arrowDownButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
     }
     
     private func configSaveButton() {
-        saveButton.cornerRadius = 22
+        saveButton.layer.cornerRadius = 22
+        saveButton.layer.masksToBounds = true
         saveButton.clipsToBounds = true
         saveButton.snp.makeConstraints {
             $0.width.equalTo(100)
@@ -236,9 +240,10 @@ extension VocabularyViewController {
     
     private func saveChanged(_ textField: UITextField) {
         if textField === sourceTextField {
+            viewModel?.set(vocabulary: textField.text ?? "")
             viewModel?.sentQueryRequest()
         } else if textField === translateResultView.mainTranslate {
-            viewModel?.input.customTranslate.accept(textField.text)
+            viewModel?.customTranslate = textField.text
         }
     }
 }
@@ -278,7 +283,7 @@ extension VocabularyViewController {
             // 開始震動
             impactFeedbackGenerator.prepare()
             impactFeedbackGenerator.impactOccurred()
-            self.action.accept(.dismissWithAnimate)
+            self.action.accept(.saved)
         }).disposed(by: disposeBag)
     }
     
@@ -345,7 +350,7 @@ class TranslateResultView: UIStackView {
         prepareForReuse()
         mainTranslate.text = model?.getMainTranslation()?.localized()
         mainTranslate.updateUnderLineColor()
-        translateTextView.config(model: model)
+        translateTextView.config(model: model, sentences: nil)
         noDataIcon.isHidden = (model != nil)
     }
     

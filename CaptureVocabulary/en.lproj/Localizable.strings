@@ -30,5 +30,5 @@
 "CaptureVocabularyViewController.enterQuery" = "Enter Query";
 "CaptureVocabularyViewController.search" = "Search";
 
-"VocabularyViewController.add" = "Add";
+"VocabularyViewController.save" = "Save";
 "VocabularyCardListORM.ORM.word" = "Word";

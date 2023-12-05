@@ -63,7 +63,8 @@ class ReviewCollectionViewCell: UICollectionViewCell {
 private extension ReviewCollectionViewCell {
     func configUI() {
         contentView.backgroundColor = .white
-        contentView.cornerRadius = 12
+        contentView.layer.cornerRadius = 12
+        contentView.layer.masksToBounds = true
         contentView.addSubview(activeSwitchButton)
         configActiveSwitchButton()
         contentView.addSubview(mainStackView)
@@ -72,30 +73,35 @@ private extension ReviewCollectionViewCell {
     
     func configActiveSwitchButton() {
         activeSwitchButton.snp.makeConstraints {
-            $0.top.left.equalTo(24)
+            $0.left.equalTo(24)
             $0.size.equalTo(24)
         }
+        // centerY 稍後對齊 sourceLabel
     }
     
     func configMainStackView() {
         mainStackView.axis = .vertical
-        mainStackView.spacing = 9
+        mainStackView.distribution = .equalSpacing
         mainStackView.alignment = .leading
         mainStackView.snp.makeConstraints {
-            $0.top.equalTo(activeSwitchButton)
+            $0.top.equalTo(24)
             $0.left.equalTo(activeSwitchButton.snp.right).offset(8)
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(-20)
         }
 
         mainStackView.addArrangedSubviews([
+            mainStackView.padding(gap: 1),
             sourceLabel,
             speakerButton,
             translateLabel,
-            UIView()
+            mainStackView.padding(gap: 1),
         ])
         
         configSpeakerButton()
+        activeSwitchButton.snp.makeConstraints {
+            $0.centerY.equalTo(sourceLabel)
+        }
     }
     
     func configSpeakerButton() {

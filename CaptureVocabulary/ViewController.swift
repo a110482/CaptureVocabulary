@@ -12,6 +12,8 @@ import Vision
 import RxCocoa
 import RxSwift
 import SQLite
+import AVKit
+import Moya
 
 struct User: Codable {
     let name: String?
@@ -46,9 +48,12 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { _ in })
         #if DEBUG
         devPanelButton()
         test()
+        
+//        return
         #endif
         do {
             try SQLCoreMigration.checkVersion() {
@@ -108,6 +113,7 @@ private extension ViewController {
     }
     
     func test() {
+//        print(SimpleSentenceService.shared.querySentence(queryWord: "hello"))
     }
 }
 #endif
@@ -141,5 +147,6 @@ func isUpdateAvailable(completion: @escaping (Bool?, Error?) -> Void) throws -> 
     task.resume()
     return task
 }
+
 
 

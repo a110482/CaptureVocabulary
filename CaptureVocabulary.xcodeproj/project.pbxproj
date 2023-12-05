@@ -21,6 +21,8 @@
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
 		C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
+		C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B02062B1F51790067D2FE /* OpenCCConverter.swift */; };
+		C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B02062B1F51790067D2FE /* OpenCCConverter.swift */; };
 		C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
 		C06078D029E7E64500434A2E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CF29E7E64500434A2E /* AppInfo.swift */; };
 		C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D629E7FADF00434A2E /* WidgetKit.framework */; };
@@ -109,6 +111,14 @@
 		C0EA89692A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
 		C0EA896C2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
 		C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896F2A399E9E0089C360 /* InfoPlist.strings */; };
+		C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
+		C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */; };
+		C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
+		C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */; };
+		C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */; };
+		C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */; };
+		C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */; };
+		C0ECF8A32B0D0B9700856828 /* SimpleSentenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */; };
 		C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */; };
 		C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
@@ -233,11 +243,13 @@
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
 		C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		C0225DB42A7A342900AF693D /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		C0297F092A03939D000F4A71 /* DicSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicSQL.swift; sourceTree = "<group>"; };
 		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
 		C0347D3329F8CBAA004A1133 /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
+		C03B02062B1F51790067D2FE /* OpenCCConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCCConverter.swift; sourceTree = "<group>"; };
 		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
 		C06078CF29E7E64500434A2E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaptureVocabularyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +285,10 @@
 		C0EA89792A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		C0EA897A2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C0EA897B2A399ED40089C360 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVocabularyCardsCoordinator.swift; sourceTree = "<group>"; };
+		C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAiRequest.swift; sourceTree = "<group>"; };
+		C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentencesORM.swift; sourceTree = "<group>"; };
+		C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentenceService.swift; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
 		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -424,6 +440,22 @@
 			path = CaptureVocabularyWidget;
 			sourceTree = "<group>";
 		};
+		C0ECF88F2B08E0B900856828 /* EditVocabularyCards */ = {
+			isa = PBXGroup;
+			children = (
+				C0ECF8902B08E15300856828 /* EditVocabularyCardsCoordinator.swift */,
+			);
+			path = EditVocabularyCards;
+			sourceTree = "<group>";
+		};
+		C0ECF8972B0B78EB00856828 /* OpenAiApi */ = {
+			isa = PBXGroup;
+			children = (
+				C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */,
+			);
+			path = OpenAiApi;
+			sourceTree = "<group>";
+		};
 		C7B333893350BF009DE1DD2F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +491,7 @@
 		F50952C228280B33000C74B0 /* VocabularyCards */ = {
 			isa = PBXGroup;
 			children = (
+				C0ECF88F2B08E0B900856828 /* EditVocabularyCards */,
 				F50952C328280B62000C74B0 /* VocabularyCardsCoordinator.swift */,
 				C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */,
 				C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */,
@@ -484,8 +517,9 @@
 				F53771CC2812B4D7003F892D /* Request.swift */,
 				F58A8607281411080005CD34 /* HeaderStorage.swift */,
 				F58A860C28142A110005CD34 /* RequestBuilder.swift */,
-				F58A86092814191A0005CD34 /* AzureApi */,
 				C0A974D72A121E0400196064 /* VersionCheck.swift */,
+				F58A86092814191A0005CD34 /* AzureApi */,
+				C0ECF8972B0B78EB00856828 /* OpenAiApi */,
 			);
 			path = WebLayer;
 			sourceTree = "<group>";
@@ -524,6 +558,8 @@
 				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
 				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
+				C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */,
+				C03B02062B1F51790067D2FE /* OpenCCConverter.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -557,6 +593,7 @@
 		F5C2005C28071DE200A3AAB6 = {
 			isa = PBXGroup;
 			children = (
+				C0225DB42A7A342900AF693D /* Gemfile */,
 				C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */,
 				F5C2006728071DE200A3AAB6 /* CaptureVocabulary */,
 				C02D277129BF2F3200CC26C4 /* CaptureVocabularyTests */,
@@ -651,6 +688,7 @@
 				C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
+				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
 				C0297F092A03939D000F4A71 /* DicSQL.swift */,
@@ -728,11 +766,11 @@
 				F5C2006128071DE200A3AAB6 /* Sources */,
 				F5C2006228071DE200A3AAB6 /* Frameworks */,
 				F5C2006328071DE200A3AAB6 /* Resources */,
-				CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */,
 				C06078ED29E7FAE000434A2E /* Embed Foundation Extensions */,
 				C0F413BF29FA71F000378E17 /* copy appParameters.plist */,
 				C0F413CA29FBA9E100378E17 /* copy google info plist */,
 				C0F413D329FBCF8300378E17 /* ShellScript */,
+				ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -896,23 +934,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		CEE4024D46EA42B8A7EBDCAA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF707AE10C723596C612977C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -957,6 +978,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ECFC143271EA5DBD298CE299 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -978,6 +1016,7 @@
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
+				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
 				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
@@ -986,13 +1025,16 @@
 				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
 				C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */,
 				C060794429E805DA00434A2E /* VocabularyCardsViewController.swift in Sources */,
+				C0ECF8A32B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				C060794529E805DA00434A2E /* VocabularyCardCell.swift in Sources */,
 				C060794629E805DA00434A2E /* VocabularyListCoordinator.swift in Sources */,
 				C060794729E805DA00434A2E /* VocabularyListViewController.swift in Sources */,
 				C060794829E805DA00434A2E /* VocabularyListViewModel.swift in Sources */,
 				C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */,
+				C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
+				C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */,
 				C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */,
 				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
 				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
@@ -1022,6 +1064,7 @@
 				C060796229E805DA00434A2E /* PlistReader.swift in Sources */,
 				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
+				C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
@@ -1065,10 +1108,12 @@
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
+				C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
 				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
+				C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
@@ -1078,6 +1123,7 @@
 				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
+				C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
 				F5071C9E282BBD8F00813841 /* Speaker.swift in Sources */,
@@ -1101,6 +1147,7 @@
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
+				C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
@@ -1130,6 +1177,7 @@
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
+				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1398,7 +1446,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.24;
+				MARKETING_VERSION = 1.0.28;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1610,7 +1658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.24;
+				MARKETING_VERSION = 1.0.28;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1648,7 +1696,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.24;
+				MARKETING_VERSION = 1.0.28;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
