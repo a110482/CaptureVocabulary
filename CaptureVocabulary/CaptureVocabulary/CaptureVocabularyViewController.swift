@@ -115,7 +115,7 @@ class CaptureVocabularyViewController: UIViewController {
             if let text = self.queryStringTextField.text, !text.isEmpty {
                 self.action.accept(.selected(vocabulary: text))
             }
-            GAManager.log(item: .visionPageQueryButton)
+            GAManager.select(item: .visionPageQueryButton)
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self
