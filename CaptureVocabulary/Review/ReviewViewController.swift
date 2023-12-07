@@ -220,6 +220,7 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
         guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
         cell.set(cellModel: cellModel)
+        cell.isDisplayTranslateSwitchOn = viewModel?.displayTranslate ?? true
         cell.delegate = viewModel
         return cell
     }
