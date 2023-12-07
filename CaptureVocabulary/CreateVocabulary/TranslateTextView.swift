@@ -10,6 +10,12 @@ import UIKit
 class TranslateTextView: UITextView {
     private let shapeLayer = CAShapeLayer()
     
+    private var isHiddenTranslate = false
+    
+    private var model: StarDictORM.ORM?
+    
+    private var sentences: [SimpleSentencesORM.ORM]?
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         layer.cornerRadius = 5
@@ -21,29 +27,51 @@ class TranslateTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setIsHiddenTranslate(_ isHidden: Bool) {
+        isHiddenTranslate = isHidden
+        layoutText()
+    }
+    
     func config(model: StarDictORM.ORM?, sentences: [SimpleSentencesORM.ORM]?) {
+        self.model = model
+        self.sentences = sentences
+        layoutText()
+    }
+    
+    private func layoutText() {
         guard let explains = model?.translation else {
             text = nil
             return
         }
         
-        // 組裝例句
-        var sentencesString = ""
-        if let sentences = sentences {
-            sentencesString = sentences.reduce(
-                "", {
-                    var simpleSentence = $0 + "\n"
-                    if let sentence = $1.sentence, let translate = $1.translate {
-                        simpleSentence += sentence + "\n" + translate
-                    }
-                    return simpleSentence
-                })
-        }
-        
         Task {
-            let text = await (explains).localized() + "\n\n" + sentencesString
+            // 組裝顯示文字的同時, 把複習模式時需要隱藏的中文位置記錄下來
+            var textStartLocation = 0
+            var chineseRanges: [NSRange] = []
+            var text = ""
+            func append(text input: String, isChinese: Bool = false) {
+                text += input
+                if isChinese {
+                    chineseRanges.append(NSRange(location: textStartLocation, length: input.count))
+                }
+                textStartLocation += input.count
+            }
+            
+            // 開始組裝文字
+            let explainsLocalized = await explains.localized()
+            append(text: explainsLocalized, isChinese: true)
+            append(text: "\n\n")
+            if let sentences = sentences {
+                for model in sentences {
+                    if let sentence = model.sentence, let translate = model.translate {
+                        append(text: sentence + "\n")
+                        append(text: translate + "\n", isChinese: true)
+                    }
+                    
+                }
+            }
+            
             let paragraphStyle = NSMutableParagraphStyle()
-
             // 设置行高（行距），例如设置为1.5倍行高
             paragraphStyle.lineSpacing = 10 // 按需调整行高
 
@@ -54,7 +82,16 @@ class TranslateTextView: UITextView {
             ]
 
             // 创建一个NSAttributedString并将其应用到UITextView
-            let attributedText = NSAttributedString(string: text, attributes: attributes)
+            let attributedText = NSMutableAttributedString(string: text, attributes: attributes)
+            // 需要隱藏解釋
+            if isHiddenTranslate {
+                for range in chineseRanges {
+                    attributedText.addAttribute(.foregroundColor,
+                                                value: UIColor.clear,
+                                                range: range)
+                }
+            }
+            
             self.attributedText = attributedText
         }
     }
