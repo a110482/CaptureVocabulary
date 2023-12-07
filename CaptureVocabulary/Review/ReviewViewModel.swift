@@ -21,6 +21,10 @@ class ReviewViewModel {
     }
     let output = Output()
     let indexCount = 200
+    private(set) var displayTranslate: Bool {
+        get { UserDefaults.standard[UserDefaultsKeys.displayTranslate] ?? true }
+        set { UserDefaults.standard[UserDefaultsKeys.displayTranslate] = newValue }
+    }
     private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
         get {
@@ -150,6 +154,11 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         newCellModel.update()
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
                                      animation: true))
+        output.needReloadDate.accept(())
+    }
+    
+    func displayTranslateSwitchDidChanged(isOn: Bool) {
+        displayTranslate = isOn
         output.needReloadDate.accept(())
     }
 }

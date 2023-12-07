@@ -10,3 +10,10 @@ import Log
 
 // 設定
 let Log = Logger()
+
+class Debug {
+    static func print(_ items: Any...) {
+        Swift.print(">>>", terminator: " ")
+        Swift.print(items)
+    }
+}

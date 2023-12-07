@@ -11,10 +11,15 @@ import RxCocoa
 
 protocol ReviewCollectionViewCellDelegate: AnyObject {
     func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM)
+    func displayTranslateSwitchDidChanged(isOn: Bool)
 }
 
 class ReviewCollectionViewCell: UICollectionViewCell {
     weak var delegate: ReviewCollectionViewCellDelegate?
+    var isDisplayTranslateSwitchOn: Bool {
+        get { return displayTranslateSwitch.isOn }
+        set { displayTranslateSwitch.isOn = newValue }
+    }
     private let activeSwitchButton = ActiveSwitchButton()
     private let mainStackView = UIStackView()
     private let speakerButton: UIButton = {
@@ -24,6 +29,8 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }()
     private let sourceLabel = UILabel()
     private let translateLabel = UILabel()
+    private let displayTranslateSwitch = UISwitch()
+    private let chineseLabel = UILabel()
     private var cellModel: VocabularyCardORM.ORM?
     private let disposeBag = DisposeBag()
     
@@ -69,6 +76,10 @@ private extension ReviewCollectionViewCell {
         configActiveSwitchButton()
         contentView.addSubview(mainStackView)
         configMainStackView()
+        contentView.addSubview(displayTranslateSwitch)
+        configDisplayTranslateSwitch()
+        contentView.addSubview(chineseLabel)
+        configChineseLabel()
     }
     
     func configActiveSwitchButton() {
@@ -110,6 +121,23 @@ private extension ReviewCollectionViewCell {
             $0.height.equalTo(24)
         }
     }
+    
+    func configDisplayTranslateSwitch() {
+        displayTranslateSwitch.onTintColor = UIColor(hexString: "3D5CFF")
+        displayTranslateSwitch.snp.makeConstraints {
+            $0.centerY.equalTo(activeSwitchButton)
+            $0.right.equalToSuperview().offset(-8)
+        }
+        displayTranslateSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+    }
+    
+    func configChineseLabel() {
+        chineseLabel.text = "中"
+        chineseLabel.snp.makeConstraints {
+            $0.centerY.equalTo(displayTranslateSwitch)
+            $0.right.equalTo(displayTranslateSwitch.snp.left).offset(-8)
+        }
+    }
 }
 
 // action
@@ -135,5 +163,9 @@ private extension ReviewCollectionViewCell {
         guard let cellModel = cellModel else { return }
         delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         activeSwitchButton.setActive(true)
+    }
+    
+    @objc func switchValueChanged(_ sender: UISwitch) {
+        delegate?.displayTranslateSwitchDidChanged(isOn: sender.isOn)
     }
 }
