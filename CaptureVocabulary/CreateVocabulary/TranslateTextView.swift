@@ -27,14 +27,25 @@ class TranslateTextView: UITextView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setIsHiddenTranslate(_ isHidden: Bool) {
-        isHiddenTranslate = isHidden
-        layoutText()
-    }
-    
-    func config(model: StarDictORM.ORM?, sentences: [SimpleSentencesORM.ORM]?) {
+    func config(model: StarDictORM.ORM?,
+                sentences: [SimpleSentencesORM.ORM]? = nil,
+                isHiddenTranslateSwitchOn: Bool = false,
+                pressTipVocabulary: String? = nil) {
         self.model = model
         self.sentences = sentences
+        
+        update(isHiddenTranslateSwitchOn: isHiddenTranslateSwitchOn, pressTipVocabulary: pressTipVocabulary)
+    }
+    
+    func update(isHiddenTranslateSwitchOn: Bool,
+                pressTipVocabulary: String?) {
+        guard isHiddenTranslateSwitchOn else {
+            self.isHiddenTranslate = false
+            layoutText()
+            return
+        }
+        
+        self.isHiddenTranslate = model?.word != pressTipVocabulary
         layoutText()
     }
     

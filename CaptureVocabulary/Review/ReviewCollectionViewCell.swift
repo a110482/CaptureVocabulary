@@ -11,14 +11,17 @@ import RxCocoa
 
 protocol ReviewCollectionViewCellDelegate: AnyObject {
     func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM)
-    func displayTranslateSwitchDidChanged(isOn: Bool)
+    func hiddenTranslateSwitchDidChanged(isOn: Bool)
+    func didPressedTipIcon()
 }
 
 class ReviewCollectionViewCell: UICollectionViewCell {
     weak var delegate: ReviewCollectionViewCellDelegate?
-    var isDisplayTranslateSwitchOn: Bool {
+    private var isHiddenTranslateSwitchOn: Bool {
         get { return displayTranslateSwitch.isOn }
-        set { displayTranslateSwitch.isOn = newValue }
+        set {
+            displayTranslateSwitch.isOn = newValue
+        }
     }
     private let activeSwitchButton = ActiveSwitchButton()
     private let mainStackView = UIStackView()
@@ -28,7 +31,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         return button
     }()
     private let sourceLabel = UILabel()
-    private let translateLabel = UILabel()
+    private let translateButton = UIButton()
     private let displayTranslateSwitch = UISwitch()
     private let chineseLabel = UILabel()
     private var cellModel: VocabularyCardORM.ORM?
@@ -50,18 +53,25 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         resetToDefaultStatus()
     }
     
-    func set(cellModel: VocabularyCardORM.ORM) {
+    func set(cellModel: VocabularyCardORM.ORM, isHiddenTranslateSwitchOn: Bool, pressTipVocabulary: String?) {
         self.cellModel = cellModel
+        self.isHiddenTranslateSwitchOn = isHiddenTranslateSwitchOn
         sourceLabel.text = cellModel.normalizedSource
-        translateLabel.text = cellModel.normalizedTarget
         activeSwitchButton.setActive(cellModel.memorized ?? false)
         speakerButton.setTitle(cellModel.phonetic, for: .normal)
+        
+        guard isHiddenTranslateSwitchOn else {
+            showTranslate()
+            return
+        }
+        cellModel.normalizedSource == pressTipVocabulary ? showTranslate() : hideTranslate()
     }
     
     private func resetToDefaultStatus() {
         activeSwitchButton.setActive(false)
         sourceLabel.text = "word house"
-        translateLabel.text = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
+        let translateButtonTitle = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
+        translateButton.setTitle(translateButtonTitle, for: .normal)
         speakerButton.setTitle("", for: .normal)
     }
 }
@@ -105,7 +115,7 @@ private extension ReviewCollectionViewCell {
             mainStackView.padding(gap: 1),
             sourceLabel,
             speakerButton,
-            translateLabel,
+            translateButton,
             mainStackView.padding(gap: 1),
         ])
         
@@ -113,6 +123,12 @@ private extension ReviewCollectionViewCell {
         activeSwitchButton.snp.makeConstraints {
             $0.centerY.equalTo(sourceLabel)
         }
+        
+        translateButton.snp.makeConstraints {
+            $0.height.equalTo(35)
+            $0.width.greaterThanOrEqualTo(60)
+        }
+        translateButton.addTarget(self, action: #selector(didPressedTipIcon), for: .touchUpInside)
     }
     
     func configSpeakerButton() {
@@ -166,6 +182,24 @@ private extension ReviewCollectionViewCell {
     }
     
     @objc func switchValueChanged(_ sender: UISwitch) {
-        delegate?.displayTranslateSwitchDidChanged(isOn: sender.isOn)
+        delegate?.hiddenTranslateSwitchDidChanged(isOn: sender.isOn)
+    }
+}
+
+// 控制隱藏或顯示模式 (複習模式)
+private extension ReviewCollectionViewCell {
+    private func hideTranslate() {
+        translateButton.setTitle(" ", for: .normal)
+        translateButton.setImage(UIImage(systemName: "lightbulb.fill"), for: .normal)
+    }
+    
+    private func showTranslate() {
+        translateButton.setImage(nil, for: .normal)
+        translateButton.setTitle(cellModel!.normalizedTarget, for: .normal)
+        translateButton.setTitleColor(UIColor.label, for: .normal)
+    }
+    
+    @objc func didPressedTipIcon() {
+        delegate?.didPressedTipIcon()
     }
 }
