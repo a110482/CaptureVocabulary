@@ -21,9 +21,9 @@ class ReviewViewModel {
     }
     let output = Output()
     let indexCount = 200
-    private(set) var displayTranslate: Bool {
-        get { UserDefaults.standard[UserDefaultsKeys.displayTranslate] ?? true }
-        set { UserDefaults.standard[UserDefaultsKeys.displayTranslate] = newValue }
+    private(set) var isHiddenTranslateSwitchOn: Bool {
+        get { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] ?? false }
+        set { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] = newValue }
     }
     private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
@@ -34,6 +34,8 @@ class ReviewViewModel {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId] = newValue
         }
     }
+    /// 記錄目前已按下提示的 cell
+    private(set) var pressTipVocabulary: String? = nil
     private let disposeBag = DisposeBag()
     
     init() {
@@ -157,8 +159,14 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         output.needReloadDate.accept(())
     }
     
-    func displayTranslateSwitchDidChanged(isOn: Bool) {
-        displayTranslate = isOn
+    func hiddenTranslateSwitchDidChanged(isOn: Bool) {
+        isHiddenTranslateSwitchOn = isOn
+        pressTipVocabulary = nil
+        output.needReloadDate.accept(())
+    }
+    
+    func didPressedTipIcon() {
+        pressTipVocabulary = output._dictionaryData.value?.word
         output.needReloadDate.accept(())
     }
 }
