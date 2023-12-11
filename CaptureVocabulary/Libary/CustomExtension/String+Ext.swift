@@ -62,18 +62,7 @@ extension String {
         if let cache = TranslateCache.getCache(key: self) {
             return cache
         }
-        
-        let preferredLanguages = Locale.preferredLanguages
-        let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
-        let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
-        if hantIndex == nil && hansIndex == nil { return self }
-        
-        let converter: ChineseConverter
-        if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
-            converter = try! ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
-        } else {
-            converter = try! ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
-        }
+        guard let converter = OpenCCConverter.shared.converter else { return self }
         let res = converter.convert(self)
         TranslateCache.setCache(key: self, value: res)
         return res
@@ -86,20 +75,11 @@ extension String {
                     result.resume(returning: cache)
                     return
                 }
-                let preferredLanguages = Locale.preferredLanguages
-                let hantIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hant")})
-                let hansIndex = preferredLanguages.firstIndex(where: { $0.contains("zh-Hans")})
-                if hantIndex == nil && hansIndex == nil {
+                
+                guard let converter = OpenCCConverter.shared.converter else { 
                     result.resume(returning: self)
                     return
                 }
-                let converter: ChineseConverter?
-                if (hantIndex ?? Int.max) < (hansIndex ?? Int.max) {
-                    converter = try? ChineseConverter(options: [.traditionalize, .twStandard, .twIdiom])
-                } else {
-                    converter = try? ChineseConverter(options: [.simplify, .twStandard, .twIdiom])
-                }
-                guard let converter = converter else { return }
                 let convertResult = converter.convert(self)
                 TranslateCache.setCache(key: self, value: convertResult)
                 result.resume(returning: convertResult)

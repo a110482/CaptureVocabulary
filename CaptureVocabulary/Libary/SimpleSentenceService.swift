@@ -19,6 +19,8 @@ class SimpleSentenceService {
         didSet { requestQueueDidChanges() }
     }
     
+    private var currentQueryWord: String?
+    
     private var processState: ProcessState = .padding {
         didSet { handleStatus() }
     }
@@ -48,9 +50,8 @@ class SimpleSentenceService {
            sentences.count > 0 {
             return sentences
         }
-        guard !requestQueue.contains(queryWord) else {
-            return nil
-        }
+        guard !requestQueue.contains(queryWord) else { return nil }
+        guard queryWord != currentQueryWord else { return nil }
         requestQueue.insert(queryWord, at: 0)
         return nil
     }
@@ -59,7 +60,6 @@ class SimpleSentenceService {
 // status 流程
 private extension SimpleSentenceService {
     func handleStatus() {
-        print(">>> status", processState)
         switch processState {
         case .padding:
             break
@@ -81,13 +81,19 @@ private extension SimpleSentenceService {
             return
         }
         let queryWord = requestQueue.removeFirst()
+        currentQueryWord = queryWord
         processState = .sendRequest(queryWord: queryWord)
     }
     
     // 請求例句
     func sendRequest(queryWord: String, retryCount: Int) {
         func isNeedToDownload() -> Bool {
-            guard retryCount >= 0 else { return false }
+            guard retryCount >= 0 else {
+                // 紀錄查詢失敗事件
+                GAManager.GPTError(queryWord: queryWord)
+                return false
+            }
+            
             // 檢查資料庫有沒有已存資料
             guard let _ = SimpleSentencesORM.ORM.get(normalizedSource: queryWord) else {
                 return false
@@ -135,7 +141,7 @@ private extension SimpleSentenceService {
                 self?.sentencesDidLoad(normalizedSource: queryWord)
             }
         }
-        
+        currentQueryWord = nil
         processState = .downloadNext
     }
 }
@@ -149,7 +155,6 @@ private extension SimpleSentenceService {
     }
     
     func requestQueueDidChanges() {
-        print(">>> requestQueueDidChanges", requestQueue)
         UserDefaults.standard[UserDefaultsKeys.sentencesDownloadQueue] = requestQueue
         if case .padding = processState {
             processState = .downloadNext

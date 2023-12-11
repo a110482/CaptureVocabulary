@@ -49,22 +49,6 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        #if DEBUG
-        let btn = UIButton()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.view.addSubview(btn)
-            btn.snp.makeConstraints {
-                $0.size.equalTo(100)
-                $0.center.equalToSuperview()
-            }
-        })
-        
-        btn.backgroundColor = .red
-        btn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            viewModel?.output._sentences.accept(nil)
-        }).disposed(by: disposeBag)
-        #endif
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,13 +76,20 @@ class ReviewViewController: UIViewController {
         viewModel.output.needReloadDate.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.collectionView.reloadData()
+            self.explainsTextView.update(
+                isHiddenTranslateSwitchOn: viewModel.isHiddenTranslateSwitchOn,
+                pressTipVocabulary: viewModel.pressTipVocabulary)
         }).disposed(by: disposeBag)
         
         Driver.combineLatest(
             viewModel.output.dictionaryData,
             viewModel.output.sentences).debounce(.milliseconds(100)).drive(onNext: { [weak self] (dictionaryData, sentences) in
                 guard let self = self else { return }
-                self.explainsTextView.config(model: dictionaryData, sentences: sentences)
+                self.explainsTextView.config(
+                    model: dictionaryData,
+                    sentences: sentences,
+                    isHiddenTranslateSwitchOn: viewModel.isHiddenTranslateSwitchOn,
+                    pressTipVocabulary: viewModel.pressTipVocabulary)
             }).disposed(by: disposeBag)
     }
 }
@@ -235,7 +226,10 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
         guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
-        cell.set(cellModel: cellModel)
+        cell.set(cellModel: cellModel,
+                 isHiddenTranslateSwitchOn: viewModel?.isHiddenTranslateSwitchOn ?? true,
+                 pressTipVocabulary: viewModel?.pressTipVocabulary
+        )
         cell.delegate = viewModel
         return cell
     }

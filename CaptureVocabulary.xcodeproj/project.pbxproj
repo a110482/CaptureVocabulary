@@ -21,6 +21,8 @@
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
 		C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
+		C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B02062B1F51790067D2FE /* OpenCCConverter.swift */; };
+		C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B02062B1F51790067D2FE /* OpenCCConverter.swift */; };
 		C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CD29E7DB0800434A2E /* AppParameters.swift */; };
 		C06078D029E7E64500434A2E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06078CF29E7E64500434A2E /* AppInfo.swift */; };
 		C06078D729E7FADF00434A2E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06078D629E7FADF00434A2E /* WidgetKit.framework */; };
@@ -247,6 +249,7 @@
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
 		C0347D3329F8CBAA004A1133 /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
+		C03B02062B1F51790067D2FE /* OpenCCConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCCConverter.swift; sourceTree = "<group>"; };
 		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
 		C06078CF29E7E64500434A2E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		C06078D529E7FADF00434A2E /* CaptureVocabularyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaptureVocabularyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -556,6 +559,7 @@
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
 				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
 				C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */,
+				C03B02062B1F51790067D2FE /* OpenCCConverter.swift */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -1012,6 +1016,7 @@
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
+				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
 				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
@@ -1142,6 +1147,7 @@
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
+				C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
