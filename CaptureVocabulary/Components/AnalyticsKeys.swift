@@ -43,12 +43,18 @@ enum ContentItem: RawRepresentable, CaseIterable {
 }
 
 class GAManager {
-    static func log(item: ContentItem) {
+    static func select(item: ContentItem) {
         let value = item.rawValue
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "id-\(value.id)",
             AnalyticsParameterItemName: value.name,
             AnalyticsParameterContentType: value.type,
+        ])
+    }
+    
+    static func GPTError(queryWord: String) {
+        Analytics.logEvent("GPTError", parameters: [
+            "queryWord": queryWord
         ])
     }
 }

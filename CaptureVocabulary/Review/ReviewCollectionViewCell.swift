@@ -11,10 +11,18 @@ import RxCocoa
 
 protocol ReviewCollectionViewCellDelegate: AnyObject {
     func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM)
+    func hiddenTranslateSwitchDidChanged(isOn: Bool)
+    func didPressedTipIcon()
 }
 
 class ReviewCollectionViewCell: UICollectionViewCell {
     weak var delegate: ReviewCollectionViewCellDelegate?
+    private var isHiddenTranslateSwitchOn: Bool {
+        get { return displayTranslateSwitch.isOn }
+        set {
+            displayTranslateSwitch.isOn = newValue
+        }
+    }
     private let activeSwitchButton = ActiveSwitchButton()
     private let mainStackView = UIStackView()
     private let speakerButton: UIButton = {
@@ -23,7 +31,9 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         return button
     }()
     private let sourceLabel = UILabel()
-    private let translateLabel = UILabel()
+    private let translateButton = UIButton()
+    private let displayTranslateSwitch = UISwitch()
+    private let chineseLabel = UILabel()
     private var cellModel: VocabularyCardORM.ORM?
     private let disposeBag = DisposeBag()
     
@@ -43,18 +53,25 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         resetToDefaultStatus()
     }
     
-    func set(cellModel: VocabularyCardORM.ORM) {
+    func set(cellModel: VocabularyCardORM.ORM, isHiddenTranslateSwitchOn: Bool, pressTipVocabulary: String?) {
         self.cellModel = cellModel
+        self.isHiddenTranslateSwitchOn = isHiddenTranslateSwitchOn
         sourceLabel.text = cellModel.normalizedSource
-        translateLabel.text = cellModel.normalizedTarget
         activeSwitchButton.setActive(cellModel.memorized ?? false)
         speakerButton.setTitle(cellModel.phonetic, for: .normal)
+        
+        guard isHiddenTranslateSwitchOn else {
+            showTranslate()
+            return
+        }
+        cellModel.normalizedSource == pressTipVocabulary ? showTranslate() : hideTranslate()
     }
     
     private func resetToDefaultStatus() {
         activeSwitchButton.setActive(false)
         sourceLabel.text = "word house"
-        translateLabel.text = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
+        let translateButtonTitle = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
+        translateButton.setTitle(translateButtonTitle, for: .normal)
         speakerButton.setTitle("", for: .normal)
     }
 }
@@ -69,6 +86,10 @@ private extension ReviewCollectionViewCell {
         configActiveSwitchButton()
         contentView.addSubview(mainStackView)
         configMainStackView()
+        contentView.addSubview(displayTranslateSwitch)
+        configDisplayTranslateSwitch()
+        contentView.addSubview(chineseLabel)
+        configChineseLabel()
     }
     
     func configActiveSwitchButton() {
@@ -94,7 +115,7 @@ private extension ReviewCollectionViewCell {
             mainStackView.padding(gap: 1),
             sourceLabel,
             speakerButton,
-            translateLabel,
+            translateButton,
             mainStackView.padding(gap: 1),
         ])
         
@@ -102,12 +123,35 @@ private extension ReviewCollectionViewCell {
         activeSwitchButton.snp.makeConstraints {
             $0.centerY.equalTo(sourceLabel)
         }
+        
+        translateButton.snp.makeConstraints {
+            $0.height.equalTo(35)
+            $0.width.greaterThanOrEqualTo(60)
+        }
+        translateButton.addTarget(self, action: #selector(didPressedTipIcon), for: .touchUpInside)
     }
     
     func configSpeakerButton() {
         speakerButton.setImage(UIImage(systemName: "speaker.wave.3"), for: .normal)
         speakerButton.snp.makeConstraints {
             $0.height.equalTo(24)
+        }
+    }
+    
+    func configDisplayTranslateSwitch() {
+        displayTranslateSwitch.onTintColor = UIColor(hexString: "3D5CFF")
+        displayTranslateSwitch.snp.makeConstraints {
+            $0.centerY.equalTo(activeSwitchButton)
+            $0.right.equalToSuperview().offset(-8)
+        }
+        displayTranslateSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+    }
+    
+    func configChineseLabel() {
+        chineseLabel.text = "中"
+        chineseLabel.snp.makeConstraints {
+            $0.centerY.equalTo(displayTranslateSwitch)
+            $0.right.equalTo(displayTranslateSwitch.snp.left).offset(-8)
         }
     }
 }
@@ -135,5 +179,27 @@ private extension ReviewCollectionViewCell {
         guard let cellModel = cellModel else { return }
         delegate?.tapMemorizedSwitchButton(cellModel: cellModel)
         activeSwitchButton.setActive(true)
+    }
+    
+    @objc func switchValueChanged(_ sender: UISwitch) {
+        delegate?.hiddenTranslateSwitchDidChanged(isOn: sender.isOn)
+    }
+}
+
+// 控制隱藏或顯示模式 (複習模式)
+private extension ReviewCollectionViewCell {
+    private func hideTranslate() {
+        translateButton.setTitle(" ", for: .normal)
+        translateButton.setImage(UIImage(systemName: "lightbulb.fill"), for: .normal)
+    }
+    
+    private func showTranslate() {
+        translateButton.setImage(nil, for: .normal)
+        translateButton.setTitle(cellModel!.normalizedTarget, for: .normal)
+        translateButton.setTitleColor(UIColor.label, for: .normal)
+    }
+    
+    @objc func didPressedTipIcon() {
+        delegate?.didPressedTipIcon()
     }
 }

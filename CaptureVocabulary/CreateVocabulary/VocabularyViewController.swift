@@ -350,7 +350,7 @@ class TranslateResultView: UIStackView {
         prepareForReuse()
         mainTranslate.text = model?.getMainTranslation()?.localized()
         mainTranslate.updateUnderLineColor()
-        translateTextView.config(model: model, sentences: nil)
+        translateTextView.config(model: model)
         noDataIcon.isHidden = (model != nil)
     }
     
