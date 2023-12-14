@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>啟用相機來掃描單字</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>我們需要追蹤您的廣告偏好，以提供個人化的廣告體驗。</string>
 	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
 	<key>GADApplicationIdentifier</key>
@@ -243,5 +239,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

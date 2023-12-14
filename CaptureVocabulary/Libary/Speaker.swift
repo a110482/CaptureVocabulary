@@ -13,7 +13,11 @@ class Speaker: NSObject {
     static let shared = Speaker()
     
     private override init() {
-        AVSpeechSynthesisVoice.speechVoices()
+        let audioSession = AVAudioSession.sharedInstance()
+        try? audioSession.setCategory (
+            AVAudioSession.Category.playback,
+            options: AVAudioSession.CategoryOptions.duckOthers
+        )
         synth.delegate = speakerDelegate
     }
     
@@ -35,6 +39,7 @@ class Speaker: NSObject {
     }
     
     func stop() {
+        sequences = []
         synth.stopSpeaking(at: .immediate)
     }
     
@@ -63,7 +68,6 @@ class Speaker: NSObject {
         utterance.voice = AVSpeechSynthesisVoice(language: pack.language.rawValue)
         synth.pauseSpeaking(at: .immediate)
         synth.speak(utterance)
-        print(#line, Date())
     }
     
     // call in app delegate

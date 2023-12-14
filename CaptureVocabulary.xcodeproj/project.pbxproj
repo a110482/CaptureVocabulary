@@ -14,6 +14,8 @@
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
 		C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
 		C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
+		C01C455E2B3BF331001BB8B5 /* simple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C01C455D2B3BF331001BB8B5 /* simple.mp3 */; };
+		C01C455F2B3BF331001BB8B5 /* simple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C01C455D2B3BF331001BB8B5 /* simple.mp3 */; };
 		C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
 		C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
 		C0297F102A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
@@ -98,6 +100,7 @@
 		C060797929E8080700434A2E /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = C060797829E8080700434A2E /* OpenCC */; };
 		C060797B29E808BD00434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
+		C08554EA2B4D7789002E93B3 /* testSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08554E92B4D7789002E93B3 /* testSound.mp3 */; };
 		C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
@@ -243,6 +246,7 @@
 		C001389629C83EB100D2E4BA /* MockWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWords.swift; sourceTree = "<group>"; };
 		C001389829C84D2500D2E4BA /* DevPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelViewController.swift; sourceTree = "<group>"; };
 		C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		C01C455D2B3BF331001BB8B5 /* simple.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = simple.mp3; sourceTree = "<group>"; };
 		C0225DB42A7A342900AF693D /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		C0297F092A03939D000F4A71 /* DicSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicSQL.swift; sourceTree = "<group>"; };
 		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 		C06078E429E7FAE000434A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
 		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C08554E92B4D7789002E93B3 /* testSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSound.mp3; sourceTree = "<group>"; };
 		C0A974D72A121E0400196064 /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
 		C0A974DC2A15C9FD00196064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
 		C0A974DF2A15CA0400196064 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CaptureVocabularyWidget.strings; sourceTree = "<group>"; };
@@ -560,6 +565,8 @@
 				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
 				C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */,
 				C03B02062B1F51790067D2FE /* OpenCCConverter.swift */,
+				C08554E92B4D7789002E93B3 /* testSound.mp3 */,
+				C01C455D2B3BF331001BB8B5 /* simple.mp3 */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -848,6 +855,7 @@
 				C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */,
 				C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */,
 				C0EA89692A399E990089C360 /* Localizable.strings in Resources */,
+				C01C455F2B3BF331001BB8B5 /* simple.mp3 in Resources */,
 				C0297F112A039CC3000F4A71 /* Resource.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,10 +872,12 @@
 				C0EA896C2A399E9E0089C360 /* InfoPlist.strings in Resources */,
 				C0297F102A039CC3000F4A71 /* Resource.zip in Resources */,
 				C0F413C929FBA11500378E17 /* GoogleService-Info-debug.plist in Resources */,
+				C08554EA2B4D7789002E93B3 /* testSound.mp3 in Resources */,
 				F5C2007528071DE400A3AAB6 /* LaunchScreen.storyboard in Resources */,
 				C0F413CC29FBAAC400378E17 /* GoogleService-Info-uat.plist in Resources */,
 				C0F413B829FA5BD500378E17 /* Uat.xcconfig in Resources */,
 				F5C2007228071DE400A3AAB6 /* Assets.xcassets in Resources */,
+				C01C455E2B3BF331001BB8B5 /* simple.mp3 in Resources */,
 				F5C2007028071DE200A3AAB6 /* Main.storyboard in Resources */,
 				C0F413B229FA5BCB00378E17 /* appParametersUat.plist in Resources */,
 				C0EA89682A399E990089C360 /* Localizable.strings in Resources */,
@@ -1433,8 +1443,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
+				INFOPLIST_KEY_NSCameraUsageDescription = "啟用相機來掃描單字";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我們需要追蹤您的廣告偏好，以提供個人化的廣告體驗。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1646,7 +1656,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
+				INFOPLIST_KEY_NSCameraUsageDescription = "啟用相機來掃描單字";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我們需要追蹤您的廣告偏好，以提供個人化的廣告體驗。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1683,8 +1694,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "允許此App跟踪您的活動，以便為您提供更好的廣告體驗";
+				INFOPLIST_KEY_NSCameraUsageDescription = "啟用相機來掃描單字";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我們需要追蹤您的廣告偏好，以提供個人化的廣告體驗。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
