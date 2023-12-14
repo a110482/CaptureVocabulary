@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
+        // 先讓語音服務暖機
+        Speaker.shared.speak(" ", language: .en_US)
+        
         return true
     }
 

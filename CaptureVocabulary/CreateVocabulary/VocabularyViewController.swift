@@ -291,7 +291,7 @@ extension VocabularyViewController {
         speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             guard let source = self.sourceTextField.text else { return }
-            Speaker.speak(source, language: .en_US)
+            Speaker.shared.speak(source, language: .en_US)
         }).disposed(by: disposeBag)
     }
 }
