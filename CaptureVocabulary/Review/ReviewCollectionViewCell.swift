@@ -172,7 +172,7 @@ private extension ReviewCollectionViewCell {
     
     func tapSpeakerButton() {
         guard let source = cellModel?.normalizedSource else { return }
-        Speaker.speak(source, language: .en_US)
+        Speaker.shared.speak(source, language: .en_US)
     }
     
     func tapActiveSwitchButton() {
