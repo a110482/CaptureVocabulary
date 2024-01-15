@@ -21,6 +21,8 @@
 		C0297F102A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
 		C0297F112A039CC3000F4A71 /* Resource.zip in Resources */ = {isa = PBXBuildFile; fileRef = C0297F0F2A039CC3000F4A71 /* Resource.zip */; };
 		C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */; };
+		C032E5212B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E5202B5534D30091F4CA /* ReviewCollectionViewCellModel.swift */; };
+		C032E5222B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032E5202B5534D30091F4CA /* ReviewCollectionViewCellModel.swift */; };
 		C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0347D3329F8CBAA004A1133 /* AdsManager.swift */; };
 		C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B02062B1F51790067D2FE /* OpenCCConverter.swift */; };
@@ -252,6 +254,7 @@
 		C0297F0F2A039CC3000F4A71 /* Resource.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Resource.zip; sourceTree = "<group>"; };
 		C02D277029BF2F3200CC26C4 /* CaptureVocabularyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureVocabularyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C02D277229BF2F3200CC26C4 /* CaptureVocabularyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyTests.swift; sourceTree = "<group>"; };
+		C032E5202B5534D30091F4CA /* ReviewCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		C0347D3329F8CBAA004A1133 /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
 		C03B02062B1F51790067D2FE /* OpenCCConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCCConverter.swift; sourceTree = "<group>"; };
 		C06078CD29E7DB0800434A2E /* AppParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppParameters.swift; sourceTree = "<group>"; };
@@ -710,6 +713,7 @@
 				C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */,
 				C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */,
 				C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */,
+				C032E5202B5534D30091F4CA /* ReviewCollectionViewCellModel.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1053,6 +1057,7 @@
 				C060795129E805DA00434A2E /* Decision.swift in Sources */,
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
 				C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */,
+				C032E5222B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
 				C060795429E805DA00434A2E /* Request.swift in Sources */,
 				C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */,
@@ -1179,6 +1184,7 @@
 				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
+				C032E5212B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
