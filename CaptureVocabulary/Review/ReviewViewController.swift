@@ -51,42 +51,6 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        #if DEBUG
-        let btn = UIButton()
-        btn.setTitle("test", for: .normal)
-        btn.backgroundColor = .red
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            guard let self else { return }
-            view.addSubview(btn)
-            btn.snp.makeConstraints {
-                $0.size.equalTo(100)
-                $0.center.equalToSuperview()
-            }
-        })
-        
-        btn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            // 設定音樂資訊
-            setupNowPlayingInfo()
-            // 設定遠端音樂控制
-            setupRemoteTransportControls()
-            
-            MP3Player.shared.playSound()
-            
-//            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-//            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-//            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-//            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-//            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-//            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-//            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-//            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-//            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            
-        }).disposed(by: disposeBag)
-        
-        
-        #endif
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,59 +93,6 @@ class ReviewViewController: UIViewController {
                     isHiddenTranslateSwitchOn: viewModel.isHiddenTranslateSwitchOn,
                     pressTipVocabulary: viewModel.pressTipVocabulary)
             }).disposed(by: disposeBag)
-    }
-    
-    func setupNowPlayingInfo() {
-        // 設定歌曲資訊
-        let nowPlayingInfo: [String : Any] = [
-            MPMediaItemPropertyTitle: "歌曲標題",
-            MPMediaItemPropertyArtist: "歌手名稱",
-            MPMediaItemPropertyAlbumTitle: "專輯名稱",
-            MPMediaItemPropertyPlaybackDuration: 300, // 歌曲總時長（以秒為單位）
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: 60, // 目前播放進度（以秒為單位）
-        ]
-        
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-    }
-    
-    func setupRemoteTransportControls() {
-        let commandCenter = MPRemoteCommandCenter.shared()
-        
-        // 設定播放按鈕
-        commandCenter.playCommand.addTarget { event in
-            // 按下播放按鈕時的處理邏輯
-            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            Speaker.shared.speakSequences("get ready it's about to strating", language: .en_US)
-            Speaker.shared.speakSequences("準備好了 要開始了", language: .zh_TW)
-            MP3Player.shared.playSound()
-            return .success
-        }
-        
-        // 設定暫停按鈕
-        commandCenter.pauseCommand.addTarget { event in
-            // 按下暫停按鈕時的處理邏輯
-            Speaker.shared.stop()
-            MP3Player.shared.stop()
-            return .success
-        }
-        
-        // 設定下一首按鈕
-        commandCenter.nextTrackCommand.addTarget { event in
-            // 按下下一首按鈕時的處理邏輯
-            return .success
-        }
-        
-        // 設定上一首按鈕
-        commandCenter.previousTrackCommand.addTarget { event in
-            // 按下上一首按鈕時的處理邏輯
-            return .success
-        }
     }
 }
 
@@ -316,11 +227,13 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
-        guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
-        cell.set(cellModel: cellModel,
-                 isHiddenTranslateSwitchOn: viewModel?.isHiddenTranslateSwitchOn ?? true,
-                 pressTipVocabulary: viewModel?.pressTipVocabulary
-        )
+        guard let orm = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
+        let cellModel = ReviewCollectionViewCellModel(
+            orm: orm,
+            isHiddenTranslateSwitchOn: viewModel?.isHiddenTranslateSwitchOn ?? true,
+            pressTipVocabulary: viewModel?.pressTipVocabulary,
+            isAudioModeOn: viewModel?.isAudioModeOn ?? false)
+        cell.set(cellModel: cellModel)
         cell.delegate = viewModel
         return cell
     }
@@ -424,7 +337,6 @@ class MP3Player: NSObject {
 
 extension MP3Player: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        Debug.print(#function)
         playSound()
     }
 }

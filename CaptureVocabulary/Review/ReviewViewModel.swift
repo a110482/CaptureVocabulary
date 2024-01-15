@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import MediaPlayer
 
 // MARK: -
 class ReviewViewModel {
@@ -25,6 +26,7 @@ class ReviewViewModel {
         get { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] ?? false }
         set { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] = newValue }
     }
+    private(set) var isAudioModeOn = false
     private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
         get {
@@ -149,9 +151,9 @@ class ReviewViewModel {
 
 // cell delegate
 extension ReviewViewModel: ReviewCollectionViewCellDelegate {
-    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
-        let currentMemorized = cellModel.memorized ?? false
-        var newCellModel = cellModel
+    func tapMemorizedSwitchButton(orm: VocabularyCardORM.ORM) {
+        let currentMemorized = orm.memorized ?? false
+        var newCellModel = orm
         newCellModel.memorized = !currentMemorized
         newCellModel.update()
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
@@ -169,11 +171,73 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         pressTipVocabulary = output._dictionaryData.value?.word
         output.needReloadDate.accept(())
     }
+    
+    func didPressedAudioPlayButton() {
+        // 撥放背景 mp3 維持背景播放
+        setAudioMode(isEnable: !isAudioModeOn)
+    }
 }
 
 // 例句服務的 delegate
 extension ReviewViewModel: SimpleSentenceServiceDelegate {
     func sentencesDidLoad(normalizedSource: String) {
         querySimpleSentences()
+    }
+}
+
+// 語音播放相關
+private extension ReviewViewModel {
+    func setAudioMode(isEnable: Bool) {
+        isAudioModeOn = isEnable
+        output.needReloadDate.accept(())
+        guard isEnable else {
+            MP3Player.shared.stop()
+            return
+        }
+        MP3Player.shared.playSound()
+        setupNowPlayingInfo()
+        setupRemoteTransportControls()
+    }
+    
+    /// 設定歌曲資訊
+    func setupNowPlayingInfo() {
+        let nowPlayingInfo: [String : Any] = [
+            MPMediaItemPropertyTitle: "單字複習",
+            MPMediaItemPropertyArtist: "單字屋",
+            MPMediaItemPropertyAlbumTitle: "單字複習",
+//            MPMediaItemPropertyPlaybackDuration: 300, // 歌曲總時長（以秒為單位）
+//            MPNowPlayingInfoPropertyElapsedPlaybackTime: 60, // 目前播放進度（以秒為單位）
+        ]
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    /// 設定播放按鈕
+    func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget { [weak self] event in
+            guard let self else { return .success }
+            self.setAudioMode(isEnable: true)
+            return .success
+        }
+        
+        // 設定暫停按鈕
+        commandCenter.pauseCommand.addTarget { [weak self] event in
+            guard let self else { return .success }
+            self.setAudioMode(isEnable: false)
+            return .success
+        }
+        
+        // 設定下一首按鈕
+        commandCenter.nextTrackCommand.addTarget { event in
+            // 按下下一首按鈕時的處理邏輯
+            return .success
+        }
+        
+        // 設定上一首按鈕
+        commandCenter.previousTrackCommand.addTarget { event in
+            // 按下上一首按鈕時的處理邏輯
+            return .success
+        }
     }
 }
