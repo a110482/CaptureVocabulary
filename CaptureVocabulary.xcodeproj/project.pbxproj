@@ -103,6 +103,7 @@
 		C060797B29E808BD00434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C060797C29E8094300434A2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060797A29E808BD00434A2E /* Log.swift */; };
 		C08554EA2B4D7789002E93B3 /* testSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08554E92B4D7789002E93B3 /* testSound.mp3 */; };
+		C08D59B12B6901C700E292A7 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08D59B02B6901C700E292A7 /* silence.mp3 */; };
 		C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974D92A121E0400196064 /* VersionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A974D72A121E0400196064 /* VersionCheck.swift */; };
 		C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C0A974DD2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition */; };
@@ -269,6 +270,7 @@
 		C06078F129E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVocabularyWidgetEntryView.swift; sourceTree = "<group>"; };
 		C060797A29E808BD00434A2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C08554E92B4D7789002E93B3 /* testSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSound.mp3; sourceTree = "<group>"; };
+		C08D59B02B6901C700E292A7 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		C0A974D72A121E0400196064 /* VersionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheck.swift; sourceTree = "<group>"; };
 		C0A974DC2A15C9FD00196064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/CaptureVocabularyWidget.intentdefinition; sourceTree = "<group>"; };
 		C0A974DF2A15CA0400196064 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CaptureVocabularyWidget.strings; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 				C03B02062B1F51790067D2FE /* OpenCCConverter.swift */,
 				C08554E92B4D7789002E93B3 /* testSound.mp3 */,
 				C01C455D2B3BF331001BB8B5 /* simple.mp3 */,
+				C08D59B02B6901C700E292A7 /* silence.mp3 */,
 			);
 			path = Libary;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C08D59B12B6901C700E292A7 /* silence.mp3 in Resources */,
 				F53771C82812985B003F892D /* appParametersDev.plist in Resources */,
 				C001389329C83BD800D2E4BA /* mockWords.json in Resources */,
 				C0EFECE829F270930064F647 /* appParametersProd.plist in Resources */,
