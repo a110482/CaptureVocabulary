@@ -69,7 +69,7 @@ class VocabularyCardCell: UITableViewCell {
     
     private func bindAction() {
         speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            Speaker.speak(self?.sourceLabel.text ?? "", language: .en_US)
+            Speaker.shared.speak(self?.sourceLabel.text ?? "", language: .en_US)
         }).disposed(by: disposeBag)
         
         memorizedSwitchButton.rx.tap.subscribe(onNext: { [weak self] _ in
