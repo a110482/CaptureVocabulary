@@ -61,13 +61,13 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         sourceLabel.text = cellModel.orm.normalizedSource
         activeSwitchButton.setActive(cellModel.orm.memorized ?? false)
         speakerButton.setTitle(cellModel.orm.phonetic, for: .normal)
-        
-        guard isHiddenTranslateSwitchOn else {
-            showTranslate()
-            return
-        }
-        cellModel.orm.normalizedSource == cellModel.pressTipVocabulary ? showTranslate() : hideTranslate()
         updateAudioButtonIcon()
+ 
+        if isHiddenTranslateSwitchOn {
+            cellModel.orm.normalizedSource == cellModel.pressTipVocabulary ? showTranslate() : hideTranslate()
+        } else {
+            showTranslate()
+        }
     }
     
     private func resetToDefaultStatus() {
