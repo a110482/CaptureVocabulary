@@ -27,6 +27,7 @@ class ReviewViewModel {
         set { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] = newValue }
     }
     private(set) var isAudioModeOn = false
+    private(set) var isEnterBackground = false
     private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
         get {
@@ -42,6 +43,8 @@ class ReviewViewModel {
     
     init() {
         SimpleSentenceService.shared.registerObserver(object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     func loadLastReadVocabularyCard() {
@@ -136,6 +139,15 @@ class ReviewViewModel {
         }
         return databaseIndex
     }
+
+    @objc func appDidEnterBackground() {
+        isEnterBackground = true
+    }
+    
+    @objc func willEnterForeground() {
+        isEnterBackground = false
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: false))
+    }
     
     #warning("版本檢查函數, 目前沒有使用")
     private func versionCheck() {
@@ -146,6 +158,10 @@ class ReviewViewModel {
             print(model)
         }).disposed(by: disposeBag)
         request.send(req: api)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -191,10 +207,11 @@ private extension ReviewViewModel {
         isAudioModeOn = isEnable
         output.needReloadDate.accept(())
         guard isEnable else {
-//            MP3Player.shared.stop()
+            MP3Player.shared.stop()
+            Speaker.shared.stop()
             return
         }
-//        MP3Player.shared.playSound()
+        MP3Player.shared.playSound()
         Speaker.shared.delegate = self
         playVocabulary()
         setupNowPlayingInfo()
@@ -256,7 +273,9 @@ private extension ReviewViewModel {
     
     func nextVocabulary() {
         updateLastReadCard(index: lastReadCardTableIndex + 1)
-        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
+        if !isEnterBackground {
+            output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             guard self.isAudioModeOn else { return }
             self.playVocabulary()

@@ -311,7 +311,7 @@ class MP3Player: NSObject {
         super.init()
         
         if player == nil {
-            guard let url = Bundle.main.url(forResource: "testSound", withExtension: "mp3") else { return }
+            guard let url = Bundle.main.url(forResource: "silence", withExtension: "mp3") else { return }
             player = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
         }
     }
