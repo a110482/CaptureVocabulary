@@ -174,7 +174,7 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
     
     func didPressedAudioPlayButton() {
         // 撥放背景 mp3 維持背景播放
-        setAudioMode(isEnable: !isAudioModeOn)
+        applyAudioMode(isEnable: !isAudioModeOn)
     }
 }
 
@@ -187,14 +187,16 @@ extension ReviewViewModel: SimpleSentenceServiceDelegate {
 
 // 語音播放相關
 private extension ReviewViewModel {
-    func setAudioMode(isEnable: Bool) {
+    func applyAudioMode(isEnable: Bool) {
         isAudioModeOn = isEnable
         output.needReloadDate.accept(())
         guard isEnable else {
-            MP3Player.shared.stop()
+//            MP3Player.shared.stop()
             return
         }
-        MP3Player.shared.playSound()
+//        MP3Player.shared.playSound()
+        Speaker.shared.delegate = self
+        playVocabulary()
         setupNowPlayingInfo()
         setupRemoteTransportControls()
     }
@@ -217,14 +219,14 @@ private extension ReviewViewModel {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget { [weak self] event in
             guard let self else { return .success }
-            self.setAudioMode(isEnable: true)
+            self.applyAudioMode(isEnable: true)
             return .success
         }
         
         // 設定暫停按鈕
         commandCenter.pauseCommand.addTarget { [weak self] event in
             guard let self else { return .success }
-            self.setAudioMode(isEnable: false)
+            self.applyAudioMode(isEnable: false)
             return .success
         }
         
@@ -239,5 +241,50 @@ private extension ReviewViewModel {
             // 按下上一首按鈕時的處理邏輯
             return .success
         }
+    }
+    
+    /// 播放單字
+    func playVocabulary() {
+        guard let data = queryVocabularyCard(index: lastReadCardTableIndex) else {
+            applyAudioMode(isEnable: false)
+            return
+        }
+        Speaker.shared.speakSequences(data.normalizedSource ?? "", language: .en_US)
+        Speaker.shared.speakSequences("", language: .pause(time: 1))
+        Speaker.shared.speakSequences(filterChinese(source: data.normalizedTarget), language: .zh_TW)
+    }
+    
+    func nextVocabulary() {
+        updateLastReadCard(index: lastReadCardTableIndex + 1)
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            guard self.isAudioModeOn else { return }
+            self.playVocabulary()
+        })
+    }
+    
+    func filterChinese(source: String?) -> String {
+        guard let source else { return "" }
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "^[\\u4e00-\\u9fa5]+$")
+        
+        // 使用 UnicodeScalar 遍歷源字符串，過濾中文字符
+        let filteredCharacters = source.unicodeScalars.filter { predicate.evaluate(with: String($0)) }
+        
+        // 將 UnicodeScalar 轉換為 String 並連接成最終的字符串
+        let result = String(String.UnicodeScalarView(filteredCharacters))
+        
+        return result
+    }
+}
+
+extension ReviewViewModel: SpeakerDelegate {
+    func sequencesDidFinish() {
+        guard isAudioModeOn else { return }
+        nextVocabulary()
+    }
+    
+    func sequencesDidInterrupt() {
+        isAudioModeOn = false
+        output.needReloadDate.accept(())
     }
 }
