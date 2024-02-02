@@ -45,9 +45,10 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
-        #if block//DEBUG
+        #if block //DEBUG
+        //查詢單字
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.action.accept(.selected(vocabulary: "shift"))
+            self.action.accept(.selected(vocabulary: "qqqqqqqqqqqq"))
         }
         #endif
     }
