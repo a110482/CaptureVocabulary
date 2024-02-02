@@ -31,4 +31,5 @@
 "CaptureVocabularyViewController.search" = "查询";
 
 "VocabularyViewController.save" = "储存";
+"VocabularyViewController.noDataLabel" = "查无此单字";
 "VocabularyCardListORM.ORM.word" = "单字";

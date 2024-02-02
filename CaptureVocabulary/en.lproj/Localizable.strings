@@ -31,4 +31,5 @@
 "CaptureVocabularyViewController.search" = "Search";
 
 "VocabularyViewController.save" = "Save";
+"VocabularyViewController.noDataLabel" = "Word not found";
 "VocabularyCardListORM.ORM.word" = "Word";
