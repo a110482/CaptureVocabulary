@@ -10,6 +10,8 @@ import SnapKit
 import SwifterSwift
 import RxCocoa
 import RxSwift
+import MediaPlayer
+
 
 // MARK: -
 class ReviewViewController: UIViewController {
@@ -225,11 +227,13 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ReviewCollectionViewCell.self, for: indexPath)
-        guard let cellModel = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
-        cell.set(cellModel: cellModel,
-                 isHiddenTranslateSwitchOn: viewModel?.isHiddenTranslateSwitchOn ?? true,
-                 pressTipVocabulary: viewModel?.pressTipVocabulary
-        )
+        guard let orm = viewModel?.queryVocabularyCard(index: indexPath.row) else { return cell }
+        let cellModel = ReviewCollectionViewCellModel(
+            orm: orm,
+            isHiddenTranslateSwitchOn: viewModel?.isHiddenTranslateSwitchOn ?? true,
+            pressTipVocabulary: viewModel?.pressTipVocabulary,
+            isAudioModeOn: viewModel?.isAudioModeOn ?? false)
+        cell.set(cellModel: cellModel)
         cell.delegate = viewModel
         return cell
     }
@@ -292,5 +296,47 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
 extension ReviewViewController: AdSimpleBannerPowered {
     var placeholder: UIView? {
         adBannerView
+    }
+}
+
+// MARK: -
+import AVFoundation
+
+fileprivate var player: AVAudioPlayer?
+
+class MP3Player: NSObject {
+    static let shared = MP3Player()
+    
+    private override init() {
+        super.init()
+        
+        if player == nil {
+            guard let url = Bundle.main.url(forResource: "silence", withExtension: "mp3") else { return }
+            player = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+        }
+    }
+    
+    func playSound() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            guard let player = player else { return }
+            player.delegate = self
+            player.play()
+
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func stop() {
+        player?.stop()
+    }
+}
+
+extension MP3Player: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        playSound()
     }
 }
