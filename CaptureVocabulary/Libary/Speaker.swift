@@ -7,8 +7,6 @@
 
 import AVFoundation
 
-fileprivate let synth = AVSpeechSynthesizer()
-
 protocol SpeakerDelegate: AnyObject {
     func sequencesDidFinish()
     func sequencesDidInterrupt()
@@ -16,7 +14,7 @@ protocol SpeakerDelegate: AnyObject {
 
 class Speaker: NSObject {
     static let shared = Speaker()
-    
+    var synth = AVSpeechSynthesizer()
     weak var delegate: SpeakerDelegate?
     
     private override init() {
@@ -47,6 +45,10 @@ class Speaker: NSObject {
     
     private var sequences: [(string: String, language: Language)] = []
     
+    func resetSpeaker() {
+        synth = AVSpeechSynthesizer()
+        synth.delegate = speakerDelegate
+    }
     
     /// speak immediate, it will clean speak sequences
     func speak(_ string: String, language: Language) {
