@@ -24,6 +24,10 @@ struct VocabularyCardORM: TableType {
     /// version 2 以後新增欄位 參見: SQLCoreMigration_2
     static let phonetic = Expression<String>("phonetic")
     
+    /// version 5 以後新增欄位 參見: SQLCoreMigration_5
+    static let memorizedTimestamp = Expression<Double>("memorizedTimestamp")
+    static let memorizedTimes = Expression<Int64>("memorizedTimes")
+    
     private var db: Connection {
         SQLCore.shared.db
     }
@@ -49,6 +53,9 @@ struct VocabularyCardORM: TableType {
                 t.column(memorized, defaultValue: false)
                 t.column(timestamp)
                 t.column(cardListId)
+                t.column(phonetic)
+                t.column(memorizedTimestamp)
+                t.column(memorizedTimes)
                 t.foreignKey(cardListId,
                              references: VocabularyCardListORM.table,
                              id,
