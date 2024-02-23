@@ -119,6 +119,10 @@
 		C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */; };
 		C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF052B8739290033D319 /* SettingPageViewController.swift */; };
 		C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF052B8739290033D319 /* SettingPageViewController.swift */; };
+		C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */; };
+		C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */; };
+		C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */; };
+		C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */; };
 		C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
 		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
 		C0EA89682A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
@@ -289,6 +293,8 @@
 		C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageCoordinator.swift; sourceTree = "<group>"; };
 		C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageViewModel.swift; sourceTree = "<group>"; };
 		C0BDFF052B8739290033D319 /* SettingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageViewController.swift; sourceTree = "<group>"; };
+		C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewSectionModel.swift; sourceTree = "<group>"; };
+		C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingReadingCell.swift; sourceTree = "<group>"; };
 		C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewModel.swift; sourceTree = "<group>"; };
 		C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewController.swift; sourceTree = "<group>"; };
 		C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabularyWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -466,8 +472,10 @@
 			isa = PBXGroup;
 			children = (
 				C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */,
-				C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */,
 				C0BDFF052B8739290033D319 /* SettingPageViewController.swift */,
+				C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */,
+				C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */,
+				C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */,
 			);
 			path = SettingPage;
 			sourceTree = "<group>";
@@ -1056,6 +1064,7 @@
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
+				C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
@@ -1111,6 +1120,7 @@
 				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
 				C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
+				C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
@@ -1221,6 +1231,7 @@
 				C032E5212B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
+				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
@@ -1230,6 +1241,7 @@
 				C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
+				C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

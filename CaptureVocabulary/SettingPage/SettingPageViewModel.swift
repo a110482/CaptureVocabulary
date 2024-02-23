@@ -11,12 +11,19 @@ import RxCocoa
 class SettingPageViewModel {
     private(set) var output = Output()
     struct Output {
-        let cellModels = BehaviorRelay<Array<String>>(value: [])
+        fileprivate let _sectionModels = BehaviorRelay<Array<SettingTableViewSectionModel>>(value: [])
+        var sectionModels: Driver<Array<SettingTableViewSectionModel>> { _sectionModels.asDriver() }
     }
     
     init() {
         #if DEBUG
-        output.cellModels.accept(["reading", "autoReview", "debug"])
+        let readingModels = [SettingReadingCellModel()]
+        output._sectionModels.accept([
+            SettingTableViewSectionModel(title: "reading", cellModels: readingModels)
+        ])
+        
+        
+//        output.cellModels.accept(["reading", "autoReview", "debug"])
         #endif
     }
 }
