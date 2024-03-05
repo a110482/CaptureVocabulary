@@ -16,6 +16,14 @@ class Speaker: NSObject {
     static let shared = Speaker()
     var synth = AVSpeechSynthesizer()
     weak var delegate: SpeakerDelegate?
+    private var readingRate: Float {
+        let defaultRate = AVSpeechUtteranceDefaultSpeechRate
+        return defaultRate * readingRatio
+    }
+    private var readingRatio: Float = {
+        let ratio = UserDefaults.standard[UserDefaultsKeys.readingSpeedRatio] ?? 1
+        return ratio
+    }()
     
     private override init() {
         let audioSession = AVAudioSession.sharedInstance()
@@ -78,6 +86,10 @@ class Speaker: NSObject {
         }
     }
     
+    func updateReadingRatio(ratio: Float) {
+        readingRatio = ratio
+    }
+    
     fileprivate func speakSequences() {
         isSpeaking = true
         guard sequences.count > 0 else {
@@ -97,11 +109,7 @@ class Speaker: NSObject {
         
         // 發音
         let utterance = AVSpeechUtterance(string: pack.string)
-//        #if DEBUG
-//        // 可設定語速
-//        utterance.rate = 0.1
-//        utterance.postUtteranceDelay = 3
-//        #endif
+        utterance.rate = readingRate
         utterance.voice = AVSpeechSynthesisVoice(language: pack.language.description)
         synth.pauseSpeaking(at: .immediate)
         synth.speak(utterance)

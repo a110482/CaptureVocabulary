@@ -111,6 +111,18 @@
 		C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */; };
 		C0B2266829C2F8CC00ACBA14 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */; };
 		C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */; };
+		C0BDFEFC2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */; };
+		C0BDFEFD2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */; };
+		C0BDFF002B8733D80033D319 /* SettingPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */; };
+		C0BDFF012B8733D80033D319 /* SettingPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */; };
+		C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */; };
+		C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */; };
+		C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF052B8739290033D319 /* SettingPageViewController.swift */; };
+		C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF052B8739290033D319 /* SettingPageViewController.swift */; };
+		C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */; };
+		C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */; };
+		C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */; };
+		C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */; };
 		C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */; };
 		C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */; };
 		C0EA89682A399E990089C360 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C0EA896B2A399E990089C360 /* Localizable.strings */; };
@@ -277,6 +289,12 @@
 		C0B2266529C2F89700ACBA14 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B2266729C2F8CC00ACBA14 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		C0B2266929C2F92000ACBA14 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigrationScripts.swift; sourceTree = "<group>"; };
+		C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageCoordinator.swift; sourceTree = "<group>"; };
+		C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageViewModel.swift; sourceTree = "<group>"; };
+		C0BDFF052B8739290033D319 /* SettingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPageViewController.swift; sourceTree = "<group>"; };
+		C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewSectionModel.swift; sourceTree = "<group>"; };
+		C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingReadingCell.swift; sourceTree = "<group>"; };
 		C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewModel.swift; sourceTree = "<group>"; };
 		C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsViewController.swift; sourceTree = "<group>"; };
 		C0D3B04929F10AD300634C6F /* CaptureVocabularyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVocabularyWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -448,6 +466,18 @@
 				C06078E429E7FAE000434A2E /* Info.plist */,
 			);
 			path = CaptureVocabularyWidget;
+			sourceTree = "<group>";
+		};
+		C0BDFEFE2B8600F20033D319 /* SettingPage */ = {
+			isa = PBXGroup;
+			children = (
+				C0BDFEFF2B8733D80033D319 /* SettingPageCoordinator.swift */,
+				C0BDFF052B8739290033D319 /* SettingPageViewController.swift */,
+				C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */,
+				C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */,
+				C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */,
+			);
+			path = SettingPage;
 			sourceTree = "<group>";
 		};
 		C0ECF88F2B08E0B900856828 /* EditVocabularyCards */ = {
@@ -649,6 +679,7 @@
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
+				C0BDFEFE2B8600F20033D319 /* SettingPage */,
 				F5E6602F2830DF2500277222 /* Review */,
 				F50952BB28278192000C74B0 /* Tabbar */,
 				F50952C228280B33000C74B0 /* VocabularyCards */,
@@ -699,6 +730,7 @@
 			children = (
 				F50952B7281FE865000C74B0 /* SQLCore.swift */,
 				C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */,
+				C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
 				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
@@ -1032,10 +1064,12 @@
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
+				C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
+				C0BDFF012B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
 				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
 				C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */,
@@ -1071,11 +1105,13 @@
 				C060795829E805DA00434A2E /* AzureTranslate.swift in Sources */,
 				C060795929E805DA00434A2E /* AzureDictionary.swift in Sources */,
 				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
+				C0BDFEFD2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */,
 				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
 				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
 				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
+				C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
 				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
 				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
@@ -1084,6 +1120,7 @@
 				C060796329E805DA00434A2E /* JsonReader.swift in Sources */,
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
 				C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
+				C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
@@ -1104,6 +1141,7 @@
 				C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */,
 				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
+				C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
@@ -1155,6 +1193,7 @@
 				C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
 				C001389729C83EB100D2E4BA /* MockWords.swift in Sources */,
+				C0BDFEFC2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */,
 				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
@@ -1166,6 +1205,7 @@
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
+				C0BDFF002B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
@@ -1191,13 +1231,17 @@
 				C032E5212B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
+				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
+				C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
+				C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
+				C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
