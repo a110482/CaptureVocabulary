@@ -16,6 +16,7 @@ class Speaker: NSObject {
     static let shared = Speaker()
     var synth = AVSpeechSynthesizer()
     weak var delegate: SpeakerDelegate?
+    private(set) var isSpeaking = false
     private var readingRate: Float {
         let defaultRate = AVSpeechUtteranceDefaultSpeechRate
         return defaultRate * readingRatio
@@ -76,8 +77,6 @@ class Speaker: NSObject {
         sequences = []
         synth.stopSpeaking(at: .immediate)
     }
-    
-    private(set) var isSpeaking = false
     
     func speakSequences(_ string: String, language: Language) {
         sequences.append((string, language))
