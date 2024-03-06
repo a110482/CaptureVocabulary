@@ -14,6 +14,9 @@
 		C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389829C84D2500D2E4BA /* DevPanelViewController.swift */; };
 		C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
 		C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E95862A08EA6A00D1DA29 /* UIButton+Ext.swift */; };
+		C00F87F72B9804FF00E8DFE9 /* appParametersDev.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53771C72812985B003F892D /* appParametersDev.plist */; };
+		C00F87F82B98050200E8DFE9 /* appParametersProd.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0EFECE729F270930064F647 /* appParametersProd.plist */; };
+		C00F87F92B98050400E8DFE9 /* appParametersUat.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0F413B129FA5BCA00378E17 /* appParametersUat.plist */; };
 		C01C455E2B3BF331001BB8B5 /* simple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C01C455D2B3BF331001BB8B5 /* simple.mp3 */; };
 		C01C455F2B3BF331001BB8B5 /* simple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C01C455D2B3BF331001BB8B5 /* simple.mp3 */; };
 		C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0297F092A03939D000F4A71 /* DicSQL.swift */; };
@@ -318,10 +321,10 @@
 		C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentencesORM.swift; sourceTree = "<group>"; };
 		C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSentenceService.swift; sourceTree = "<group>"; };
 		C0EFECDB29F13E640064F647 /* SQLCoreMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCoreMigration.swift; sourceTree = "<group>"; };
-		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersProd.plist; sourceTree = "<group>"; };
+		C0EFECE729F270930064F647 /* appParametersProd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = appParametersProd.plist; path = ../CaptureVocabularyParameters/appParametersProd.plist; sourceTree = "<group>"; };
 		C0EFECE929F61E2C0064F647 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C0EFECF529F68C440064F647 /* QueryStringTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryStringTextField.swift; sourceTree = "<group>"; };
-		C0F413B129FA5BCA00378E17 /* appParametersUat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appParametersUat.plist; sourceTree = "<group>"; };
+		C0F413B129FA5BCA00378E17 /* appParametersUat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = appParametersUat.plist; path = ../CaptureVocabularyParameters/appParametersUat.plist; sourceTree = "<group>"; };
 		C0F413B329FA5BD500378E17 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		C0F413B429FA5BD500378E17 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		C0F413B529FA5BD500378E17 /* Uat.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Uat.xcconfig; sourceTree = "<group>"; };
@@ -344,7 +347,7 @@
 		F50952C928297E1A000C74B0 /* VocabularyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListCell.swift; sourceTree = "<group>"; };
 		F52A6548283DDC540094357B /* VocabularyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardCell.swift; sourceTree = "<group>"; };
 		F52A654B2843A2730094357B /* ActiveSwitchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSwitchButton.swift; sourceTree = "<group>"; };
-		F53771C72812985B003F892D /* appParametersDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = appParametersDev.plist; sourceTree = "<group>"; };
+		F53771C72812985B003F892D /* appParametersDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = appParametersDev.plist; path = ../CaptureVocabularyParameters/appParametersDev.plist; sourceTree = "<group>"; };
 		F53771CA2812B4D7003F892D /* Decision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
 		F53771CB2812B4D7003F892D /* MoyaProvider+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Ext.swift"; sourceTree = "<group>"; };
 		F53771CC2812B4D7003F892D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -891,11 +894,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C00F87F72B9804FF00E8DFE9 /* appParametersDev.plist in Resources */,
 				C06078E329E7FAE000434A2E /* Assets.xcassets in Resources */,
+				C00F87F82B98050200E8DFE9 /* appParametersProd.plist in Resources */,
 				C0EA896D2A399E9E0089C360 /* InfoPlist.strings in Resources */,
 				C0EA89692A399E990089C360 /* Localizable.strings in Resources */,
 				C01C455F2B3BF331001BB8B5 /* simple.mp3 in Resources */,
 				C0297F112A039CC3000F4A71 /* Resource.zip in Resources */,
+				C00F87F92B98050400E8DFE9 /* appParametersUat.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,7 +951,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersDev.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersUat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/appParametersProd.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n*)\n;;\nesac\n";
+			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/appParametersDev.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/appParametersUat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/appParametersProd.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/appParameters.plist\"\n        ;;\n*)\n;;\nesac\n";
 		};
 		C0F413CA29FBA9E100378E17 /* copy google info plist */ = {
 			isa = PBXShellScriptBuildPhase;
