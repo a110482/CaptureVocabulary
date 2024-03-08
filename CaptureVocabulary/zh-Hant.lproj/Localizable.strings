@@ -33,3 +33,5 @@
 "VocabularyViewController.save" = "儲存";
 "VocabularyViewController.noDataLabel" = "查無此單字";
 "VocabularyCardListORM.ORM.word" = "單字";
+
+"SettingPageViewController.title" = "系統設定";

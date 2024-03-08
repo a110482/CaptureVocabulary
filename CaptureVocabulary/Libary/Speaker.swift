@@ -7,8 +7,6 @@
 
 import AVFoundation
 
-fileprivate let synth = AVSpeechSynthesizer()
-
 protocol SpeakerDelegate: AnyObject {
     func sequencesDidFinish()
     func sequencesDidInterrupt()
@@ -16,8 +14,17 @@ protocol SpeakerDelegate: AnyObject {
 
 class Speaker: NSObject {
     static let shared = Speaker()
-    
+    var synth = AVSpeechSynthesizer()
     weak var delegate: SpeakerDelegate?
+    private(set) var isSpeaking = false
+    private var readingRate: Float {
+        let defaultRate = AVSpeechUtteranceDefaultSpeechRate
+        return defaultRate * readingRatio
+    }
+    private var readingRatio: Float = {
+        let ratio = UserDefaults.standard[UserDefaultsKeys.readingSpeedRatio] ?? 1
+        return ratio
+    }()
     
     private override init() {
         let audioSession = AVAudioSession.sharedInstance()
@@ -47,6 +54,10 @@ class Speaker: NSObject {
     
     private var sequences: [(string: String, language: Language)] = []
     
+    func resetSpeaker() {
+        synth = AVSpeechSynthesizer()
+        synth.delegate = speakerDelegate
+    }
     
     /// speak immediate, it will clean speak sequences
     func speak(_ string: String, language: Language) {
@@ -67,13 +78,15 @@ class Speaker: NSObject {
         synth.stopSpeaking(at: .immediate)
     }
     
-    private(set) var isSpeaking = false
-    
     func speakSequences(_ string: String, language: Language) {
         sequences.append((string, language))
         if !isSpeaking {
             speakSequences()
         }
+    }
+    
+    func updateReadingRatio(ratio: Float) {
+        readingRatio = ratio
     }
     
     fileprivate func speakSequences() {
@@ -95,11 +108,7 @@ class Speaker: NSObject {
         
         // 發音
         let utterance = AVSpeechUtterance(string: pack.string)
-//        #if DEBUG
-//        // 可設定語速
-//        utterance.rate = 0.1
-//        utterance.postUtteranceDelay = 3
-//        #endif
+        utterance.rate = readingRate
         utterance.voice = AVSpeechSynthesisVoice(language: pack.language.description)
         synth.pauseSpeaking(at: .immediate)
         synth.speak(utterance)

@@ -40,11 +40,11 @@ class TabBarCoordinator: Coordinator<UIViewController> {
     private func review() -> UIViewController {
         let coordinator = ReviewCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
-        coordinator.viewController.tabBarItem = UITabBarItem(
+        coordinator.navController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("TabBarCoordinator.review", comment: "複習"),
             image: UIImage(named: "tabBar.review"),
             tag: 1)
-        return coordinator.viewController
+        return coordinator.navController
     }
     
     private func vocabularyList() -> UIViewController {

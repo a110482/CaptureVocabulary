@@ -49,7 +49,8 @@ class SQLCore {
             VocabularyCardORM.self,
             AzureDictionaryORM.self,
             AzureDictionaryTranslationORM.self,
-            YDTranslateORM.self
+            YDTranslateORM.self,
+            SimpleSentencesORM.self
         ]
     }
     

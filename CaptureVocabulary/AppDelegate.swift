@@ -34,10 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
-        
-        // 先讓語音服務暖機
-        Speaker.shared.speak(" ", language: .en_US)
-        
+
         return true
     }
 
@@ -45,6 +42,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
 }
 
