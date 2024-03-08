@@ -969,7 +969,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-uat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabulary/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n*)\n;;\nesac\n";
+			shellScript = "set -x\ncase \"${CONFIGURATION}\" in\n    \"Debug\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/GoogleService-Info-debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n    \"Uat\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/GoogleService-Info-uat.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;    \"Release\")\n        cp \"${PROJECT_DIR}/CaptureVocabularyParameters/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n        ;;\n*)\n;;\nesac\n";
 		};
 		C0F413D329FBCF8300378E17 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
