@@ -61,14 +61,12 @@ class ViewController: UIViewController {
                 mainCoordinator()
             }
         } catch {
-            if let error = error as? SQLCoreMigrationError {
-                statusLabel.text = "初始化錯誤: \(error.localizedDescription)"
-                #if DEBUG
-                showStartManuallyButton()
-                #else
-                mainCoordinator()
-                #endif
-            }
+            statusLabel.text = "初始化錯誤: \(error.localizedDescription)"
+            #if DEBUG
+            showStartManuallyButton()
+            #else
+            mainCoordinator()
+            #endif
         }
     }
     
