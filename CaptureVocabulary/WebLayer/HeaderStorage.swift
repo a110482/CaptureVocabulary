@@ -15,6 +15,8 @@ public class HeaderStorage {
         public var shareHeaderKeys: [String] = []
     }
     
+    private var headerStorages: Array<Storage> = []
+    
     static let `default` = HeaderStorage()
     
     var setting = Setting()
@@ -58,7 +60,5 @@ public class HeaderStorage {
         let host: String
         var headerKeyValue: Dictionary<String, String> = [:]
     }
-
-    private var headerStorages: Array<Storage> = []
 }
 

@@ -291,7 +291,7 @@ extension VocabularyViewController {
         speakerButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             guard let source = self.sourceTextField.text else { return }
-            Speaker.speak(source, language: .en_US)
+            Speaker.shared.speak(source, language: .en_US)
         }).disposed(by: disposeBag)
     }
 }
@@ -318,16 +318,25 @@ extension VocabularyViewController: UITextFieldDelegate {
 class TranslateResultView: UIStackView {
     let mainTranslate = QueryStringTextField().then {
         $0.font = .systemFont(ofSize: 17)
+        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     private let translateTextView = TranslateTextView().then {
         $0.font = .systemFont(ofSize: 17)
         $0.backgroundColorHex = "#F8F7F7"
         $0.isEditable = false
     }
-    private let noDataIcon = UIImageView().then {
+    private let noDataView = UIView().then {
         $0.isHidden = true
-        $0.image = UIImage(systemName: "exclamationmark.triangle")
-        $0.tintColor = .gray
+    }
+    private let noDataImage = UIImageView().then {
+        $0.image = UIImage(named: "noDataImage")
+        $0.contentMode = .scaleAspectFit
+    }
+    private let noDataLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 24)
+        $0.textAlignment = .center
+        $0.text = NSLocalizedString("VocabularyViewController.noDataLabel", comment: "查無此單字")
+        $0.textColor = .gray
     }
     
     override init(frame: CGRect) {
@@ -350,10 +359,9 @@ class TranslateResultView: UIStackView {
         prepareForReuse()
         mainTranslate.text = model?.getMainTranslation()?.localized()
         mainTranslate.updateUnderLineColor()
-        translateTextView.config(model: model, sentences: nil)
-        noDataIcon.isHidden = (model != nil)
+        translateTextView.config(model: model)
+        noDataView.isHidden = (model != nil)
     }
-    
     
     private func configUI() {
         mainTranslate.returnKeyType = .done
@@ -362,15 +370,31 @@ class TranslateResultView: UIStackView {
             padding(gap: 10),
             translateTextView,
         ])
+        
         translateTextView.snp.makeConstraints {
             $0.width.equalToSuperview()
         }
         
-        addSubview(noDataIcon)
-        noDataIcon.snp.makeConstraints {
-            $0.center.equalTo(translateTextView)
-            $0.left.equalTo(80)
-            $0.width.equalTo(noDataIcon.snp.height)
+        translateTextView.addSubview(noDataView)
+        noDataView.snp.makeConstraints {
+            $0.edges.equalTo(translateTextView.frameLayoutGuide)
+        }
+        
+        noDataView.addSubviews([
+            noDataImage,
+            noDataLabel
+        ])
+        
+        noDataImage.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalToSuperview().inset(10)
+        }
+        
+        noDataLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(10)
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(noDataImage.snp.bottom)
+            $0.height.equalTo(30)
         }
     }
 }

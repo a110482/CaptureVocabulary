@@ -17,4 +17,9 @@ enum UserDefaultsKeys {
     // 單字例句下載序列
     static let sentencesDownloadQueue = UserDefaults.Key<Array<String>>(
     rawValue: "sentencesDownloadQueue")
+    // 是否在複習模式要顯示中文部分
+    static let isHiddenTranslateSwitchOn = UserDefaults.Key<Bool>(
+        rawValue: "isHiddenTranslateSwitchOn")
+    static let readingSpeedRatio = UserDefaults.Key<Float>(
+        rawValue: "readingSpeedRatio")
 }

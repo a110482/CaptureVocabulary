@@ -19,6 +19,8 @@ class SimpleSentenceService {
         didSet { requestQueueDidChanges() }
     }
     
+    private var currentQueryWord: String?
+    
     private var processState: ProcessState = .padding {
         didSet { handleStatus() }
     }
@@ -48,9 +50,8 @@ class SimpleSentenceService {
            sentences.count > 0 {
             return sentences
         }
-        guard !requestQueue.contains(queryWord) else {
-            return nil
-        }
+        guard !requestQueue.contains(queryWord) else { return nil }
+        guard queryWord != currentQueryWord else { return nil }
         requestQueue.insert(queryWord, at: 0)
         return nil
     }
@@ -80,6 +81,7 @@ private extension SimpleSentenceService {
             return
         }
         let queryWord = requestQueue.removeFirst()
+        currentQueryWord = queryWord
         processState = .sendRequest(queryWord: queryWord)
     }
     
@@ -139,7 +141,7 @@ private extension SimpleSentenceService {
                 self?.sentencesDidLoad(normalizedSource: queryWord)
             }
         }
-        
+        currentQueryWord = nil
         processState = .downloadNext
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import MediaPlayer
 
 // MARK: -
 class ReviewViewModel {
@@ -21,6 +22,12 @@ class ReviewViewModel {
     }
     let output = Output()
     let indexCount = 200
+    private(set) var isHiddenTranslateSwitchOn: Bool {
+        get { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] ?? false }
+        set { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] = newValue }
+    }
+    private(set) var isAudioModeOn = false
+    private(set) var isEnterBackground = false
     private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
     private var lastReadCardId: Int? {
         get {
@@ -30,10 +37,14 @@ class ReviewViewModel {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId] = newValue
         }
     }
+    /// 記錄目前已按下提示的 cell
+    private(set) var pressTipVocabulary: String? = nil
     private let disposeBag = DisposeBag()
     
     init() {
         SimpleSentenceService.shared.registerObserver(object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     func loadLastReadVocabularyCard() {
@@ -128,6 +139,15 @@ class ReviewViewModel {
         }
         return databaseIndex
     }
+
+    @objc func appDidEnterBackground() {
+        isEnterBackground = true
+    }
+    
+    @objc func willEnterForeground() {
+        isEnterBackground = false
+        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: false))
+    }
     
     #warning("版本檢查函數, 目前沒有使用")
     private func versionCheck() {
@@ -139,18 +159,38 @@ class ReviewViewModel {
         }).disposed(by: disposeBag)
         request.send(req: api)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // cell delegate
 extension ReviewViewModel: ReviewCollectionViewCellDelegate {
-    func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
-        let currentMemorized = cellModel.memorized ?? false
-        var newCellModel = cellModel
+    func tapMemorizedSwitchButton(orm: VocabularyCardORM.ORM) {
+        let currentMemorized = orm.memorized ?? false
+        var newCellModel = orm
         newCellModel.memorized = !currentMemorized
         newCellModel.update()
         output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
                                      animation: true))
         output.needReloadDate.accept(())
+    }
+    
+    func hiddenTranslateSwitchDidChanged(isOn: Bool) {
+        isHiddenTranslateSwitchOn = isOn
+        pressTipVocabulary = nil
+        output.needReloadDate.accept(())
+    }
+    
+    func didPressedTipIcon() {
+        pressTipVocabulary = output._dictionaryData.value?.word
+        output.needReloadDate.accept(())
+    }
+    
+    func didPressedAudioPlayButton() {
+        // 撥放背景 mp3 維持背景播放
+        applyAudioMode(isEnable: !isAudioModeOn)
     }
 }
 
@@ -158,5 +198,112 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
 extension ReviewViewModel: SimpleSentenceServiceDelegate {
     func sentencesDidLoad(normalizedSource: String) {
         querySimpleSentences()
+    }
+}
+
+// 語音播放相關
+private extension ReviewViewModel {
+    func applyAudioMode(isEnable: Bool) {
+        isAudioModeOn = isEnable
+        output.needReloadDate.accept(())
+        guard isEnable else {
+            MP3Player.shared.stop()
+            Speaker.shared.stop()
+            return
+        }
+        MP3Player.shared.playSound()
+        Speaker.shared.delegate = self
+        playVocabulary()
+        setupNowPlayingInfo()
+        setupRemoteTransportControls()
+    }
+    
+    /// 設定歌曲資訊
+    func setupNowPlayingInfo() {
+        let nowPlayingInfo: [String : Any] = [
+            MPMediaItemPropertyTitle: "單字複習",
+            MPMediaItemPropertyArtist: "單字屋",
+            MPMediaItemPropertyAlbumTitle: "單字複習",
+//            MPMediaItemPropertyPlaybackDuration: 300, // 歌曲總時長（以秒為單位）
+//            MPNowPlayingInfoPropertyElapsedPlaybackTime: 60, // 目前播放進度（以秒為單位）
+        ]
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    /// 設定播放按鈕
+    func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget { [weak self] event in
+            guard let self else { return .success }
+            self.applyAudioMode(isEnable: true)
+            return .success
+        }
+        
+        // 設定暫停按鈕
+        commandCenter.pauseCommand.addTarget { [weak self] event in
+            guard let self else { return .success }
+            self.applyAudioMode(isEnable: false)
+            return .success
+        }
+        
+        // 設定下一首按鈕
+        commandCenter.nextTrackCommand.addTarget { event in
+            // 按下下一首按鈕時的處理邏輯
+            return .success
+        }
+        
+        // 設定上一首按鈕
+        commandCenter.previousTrackCommand.addTarget { event in
+            // 按下上一首按鈕時的處理邏輯
+            return .success
+        }
+    }
+    
+    /// 播放單字
+    func playVocabulary() {
+        guard let data = queryVocabularyCard(index: lastReadCardTableIndex) else {
+            applyAudioMode(isEnable: false)
+            return
+        }
+        Speaker.shared.speakSequences(data.normalizedSource ?? "", language: .en_US)
+        Speaker.shared.speakSequences("", language: .pause(time: 1))
+        Speaker.shared.speakSequences(filterChinese(source: data.normalizedTarget), language: .zh_TW)
+    }
+    
+    func nextVocabulary() {
+        updateLastReadCard(index: lastReadCardTableIndex + 1)
+        if !isEnterBackground {
+            output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            guard self.isAudioModeOn else { return }
+            self.playVocabulary()
+        })
+    }
+    
+    func filterChinese(source: String?) -> String {
+        guard let source else { return "" }
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "^[\\u4e00-\\u9fa5]+$")
+        
+        // 使用 UnicodeScalar 遍歷源字符串，過濾中文字符
+        let filteredCharacters = source.unicodeScalars.filter { predicate.evaluate(with: String($0)) }
+        
+        // 將 UnicodeScalar 轉換為 String 並連接成最終的字符串
+        let result = String(String.UnicodeScalarView(filteredCharacters))
+        
+        return result
+    }
+}
+
+extension ReviewViewModel: SpeakerDelegate {
+    func sequencesDidFinish() {
+        guard isAudioModeOn else { return }
+        nextVocabulary()
+    }
+    
+    func sequencesDidInterrupt() {
+        isAudioModeOn = false
+        output.needReloadDate.accept(())
     }
 }

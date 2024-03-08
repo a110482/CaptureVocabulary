@@ -13,7 +13,8 @@ import RxSwift
 import MessageUI
 
 class ReviewCoordinator: Coordinator<UIViewController> {
-    private(set) var viewController: ReviewViewController!
+    private(set) var navController: UINavigationController!
+    private var viewController: ReviewViewController!
     private(set) var viewModel: ReviewViewModel!
     private let disposeBag = DisposeBag()
     private let mailDelegator = MailDelegator()
@@ -24,7 +25,13 @@ class ReviewCoordinator: Coordinator<UIViewController> {
         viewModel = ReviewViewModel()
         viewController.bind(viewModel: viewModel)
         bindAction(viewController: viewController)
+        navController = UINavigationController(rootViewController: viewController)
         super.start()
+        #if DEBUG
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.settingPage()
+        })
+        #endif
     }
 }
 
@@ -44,9 +51,9 @@ private extension ReviewCoordinator {
             .disposed(by: disposeBag)
     }
     
-    #warning("TODO: - 設定頁面")
     func settingPage() {
-        
+        let coordinator = SettingPageCoordinator(rootViewController: navController)
+        startChild(coordinator: coordinator)
     }
     
     func feedback() {
