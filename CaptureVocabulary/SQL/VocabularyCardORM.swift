@@ -41,6 +41,8 @@ struct VocabularyCardORM: TableType {
         var timestamp: TimeInterval = Date().timeIntervalSince1970
         var cardListId: Int64?
         var phonetic: String?
+        var memorizedTimestamp: TimeInterval = Date().timeIntervalSince1970
+        var memorizedTimes: Int64 = 0
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
