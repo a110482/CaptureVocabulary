@@ -39,6 +39,8 @@ class CaptureVocabularyViewController: UIViewController {
     
     private let shapeLayer = CAShapeLayer()
     
+    private weak var viewModel: CaptureVocabularyViewModel!
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -59,16 +61,19 @@ class CaptureVocabularyViewController: UIViewController {
     }
     
     func bind(viewModel: CaptureVocabularyViewModel) {
+        self.viewModel = viewModel
         captureViewController.action.subscribe(onNext: { [weak viewModel] act in
             switch act {
             case .identifyText(let observations):
                 viewModel?.handleObservations(observations)
             case .videoZoomFactorChanged(let factor):
                 self.slider.value = Float(factor)
+            case .changeCameraSwitch(let isOn):
+                self.viewModel.setUserEnableCamera(isOn)
             }
         }).disposed(by: disposeBag)
         
-        viewModel.output.identifyWord.subscribe(onNext: { [weak self] recognizedItem in
+        viewModel.output.identifyWord.drive(onNext: { [weak self] recognizedItem in
             guard let self = self else { return }
             self.drawMarking(recognizedItem?.observation)
             guard let recognizedItem = recognizedItem else { return }
@@ -76,6 +81,13 @@ class CaptureVocabularyViewController: UIViewController {
             self.queryStringTextField.text = recognizedItem.word
             self.queryStringTextField.updateUnderLineColor()
         }).disposed(by: disposeBag)
+        
+        captureViewController.bind(
+            isOtherProgressNeedBlockCamera:
+                viewModel.output.isOtherProgressNeedBlockCamera
+        )
+        
+        captureViewController.bind(isUserEnableCamera: viewModel.output.isUserEnableCamera)
     }
 
     /// 標示掃描到的文字區域
@@ -120,10 +132,6 @@ class CaptureVocabularyViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         queryStringTextField.delegate = self
-    }
-    
-    func setScanActiveState(isActive: Bool) {
-        captureViewController.setScanActiveState(isActive: isActive)
     }
     
     private func sendQuery() {

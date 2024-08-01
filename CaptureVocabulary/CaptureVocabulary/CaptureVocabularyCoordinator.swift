@@ -37,15 +37,14 @@ class CaptureVocabularyCoordinator: Coordinator<UIViewController> {
     private func presentCreateVocabularyCoordinator(_ vocabulary: String) {
         let coordinator = CreateVocabularyCoordinator(rootViewController: viewController, vocabulary: vocabulary)
         startChild(coordinator: coordinator)
-        viewController.setScanActiveState(isActive: false)
-        
+        viewModel.setOtherProgressNeedBlockCamera(true)
         childActionDisposeBag = DisposeBag()
         coordinator.action.subscribe(onNext: { [weak self] action in
             guard let self = self else { return }
             self.childActionDisposeBag = nil
             switch action {
             case .dismiss, .saved:
-                self.viewController.setScanActiveState(isActive: true)
+                self.viewModel.setOtherProgressNeedBlockCamera(false)
             }
         }).disposed(by: childActionDisposeBag!)
     }

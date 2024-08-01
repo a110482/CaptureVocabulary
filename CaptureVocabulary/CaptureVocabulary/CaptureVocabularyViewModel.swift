@@ -11,20 +11,43 @@ import Vision
 
 class CaptureVocabularyViewModel {
     struct Output {
-        let identifyWord = BehaviorRelay<RecognizedItem?>(value: nil)
+        var identifyWord: Driver<RecognizedItem?> { model.identifyWord.asDriver() }
+        var isUserEnableCamera: Driver<Bool> { model.isUserEnableCamera.asDriver() }
+        var isOtherProgressNeedBlockCamera: Driver<Bool> { model.isOtherProgressNeedBlockCamera.asDriver() }
+        
+        private weak var model: CaptureVocabularyViewModel!
+        init(_ model: CaptureVocabularyViewModel!) {
+            self.model = model
+        }
     }
-    let output = Output()
+    private(set) lazy var output = Output(self)
     
     func handleObservations(_ observations: [VNRecognizedTextObservation]) {
         guard observations.count > 0 else {
-            output.identifyWord.accept(nil)
+            identifyWord.accept(nil)
             return
         }
         let identifyWord = refineObservations(observations)
         DispatchQueue.main.async {
-            self.output.identifyWord.accept(identifyWord)
+            self.identifyWord.accept(identifyWord)
         }
     }
+    
+    func setOtherProgressNeedBlockCamera(_ isNeed: Bool) {
+        isOtherProgressNeedBlockCamera.accept(isNeed)
+    }
+    
+    func setUserEnableCamera(_ isEnable: Bool) {
+        isUserEnableCamera.accept(isEnable)
+        UserDefaults.standard[UserDefaultsKeys.isUserEnableCamera] = isEnable
+    }
+    
+    private let identifyWord = BehaviorRelay<RecognizedItem?>(value: nil)
+    private let isCameraUseable = BehaviorRelay<Bool>(value: true)
+    /// 用戶是否允許使用相機
+    private let isUserEnableCamera = BehaviorRelay<Bool>(value: UserDefaults.standard[UserDefaultsKeys.isUserEnableCamera] ?? true)
+    /// 程序是否需要阻擋相機使用
+    private var isOtherProgressNeedBlockCamera = BehaviorRelay<Bool>(value: false)
 }
 
 struct RecognizedItem {
