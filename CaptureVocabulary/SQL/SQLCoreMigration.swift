@@ -74,7 +74,7 @@ class SQLCoreMigration {
     
     private static func createNewDatabase() throws {
         let script = SQLCoreMigration_newDatabase()
-        try script.process()
+        script.process()
         script.updateVersionNumber()
     }
     

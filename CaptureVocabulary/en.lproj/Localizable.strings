@@ -35,3 +35,5 @@
 "VocabularyCardListORM.ORM.word" = "Word";
 
 "SettingPageViewController.title" = "System Setting";
+"SettingPageViewController.section.reading" = "Reading";
+"SettingPageViewController.section.readingSpeed" = "Reading Speed";

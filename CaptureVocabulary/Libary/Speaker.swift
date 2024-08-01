@@ -65,6 +65,7 @@ class Speaker: NSObject {
             return
         }
         let utterance = AVSpeechUtterance(string: string)
+        utterance.rate = readingRate
         utterance.voice = AVSpeechSynthesisVoice(language: language.description)
         delegate?.sequencesDidInterrupt()
         sequences = []
