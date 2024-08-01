@@ -19,7 +19,9 @@ class SettingPageViewModel {
         #if DEBUG
         let readingModels = [SettingReadingCellModel()]
         output._sectionModels.accept([
-            SettingTableViewSectionModel(title: "reading", cellModels: readingModels)
+            SettingTableViewSectionModel(
+                title: NSLocalizedString("SettingPageViewController.section.reading", comment: "阅读"),
+                cellModels: readingModels)
         ])
         
         

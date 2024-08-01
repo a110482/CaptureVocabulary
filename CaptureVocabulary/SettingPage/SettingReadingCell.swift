@@ -72,7 +72,10 @@ private extension SettingReadingCell {
     }
     
     func configPlayButton() {
-        playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "play.circle")
+        config.contentInsets = .zero
+        playButton.configuration = config
         playButton.rx.tap.subscribe(onNext: {
             Speaker.shared.speak("testing", language: .en_US)
         }).disposed(by: disposeBag)
@@ -83,7 +86,7 @@ private extension SettingReadingCell {
     }
     
     func configTitleLabel() {
-        titleLabel.text = "閱讀速度"
+        titleLabel.text = NSLocalizedString("SettingPageViewController.section.readingSpeed", comment: "阅读速度")
     }
     
     func configSlider() {
@@ -97,8 +100,7 @@ private extension SettingReadingCell {
 // MARK: - CellModel
 class SettingReadingCellModel: SettingPageCellModelProtocol {
     let type: SettingPageCellType = .readingSpeed
-    
-    let maxSpeed: Float = 1.5
+    let maxSpeed: Float = 1.3
     let minSpeed: Float = 0.5
     private let defaultSpeed: Float = 1
     private var _speed: BehaviorRelay<Float>

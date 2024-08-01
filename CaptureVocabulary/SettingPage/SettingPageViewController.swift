@@ -43,6 +43,7 @@ private extension SettingPageViewController {
             $0.edges.equalToSuperview()
         }
         tableView.register(SettingReadingCell.self, forCellReuseIdentifier: SettingReadingCell.type.rawValue)
+        tableView.register(headerFooterViewClassWith: SettingSectionHeader.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -60,9 +61,9 @@ extension SettingPageViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = sectionModels[section].title
-        return label
+        let sectionHeader = tableView.dequeueReusableHeaderFooterView(withClass: SettingSectionHeader.self)
+        sectionHeader.titleLabel.text = sectionModels[section].title
+        return sectionHeader
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
