@@ -12,8 +12,12 @@ import Log
 let Log = Logger()
 
 class Debug {
-    static func print(_ items: Any...) {
-        Swift.print(">>>", terminator: " ")
-        Swift.print(items)
+    static func print(_ items: Any..., filePath: String = #file, line: Int = #line) {
+        let fileName = filePath.split(separator: "/").last ?? ""
+        Swift.print("\(fileName):\(line) >>>>", terminator: " ")
+        items.forEach { item in
+            Swift.print(item, terminator: " ")
+        }
+        Swift.print("")
     }
 }

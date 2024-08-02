@@ -17,6 +17,7 @@ class VisionCaptureViewController: UIViewController {
     enum Action {
         case identifyText(observations: [VNRecognizedTextObservation])
         case videoZoomFactorChanged(factor: CGFloat)
+        case changeCameraSwitch(isOn: Bool)
     }
     
     let action = PublishRelay<Action>()
@@ -28,6 +29,8 @@ class VisionCaptureViewController: UIViewController {
     private let cameraView = UIView()
     
     private let mask = UIView()
+    
+    private let cameraSwitch = UISwitch()
     
     private var captureSession: AVCaptureSession!
     
@@ -70,6 +73,8 @@ class VisionCaptureViewController: UIViewController {
     
     private var currentVideoZoomFactor: CGFloat = 1
     
+    private var isViewControllerAppear = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configVideoQueue()
@@ -79,16 +84,14 @@ class VisionCaptureViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadQueue.async {
-            self.captureSession.startRunning()
-        }
+        isViewControllerAppear = true
+        updateCaptureSessionStatus()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        loadQueue.async {
-            self.captureSession.stopRunning()
-        }
+        isViewControllerAppear = false
+        updateCaptureSessionStatus()
     }
     
     private var avInput: AVCaptureDeviceInput? {
@@ -101,10 +104,22 @@ class VisionCaptureViewController: UIViewController {
         return avInput
     }
     
-    func setScanActiveState(isActive: Bool) {
-        isScanActive.accept(isActive)
+    func bind(isUserEnableCamera: Driver<Bool>) {
+        isUserEnableCamera.drive(onNext: { [weak self] isUserEnable in
+            guard let self else { return }
+            self.cameraSwitch.isOn = isUserEnable
+            updateCaptureSessionStatus()
+        }).disposed(by: disposeBag)
     }
     
+    func bind(isOtherProgressNeedBlockCamera: Driver<Bool>) {
+        isOtherProgressNeedBlockCamera.drive(onNext: { [weak self] isNeedBlock in
+            guard let self else { return }
+            self.isScanActive.accept(!isNeedBlock)
+            Debug.print("isNeedBlock", isNeedBlock)
+        }).disposed(by: disposeBag)
+    }
+
     func startAutoFocus() {
         timer = DispatchSource.makeTimerSource()
         timer?.schedule(deadline: .now(), repeating: .seconds(1))
@@ -178,6 +193,7 @@ private extension VisionCaptureViewController {
         }
         cameraView.layer.cornerRadius = 10
         cameraView.layer.masksToBounds = true
+        configCameraSwitch()
         #if block //DEBUG
         setPreviewImage()
         #endif
@@ -228,6 +244,19 @@ private extension VisionCaptureViewController {
             device.videoZoomFactor = videoZoomFactor
             device.unlockForConfiguration()
         } catch {}
+    }
+    
+    func configCameraSwitch() {
+        view.addSubview(cameraSwitch)
+        cameraSwitch.tintColor = .lightGray
+        cameraSwitch.snp.makeConstraints({
+            $0.left.top.equalToSuperview().inset(10)
+        })
+        cameraSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
+    }
+    
+    @objc private func switchValueChanged(_ sender: UISwitch) {
+        action.accept(.changeCameraSwitch(isOn: sender.isOn))
     }
 
     #if DEBUG
@@ -340,6 +369,18 @@ private extension VisionCaptureViewController {
         return !isIdentifyingImage &&
         (now - identifyImageCompletedTime) > 0.5
     }
+    
+    func updateCaptureSessionStatus() {
+        if cameraSwitch.isOn && isViewControllerAppear {
+            loadQueue.async {
+                self.captureSession?.startRunning()
+            }
+        } else {
+            loadQueue.async {
+                self.captureSession?.stopRunning()
+            }
+        }
+    }
 }
 
 extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -369,21 +410,4 @@ extension VisionCaptureViewController: AVCaptureVideoDataOutputSampleBufferDeleg
 
 private prefix func - (right: CGPoint) -> CGPoint {
     return CGPoint(x: -right.x, y: -right.y)
-}
-
-extension CGPoint {
-    func offset(x: CGFloat, y: CGFloat) -> CGPoint {
-        return CGPoint(x: self.x + x,
-                       y: self.y + y)
-    }
-}
-
-extension UIView {
-    var image: UIImage {
-        let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
-        let image = renderer.image { ctx in
-            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-        }
-        return image
-    }
 }

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
+		067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
+		067EE7F62C5B784600523B51 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */; };
+		067EE7F82C5B786600523B51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F72C5B786600523B51 /* UIView+Extension.swift */; };
+		067EE7F92C5B78DD00523B51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F72C5B786600523B51 /* UIView+Extension.swift */; };
+		067EE7FA2C5B78E000523B51 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */; };
+		067EE7FC2C5C712600523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
+		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
+		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
 		2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */; };
 		C001389329C83BD800D2E4BA /* mockWords.json in Resources */ = {isa = PBXBuildFile; fileRef = C001389229C83BD700D2E4BA /* mockWords.json */; };
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
@@ -254,6 +264,11 @@
 
 /* Begin PBXFileReference section */
 		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeader.swift; sourceTree = "<group>"; };
+		067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
+		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
@@ -429,6 +444,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		067EE7F42C5B781300523B51 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */,
+				067EE7F72C5B786600523B51 /* UIView+Extension.swift */,
+				067EE7FB2C5C712600523B51 /* View+Extension.swift */,
+				067EE7FD2C5C718700523B51 /* Color+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BF02FDD175A511553E67A71A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +505,7 @@
 				C0BDFF022B8738F60033D319 /* SettingPageViewModel.swift */,
 				C0BDFF082B8896480033D319 /* SettingTableViewSectionModel.swift */,
 				C0BDFF0B2B8899840033D319 /* SettingReadingCell.swift */,
+				067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */,
 			);
 			path = SettingPage;
 			sourceTree = "<group>";
@@ -694,6 +721,7 @@
 				F5E6482A281E722C00F8F423 /* SQL */,
 				F5CBF58E281571510088C801 /* Components */,
 				F5E6603428311BD400277222 /* Settings */,
+				067EE7F42C5B781300523B51 /* Extensions */,
 				C001389129C83AAC00D2E4BA /* DevSuport */,
 				C0EA896B2A399E990089C360 /* Localizable.strings */,
 				C0EA896F2A399E9E0089C360 /* InfoPlist.strings */,
@@ -1067,6 +1095,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
+				067EE7F92C5B78DD00523B51 /* UIView+Extension.swift in Sources */,
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
@@ -1089,6 +1118,7 @@
 				C060794729E805DA00434A2E /* VocabularyListViewController.swift in Sources */,
 				C060794829E805DA00434A2E /* VocabularyListViewModel.swift in Sources */,
 				C060794929E805DA00434A2E /* VocabularyListCell.swift in Sources */,
+				067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */,
 				C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
@@ -1150,7 +1180,10 @@
 				C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
+				067EE7FA2C5B78E000523B51 /* CGPoint+Extension.swift in Sources */,
+				067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
 				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
@@ -1171,6 +1204,7 @@
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
+				067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */,
 				C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
@@ -1209,6 +1243,7 @@
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
+				067EE7F82C5B786600523B51 /* UIView+Extension.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				C0BDFF002B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
@@ -1235,10 +1270,12 @@
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
 				C032E5212B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
+				067EE7FC2C5C712600523B51 /* View+Extension.swift in Sources */,
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
+				067EE7F62C5B784600523B51 /* CGPoint+Extension.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
@@ -1249,6 +1286,7 @@
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
+				067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1516,7 +1554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.34;
+				MARKETING_VERSION = 1.0.37;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1729,7 +1767,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.34;
+				MARKETING_VERSION = 1.0.37;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1767,7 +1805,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.34;
+				MARKETING_VERSION = 1.0.37;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -35,3 +35,5 @@
 "VocabularyCardListORM.ORM.word" = "单字";
 
 "SettingPageViewController.title" = "系统设定";
+"SettingPageViewController.section.reading" = "阅读";
+"SettingPageViewController.section.readingSpeed" = "阅读速度";

@@ -27,11 +27,6 @@ class ReviewCoordinator: Coordinator<UIViewController> {
         bindAction(viewController: viewController)
         navController = UINavigationController(rootViewController: viewController)
         super.start()
-        #if DEBUG
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.settingPage()
-        })
-        #endif
     }
 }
 

@@ -24,6 +24,11 @@ class DicSQL {
     
     private init() {
         Self.copyDB()
+        // 第一次 run 專案在這裡發生錯誤
+        // 通常是因為 git 沒有拉到 Resource.zip
+        // 請確認安裝 https://git-lfs.com/
+        // 並在專案內資料夾找到 CaptureVocabulary/Resource.zip
+        // 其大小應該為 60mb 左右, 如果只有幾百 kb 那就是沒有拉到
         db = try! Connection(Self.dbUrl!.path)
     }
     

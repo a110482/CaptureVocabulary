@@ -16,14 +16,19 @@ class SettingPageViewModel {
     }
     
     init() {
-        #if DEBUG
-        let readingModels = [SettingReadingCellModel()]
         output._sectionModels.accept([
-            SettingTableViewSectionModel(title: "reading", cellModels: readingModels)
+            readingSectionCellModels()
         ])
-        
-        
-//        output.cellModels.accept(["reading", "autoReview", "debug"])
-        #endif
+    }
+}
+
+private extension SettingPageViewModel {
+    /// 閱讀相關設定
+    func readingSectionCellModels() -> SettingTableViewSectionModel {
+        let readingModels = [SettingReadingCellModel()]
+        let sectionModel = SettingTableViewSectionModel(
+            title: NSLocalizedString("SettingPageViewController.section.reading", comment: "阅读"),
+            cellModels: readingModels)
+        return sectionModel
     }
 }
