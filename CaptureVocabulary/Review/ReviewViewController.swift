@@ -200,11 +200,6 @@ private extension ReviewViewController {
             guard let self = self else { return }
             self.action.accept(.settingPage)
         }).disposed(by: disposeBag)
-        
-        #if DEBUG
-        #else
-        gearButton.isHidden = true
-        #endif
         return gearButton
     }
     
