@@ -62,7 +62,9 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         activeSwitchButton.setActive(cellModel.orm.memorized ?? false)
         speakerButton.setTitle(cellModel.orm.phonetic, for: .normal)
         updateAudioButtonIcon()
- 
+        speakerButton.isHidden = false
+        audioPlayButton.isHidden = false
+        
         if isHiddenTranslateSwitchOn {
             cellModel.orm.normalizedSource == cellModel.pressTipVocabulary ? showTranslate() : hideTranslate()
         } else {
@@ -76,6 +78,8 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         let translateButtonTitle = NSLocalizedString("ReviewCollectionViewCell.addNewWords", comment: "你的單字屋, 快去新增單字吧")
         translateButton.setTitle(translateButtonTitle, for: .normal)
         speakerButton.setTitle("", for: .normal)
+        speakerButton.isHidden = true
+        audioPlayButton.isHidden = true
     }
 }
 
@@ -128,7 +132,8 @@ private extension ReviewCollectionViewCell {
         activeSwitchButton.snp.makeConstraints {
             $0.centerY.equalTo(sourceLabel)
         }
-        
+        translateButton.setTitleColor(.black, for: .normal)
+        translateButton.titleLabel?.numberOfLines = 2
         translateButton.snp.makeConstraints {
             $0.height.equalTo(35)
             $0.width.greaterThanOrEqualTo(60)
