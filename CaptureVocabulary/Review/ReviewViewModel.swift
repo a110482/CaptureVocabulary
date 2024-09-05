@@ -153,6 +153,7 @@ private extension ReviewViewModel {
     
     @objc func willEnterForeground() {
         isEnterBackground = false
+        adjustIndex()
         scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: false))
     }
     
