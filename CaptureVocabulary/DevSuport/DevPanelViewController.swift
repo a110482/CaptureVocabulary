@@ -55,7 +55,7 @@ class DevPanelViewController: UIViewController {
         resetDatabase.rx.tap.subscribe(onNext: {
             SQLCore.shared.dropTables()
             SQLCore.shared.createTables()
-            try! SQLCoreMigration.checkVersion({
+            try? SQLCoreMigration.checkVersion({
                 SQLCoreMigration.reset()
                 VocabularyCardListORM.ORM.createDefaultList()
                 Log.debug("resetDatabase")
