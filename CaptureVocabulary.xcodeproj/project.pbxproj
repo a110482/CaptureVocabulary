@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0654E1102C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
+		0654E1112C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
 		067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
 		067EE7F62C5B784600523B51 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */; };
@@ -264,6 +266,7 @@
 
 /* Begin PBXFileReference section */
 		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		0654E10F2C89964B001F769B /* RxOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxOutput.swift; sourceTree = "<group>"; };
 		067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeader.swift; sourceTree = "<group>"; };
 		067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -741,6 +744,7 @@
 				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
 				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
 				C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */,
+				0654E10F2C89964B001F769B /* RxOutput.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1186,6 +1190,7 @@
 				067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
+				0654E1112C89964B001F769B /* RxOutput.swift in Sources */,
 				C060793429E8054B00434A2E /* ReviewViewModel.swift in Sources */,
 				C06078E029E7FADF00434A2E /* CaptureVocabularyWidget.swift in Sources */,
 			);
@@ -1252,6 +1257,7 @@
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
 				F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */,
+				0654E1102C89964B001F769B /* RxOutput.swift in Sources */,
 				C0297F0A2A03939D000F4A71 /* DicSQL.swift in Sources */,
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,

@@ -12,23 +12,27 @@ import MediaPlayer
 
 // MARK: -
 class ReviewViewModel {
-    struct Output {
-        let _sentences = BehaviorRelay<[SimpleSentencesORM.ORM]?>(value: nil)
-        fileprivate let _dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
-        let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
-        var dictionaryData: Driver<StarDictORM.ORM?> { _dictionaryData.asDriver() }
-        var sentences: Driver<[SimpleSentencesORM.ORM]?> { _sentences.asDriver() }
-        let needReloadDate = PublishRelay<Void>()
-    }
-    let output = Output()
     let indexCount = 200
+    private(set) lazy var output = Output(self)
     private(set) var isHiddenTranslateSwitchOn: Bool {
         get { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] ?? false }
         set { UserDefaults.standard[UserDefaultsKeys.isHiddenTranslateSwitchOn] = newValue }
     }
     private(set) var isAudioModeOn = false
     private(set) var isEnterBackground = false
-    private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
+    /// 記錄目前已按下提示的 cell
+    private(set) var pressTipVocabulary: String? = nil
+    
+    init() {
+        SimpleSentenceService.shared.registerObserver(object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private var lastReadCardId: Int? {
         get {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId]
@@ -37,18 +41,18 @@ class ReviewViewModel {
             UserDefaults.standard[UserDefaultsKeys.vocabularyCardReadId] = newValue
         }
     }
-    /// 記錄目前已按下提示的 cell
-    private(set) var pressTipVocabulary: String? = nil
+    private lazy var lastReadCardTableIndex = { indexCount / 2 }() // 50
+    private let sentences = BehaviorRelay<[SimpleSentencesORM.ORM]?>(value: nil)
+    private let dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
+    private let needReloadDate = PublishRelay<Void>()
+    private let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
     private let disposeBag = DisposeBag()
-    
-    init() {
-        SimpleSentenceService.shared.registerObserver(object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
+}
+
+// public functions
+extension ReviewViewModel {
     func loadLastReadVocabularyCard() {
-        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
+        scrollToIndex.accept((indexRow: lastReadCardTableIndex,
                                      animation: false))
         queryLocalDictionary()
         querySimpleSentences()
@@ -89,43 +93,46 @@ class ReviewViewModel {
         guard tableIndexDelta <= indexCount/3 else { return }
         // 重設參考點
         lastReadCardTableIndex = indexCount / 2
-        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex,
+        scrollToIndex.accept((indexRow: lastReadCardTableIndex,
                                      animation: false))
     }
-    
-    private func queryLocalDictionary() {
+}
+
+// private functions
+private extension ReviewViewModel {
+    func queryLocalDictionary() {
         guard let cellModel = queryVocabularyCard(index: lastReadCardTableIndex) else {
-            output._dictionaryData.accept(nil)
-            output._sentences.accept(nil)
+            dictionaryData.accept(nil)
+            sentences.accept(nil)
             return
         }
         guard let vocabulary = cellModel.normalizedSource else {
-            output._dictionaryData.accept(nil)
-            output._sentences.accept(nil)
+            dictionaryData.accept(nil)
+            sentences.accept(nil)
             return
         }
         let response = StarDictORM.query(word: vocabulary)
-        output._dictionaryData.accept(response)
-        if response?.word != output._sentences.value?.first?.normalizedSource {
-            output._sentences.accept(nil)
+        dictionaryData.accept(response)
+        if response?.word != sentences.value?.first?.normalizedSource {
+            sentences.accept(nil)
         }
     }
     
-    private func querySimpleSentences() {
+    func querySimpleSentences() {
         guard let cellModel = queryVocabularyCard(index: lastReadCardTableIndex) else {
             return
         }
         guard let vocabulary = cellModel.normalizedSource else {
             return
         }
-        guard let sentences = SimpleSentenceService.shared.querySentence(queryWord: vocabulary) else {
-            output._sentences.accept(nil)
+        guard let sentencesResult = SimpleSentenceService.shared.querySentence(queryWord: vocabulary) else {
+            sentences.accept(nil)
             return
         }
-        output._sentences.accept(sentences)
+        sentences.accept(sentencesResult)
     }
     
-    private func getCardDatabaseIndexBy(tableIndex: Int) -> Int {
+    func getCardDatabaseIndexBy(tableIndex: Int) -> Int {
         let allVocabularyCount = VocabularyCardORM.ORM.cardNumbers(memorized: false)
         guard allVocabularyCount > 0 else { return 0 }
         let lastReadDataBaseIndex = VocabularyCardORM.ORM.getIndex(by: lastReadCardId, memorized: false)
@@ -139,14 +146,14 @@ class ReviewViewModel {
         }
         return databaseIndex
     }
-
+    
     @objc func appDidEnterBackground() {
         isEnterBackground = true
     }
     
     @objc func willEnterForeground() {
         isEnterBackground = false
-        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: false))
+        scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: false))
     }
     
     #warning("版本檢查函數, 目前沒有使用")
@@ -159,10 +166,6 @@ class ReviewViewModel {
         }).disposed(by: disposeBag)
         request.send(req: api)
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 }
 
 // cell delegate
@@ -172,20 +175,20 @@ extension ReviewViewModel: ReviewCollectionViewCellDelegate {
         var newCellModel = orm
         newCellModel.memorized = !currentMemorized
         newCellModel.update()
-        output.scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
+        scrollToIndex.accept((indexRow: lastReadCardTableIndex + 1,
                                      animation: true))
-        output.needReloadDate.accept(())
+        needReloadDate.accept(())
     }
     
     func hiddenTranslateSwitchDidChanged(isOn: Bool) {
         isHiddenTranslateSwitchOn = isOn
         pressTipVocabulary = nil
-        output.needReloadDate.accept(())
+        needReloadDate.accept(())
     }
     
     func didPressedTipIcon() {
-        pressTipVocabulary = output._dictionaryData.value?.word
-        output.needReloadDate.accept(())
+        pressTipVocabulary = dictionaryData.value?.word
+        needReloadDate.accept(())
     }
     
     func didPressedAudioPlayButton() {
@@ -205,7 +208,7 @@ extension ReviewViewModel: SimpleSentenceServiceDelegate {
 private extension ReviewViewModel {
     func applyAudioMode(isEnable: Bool) {
         isAudioModeOn = isEnable
-        output.needReloadDate.accept(())
+        needReloadDate.accept(())
         guard isEnable else {
             MP3Player.shared.stop()
             Speaker.shared.stop()
@@ -274,7 +277,7 @@ private extension ReviewViewModel {
     func nextVocabulary() {
         updateLastReadCard(index: lastReadCardTableIndex + 1)
         if !isEnterBackground {
-            output.scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
+            scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             guard self.isAudioModeOn else { return }
@@ -304,6 +307,18 @@ extension ReviewViewModel: SpeakerDelegate {
     
     func sequencesDidInterrupt() {
         isAudioModeOn = false
-        output.needReloadDate.accept(())
+        needReloadDate.accept(())
+    }
+}
+
+// MARK: -
+extension ReviewViewModel {
+    class Output: RxOutput<ReviewViewModel> {
+        var scrollToIndex: Observable<(indexRow: Int, animation: Bool)> {
+            target.scrollToIndex.asObservable()
+        }
+        var dictionaryData: Driver<StarDictORM.ORM?> { target.dictionaryData.asDriver() }
+        var sentences: Driver<[SimpleSentencesORM.ORM]?> { target.sentences.asDriver() }
+        var needReloadDate: Observable<Void> { target.needReloadDate.asObservable() }
     }
 }
