@@ -30,7 +30,7 @@ struct OpenAiSentences: OpenAiRequest {
     typealias MessageModels = SentencesModel
     
     var parameters: [String : Any] {[
-        "model": "gpt-3.5-turbo-1106",
+        "model": "gpt-3.5-turbo-0125",
         "response_format": [ "type": "json_object" ],
         "max_tokens": 800,
         "messages": [
@@ -57,28 +57,7 @@ struct OpenAiSentences: OpenAiRequest {
     
     private let requestRule =
 """
-我給你一個英文單字
-返回給我三個英文例句和對應的中文翻譯
-你必須以 json 格式回應
-例如
-我給 "love"
-你回應
-{
-  "sentences": [
-    {
-      "sentence": "I love ice cream.",
-      "translate": "我喜歡冰淇淋。"
-    },
-    {
-      "sentence": "She fell in love with a charming man.",
-      "translate": "她愛上了一個迷人的男人。"
-    },
-    {
-      "sentence": "Their love for each other grew stronger over time.",
-      "translate": "他們彼此的愛隨著時間越來越深。"
-    }
-  ]
-}
+給英文單字,返回3個英文例句和中文翻譯,json格式e.x:我給"love",你回{"sentences": [{"sentence":"I love ice cream.","translate":"我喜歡冰淇淋。"}]}
 """
 }
 
