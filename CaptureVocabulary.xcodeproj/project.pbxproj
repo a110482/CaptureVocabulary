@@ -19,6 +19,8 @@
 		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
+		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */; };
 		C001389329C83BD800D2E4BA /* mockWords.json in Resources */ = {isa = PBXBuildFile; fileRef = C001389229C83BD700D2E4BA /* mockWords.json */; };
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
@@ -272,6 +274,7 @@
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
@@ -745,6 +748,7 @@
 				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
 				C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */,
 				0654E10F2C89964B001F769B /* RxOutput.swift */,
+				06E051E22CAA807F00015F68 /* DispatchPointer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1163,6 +1167,7 @@
 				C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
+				06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
 				C060796829E805DA00434A2E /* AzureDictionaryORM.swift in Sources */,
 				C060796929E805DA00434A2E /* YDTranslateORM.swift in Sources */,
@@ -1253,6 +1258,7 @@
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				C0BDFF002B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
+				06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,

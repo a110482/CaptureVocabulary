@@ -46,6 +46,7 @@ class ReviewViewModel {
     private let dictionaryData = BehaviorRelay<StarDictORM.ORM?>(value: nil)
     private let needReloadDate = PublishRelay<Void>()
     private let scrollToIndex = PublishRelay<(indexRow: Int, animation: Bool)>()
+    private var dispatchPointer = DispatchPointer()
     private let disposeBag = DisposeBag()
 }
 
@@ -224,13 +225,18 @@ private extension ReviewViewModel {
     
     /// 設定歌曲資訊
     func setupNowPlayingInfo() {
-        let nowPlayingInfo: [String : Any] = [
+        var nowPlayingInfo: [String : Any] = [
             MPMediaItemPropertyTitle: "單字複習",
             MPMediaItemPropertyArtist: "單字屋",
             MPMediaItemPropertyAlbumTitle: "單字複習",
-//            MPMediaItemPropertyPlaybackDuration: 300, // 歌曲總時長（以秒為單位）
-//            MPNowPlayingInfoPropertyElapsedPlaybackTime: 60, // 目前播放進度（以秒為單位）
         ]
+        
+        if let cover = UIImage(named: "AppIcon") {
+            let artwork = MPMediaItemArtwork(boundsSize: cover.size) { _ in
+                return cover
+            }
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+        }
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
@@ -238,6 +244,9 @@ private extension ReviewViewModel {
     /// 設定播放按鈕
     func setupRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.previousTrackCommand.isEnabled = false
+        commandCenter.nextTrackCommand.isEnabled = false
+        commandCenter.playCommand.removeTarget(nil)
         commandCenter.playCommand.addTarget { [weak self] event in
             guard let self else { return .success }
             self.applyAudioMode(isEnable: true)
@@ -248,18 +257,6 @@ private extension ReviewViewModel {
         commandCenter.pauseCommand.addTarget { [weak self] event in
             guard let self else { return .success }
             self.applyAudioMode(isEnable: false)
-            return .success
-        }
-        
-        // 設定下一首按鈕
-        commandCenter.nextTrackCommand.addTarget { event in
-            // 按下下一首按鈕時的處理邏輯
-            return .success
-        }
-        
-        // 設定上一首按鈕
-        commandCenter.previousTrackCommand.addTarget { event in
-            // 按下上一首按鈕時的處理邏輯
             return .success
         }
     }
@@ -276,11 +273,13 @@ private extension ReviewViewModel {
     }
     
     func nextVocabulary() {
+        dispatchPointer = DispatchPointer()
         updateLastReadCard(index: lastReadCardTableIndex + 1)
         if !isEnterBackground {
             scrollToIndex.accept((indexRow: lastReadCardTableIndex, animation: true))
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak dispatchPointer] in
+            guard dispatchPointer != nil else { return }
             guard self.isAudioModeOn else { return }
             self.playVocabulary()
         })
