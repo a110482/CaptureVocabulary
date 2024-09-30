@@ -14,7 +14,7 @@ protocol SpeakerDelegate: AnyObject {
 
 class Speaker: NSObject {
     static let shared = Speaker()
-    var synth = AVSpeechSynthesizer()
+    private var synth: AVSpeechSynthesizer
     weak var delegate: SpeakerDelegate?
     private(set) var isSpeaking = false
     private var readingRate: Float {
@@ -27,6 +27,7 @@ class Speaker: NSObject {
     }()
     
     private override init() {
+        synth = AVSpeechSynthesizer()
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setCategory (
             AVAudioSession.Category.playback,
@@ -77,6 +78,7 @@ class Speaker: NSObject {
         delegate?.sequencesDidInterrupt()
         sequences = []
         synth.stopSpeaking(at: .immediate)
+        isSpeaking = false
     }
     
     func speakSequences(_ string: String, language: Language) {
