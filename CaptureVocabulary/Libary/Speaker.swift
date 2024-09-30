@@ -14,19 +14,10 @@ protocol SpeakerDelegate: AnyObject {
 
 class Speaker: NSObject {
     static let shared = Speaker()
-    private var synth: AVSpeechSynthesizer
     weak var delegate: SpeakerDelegate?
-    private(set) var isSpeaking = false
-    private var readingRate: Float {
-        let defaultRate = AVSpeechUtteranceDefaultSpeechRate
-        return defaultRate * readingRatio
-    }
-    private var readingRatio: Float = {
-        let ratio = UserDefaults.standard[UserDefaultsKeys.readingSpeedRatio] ?? 1
-        return ratio
-    }()
     
     private override init() {
+        readingRatio = Self.defaultReadingRatio()
         synth = AVSpeechSynthesizer()
         let audioSession = AVAudioSession.sharedInstance()
         try? audioSession.setCategory (
@@ -54,7 +45,13 @@ class Speaker: NSObject {
     }
     
     private var sequences: [(string: String, language: Language)] = []
-    
+    private(set) var isSpeaking = false
+    private var readingRatio: Float
+    private var synth: AVSpeechSynthesizer
+}
+
+// MARK: - public functions
+extension Speaker {
     func resetSpeaker() {
         synth = AVSpeechSynthesizer()
         synth.delegate = speakerDelegate
@@ -66,7 +63,7 @@ class Speaker: NSObject {
             return
         }
         let utterance = AVSpeechUtterance(string: string)
-        utterance.rate = readingRate
+        utterance.rate = readingRate()
         utterance.voice = AVSpeechSynthesisVoice(language: language.description)
         delegate?.sequencesDidInterrupt()
         sequences = []
@@ -111,7 +108,7 @@ class Speaker: NSObject {
         
         // 發音
         let utterance = AVSpeechUtterance(string: pack.string)
-        utterance.rate = readingRate
+        utterance.rate = readingRate()
         utterance.voice = AVSpeechSynthesisVoice(language: pack.language.description)
         synth.pauseSpeaking(at: .immediate)
         synth.speak(utterance)
@@ -125,6 +122,19 @@ class Speaker: NSObject {
         } catch {
             assert(false)
         }
+    }
+}
+
+// MARK: - private functions
+private extension Speaker {
+    func readingRate() -> Float {
+        let defaultRate = AVSpeechUtteranceDefaultSpeechRate
+        return defaultRate * readingRatio
+    }
+    
+    static func defaultReadingRatio() -> Float {
+        let ratio = UserDefaults.standard[UserDefaultsKeys.readingSpeedRatio] ?? 1
+        return ratio
     }
 }
 
