@@ -53,6 +53,7 @@ class Speaker: NSObject {
 // MARK: - public functions
 extension Speaker {
     func resetSpeaker() {
+        guard !isSpeaking else { return }
         synth = AVSpeechSynthesizer()
         synth.delegate = speakerDelegate
     }
