@@ -47,12 +47,6 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
-        #if block //DEBUG
-        //查詢單字
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.action.accept(.selected(vocabulary: "qqqqqqqqqqqq"))
-        }
-        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {

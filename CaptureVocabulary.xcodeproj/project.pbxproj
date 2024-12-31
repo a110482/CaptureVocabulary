@@ -40,6 +40,15 @@
 		06FBBAC62D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
 		06FBBAC72D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
 		06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
+		06FBBACB2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACC2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACF2D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD12D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
+		06FBBAD42D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
+		06FBBAD52D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
 		2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */; };
 		C001389329C83BD800D2E4BA /* mockWords.json in Resources */ = {isa = PBXBuildFile; fileRef = C001389229C83BD700D2E4BA /* mockWords.json */; };
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
@@ -301,6 +310,9 @@
 		06FBBABD2D1D585F00038345 /* DatabaseBackupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupCoordinator.swift; sourceTree = "<group>"; };
 		06FBBAC12D1D586E00038345 /* DatabaseBackupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupViewModel.swift; sourceTree = "<group>"; };
 		06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionNumberCell.swift; sourceTree = "<group>"; };
+		06FBBACA2D23F13000038345 /* MyStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewController.swift; sourceTree = "<group>"; };
+		06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryCoordinator.swift; sourceTree = "<group>"; };
+		06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewModel.swift; sourceTree = "<group>"; };
 		25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
@@ -496,6 +508,16 @@
 				06FBBAC12D1D586E00038345 /* DatabaseBackupViewModel.swift */,
 			);
 			path = DatabaseBuckup;
+			sourceTree = "<group>";
+		};
+		06FBBAC92D23F0A500038345 /* MyStroyPage */ = {
+			isa = PBXGroup;
+			children = (
+				06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */,
+				06FBBACA2D23F13000038345 /* MyStoryViewController.swift */,
+				06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */,
+			);
+			path = MyStroyPage;
 			sourceTree = "<group>";
 		};
 		BF02FDD175A511553E67A71A /* Frameworks */ = {
@@ -755,6 +777,7 @@
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
+				06FBBAC92D23F0A500038345 /* MyStroyPage */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				C0BDFEFE2B8600F20033D319 /* SettingPage */,
 				F5E6602F2830DF2500277222 /* Review */,
@@ -1174,7 +1197,10 @@
 				06FBBABC2D1D56DD00038345 /* DatabaseBackupViewController.swift in Sources */,
 				06FBBABF2D1D585F00038345 /* DatabaseBackupCoordinator.swift in Sources */,
 				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
+				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
+				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
 				06FBBAC22D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
 			);
@@ -1186,6 +1212,7 @@
 			files = (
 				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
 				06FBBAC42D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
+				06FBBAD52D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				067EE7F92C5B78DD00523B51 /* UIView+Extension.swift in Sources */,
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
@@ -1264,8 +1291,10 @@
 				C060796A29E805DA00434A2E /* ActiveSwitchButton.swift in Sources */,
 				C060796B29E805DA00434A2E /* PopupViewController.swift in Sources */,
 				C060796C29E805DA00434A2E /* UIPickerViewController.swift in Sources */,
+				06FBBACF2D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				C060796D29E805DA00434A2E /* AppParameters.swift in Sources */,
 				C060796E29E805DA00434A2E /* AppInfo.swift in Sources */,
+				06FBBACB2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
@@ -1320,6 +1349,7 @@
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
 				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
+				06FBBAD42D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06FBBAC72D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
@@ -1343,7 +1373,9 @@
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
+				06FBBAD12D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				06FBBACC2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,

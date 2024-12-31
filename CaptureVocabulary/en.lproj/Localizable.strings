@@ -22,6 +22,7 @@
 "TabBarCoordinator.scan" = "Scan";
 "TabBarCoordinator.review" = "Review";
 "TabBarCoordinator.flashcards" = "Flashcards";
+"TabBarCoordinator.myStory" = "MyStory";
 
 "VocabularyListViewController.flashcards" = "Flashcards";
 "VocabularyListViewController.addNew" = "+ Add New";

@@ -22,6 +22,7 @@
 "TabBarCoordinator.scan" = "掃單字";
 "TabBarCoordinator.review" = "複習";
 "TabBarCoordinator.flashcards" = "單字庫";
+"TabBarCoordinator.myStory" = "我的故事";
 
 "VocabularyListViewController.flashcards" = "單字庫";
 "VocabularyListViewController.addNew" = "+新增";
