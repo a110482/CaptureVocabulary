@@ -77,6 +77,9 @@ class TabBarViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedIndex = 1
+#if DEBUG
+        selectedIndex = 2
+#endif
     }
     
     init() {
