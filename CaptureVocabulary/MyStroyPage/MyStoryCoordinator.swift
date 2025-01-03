@@ -21,6 +21,24 @@ class MyStoryCoordinator: Coordinator<UIViewController> {
         viewController = MyStoryViewController()
         viewModel = MyStoryViewModel()
         viewController.bind(viewModel: viewModel)
+        handle(action: viewModel.output.action)
         
+    }
+}
+
+private extension MyStoryCoordinator {
+    func handle(action: Observable<MyStoryViewModel.Action>) {
+        action.subscribe(onNext: { [weak self] action in
+            guard let self else { return }
+            switch action {
+            case .newStory:
+                popStoryGenerator()
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func popStoryGenerator() {
+        let coordinator = StoryGeneratorCoordinator(rootViewController: viewController)
+        startChild(coordinator: coordinator)
     }
 }

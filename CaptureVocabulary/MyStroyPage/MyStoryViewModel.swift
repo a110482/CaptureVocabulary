@@ -10,5 +10,29 @@ import RxSwift
 import RxCocoa
 
 class MyStoryViewModel {
+    private(set) lazy var output = Output(self)
+    
+    private let action = PublishRelay<Action>()
+}
+
+extension MyStoryViewModel {
+    class Output: RxOutput<MyStoryViewModel> {
+        var action: Observable<Action> {
+            target.action.asObservable()
+        }
+    }
+    
+    enum Action {
+        case newStory
+    }
+    
+    /// 點擊 "新故事" 按鈕
+    func tapNewStory() {
+        action.accept(.newStory)
+    }
+}
+
+private extension MyStoryViewModel {
     
 }
+

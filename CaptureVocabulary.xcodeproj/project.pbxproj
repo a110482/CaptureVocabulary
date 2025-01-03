@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0600CC842D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC852D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC8C2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
+		0600CC8D2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
+		0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
 		0654E1102C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		0654E1112C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
@@ -25,6 +34,15 @@
 		06E051E92CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
 		06E051EB2CAFC18400015F68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051EA2CAFC18400015F68 /* Int+Extension.swift */; };
 		06E051EC2CAFC18400015F68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051EA2CAFC18400015F68 /* Int+Extension.swift */; };
+		06E199742D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199752D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199762D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199782D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E1997A2D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
+		06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
+		06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
 		06FBBAB52D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
 		06FBBAB62D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
 		06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
@@ -306,6 +324,9 @@
 
 /* Begin PBXFileReference section */
 		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		0600CC832D27C80200FD15FD /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorOptionView.swift; sourceTree = "<group>"; };
+		0600CC8B2D27D98600FD15FD /* Range+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+Extension.swift"; sourceTree = "<group>"; };
 		0654E10F2C89964B001F769B /* RxOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxOutput.swift; sourceTree = "<group>"; };
 		067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeader.swift; sourceTree = "<group>"; };
 		067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
@@ -315,6 +336,9 @@
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorViewController.swift; sourceTree = "<group>"; };
+		06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorCoordinator.swift; sourceTree = "<group>"; };
+		06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorViewModel.swift; sourceTree = "<group>"; };
 		06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingCell.swift; sourceTree = "<group>"; };
 		06FBBAB92D1D56DD00038345 /* DatabaseBackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupViewController.swift; sourceTree = "<group>"; };
 		06FBBABD2D1D585F00038345 /* DatabaseBackupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupCoordinator.swift; sourceTree = "<group>"; };
@@ -509,8 +533,21 @@
 				067EE7FB2C5C712600523B51 /* View+Extension.swift */,
 				067EE7FD2C5C718700523B51 /* Color+Extension.swift */,
 				06E051EA2CAFC18400015F68 /* Int+Extension.swift */,
+				0600CC832D27C80200FD15FD /* Array+Extension.swift */,
+				0600CC8B2D27D98600FD15FD /* Range+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06E199722D277DA4000DE54C /* StoryGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */,
+				06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */,
+				06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */,
+				0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */,
+			);
+			path = StoryGenerator;
 			sourceTree = "<group>";
 		};
 		06FBBAB82D1D566400038345 /* DatabaseBuckup */ = {
@@ -801,6 +838,7 @@
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
+				06E199722D277DA4000DE54C /* StoryGenerator */,
 				06FBBAC92D23F0A500038345 /* MyStroyPage */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				C0BDFEFE2B8600F20033D319 /* SettingPage */,
@@ -1225,11 +1263,17 @@
 				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
 				06FBBAE12D268E8800038345 /* SegmentedView.swift in Sources */,
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
+				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
 				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
+				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
+				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
+				06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				06FBBAEA2D26900700038345 /* SegmentedOptionView.swift in Sources */,
+				06E199762D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
 				06FBBAC22D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,6 +1285,7 @@
 				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
 				06FBBAC42D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
 				06FBBAD52D23F15600038345 /* MyStoryViewModel.swift in Sources */,
+				0600CC852D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				067EE7F92C5B78DD00523B51 /* UIView+Extension.swift in Sources */,
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
@@ -1276,12 +1321,14 @@
 				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
 				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
 				C060794F29E805DA00434A2E /* CreateVocabularyCoordinator.swift in Sources */,
+				06E1997A2D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				C060795029E805DA00434A2E /* VocabularyViewModel.swift in Sources */,
 				C060795129E805DA00434A2E /* Decision.swift in Sources */,
 				06E051E92CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */,
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
 				C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */,
 				C032E5222B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
+				06E199742D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
 				06FBBADB2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
 				C060795429E805DA00434A2E /* Request.swift in Sources */,
@@ -1302,6 +1349,7 @@
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
+				0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
 				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
 				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
 				C0F413D129FBB00400378E17 /* AnalyticsKeys.swift in Sources */,
@@ -1328,6 +1376,7 @@
 				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
+				06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */,
 				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
 				C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */,
@@ -1341,6 +1390,7 @@
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				067EE7FA2C5B78E000523B51 /* CGPoint+Extension.swift in Sources */,
 				06FBBADF2D268E8800038345 /* SegmentedView.swift in Sources */,
+				0600CC8C2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
@@ -1374,6 +1424,8 @@
 				C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
+				06E199752D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
+				0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
@@ -1383,6 +1435,7 @@
 				06FBBAC72D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
+				0600CC842D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
@@ -1405,6 +1458,7 @@
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
+				0600CC8D2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				06FBBAD12D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
 				06FBBACC2D23F13000038345 /* MyStoryViewController.swift in Sources */,
@@ -1445,6 +1499,7 @@
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				06FBBAE02D268E8800038345 /* SegmentedView.swift in Sources */,
+				06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				06FBBABA2D1D56DD00038345 /* DatabaseBackupViewController.swift in Sources */,
@@ -1454,6 +1509,7 @@
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
+				06E199782D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,

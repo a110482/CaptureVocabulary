@@ -18,12 +18,14 @@ class MyStoryViewController: UIViewController {
     private let newStoryButton = UIButton()
     private let titleLabel = UILabel()
     private let storyTableview = UITableView()
+    private var viewModel: MyStoryViewModel!
+    private let disposeBag = DisposeBag()
 }
 
 // MARK: - public functions
 extension MyStoryViewController {
     func bind(viewModel: MyStoryViewModel) {
-        
+        self.viewModel = viewModel
     }
 }
 
@@ -56,12 +58,17 @@ private extension MyStoryViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             make.right.equalTo(-20)
         }
+        
+        newStoryButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else { return }
+            viewModel.tapNewStory()
+        }).disposed(by: disposeBag)
     }
 
     func configStoryTableview() {
         view.addSubview(storyTableview)
         storyTableview.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(60)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
