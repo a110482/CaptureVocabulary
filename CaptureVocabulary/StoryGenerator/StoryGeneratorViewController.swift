@@ -23,9 +23,42 @@ class StoryGeneratorViewController: UIViewController {
     private let stepTwoLabel = UILabel()
     private let vocabularyAmountSliderLabel = UILabel()
     private let vocabularyAmountSlider = UISlider()
+    private let stepThreeLabel = UILabel()
+    private let tableView = UITableView()
+    private let confirmButton = UIButton()
+    private let displayModeButton = UIButton()
+    
+    private var currentDisplayMode: DisplayMode = .normal
+    private let disposeBag = DisposeBag()
 }
 
 extension StoryGeneratorViewController {
+    enum DisplayMode {
+        case normal
+        case selectVocabulary
+        
+        @discardableResult
+        mutating func toggle() -> DisplayMode {
+            switch self {
+            case .normal:
+                self = .selectVocabulary
+                return self
+            case .selectVocabulary:
+                self = .normal
+                return self
+            }
+        }
+        
+        var icon: UIImage? {
+            switch self {
+            case .normal:
+                return UIImage(named: "arrow.down.left.and.arrow.up.right.rectangle")
+            case .selectVocabulary:
+                return UIImage(named: "arrow.down.forward.and.arrow.up.backward.rectangle")
+            }
+        }
+    }
+    
     func bind(viewModel: StoryGeneratorViewModel) {
         self.viewModel = viewModel
     }
@@ -33,26 +66,42 @@ extension StoryGeneratorViewController {
 
 private extension StoryGeneratorViewController {
     func configUI() {
+        configConfirmButton()
         configMainStackView()
         configTitleLabel()
         configStepOneLabel()
         configSegmentView()
         configStepTwoLabel()
         configVocabularyAmountSlider()
+        configStepThree()
+        configTableView()
+        configDisplayModeButton()
         
 #if DEBUG
         view.backgroundColor = .lightGray
-        mainStackView.addArrangedSubview(UIView())
         segmentView.backgroundColor = .brown
 #endif
+    }
+    
+    func configConfirmButton() {
+        view.addSubview(confirmButton)
+        confirmButton.backgroundColor = .green
+        confirmButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+        }
+        confirmButton.setTitle(NSLocalizedString("StoryGeneratorViewController.generatorStory", comment: "產生故事"),
+                               for: .normal)
     }
     
     func configMainStackView() {
         mainStackView.axis = .vertical
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(8)
         }
@@ -62,7 +111,7 @@ private extension StoryGeneratorViewController {
         mainStackView.addArrangedSubview(titleLabel)
         titleLabel.textAlignment = .center
         titleLabel.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.equalTo(30)
         }
         titleLabel.text = NSLocalizedString("StoryGeneratorViewController.title", comment: "故事產生器")
     }
@@ -116,6 +165,45 @@ private extension StoryGeneratorViewController {
         updateSliderUI()
     }
     
+    func configStepThree() {
+        mainStackView.addArrangedSubviews([
+            mainStackView.padding(gap: 20),
+            stepThreeLabel
+        ])
+        stepThreeLabel.textAlignment = .left
+        stepThreeLabel.text = NSLocalizedString("StoryGeneratorViewController.stepThree", comment: "")
+    }
+    
+    func configTableView() {
+        mainStackView.addArrangedSubviews([
+            mainStackView.padding(gap: 10),
+            tableView
+        ])
+        tableView.layer.cornerRadius = 8
+        tableView.backgroundColor = .white
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func configDisplayModeButton() {
+        let size: CGFloat = 40
+        view.addSubview(displayModeButton)
+        displayModeButton.backgroundColor = .darkGray
+        displayModeButton.snp.makeConstraints { make in
+            make.size.equalTo(size)
+            make.right.equalTo(tableView).offset(-10)
+            make.bottom.equalTo(tableView).offset(-10)
+        }
+        displayModeButton.layer.cornerRadius = size / 2
+        displayModeButton.setImage(currentDisplayMode.icon, for: .normal)
+        
+        displayModeButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self else { return }
+            currentDisplayMode.toggle()
+            updateDisplayModel()
+        }).disposed(by: disposeBag)
+    }
+    
     func updateSliderUI() {
         vocabularyAmountSliderLabel.text = "\(Int(viewModel.output.vocabularyAmount))"
         vocabularyAmountSlider.value = viewModel.output.vocabularyAmount
@@ -133,17 +221,36 @@ private extension StoryGeneratorViewController {
         viewModel.set(vocabularyAmount: Int(roundedValue))
         updateSliderUI()
     }
+    
+    func updateDisplayModel() {
+        displayModeButton.setImage(currentDisplayMode.icon, for: .normal)
+        
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            guard let self else { return }
+            switch currentDisplayMode {
+            case .normal:
+                mainStackView.arrangedSubviews.forEach({
+                    $0.isHidden = false
+                    $0.alpha = 1
+                })
+            case .selectVocabulary:
+                mainStackView.arrangedSubviews.forEach({
+                    $0.alpha = $0 != self.tableView ? 0 : 1
+                    $0.isHidden = $0 != self.tableView
+                })
+            }
+        })
+    }
 }
 
-extension StoryGeneratorViewController: SegmentedViewDelegate {
+// MARK: - delegate & datasource
+extension StoryGeneratorViewController: SegmentedViewDelegate, SegmentedViewDataSource {
     func segmentedView(_ view: SegmentedView, didSelectOptionAt index: Int) {
         let model = viewModel.output.storyStyleOptions[index]
         viewModel.setSelected(option: model)
         view.reloadData()
     }
-}
-
-extension StoryGeneratorViewController: SegmentedViewDataSource {
+    
     func segmentedView(_ view: SegmentedView, titleForOptionAt index: Int) -> SegmentedOptionView {
         let option = StoryGeneratorOptionView()
         option.backgroundColor = .yellow
@@ -154,5 +261,17 @@ extension StoryGeneratorViewController: SegmentedViewDataSource {
     
     func numberOfOptions(in view: SegmentedView) -> Int {
         return viewModel.output.storyStyleOptions.count
+    }
+}
+
+extension StoryGeneratorViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        25
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.contentView.backgroundColor = .gray
+        return cell
     }
 }

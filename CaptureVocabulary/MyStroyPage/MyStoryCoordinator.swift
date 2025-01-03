@@ -23,6 +23,9 @@ class MyStoryCoordinator: Coordinator<UIViewController> {
         viewController.bind(viewModel: viewModel)
         handle(action: viewModel.output.action)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.popStoryGenerator()
+        })
     }
 }
 
