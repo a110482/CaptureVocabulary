@@ -54,3 +54,12 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即將覆蓋目前的資料，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.confirmCodeError" = "驗證碼錯誤，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "資料庫覆蓋完成";
+
+"StoryGenerator.fairyTales" = "童話";
+"StoryGenerator.conversation" = "對話";
+"StoryGenerator.news" = "新聞";
+"StoryGeneratorViewController.generatorStory" = "產生故事";
+"StoryGeneratorViewController.title" = "故事產生器";
+"StoryGeneratorViewController.stepOne" = "第一步";
+"StoryGeneratorViewController.stepTwo" = "第二步";
+"StoryGeneratorViewController.stepThree" = "第三步";

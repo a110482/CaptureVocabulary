@@ -37,9 +37,8 @@ private extension MyStoryViewController {
         configNewStoryButton()
         configStoryTableview()
         #if DEBUG
-        newStoryButton.backgroundColor = .red
         newStoryButton.setTitle("New Story", for: .normal)
-        storyTableview.backgroundColor = .blue
+        storyTableview.backgroundColor = .white
         #endif
     }
     

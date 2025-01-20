@@ -28,7 +28,7 @@ class StoryGeneratorOptionView: SegmentedOptionView {
 extension StoryGeneratorOptionView {
     func config(title: String, isSelected: Bool) {
         titleLabel.text = title
-        backgroundColor = isSelected ? .yellow : .gray
+        backgroundColor = isSelected ? .white : .gray
     }
 }
 

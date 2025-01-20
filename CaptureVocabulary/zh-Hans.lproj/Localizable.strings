@@ -54,3 +54,12 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即将覆盖目前的资料，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.confirmCodeError" = "验证码错误，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "资料库覆盖完成";
+
+"StoryGenerator.fairyTales" = "童话";
+"StoryGenerator.conversation" = "对话";
+"StoryGenerator.news" = "新闻";
+"StoryGeneratorViewController.generatorStory" = "生成故事";
+"StoryGeneratorViewController.title" = "故事生成器";
+"StoryGeneratorViewController.stepOne" = "第一步";
+"StoryGeneratorViewController.stepTwo" = "第二步";
+"StoryGeneratorViewController.stepThree" = "第三步";

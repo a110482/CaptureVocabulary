@@ -52,9 +52,9 @@ extension StoryGeneratorViewController {
         var icon: UIImage? {
             switch self {
             case .normal:
-                return UIImage(named: "arrow.down.left.and.arrow.up.right.rectangle")
+                return UIImage(named: "arrow.down.backward.and.arrow.up.forward")
             case .selectVocabulary:
-                return UIImage(named: "arrow.down.forward.and.arrow.up.backward.rectangle")
+                return UIImage(named: "arrow.down.right.and.arrow.up.left")
             }
         }
     }
@@ -79,13 +79,13 @@ private extension StoryGeneratorViewController {
         
 #if DEBUG
         view.backgroundColor = .lightGray
-        segmentView.backgroundColor = .brown
+        segmentView.backgroundColor = .darkGray
 #endif
     }
     
     func configConfirmButton() {
         view.addSubview(confirmButton)
-        confirmButton.backgroundColor = .green
+        confirmButton.backgroundColor = .darkGray
         confirmButton.snp.makeConstraints { make in
             make.width.equalTo(200)
             make.bottom.equalToSuperview().offset(-20)
@@ -94,6 +94,10 @@ private extension StoryGeneratorViewController {
         }
         confirmButton.setTitle(NSLocalizedString("StoryGeneratorViewController.generatorStory", comment: "產生故事"),
                                for: .normal)
+        confirmButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self else { return }
+            viewModel.sendStoryGeneratorApi()
+        }).disposed(by: disposeBag)
     }
     
     func configMainStackView() {
@@ -131,7 +135,6 @@ private extension StoryGeneratorViewController {
         }
         segmentView.delegate = self
         segmentView.dataSource = self
-//        segmentView.configuration
     }
     
     func configStepTwoLabel() {
@@ -140,7 +143,7 @@ private extension StoryGeneratorViewController {
             stepTwoLabel
         ])
         stepTwoLabel.textAlignment = .left
-        stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "")
+        stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "第二步")
     }
     
     func configVocabularyAmountSlider() {
@@ -171,7 +174,7 @@ private extension StoryGeneratorViewController {
             stepThreeLabel
         ])
         stepThreeLabel.textAlignment = .left
-        stepThreeLabel.text = NSLocalizedString("StoryGeneratorViewController.stepThree", comment: "")
+        stepThreeLabel.text = NSLocalizedString("StoryGeneratorViewController.stepThree", comment: "第三步")
     }
     
     func configTableView() {
@@ -183,6 +186,8 @@ private extension StoryGeneratorViewController {
         tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.register(StoryGeneratorListSettingCell.self, forCellReuseIdentifier: "StoryGeneratorListSettingCell")
     }
     
     func configDisplayModeButton() {
@@ -200,7 +205,7 @@ private extension StoryGeneratorViewController {
         displayModeButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let self else { return }
             currentDisplayMode.toggle()
-            updateDisplayModel()
+            updateDisplayMode()
         }).disposed(by: disposeBag)
     }
     
@@ -222,7 +227,7 @@ private extension StoryGeneratorViewController {
         updateSliderUI()
     }
     
-    func updateDisplayModel() {
+    func updateDisplayMode() {
         displayModeButton.setImage(currentDisplayMode.icon, for: .normal)
         
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
@@ -266,12 +271,22 @@ extension StoryGeneratorViewController: SegmentedViewDelegate, SegmentedViewData
 
 extension StoryGeneratorViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        25
+        viewModel.output.cellModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.contentView.backgroundColor = .gray
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StoryGeneratorListSettingCell")
+                as? StoryGeneratorListSettingCell else {
+            return UITableViewCell()
+        }
+        let cellModel = viewModel.output.cellModels[indexPath.row]
+        cell.config(cellModel: cellModel)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellModel = viewModel.output.cellModels[indexPath.row]
+        viewModel.toggle(cellModel: cellModel)
+        tableView.reloadData()
     }
 }

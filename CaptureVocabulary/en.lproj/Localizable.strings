@@ -55,3 +55,11 @@
 "DatabaseBackupViewController.confirmCodeError" = "Invalid verification code. Please enter the verification code: %@ to confirm overwriting.";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "Database overwrite completed.";
 
+"StoryGenerator.fairyTales" = "Fairy Tales";
+"StoryGenerator.conversation" = "Conversation";
+"StoryGenerator.news" = "News";
+"StoryGeneratorViewController.generatorStory" = "Generate Story";
+"StoryGeneratorViewController.title" = "Story Generator";
+"StoryGeneratorViewController.stepOne" = "Step One";
+"StoryGeneratorViewController.stepTwo" = "Step Two";
+"StoryGeneratorViewController.stepThree" = "Step Three";

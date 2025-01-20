@@ -28,6 +28,9 @@
 		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
@@ -333,6 +336,7 @@
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -539,6 +543,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		06C1F5592D3E537900C60EAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		06E199722D277DA4000DE54C /* StoryGenerator */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +558,7 @@
 				06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */,
 				06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */,
 				0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */,
+				06C1F5592D3E537900C60EAE /* Views */,
 			);
 			path = StoryGenerator;
 			sourceTree = "<group>";
@@ -1262,6 +1275,7 @@
 				06FBBAE52D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
 				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
 				06FBBAE12D268E8800038345 /* SegmentedView.swift in Sources */,
+				06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
@@ -1344,6 +1358,7 @@
 				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
 				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
 				06FBBAE62D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
+				06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
@@ -1506,6 +1521,7 @@
 				067EE7F62C5B784600523B51 /* CGPoint+Extension.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
+				06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */,

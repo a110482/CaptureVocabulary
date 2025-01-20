@@ -12,16 +12,19 @@ class StoryGeneratorViewModel {
     private(set) lazy var output = Output(self)
     
     init() {
-        storyStyleOptions = StoryGeneratorViewModel.setStoryStyleOptions()
+        storyStyleOptions = Self.setStoryStyleOptions()
+        cellModels = Self.loadVocabularyCard()
     }
     
     private var storyStyleOptions: [StoryStyleOption]
+    private var cellModels: [StoryGeneratorListSettingCellModel]
     private lazy var vocabularyAmount: Float = vocabularyAmountRange.average
 }
 
 extension StoryGeneratorViewModel {
     class Output: RxOutput<StoryGeneratorViewModel> {
         var storyStyleOptions: [StoryStyleOption] { target.storyStyleOptions }
+        var cellModels: [StoryGeneratorListSettingCellModel] { target.cellModels }
         var vocabularyAmount: Float { target.vocabularyAmount }
     }
     
@@ -33,6 +36,15 @@ extension StoryGeneratorViewModel {
     
     func set(vocabularyAmount: Int) {
         self.vocabularyAmount = Float(vocabularyAmount)
+    }
+    
+    func toggle(cellModel: StoryGeneratorListSettingCellModel) {
+        guard let index = cellModels.firstIndex(where: { $0.id == cellModel.id }) else { return }
+        cellModels[index].isSelected.toggle()
+    }
+    
+    func sendStoryGeneratorApi() {
+        
     }
 }
 
@@ -46,6 +58,12 @@ private extension StoryGeneratorViewModel {
         
         options[0].isSelected.toggle()
         return options
+    }
+    
+    static func loadVocabularyCard() -> [StoryGeneratorListSettingCellModel] {
+        let cards = VocabularyCardListORM.ORM.allList()
+        let cellModels = cards?.map({ StoryGeneratorListSettingCellModel(orm: $0) })
+        return cellModels ?? []
     }
 }
 
