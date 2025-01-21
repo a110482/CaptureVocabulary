@@ -31,6 +31,9 @@
 		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55F2D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5602D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
 		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
@@ -337,6 +340,7 @@
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
+		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */,
+				06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */,
 			);
 			path = OpenAiApi;
 			sourceTree = "<group>";
@@ -1279,6 +1284,7 @@
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
@@ -1360,6 +1366,7 @@
 				06FBBAE62D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
 				06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
+				06C1F55F2D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
@@ -1436,6 +1443,7 @@
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
 				06FBBABE2D1D585F00038345 /* DatabaseBackupCoordinator.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
+				06C1F5602D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,

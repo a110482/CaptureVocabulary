@@ -227,26 +227,6 @@ private extension StoryGeneratorViewController {
 }
 
 // MARK: - delegate & datasource
-extension StoryGeneratorViewController: SegmentedViewDelegate, SegmentedViewDataSource {
-    func segmentedView(_ view: SegmentedView, didSelectOptionAt index: Int) {
-        let model = viewModel.output.storyStyleOptions[index]
-        viewModel.setSelected(option: model)
-        view.reloadData()
-    }
-    
-    func segmentedView(_ view: SegmentedView, titleForOptionAt index: Int) -> SegmentedOptionView {
-        let option = StoryGeneratorOptionView()
-        option.backgroundColor = .yellow
-        let model = viewModel.output.storyStyleOptions[index]
-        option.config(title: model.key, isSelected: model.isSelected)
-        return option
-    }
-    
-    func numberOfOptions(in view: SegmentedView) -> Int {
-        return viewModel.output.storyStyleOptions.count
-    }
-}
-
 extension StoryGeneratorViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.output.cellModels.count

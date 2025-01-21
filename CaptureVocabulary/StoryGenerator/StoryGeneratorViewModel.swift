@@ -6,32 +6,61 @@
 //
 
 import Foundation
+import Moya
 
 class StoryGeneratorViewModel {
     let vocabularyAmountRange: ClosedRange<Float> = Float(10) ... Float(50)
     private(set) lazy var output = Output(self)
     
     init() {
-        storyStyleOptions = Self.setStoryStyleOptions()
         cellModels = Self.loadVocabularyCard()
+#if block//DEBUG
+        let demoVoca: [String] = [
+            "Analyze",
+            "Benevolent",
+            "Contribute",
+            "Diligent",
+            "Empathy",
+            "Formulate",
+            "Hypothesis",
+            "Integrate",
+            "Jeopardize",
+            "Knowledgeable",
+            "Lucrative",
+            "Magnify",
+            "Navigate",
+            "Oblivious",
+            "Perception",
+            "Quantify",
+            "Resilient",
+            "Substantiate",
+            "Thrive",
+            "Ubiquitous"
+        ]
+        let req = StoryGeneratorApi(vocabularyList: demoVoca)
+        
+        let provider = MoyaProvider<StoryGeneratorApi>()
+        provider.send(request: req) { result in
+            guard case .success(let model) = result else {
+                return
+            }
+            let message = model.choices.first?.message.content ?? ""
+            guard let messageModel = try? JSONDecoder().decode(StoryGeneratorApi.MessageModels.self, from: message.data(using: .utf8)!) else {
+                return
+            }
+            print(messageModel)
+        }
+#endif
     }
     
-    private var storyStyleOptions: [StoryStyleOption]
     private var cellModels: [StoryGeneratorListSettingCellModel]
     private lazy var vocabularyAmount: Float = vocabularyAmountRange.average
 }
 
 extension StoryGeneratorViewModel {
     class Output: RxOutput<StoryGeneratorViewModel> {
-        var storyStyleOptions: [StoryStyleOption] { target.storyStyleOptions }
         var cellModels: [StoryGeneratorListSettingCellModel] { target.cellModels }
         var vocabularyAmount: Float { target.vocabularyAmount }
-    }
-    
-    func setSelected(option: StoryStyleOption) {
-        storyStyleOptions.inoutForEach({
-            $0.isSelected = $0 == option
-        })
     }
     
     func set(vocabularyAmount: Int) {
@@ -49,17 +78,6 @@ extension StoryGeneratorViewModel {
 }
 
 private extension StoryGeneratorViewModel {
-    static func setStoryStyleOptions() -> [StoryStyleOption] {
-        var options = [
-            StoryStyleOption(key: NSLocalizedString("StoryGenerator.fairyTales", comment: "童話")),
-            StoryStyleOption(key: NSLocalizedString("StoryGenerator.conversation", comment: "對話")),
-            StoryStyleOption(key: NSLocalizedString("StoryGenerator.news", comment: "新聞"))
-        ]
-        
-        options[0].isSelected.toggle()
-        return options
-    }
-    
     static func loadVocabularyCard() -> [StoryGeneratorListSettingCellModel] {
         let cards = VocabularyCardListORM.ORM.allList()
         let cellModels = cards?.map({ StoryGeneratorListSettingCellModel(orm: $0) })
