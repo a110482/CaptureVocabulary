@@ -19,11 +19,9 @@ class StoryGeneratorViewController: UIViewController {
     private let mainStackView = UIStackView()
     private let titleLabel = UILabel()
     private let stepOneLabel = UILabel()
-    private let segmentView = SegmentedView()
-    private let stepTwoLabel = UILabel()
     private let vocabularyAmountSliderLabel = UILabel()
     private let vocabularyAmountSlider = UISlider()
-    private let stepThreeLabel = UILabel()
+    private let stepTwoLabel = UILabel()
     private let tableView = UITableView()
     private let confirmButton = UIButton()
     private let displayModeButton = UIButton()
@@ -70,16 +68,15 @@ private extension StoryGeneratorViewController {
         configMainStackView()
         configTitleLabel()
         configStepOneLabel()
-        configSegmentView()
-        configStepTwoLabel()
         configVocabularyAmountSlider()
-        configStepThree()
+        configStepTwoLabel()
         configTableView()
         configDisplayModeButton()
         
 #if DEBUG
         view.backgroundColor = .lightGray
-        segmentView.backgroundColor = .darkGray
+        stepOneLabel.text! += ": 選擇隨機產生的單字上限"
+        stepTwoLabel.text! += ": 選擇單字來源"
 #endif
     }
     
@@ -127,25 +124,6 @@ private extension StoryGeneratorViewController {
         stepOneLabel.text = NSLocalizedString("StoryGeneratorViewController.stepOne", comment: "第一步")
     }
     
-    func configSegmentView() {
-        mainStackView.addArrangedSubview(mainStackView.padding(gap: 10))
-        mainStackView.addArrangedSubview(segmentView)
-        segmentView.snp.makeConstraints { make in
-            make.height.equalTo(60)
-        }
-        segmentView.delegate = self
-        segmentView.dataSource = self
-    }
-    
-    func configStepTwoLabel() {
-        mainStackView.addArrangedSubviews([
-            mainStackView.padding(gap: 20),
-            stepTwoLabel
-        ])
-        stepTwoLabel.textAlignment = .left
-        stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "第二步")
-    }
-    
     func configVocabularyAmountSlider() {
         let sliderContainer = UIStackView()
         sliderContainer.axis = .horizontal
@@ -168,13 +146,13 @@ private extension StoryGeneratorViewController {
         updateSliderUI()
     }
     
-    func configStepThree() {
+    func configStepTwoLabel() {
         mainStackView.addArrangedSubviews([
             mainStackView.padding(gap: 20),
-            stepThreeLabel
+            stepTwoLabel
         ])
-        stepThreeLabel.textAlignment = .left
-        stepThreeLabel.text = NSLocalizedString("StoryGeneratorViewController.stepThree", comment: "第三步")
+        stepTwoLabel.textAlignment = .left
+        stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "第二步")
     }
     
     func configTableView() {
