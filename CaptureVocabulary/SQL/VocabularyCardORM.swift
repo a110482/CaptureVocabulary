@@ -186,6 +186,7 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
         return orm
     }
     
+    /// 建立預設空的單字列表
     @discardableResult static func createDefaultList() -> Self? {
         guard (allList()?.count ?? 0) == 0 else { return nil }
         return newList()

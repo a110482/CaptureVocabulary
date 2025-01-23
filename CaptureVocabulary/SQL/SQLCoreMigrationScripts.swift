@@ -8,35 +8,17 @@
 import Foundation
 
 struct SQLCoreMigration_newDatabase: MigrationProcess {
-    /// 基本上此腳本已不使用, 可於 2024.8.1 以後重構刪除
-    let dbVersionNumber: Int = AppParameters.shared.model.lastDatabaseVersion
+    var dbVersionNumber: Int { SQLCoreMigration.migrationScripts.count }
     
     func process() {
         SQLCore.shared.createTables()
         VocabularyCardListORM.ORM.createDefaultList()
-    }
-    
-    private func copyDatabase() {
-        let sourceURL = SQLCore.firstVersionDatabaseURL
-        let targetURL = SQLCore.groupDatabaseURL
-        
-        do {
-            if FileManager.default.fileExists(atPath: targetURL.path) {
-                try FileManager.default.removeItem(at: targetURL)
-            }
-            try FileManager.default.copyItem(at: sourceURL, to: targetURL)
-        } catch {
-            assert(false, error.localizedDescription)
-        }
     }
 }
 
 
 // 新建 db 或是拷貝舊版 db
 struct SQLCoreMigration_1: MigrationProcess {
-    /// 基本上此腳本已不使用, 可於 2024.8.1 以後重構刪除
-    let dbVersionNumber: Int = 1
-    
     func process() {
         let count = try! SQLCore.oldDatabase.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
         if count == 0 {
@@ -67,8 +49,6 @@ struct SQLCoreMigration_1: MigrationProcess {
 // 新增音標到單字庫裡
 struct SQLCoreMigration_2: MigrationProcess {
     typealias Card = VocabularyCardORM
-    
-    let dbVersionNumber: Int = 2
     
     func process() {
         do {
@@ -104,8 +84,6 @@ struct SQLCoreMigration_2: MigrationProcess {
 struct SQLCoreMigration_3: MigrationProcess {
     typealias Card = VocabularyCardORM
     
-    let dbVersionNumber: Int = 3
-    
     func process() throws {
         guard let cards = Card.prepare(Card.table) else {
             return
@@ -120,8 +98,6 @@ struct SQLCoreMigration_3: MigrationProcess {
 
 // 建立例句資料庫
 struct SQLCoreMigration_4: MigrationProcess {
-    let dbVersionNumber: Int = 4
-    
     func process() throws {
         SimpleSentencesORM.createTable()
     }
@@ -130,8 +106,6 @@ struct SQLCoreMigration_4: MigrationProcess {
 // 建立單字卡上次記憶時間
 struct SQLCoreMigration_5: MigrationProcess {
     typealias Card = VocabularyCardORM
-    let dbVersionNumber: Int = 5
-    
     func process() throws {
         try addColumn()
     }

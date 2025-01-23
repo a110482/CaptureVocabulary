@@ -13,7 +13,6 @@ class AppParameters {
         let azureKey: String
         let YDAppKey: String
         let YDSecret: String
-        let lastDatabaseVersion: Int
         let adUnitID: String
         let versionUrl: String
         let feedbackEmail: String
