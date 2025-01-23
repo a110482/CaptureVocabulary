@@ -34,6 +34,9 @@
 		06C1F55F2D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
 		06C1F5602D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
 		06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
 		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
@@ -341,6 +344,7 @@
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
+		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -916,6 +920,7 @@
 				C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
+				06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */,
 				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
@@ -1288,6 +1293,7 @@
 				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
+				06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
@@ -1398,6 +1404,7 @@
 				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
+				06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */,
 				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
@@ -1504,6 +1511,7 @@
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */,
+				06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
 				F5A4CF7C28E6FC0400600E21 /* YDTranslateAPI.swift in Sources */,
 				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,
