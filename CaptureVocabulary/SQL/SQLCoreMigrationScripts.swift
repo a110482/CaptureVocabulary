@@ -117,3 +117,9 @@ struct SQLCoreMigration_5: MigrationProcess {
         try SQLCore.shared.db.run(addColumnTimes)
     }
 }
+
+struct SQLCoreMigration_6: MigrationProcess {
+    func process() throws {
+        StoryORM.createTable()
+    }
+}

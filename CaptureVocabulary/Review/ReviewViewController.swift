@@ -11,13 +11,13 @@ import SwifterSwift
 import RxCocoa
 import RxSwift
 import MediaPlayer
+import StoreKit
 
 
 // MARK: -
 class ReviewViewController: UIViewController {
     enum Action {
         case settingPage
-        case feedback
     }
     let action = PublishRelay<Action>()
     private static let cellGape = CGFloat(12)
@@ -208,10 +208,18 @@ private extension ReviewViewController {
         feedbackButton.setTitle(NSLocalizedString("ReviewViewController.feedback", comment: "意見回饋"), for: .normal)
         feedbackButton.setTitleColor(.white, for: .normal)
         feedbackButton.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.action.accept(.feedback)
+            guard let self else { return }
+            requestReview()
         }).disposed(by: disposeBag)
         return feedbackButton
+    }
+    
+    func requestReview() {
+        let appId = "1623601073" // 替換為你的 App 的 Apple ID
+        guard let url = URL(string: "https://apps.apple.com/app/id\(appId)?action=write-review") else {
+            return
+        }
+        view.window?.windowScene?.open(url, options: .none)
     }
 }
 

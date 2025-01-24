@@ -37,6 +37,12 @@
 		06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
 		06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
 		06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5672D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F5682D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F56B2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
+		06C1F56C2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
+		06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
 		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
@@ -345,6 +351,8 @@
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
+		06C1F5662D424BE500C60EAE /* StoryORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryORM.swift; sourceTree = "<group>"; };
+		06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -547,6 +555,7 @@
 				06E051EA2CAFC18400015F68 /* Int+Extension.swift */,
 				0600CC832D27C80200FD15FD /* Array+Extension.swift */,
 				0600CC8B2D27D98600FD15FD /* Range+Extension.swift */,
+				06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -921,6 +930,7 @@
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
 				06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */,
+				06C1F5662D424BE500C60EAE /* StoryORM.swift */,
 				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
@@ -1289,7 +1299,9 @@
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */,
 				06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
+				06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
@@ -1401,6 +1413,7 @@
 				C060796D29E805DA00434A2E /* AppParameters.swift in Sources */,
 				C060796E29E805DA00434A2E /* AppInfo.swift in Sources */,
 				06FBBACB2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				06C1F5672D424BE500C60EAE /* StoryORM.swift in Sources */,
 				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
@@ -1415,6 +1428,7 @@
 				C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				06C1F56B2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				067EE7FA2C5B78E000523B51 /* CGPoint+Extension.swift in Sources */,
@@ -1445,6 +1459,7 @@
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
 				067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */,
+				06C1F56C2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
@@ -1522,6 +1537,7 @@
 				C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */,
 				C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
+				06C1F5682D424BE500C60EAE /* StoryORM.swift in Sources */,
 				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
@@ -1680,7 +1696,7 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1714,7 +1730,7 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1811,7 +1827,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1862,7 +1878,7 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2024,7 +2040,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2062,7 +2078,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

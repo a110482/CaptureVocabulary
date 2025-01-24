@@ -95,7 +95,6 @@ class SQLCore {
             }
             
             try FileManager.default.copyItem(at: sourceURL, to: target)
-//            try? db.execute("PRAGMA foreign_keys=ON")
             
             print("File copied successfully!")
         } catch {

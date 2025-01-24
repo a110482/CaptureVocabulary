@@ -35,6 +35,7 @@ class SQLCoreMigration {
         SQLCoreMigration_3(),
         SQLCoreMigration_4(),
         SQLCoreMigration_5(),
+        SQLCoreMigration_6()
     ]
     
     static func checkVersion(_ completion: () -> Void) throws {

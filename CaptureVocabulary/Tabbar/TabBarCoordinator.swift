@@ -94,7 +94,7 @@ class TabBarViewController: UITabBarController {
 }
 
 // MARK: - Demo
-class DemoViewController: UIViewController {
+class TabBarDemoViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 100)

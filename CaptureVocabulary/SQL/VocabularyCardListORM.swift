@@ -66,7 +66,6 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
         var createObj = Self()
         createObj.name = defaultName
         ORMModel.create(createObj)
-        
         let query = ORMModel.table.order(ORMModel.id.desc).limit(1)
         guard let orm = ORMModel.prepare(query)?.first else { return nil }
         return orm
