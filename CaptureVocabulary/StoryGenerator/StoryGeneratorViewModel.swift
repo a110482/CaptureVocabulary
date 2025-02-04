@@ -39,35 +39,15 @@ extension StoryGeneratorViewModel {
         self.vocabularyAmount = Float(vocabularyAmount)
     }
     
+    /// 切換單字庫的選擇狀態
     func toggle(cellModel: StoryGeneratorListSettingCellModel) {
         guard let index = cellModels.firstIndex(where: { $0.id == cellModel.id }) else { return }
         cellModels[index].isSelected.toggle()
     }
     
-    func sendStoryGeneratorApi() {
-        let allVocabularies = readAllVocabularies()
-        let queryVocabularies = randomElements(array: allVocabularies, amount: Int(vocabularyAmount))
-        guard isVocabularyValid(allVocabularies: queryVocabularies) else { return }
-        let queryVocabulariesString = queryVocabularies.compactMap({ $0.normalizedSource })
-        
-        let request = StoryGeneratorApi(vocabularyList: queryVocabulariesString)
-        let provider = MoyaProvider<StoryGeneratorApi>()
-        provider.send(request: request) { [weak self] result in
-            guard let self else { return }
-            guard case .success(let model) = result else {
-                action.accept(.apiFailure)
-                return
-            }
-            let message = model.choices.first?.message.content ?? ""
-            guard let messageModel = try? JSONDecoder().decode(StoryGeneratorApi.MessageModels.self, from: message.data(using: .utf8)!) else {
-                action.accept(.apiFailure)
-                return
-            }
-            guard let storyOrm = StoryORM.ORM(storyDataModel: messageModel) else {
-                action.accept(.apiFailure)
-                return
-            }
-            action.accept(.apiSuccess(story: storyOrm, queryVocabularies: queryVocabularies))
+    func pressStoryGenerateButton(from viewController: UIViewController) {
+        if AdsManager.shared.output.isPresentInterstitialAdValue {
+            sendStoryGeneratorApi()
         }
     }
 }
@@ -96,6 +76,33 @@ private extension StoryGeneratorViewModel {
         guard amount > 0 else { return [] }
         let countToFetch = min(amount, array.count) // Ensure we don't exceed the array's count
         return Array(array.shuffled().prefix(countToFetch))
+    }
+    
+    func sendStoryGeneratorApi() {
+        let allVocabularies = readAllVocabularies()
+        let queryVocabularies = randomElements(array: allVocabularies, amount: Int(vocabularyAmount))
+        guard isVocabularyValid(allVocabularies: queryVocabularies) else { return }
+        let queryVocabulariesString = queryVocabularies.compactMap({ $0.normalizedSource })
+        
+        let request = StoryGeneratorApi(vocabularyList: queryVocabulariesString)
+        let provider = MoyaProvider<StoryGeneratorApi>()
+        provider.send(request: request) { [weak self] result in
+            guard let self else { return }
+            guard case .success(let model) = result else {
+                action.accept(.apiFailure)
+                return
+            }
+            let message = model.choices.first?.message.content ?? ""
+            guard let messageModel = try? JSONDecoder().decode(StoryGeneratorApi.MessageModels.self, from: message.data(using: .utf8)!) else {
+                action.accept(.apiFailure)
+                return
+            }
+            guard let storyOrm = StoryORM.ORM(storyDataModel: messageModel) else {
+                action.accept(.apiFailure)
+                return
+            }
+            action.accept(.apiSuccess(story: storyOrm, queryVocabularies: queryVocabularies))
+        }
     }
 }
 

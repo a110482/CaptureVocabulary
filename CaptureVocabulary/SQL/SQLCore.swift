@@ -50,7 +50,8 @@ class SQLCore {
             AzureDictionaryORM.self,
             AzureDictionaryTranslationORM.self,
             YDTranslateORM.self,
-            SimpleSentencesORM.self
+            SimpleSentencesORM.self,
+            StoryORM.self
         ]
     }
     

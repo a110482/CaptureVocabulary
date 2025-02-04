@@ -10,9 +10,11 @@ import RxSwift
 import RxCocoa
 
 class StoryGeneratorCoordinator: Coordinator<UIViewController> {
+    private(set) lazy var output = Output(self)
     private(set) var viewController: StoryGeneratorViewController!
     private(set) var viewModel: StoryGeneratorViewModel!
     private let disposeBag = DisposeBag()
+    private let action = PublishRelay<StoryGeneratorViewModel.Action>()
     
     override func start() {
         guard !started else { return }
@@ -25,20 +27,14 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
     }
 }
 
+extension StoryGeneratorCoordinator {
+    class Output: RxOutput<StoryGeneratorCoordinator> {
+        var action: Observable<StoryGeneratorViewModel.Action> { target.action.asObservable() }
+    }
+}
+
 private extension StoryGeneratorCoordinator {
     func bind(action: Observable<StoryGeneratorViewModel.Action>) {
-        action.subscribe(onNext: {[weak self] action in
-            guard let self else { return }
-            handle(action: action)
-        }).disposed(by: disposeBag)
-    }
-    
-    func handle(action: StoryGeneratorViewModel.Action) {
-        switch action {
-        case .apiFailure:
-            break
-        case let .apiSuccess(story, queryVocabularies):
-            break
-        }
+        action.bind(to: self.action).disposed(by: disposeBag)
     }
 }

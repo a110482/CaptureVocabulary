@@ -93,7 +93,7 @@ private extension StoryGeneratorViewController {
                                for: .normal)
         confirmButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self else { return }
-            viewModel.sendStoryGeneratorApi()
+            viewModel.pressStoryGenerateButton(from: self)
         }).disposed(by: disposeBag)
     }
     

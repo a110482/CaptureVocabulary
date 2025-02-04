@@ -51,7 +51,7 @@ class CaptureVocabularyViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AdsManager.shared.rootViewController = self
+        AdsManager.shared.simpleBannerRootViewController = self
     }
     
     func bind(viewModel: CaptureVocabularyViewModel) {
