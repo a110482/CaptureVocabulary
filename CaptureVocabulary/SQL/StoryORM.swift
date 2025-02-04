@@ -87,6 +87,11 @@ extension StoryORM.ORM {
         let query = ORMModel.table.order(ORMModel.id.desc)
         return ORMModel.prepare(query)
     }
+    
+    static func getLastStory() -> Self? {
+        let query = ORMModel.table.order(ORMModel.id.desc).limit(1)
+        return ORMModel.prepare(query)?.first
+    }
 }
 
 // MARK: - Story_VocabularyORM

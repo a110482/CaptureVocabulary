@@ -20,6 +20,25 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
         viewController = StoryGeneratorViewController()
         viewModel = StoryGeneratorViewModel()
         viewController.bind(viewModel: viewModel)
+        bind(action: viewModel.output.action)
         present(viewController: viewController, animated: true)
+    }
+}
+
+private extension StoryGeneratorCoordinator {
+    func bind(action: Observable<StoryGeneratorViewModel.Action>) {
+        action.subscribe(onNext: {[weak self] action in
+            guard let self else { return }
+            handle(action: action)
+        }).disposed(by: disposeBag)
+    }
+    
+    func handle(action: StoryGeneratorViewModel.Action) {
+        switch action {
+        case .apiFailure:
+            break
+        case let .apiSuccess(story, queryVocabularies):
+            break
+        }
     }
 }

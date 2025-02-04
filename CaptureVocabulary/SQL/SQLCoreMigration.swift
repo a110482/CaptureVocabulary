@@ -46,6 +46,7 @@ class SQLCoreMigration {
         case .oldVersionSystem(let version):
             writeDatabaseVersion(version: version)
             UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentDatabaseVersion.rawValue)
+            try checkVersion(completion)
         case .needUpdate:
             try migration()
             try checkVersion(completion)
