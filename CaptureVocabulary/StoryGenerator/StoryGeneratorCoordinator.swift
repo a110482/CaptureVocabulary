@@ -25,6 +25,11 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
         bind(action: viewModel.output.action)
         present(viewController: viewController, animated: true)
     }
+    
+    override func stop() {
+        super.stop()
+        viewController.dismiss(animated: true)
+    }
 }
 
 extension StoryGeneratorCoordinator {

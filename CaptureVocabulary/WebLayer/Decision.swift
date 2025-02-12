@@ -21,6 +21,10 @@ public protocol Decision {
         request: Req,
         response: Moya.Response,
         done closure: @escaping (DecisionAction<Req>) -> Void)
+    
+    func apply<Req: Request>(
+        request: Req,
+        response: Moya.Response) async -> DecisionAction<Req>
 }
 
 

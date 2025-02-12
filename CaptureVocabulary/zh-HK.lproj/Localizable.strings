@@ -56,6 +56,7 @@
 "DatabaseBackupViewController.writeDatabaseSuccess" = "資料庫覆蓋完成";
 
 "StoryGeneratorViewController.generatorStory" = "產生故事";
+"StoryGeneratorViewController.watchAD" = "觀看廣告產生故事";
 "StoryGeneratorViewController.title" = "故事產生器";
 "StoryGeneratorViewController.stepOne" = "第一步";
 "StoryGeneratorViewController.stepTwo" = "第二步";

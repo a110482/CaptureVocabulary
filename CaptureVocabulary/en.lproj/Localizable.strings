@@ -59,6 +59,7 @@
 "StoryGenerator.conversation" = "Conversation";
 "StoryGenerator.news" = "News";
 "StoryGeneratorViewController.generatorStory" = "Generate Story";
+"StoryGeneratorViewController.watchAD" = "Watch an ad to generate a story";
 "StoryGeneratorViewController.title" = "Story Generator";
 "StoryGeneratorViewController.stepOne" = "Step One";
 "StoryGeneratorViewController.stepTwo" = "Step Two";

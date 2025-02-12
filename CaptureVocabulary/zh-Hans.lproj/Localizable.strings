@@ -59,6 +59,7 @@
 "StoryGenerator.conversation" = "对话";
 "StoryGenerator.news" = "新闻";
 "StoryGeneratorViewController.generatorStory" = "生成故事";
+"StoryGeneratorViewController.watchAD" = "观看广告生成故事";
 "StoryGeneratorViewController.title" = "故事生成器";
 "StoryGeneratorViewController.stepOne" = "第一步";
 "StoryGeneratorViewController.stepTwo" = "第二步";

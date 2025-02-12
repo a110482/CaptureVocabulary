@@ -45,10 +45,10 @@ extension StoryGeneratorViewModel {
         cellModels[index].isSelected.toggle()
     }
     
-    func pressStoryGenerateButton(from viewController: UIViewController) {
-        if AdsManager.shared.output.isPresentInterstitialAdValue {
-            sendStoryGeneratorApi()
-        }
+    func pressStoryGenerateButton() {
+        // 確定有觀看廣告的獎勵
+        guard AdsManager.shared.output.isPresentInterstitialAdValue else { return }
+        sendStoryGeneratorApi()
     }
 }
 
@@ -77,6 +77,36 @@ private extension StoryGeneratorViewModel {
         let countToFetch = min(amount, array.count) // Ensure we don't exceed the array's count
         return Array(array.shuffled().prefix(countToFetch))
     }
+    
+//    func sendStoryGeneratorApi() async {
+//        return await withCheckedContinuation({ continuation in
+//            let allVocabularies = readAllVocabularies()
+//            let queryVocabularies = randomElements(array: allVocabularies, amount: Int(vocabularyAmount))
+//            guard isVocabularyValid(allVocabularies: queryVocabularies) else { return }
+//            let queryVocabulariesString = queryVocabularies.compactMap({ $0.normalizedSource })
+//            
+//            let request = StoryGeneratorApi(vocabularyList: queryVocabulariesString)
+//            let provider = MoyaProvider<StoryGeneratorApi>()
+//            provider.send(request: request) { [weak self] result in
+//                defer { continuation.resume() }
+//                guard let self else { return }
+//                guard case .success(let model) = result else {
+//                    action.accept(.apiFailure)
+//                    return
+//                }
+//                let message = model.choices.first?.message.content ?? ""
+//                guard let messageModel = try? JSONDecoder().decode(StoryGeneratorApi.MessageModels.self, from: message.data(using: .utf8)!) else {
+//                    action.accept(.apiFailure)
+//                    return
+//                }
+//                guard let storyOrm = StoryORM.ORM(storyDataModel: messageModel) else {
+//                    action.accept(.apiFailure)
+//                    return
+//                }
+//                action.accept(.apiSuccess(story: storyOrm, queryVocabularies: queryVocabularies))
+//            }
+//        })
+//    }
     
     func sendStoryGeneratorApi() {
         let allVocabularies = readAllVocabularies()

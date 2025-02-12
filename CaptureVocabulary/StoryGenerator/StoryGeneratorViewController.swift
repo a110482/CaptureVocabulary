@@ -57,6 +57,24 @@ extension StoryGeneratorViewController {
         }
     }
     
+    enum ConfirmButtonStatus {
+        case generatorStory
+        case watchAd
+        
+        var title: String {
+            switch self {
+            case .generatorStory:
+                return NSLocalizedString("StoryGeneratorViewController.generatorStory", comment: "產生故事")
+            case .watchAd:
+                return NSLocalizedString("StoryGeneratorViewController.watchAD", comment: "觀看廣告產生故事")
+            }
+        }
+    }
+    
+    var confirmButtonStatus: ConfirmButtonStatus {
+        AdsManager.shared.output.isPresentInterstitialAdValue ? .generatorStory : .watchAd
+    }
+    
     func bind(viewModel: StoryGeneratorViewModel) {
         self.viewModel = viewModel
     }
@@ -84,16 +102,17 @@ private extension StoryGeneratorViewController {
         view.addSubview(confirmButton)
         confirmButton.backgroundColor = .darkGray
         confirmButton.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.bottom.equalToSuperview().offset(-20)
             make.height.equalTo(60)
             make.centerX.equalToSuperview()
         }
-        confirmButton.setTitle(NSLocalizedString("StoryGeneratorViewController.generatorStory", comment: "產生故事"),
+        confirmButton.setTitle(confirmButtonStatus.title,
                                for: .normal)
         confirmButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self else { return }
-            viewModel.pressStoryGenerateButton(from: self)
+            startLoadingAnimate()
+            viewModel.pressStoryGenerateButton()
         }).disposed(by: disposeBag)
     }
     

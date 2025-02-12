@@ -32,6 +32,61 @@ extension MoyaProvider where Target: Request {
             }
         }
     }
+    
+//    func send(
+//        request: Target,
+//        decisions: [Decision]? = nil
+//    ) async -> Handler {
+//        
+//    }
+    
+    
+    
+    private func handleDecision(
+        _ request: Target,
+        response: Moya.Response,
+        decisions: [Decision]
+    ) async -> Handler? {
+        guard !decisions.isEmpty else {
+            assert(false, "No decision left but did not reach a stop.")
+            return nil
+        }
+        var decisions = decisions
+        let current = decisions.removeFirst()
+        
+        guard current.shouldApply(
+            request: request,
+            response: response
+        ) else {
+            return await handleDecision(
+                request,
+                response: response,
+                decisions: decisions
+            )
+        }
+        
+        let action = await current.apply(request: request, response: response)
+        
+        switch action {
+        case .continueWith(let response):
+            return await self.handleDecision(
+                request,
+                response: response,
+                decisions: decisions
+            )
+        case .restartWith(decisions: let decisions):
+            //                self.send(
+            //                    request: request,
+            //                    decisions: decisions,
+            //                    handler: handler
+            //                )
+            return nil
+        case .errored(error: let error):
+            return .failure(error)
+        case .done(value: let value):
+            return .success(value)
+        }
+    }
 
     private func handleDecision(
         _ request: Target,

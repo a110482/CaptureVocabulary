@@ -48,8 +48,10 @@ final class AdsManager : NSObject {
     private var bannerView: GADBannerView?
     private var interstitial: GADInterstitialAd?
     private var reloadInterstitialAdTimer: Timer?
-    /// 是否已經看完廣告
-    private let isPresentInterstitialAd = BehaviorRelay(value: false)
+    /// 是否已經看完廣告 (第一版先不要放廣告)
+    private let isPresentInterstitialAd = BehaviorRelay(value: true)
+    /// 廣告剛剛關閉
+    private let adDidDismissFullScreenContent = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
 }
 
@@ -122,6 +124,10 @@ extension AdsManager {
         var isPresentInterstitialAdValue: Bool {
             target.isPresentInterstitialAd.value
         }
+        
+        var adDidDismissFullScreenContent: Observable<Void> {
+            target.adDidDismissFullScreenContent.asObservable()
+        }
     }
     
     var adSize: GADAdSize {
@@ -130,7 +136,11 @@ extension AdsManager {
         return adSize
     }
     
+    
     func present(vc: UIViewController) {
+        // 檢查是否有還沒有的廣告獎勵
+        guard !isPresentInterstitialAd.value else { return }
+        // 檢查是否廣告已下載完成
         guard let interstitial else { return }
         interstitial.present(fromRootViewController: vc)
     }
@@ -162,6 +172,11 @@ extension AdsManager: GADFullScreenContentDelegate {
     
     /// 廣告已經顯示
     func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        isPresentInterstitialAd.accept(true)
         prepareLoadedInterstitialAdIfNeeded()
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        adDidDismissFullScreenContent.accept(())
     }
 }
