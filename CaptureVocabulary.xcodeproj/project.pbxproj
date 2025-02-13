@@ -18,6 +18,8 @@
 		0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
 		061228182D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */; };
 		061228192D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */; };
+		0612281B2D5D9A92008FF95E /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612281A2D5D9A8C008FF95E /* TypeAlias.swift */; };
+		0612281C2D5D9A92008FF95E /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612281A2D5D9A8C008FF95E /* TypeAlias.swift */; };
 		0654E1102C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		0654E1112C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
@@ -345,6 +347,7 @@
 		0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorOptionView.swift; sourceTree = "<group>"; };
 		0600CC8B2D27D98600FD15FD /* Range+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+Extension.swift"; sourceTree = "<group>"; };
 		061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		0612281A2D5D9A8C008FF95E /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		0654E10F2C89964B001F769B /* RxOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxOutput.swift; sourceTree = "<group>"; };
 		067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeader.swift; sourceTree = "<group>"; };
 		067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
@@ -551,6 +554,7 @@
 		067EE7F42C5B781300523B51 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0612281A2D5D9A8C008FF95E /* TypeAlias.swift */,
 				061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */,
 				067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */,
 				067EE7F72C5B786600523B51 /* UIView+Extension.swift */,
@@ -1334,6 +1338,7 @@
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
+				0612281B2D5D9A92008FF95E /* TypeAlias.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
@@ -1506,6 +1511,7 @@
 				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
 				06FBBADD2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
+				0612281C2D5D9A92008FF95E /* TypeAlias.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
@@ -1806,6 +1812,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Uat;
@@ -1962,6 +1969,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2018,6 +2026,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
