@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  CaptureVocabulary
+
+  Created by Tan Elijah on 2023/6/14.
+  
+*/
+"ViewController.prepareLaunch" = "正在準備啟動...\n首次啟動可能需要更長時間";
+
+"ReviewCoordinator.feedback" = "[意見回饋]";
+"ReviewCoordinator.emailFailure" = "無法使用郵件";
+"ReviewCoordinator.setUpYourEmailAccount" = "請先設定郵件帳號";
+"ReviewCoordinator.ok" = "確定";
+
+"ReviewViewController.review" = "複習";
+"ReviewViewController.feedback" = "意見回饋";
+
+"ReviewCollectionViewCell.addNewWords" = "你的單字屋, 快去新增單字吧";
+"ReviewCollectionViewCell.hide" = "隱藏";
+"ReviewCollectionViewCell.showTranslate" = "顯示翻譯";
+
+"TabBarCoordinator.scan" = "掃單字";
+"TabBarCoordinator.review" = "複習";
+"TabBarCoordinator.flashcards" = "單字庫";
+
+"VocabularyListViewController.flashcards" = "單字庫";
+"VocabularyListViewController.addNew" = "+新增";
+"VocabularyListViewController.enterNewListName" = "請輸入新的清單名稱";
+"VocabularyListViewController.cancel" = "取消";
+"VocabularyListViewController.confirm" = "確認";
+"VocabularyListViewController.delete" = "刪除";
+"VocabularyListViewController.edit" = "編輯";
+
+"CaptureVocabularyViewController.enterQuery" = "輸入查詢";
+"CaptureVocabularyViewController.search" = "查詢";
+
+"VocabularyViewController.save" = "儲存";
+"VocabularyViewController.noDataLabel" = "查無此單字";
+"VocabularyCardListORM.ORM.word" = "單字";
+
+"SettingPageViewController.title" = "系統設定";
+"SettingPageViewController.section.reading" = "閱讀";
+"SettingPageViewController.section.readingSpeed" = "閱讀速度";
+"SettingPageViewController.cell.databaseBackup" = "備份資料庫";
+"SettingPageViewController.cell.versionTitle" = "版本號";
+
+"SettingSwitchSentenceCell.titleLabel" = "閱讀例句";
+"SettingSwitchSentenceCell.numberOfReadSentencesTitleLabel" = "閱讀句數";
+
+"DatabaseBackupViewController.warningMessage" = "注意進行檔案的備份轉移時，請務必確認兩台手機的 app 都屬於最新版本，不同版本的存擋並不相容";
+"DatabaseBackupViewController.exportDatabase" = "導出資料庫";
+"DatabaseBackupViewController.importDatabase" = "導入資料庫";
+"DatabaseBackupViewController.confirmWarningTitle" = "警告，即將覆蓋目前的資料，請輸入驗證碼: %@ 確定覆蓋";
+"DatabaseBackupViewController.confirmCodeError" = "驗證碼錯誤，請輸入驗證碼: %@ 確定覆蓋";
+"DatabaseBackupViewController.writeDatabaseSuccess" = "資料庫覆蓋完成";

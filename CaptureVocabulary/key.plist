@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>lastDatabaseVersion</key>
+	<integer>2</integer>
+	<key>azureKey</key>
+	<string></string>
+	<key>YDSecret</key>
+	<string>Akad82sCeed8NNALkA83O1zpZUATs26Y</string>
+	<key>YDAppKey</key>
+	<string>7fd5f497748aca8d</string>
+</dict>
+</plist>

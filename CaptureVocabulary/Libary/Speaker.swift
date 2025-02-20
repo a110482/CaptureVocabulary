@@ -1,0 +1,153 @@
+//
+//  Speaker.swift
+//  CaptureVocabulary
+//
+//  Created by 譚培成 on 2022/5/11.
+//
+
+import AVFoundation
+
+protocol SpeakerDelegate: AnyObject {
+    func sequencesDidFinish()
+    func sequencesDidInterrupt()
+}
+
+class Speaker: NSObject {
+    static let shared = Speaker()
+    weak var delegate: SpeakerDelegate?
+    
+    private override init() {
+        readingRatio = Self.defaultReadingRatio()
+        synth = AVSpeechSynthesizer()
+        let audioSession = AVAudioSession.sharedInstance()
+        try? audioSession.setCategory (
+            AVAudioSession.Category.playback,
+            options: AVAudioSession.CategoryOptions.duckOthers
+        )
+        Self.setAVAudioSession()
+        synth.delegate = speakerDelegate
+    }
+    
+    enum Language: CustomStringConvertible {
+        case en_US
+        case zh_TW
+        case pause(time: Int)
+        
+        var description: String {
+            switch self {
+            case .en_US:
+                return "en-US"
+            case .zh_TW:
+                return "zh-TW"
+            case .pause(_):
+                return ""
+            }
+        }
+    }
+    
+    private var sequences: [(string: String, language: Language)] = []
+    private var isSpeaking = false
+    private var readingRatio: Float
+    private var synth: AVSpeechSynthesizer
+}
+
+// MARK: - public functions
+extension Speaker {
+    ///  久沒講話好像會被放掉
+    ///  所以重後台喚醒要重設
+    func resetSpeaker() {
+        guard !isSpeaking else { return }
+        synth = AVSpeechSynthesizer()
+        synth.delegate = speakerDelegate
+    }
+    
+    /// speak immediate, it will clean speak sequences
+    func speak(_ string: String, language: Language) {
+        if case .pause(_) = language {
+            return
+        }
+        let utterance = AVSpeechUtterance(string: string)
+        utterance.rate = readingRate()
+        utterance.voice = AVSpeechSynthesisVoice(language: language.description)
+        delegate?.sequencesDidInterrupt()
+        sequences = []
+        synth.stopSpeaking(at: .immediate)
+        synth.speak(utterance)
+    }
+    
+    func stop() {
+        delegate?.sequencesDidInterrupt()
+        sequences = []
+        synth.stopSpeaking(at: .immediate)
+        isSpeaking = false
+    }
+    
+    func speakSequences(_ string: String, language: Language) {
+        sequences.append((string, language))
+        if !isSpeaking {
+            speakSequences()
+        }
+    }
+    
+    func updateReadingRatio(ratio: Float) {
+        readingRatio = ratio
+    }
+    
+    fileprivate func speakSequences() {
+        isSpeaking = true
+        guard sequences.count > 0 else {
+            delegate?.sequencesDidFinish()
+            isSpeaking = false
+            return
+        }
+        let pack = sequences.removeFirst()
+        
+        // 暫停
+        if case .pause(let time) = pack.language {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(time), execute: {
+                self.speakSequences()
+            })
+            return
+        }
+        
+        // 發音
+        let utterance = AVSpeechUtterance(string: pack.string)
+        utterance.rate = readingRate()
+        utterance.voice = AVSpeechSynthesisVoice(language: pack.language.description)
+        synth.pauseSpeaking(at: .immediate)
+        synth.speak(utterance)
+    }
+    
+    
+    static func setAVAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playback, options: [.mixWithOthers])
+            try audioSession.setActive(true)
+        } catch {
+            print("Failed to configure audio session: \(error)")
+        }
+    }
+}
+
+// MARK: - private functions
+private extension Speaker {
+    func readingRate() -> Float {
+        let defaultRate = AVSpeechUtteranceDefaultSpeechRate
+        return defaultRate * readingRatio
+    }
+    
+    static func defaultReadingRatio() -> Float {
+        let ratio = UserDefaults.standard[UserDefaultsKeys.readingSpeedRatio] ?? 1
+        return ratio
+    }
+}
+
+// MARK: - SpeakerDelegate
+fileprivate class SpeakerSpeechSynthesizerDelegate: NSObject, AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        Speaker.shared.speakSequences()
+    }
+}
+
+fileprivate let speakerDelegate = SpeakerSpeechSynthesizerDelegate()

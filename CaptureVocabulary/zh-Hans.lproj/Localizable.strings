@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  CaptureVocabulary
+
+  Created by Tan Elijah on 2023/6/14.
+  
+*/
+"ViewController.prepareLaunch" = "正在准备启动...\n首次启动可能需要更长时间";
+
+"ReviewCoordinator.feedback" = "[意见回馈]";
+"ReviewCoordinator.emailFailure" = "无法使用邮件";
+"ReviewCoordinator.setUpYourEmailAccount" = "请先设定邮件帐号";
+"ReviewCoordinator.ok" = "确定";
+
+"ReviewViewController.review" = "复习";
+"ReviewViewController.feedback" = "意见回馈";
+
+"ReviewCollectionViewCell.addNewWords" = "你的单字屋, 快去新增单字吧";
+"ReviewCollectionViewCell.hide" = "隐藏";
+"ReviewCollectionViewCell.showTranslate" = "显示翻译";
+
+"TabBarCoordinator.scan" = "扫单字";
+"TabBarCoordinator.review" = "复习";
+"TabBarCoordinator.flashcards" = "单字库";
+
+"VocabularyListViewController.flashcards" = "单字库";
+"VocabularyListViewController.addNew" = "+新增";
+"VocabularyListViewController.enterNewListName" = "请输入新的清单名称";
+"VocabularyListViewController.cancel" = "取消";
+"VocabularyListViewController.confirm" = "确认";
+"VocabularyListViewController.delete" = "删除";
+"VocabularyListViewController.edit" = "编辑";
+
+"CaptureVocabularyViewController.enterQuery" = "输入查询";
+"CaptureVocabularyViewController.search" = "查询";
+
+"VocabularyViewController.save" = "储存";
+"VocabularyViewController.noDataLabel" = "查无此单字";
+"VocabularyCardListORM.ORM.word" = "单字";
+
+"SettingPageViewController.title" = "系统设定";
+"SettingPageViewController.section.reading" = "阅读";
+"SettingPageViewController.section.readingSpeed" = "阅读速度";
+"SettingPageViewController.cell.databaseBackup" = "备份资料库";
+"SettingPageViewController.cell.versionTitle" = "版本号";
+
+"SettingSwitchSentenceCell.titleLabel" = "阅读例句";
+"SettingSwitchSentenceCell.numberOfReadSentencesTitleLabel" = "阅读句数";
+
+"DatabaseBackupViewController.warningMessage" = "注意进行档案的备份转移时，请务必确认两台手机的 app 都属于最新版本，不同版本的存挡并不相容";
+"DatabaseBackupViewController.exportDatabase" = "导出资料库";
+"DatabaseBackupViewController.importDatabase" = "导入资料库";
+"DatabaseBackupViewController.confirmWarningTitle" = "警告，即将覆盖目前的资料，请输入验证码: %@ 确定覆盖";
+"DatabaseBackupViewController.confirmCodeError" = "验证码错误，请输入验证码: %@ 确定覆盖";
+"DatabaseBackupViewController.writeDatabaseSuccess" = "资料库覆盖完成";

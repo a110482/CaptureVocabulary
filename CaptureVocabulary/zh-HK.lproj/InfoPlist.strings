@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  CaptureVocabulary
+
+  Created by Tan Elijah on 2023/6/14.
+  
+*/
+"CFBundleDisplayName" = "單字屋";
+"NSUserTrackingUsageDescription" = "應用追蹤您的用戶ID，以用於個人化廣告";
+"NSCameraUsageDescription" = "應用使用相機來掃描單字";

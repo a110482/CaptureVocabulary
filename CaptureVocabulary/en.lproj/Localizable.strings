@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  CaptureVocabulary
+
+  Created by Tan Elijah on 2023/6/14.
+  
+*/
+"ViewController.prepareLaunch" = "Preparing to Launch...\nFirst launch may take longer";
+
+"ReviewCoordinator.feedback" = "[Feedback]";
+"ReviewCoordinator.emailFailure" = "Unable to Use Email";
+"ReviewCoordinator.setUpYourEmailAccount" = "Please Set Up Your Email Account";
+"ReviewCoordinator.ok" = "OK";
+
+"ReviewViewController.review" = "Review";
+"ReviewViewController.feedback" = "Feedback";
+
+"ReviewCollectionViewCell.addNewWords" = "Your Word House, Add New Words Now";
+"ReviewCollectionViewCell.hide" = "Hide";
+"ReviewCollectionViewCell.showTranslate" = "Show Translate";
+
+"TabBarCoordinator.scan" = "Scan";
+"TabBarCoordinator.review" = "Review";
+"TabBarCoordinator.flashcards" = "Flashcards";
+
+"VocabularyListViewController.flashcards" = "Flashcards";
+"VocabularyListViewController.addNew" = "+ Add New";
+"VocabularyListViewController.enterNewListName" = "Enter New List Name";
+"VocabularyListViewController.cancel" = "Cancel";
+"VocabularyListViewController.confirm" = "Confirm";
+"VocabularyListViewController.delete" = "Delete";
+"VocabularyListViewController.edit" = "Edit";
+
+"CaptureVocabularyViewController.enterQuery" = "Enter Query";
+"CaptureVocabularyViewController.search" = "Search";
+
+"VocabularyViewController.save" = "Save";
+"VocabularyViewController.noDataLabel" = "Word not found";
+"VocabularyCardListORM.ORM.word" = "Word";
+
+"SettingPageViewController.title" = "System Setting";
+"SettingPageViewController.section.reading" = "Reading";
+"SettingPageViewController.section.readingSpeed" = "Reading Speed";
+"SettingPageViewController.cell.databaseBackup" = "Database Backup";
+"SettingPageViewController.cell.versionTitle" = "Version";
+
+"SettingSwitchSentenceCell.titleLabel" = "Reading sentence";
+"SettingSwitchSentenceCell.numberOfReadSentencesTitleLabel" = "Reading numbers";
+
+"DatabaseBackupViewController.warningMessage" = "Please ensure that both phones have the app updated to the latest version when performing file backup and transfer, as save files from different versions are not compatible.";
+"DatabaseBackupViewController.exportDatabase" = "Export database";
+"DatabaseBackupViewController.importDatabase" = "Import database";
+"DatabaseBackupViewController.confirmWarningTitle" = "Warning: You are about to overwrite the current data. Please enter the verification code: %@ to confirm overwriting.";
+"DatabaseBackupViewController.confirmCodeError" = "Invalid verification code. Please enter the verification code: %@ to confirm overwriting.";
+"DatabaseBackupViewController.writeDatabaseSuccess" = "Database overwrite completed.";
+
