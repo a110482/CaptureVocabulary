@@ -25,8 +25,8 @@ struct VocabularyCardORM: TableType {
     static let phonetic = SQLite.Expression<String>("phonetic")
     
     /// version 5 以後新增欄位 參見: SQLCoreMigration_5
-    static let memorizedTimestamp = SQLite.Expression<Double>("memorizedTimestamp")
-    static let memorizedTimes = SQLite.Expression<Int64>("memorizedTimes")
+//    static let memorizedTimestamp = SQLite.Expression<Double>("memorizedTimestamp")
+//    static let memorizedTimes = SQLite.Expression<Int64>("memorizedTimes")
     
     private var db: Connection {
         SQLCore.shared.db
@@ -41,8 +41,8 @@ struct VocabularyCardORM: TableType {
         var timestamp: TimeInterval = Date().timeIntervalSince1970
         var cardListId: Int64?
         var phonetic: String?
-        var memorizedTimestamp: TimeInterval = Date().timeIntervalSince1970
-        var memorizedTimes: Int64 = 0
+//        var memorizedTimestamp: TimeInterval = Date().timeIntervalSince1970
+//        var memorizedTimes: Int64 = 0
     }
     
     static func createTable(db: Connection = SQLCore.shared.db) {
@@ -56,8 +56,8 @@ struct VocabularyCardORM: TableType {
                 t.column(timestamp)
                 t.column(cardListId)
                 t.column(phonetic)
-                t.column(memorizedTimestamp)
-                t.column(memorizedTimes)
+//                t.column(memorizedTimestamp)
+//                t.column(memorizedTimes)
                 t.foreignKey(cardListId,
                              references: VocabularyCardListORM.table,
                              id,

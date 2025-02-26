@@ -137,9 +137,9 @@ struct SQLCoreMigration_5: MigrationProcess {
     }
     
     private func addColumn() throws {
-        let addColumnTimestamp = Card.table.addColumn(Card.memorizedTimestamp, defaultValue: Date().timeIntervalSince1970)
-        try SQLCore.shared.db.run(addColumnTimestamp)
-        let addColumnTimes = Card.table.addColumn(Card.memorizedTimes, defaultValue: Int64.zero)
-        try SQLCore.shared.db.run(addColumnTimes)
+//        let addColumnTimestamp = Card.table.addColumn(Card.memorizedTimestamp, defaultValue: Date().timeIntervalSince1970)
+//        try SQLCore.shared.db.run(addColumnTimestamp)
+//        let addColumnTimes = Card.table.addColumn(Card.memorizedTimes, defaultValue: Int64.zero)
+//        try SQLCore.shared.db.run(addColumnTimes)
     }
 }
