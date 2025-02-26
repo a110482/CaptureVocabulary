@@ -77,6 +77,7 @@ extension StoryGeneratorViewController {
     
     func bind(viewModel: StoryGeneratorViewModel) {
         self.viewModel = viewModel
+        handle(viewModelAction: viewModel.output.action)
     }
 }
 
@@ -242,6 +243,14 @@ private extension StoryGeneratorViewController {
                 })
             }
         })
+    }
+    
+    func handle(viewModelAction: Observable<StoryGeneratorViewModel.Action>) {
+        viewModelAction.subscribe(onNext: { [weak self] action in
+            guard let self else { return }
+            guard case .apiSuccess(_, _ ) = action else { return }
+            stopLoadingAnimate()
+        }).disposed(by: disposeBag)
     }
 }
 

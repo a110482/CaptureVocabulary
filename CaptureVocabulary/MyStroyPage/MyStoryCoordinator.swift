@@ -40,24 +40,24 @@ private extension MyStoryCoordinator {
         }).disposed(by: disposeBag)
     }
     
-    func handle(action: Observable<StoryGeneratorViewModel.Action>) {
-        action.subscribe(onNext: {[weak self] action in
-            guard let self else { return }
-            switch action {
-            case let .apiSuccess(story, queryVocabularies):
-                Log.debug(story.storyDataModelJsonString)
-            case .apiFailure:
-                Log.debug("api failure")
-                break
-            }
-            stopChildren()
-        }).disposed(by: disposeBag)
-    }
+//    func handle(action: Observable<StoryGeneratorViewModel.Action>) {
+//        action.subscribe(onNext: {[weak self] action in
+//            guard let self else { return }
+//            switch action {
+//            case let .apiSuccess(story, queryVocabularies):
+////                StoryORM.ORM
+//                Log.debug(story.storyDataModelJsonString)
+//            case .apiFailure:
+//                Log.debug("api failure")
+//                break
+//            }
+//        }).disposed(by: disposeBag)
+//    }
     
     /// 彈出設定新故事的頁面
     func popStoryGenerator() {
         let coordinator = StoryGeneratorCoordinator(rootViewController: viewController)
-        handle(action: coordinator.output.action)
+//        handle(action: coordinator.output.action)
         startChild(coordinator: coordinator)
     }
 }

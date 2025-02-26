@@ -22,7 +22,7 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
         viewController = StoryGeneratorViewController()
         viewModel = StoryGeneratorViewModel()
         viewController.bind(viewModel: viewModel)
-        bind(action: viewModel.output.action)
+        handle(action: viewModel.output.action)
         present(viewController: viewController, animated: true)
     }
     
@@ -41,5 +41,25 @@ extension StoryGeneratorCoordinator {
 private extension StoryGeneratorCoordinator {
     func bind(action: Observable<StoryGeneratorViewModel.Action>) {
         action.bind(to: self.action).disposed(by: disposeBag)
+    }
+    
+    func handle(action: Observable<StoryGeneratorViewModel.Action>) {
+        action.subscribe(onNext: {[weak self] action in
+            guard let self else { return }
+            switch action {
+            case let .apiSuccess(story, queryVocabularies):
+                popStoryConfirmSave(story: story)
+            case .apiFailure:
+                Log.debug("api failure")
+                break
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func popStoryConfirmSave(story: StoryORM.ORM) {
+        guard let coordinator = StoryConfirmCoordinator(
+            rootViewController: viewController,
+            storyORM: story) else { return }
+        startChild(coordinator: coordinator)
     }
 }

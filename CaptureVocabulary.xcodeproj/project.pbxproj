@@ -32,6 +32,15 @@
 		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		06B3F29A2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29B2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29E2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F29F2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F2A02D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F2BA2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06B3F2BC2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
 		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
@@ -354,6 +363,9 @@
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDisplayView.swift; sourceTree = "<group>"; };
+		06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmCoordinator.swift; sourceTree = "<group>"; };
+		06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmSaveView.swift; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
@@ -566,6 +578,16 @@
 				06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06B3F2982D6F18B400DA911A /* StoryDisplayView */ = {
+			isa = PBXGroup;
+			children = (
+				06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */,
+				06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */,
+				06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */,
+			);
+			path = StoryDisplayView;
 			sourceTree = "<group>";
 		};
 		06C1F5592D3E537900C60EAE /* Views */ = {
@@ -877,6 +899,7 @@
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
+				06B3F2982D6F18B400DA911A /* StoryDisplayView */,
 				06E199722D277DA4000DE54C /* StoryGenerator */,
 				06FBBAC92D23F0A500038345 /* MyStroyPage */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
@@ -1312,10 +1335,13 @@
 				06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
+				06B3F29F2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
 				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
+				06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
+				06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
 				06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				06FBBAEA2D26900700038345 /* SegmentedOptionView.swift in Sources */,
@@ -1345,6 +1371,7 @@
 				C0BDFF012B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
 				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
+				06B3F29A2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
 				C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */,
 				C060794229E805D900434A2E /* VocabularyCardsCoordinator.swift in Sources */,
 				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
@@ -1362,10 +1389,12 @@
 				C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				06FBBAC62D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
+				06B3F2A02D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
 				C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */,
 				C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */,
 				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
+				06B3F2BC2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
 				C060794F29E805DA00434A2E /* CreateVocabularyCoordinator.swift in Sources */,
 				06E1997A2D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
@@ -1522,6 +1551,8 @@
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
+				06B3F29E2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
+				06B3F2BA2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				067EE7F82C5B786600523B51 /* UIView+Extension.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
@@ -1569,6 +1600,7 @@
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
+				06B3F29B2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
 				06E199782D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,

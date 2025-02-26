@@ -114,7 +114,6 @@ private extension StoryGeneratorViewModel {
 
     @MainActor
     func sendSuccessAction(result: (story: StoryORM.ORM, queryVocabularies: [VocabularyCardORM.ORM])) {
-        Log.debug(Thread.current)
         action.accept(.apiSuccess(story: result.story, queryVocabularies: result.queryVocabularies))
     }
 }
