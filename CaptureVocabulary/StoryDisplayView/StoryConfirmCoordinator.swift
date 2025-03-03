@@ -12,11 +12,11 @@ import RxCocoa
 
 /// 確認是否要儲存此故事
 class StoryConfirmCoordinator: Coordinator<UIViewController> {
-    private(set) var viewController: StoryConfirmViewController!
-    private(set) var viewModel: StoryConfirmSaveViewModel!
+    private var viewController: StoryConfirmViewController!
+    private var viewModel: StoryConfirmSaveViewModel!
+    private(set) lazy var output = Output(self)
     private let storyORM: StoryORM.ORM
     private let disposeBag = DisposeBag()
-    
     
     /// 特殊自定義 init
     /// - Parameters:
@@ -46,6 +46,19 @@ class StoryConfirmCoordinator: Coordinator<UIViewController> {
         guard !started else { return }
         super.start()
         
+    }
+    
+    override func stop() {
+        super.stop()
+        viewController.dismiss(animated: true)
+    }
+}
+
+extension StoryConfirmCoordinator {
+    class Output: RxOutput<StoryConfirmCoordinator> {
+        var action: Observable<StoryConfirmSaveViewModel.Action> {
+            target.viewModel.output.action
+        }
     }
 }
 

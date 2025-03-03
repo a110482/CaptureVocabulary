@@ -49,7 +49,7 @@ extension StoryGeneratorViewController {
     
     func bind(viewModel: StoryGeneratorViewModel) {
         self.viewModel = viewModel
-        handle(viewModelAction: viewModel.output.action)
+        handle(viewModelResponse: viewModel.output.apiResponse)
     }
 }
 
@@ -188,10 +188,9 @@ private extension StoryGeneratorViewController {
         updateSliderUI()
     }
     
-    func handle(viewModelAction: Observable<StoryGeneratorViewModel.Action>) {
-        viewModelAction.subscribe(onNext: { [weak self] action in
+    func handle(viewModelResponse: Observable<StoryGeneratorViewModel.Response>) {
+        viewModelResponse.subscribe(onNext: { [weak self] action in
             guard let self else { return }
-            guard case .apiSuccess(_, _ ) = action else { return }
             stopLoadingAnimate()
         }).disposed(by: disposeBag)
     }

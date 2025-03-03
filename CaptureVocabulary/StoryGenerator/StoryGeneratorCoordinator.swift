@@ -10,11 +10,9 @@ import RxSwift
 import RxCocoa
 
 class StoryGeneratorCoordinator: Coordinator<UIViewController> {
-    private(set) lazy var output = Output(self)
-    private(set) var viewController: StoryGeneratorViewController!
-    private(set) var viewModel: StoryGeneratorViewModel!
+    private var viewController: StoryGeneratorViewController!
+    private var viewModel: StoryGeneratorViewModel!
     private let disposeBag = DisposeBag()
-    private let action = PublishRelay<StoryGeneratorViewModel.Action>()
     
     override func start() {
         guard !started else { return }
@@ -22,7 +20,7 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
         viewController = StoryGeneratorViewController()
         viewModel = StoryGeneratorViewModel()
         viewController.bind(viewModel: viewModel)
-        handle(action: viewModel.output.action)
+        handle(response: viewModel.output.apiResponse)
         present(viewController: viewController, animated: true)
     }
     
@@ -32,26 +30,32 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
     }
 }
 
-extension StoryGeneratorCoordinator {
-    class Output: RxOutput<StoryGeneratorCoordinator> {
-        var action: Observable<StoryGeneratorViewModel.Action> { target.action.asObservable() }
-    }
-}
-
 private extension StoryGeneratorCoordinator {
-    func bind(action: Observable<StoryGeneratorViewModel.Action>) {
-        action.bind(to: self.action).disposed(by: disposeBag)
-    }
-    
-    func handle(action: Observable<StoryGeneratorViewModel.Action>) {
-        action.subscribe(onNext: {[weak self] action in
+    /// 處理產生文章結果
+    func handle(response: Observable<StoryGeneratorViewModel.Response>) {
+        response.subscribe(onNext: {[weak self] response in
             guard let self else { return }
-            switch action {
-            case let .apiSuccess(story, queryVocabularies):
+            switch response {
+            case let .apiSuccess(story, _):
                 popStoryConfirmSave(story: story)
             case .apiFailure:
                 Log.debug("api failure")
                 break
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    /// 處理是否要儲存文章的按鈕
+    func handle(action: Observable<StoryConfirmSaveViewModel.Action>) {
+        action.subscribe(onNext: { [weak self] action in
+            guard let self else { return }
+            switch action {
+            case .pressCancelButton:
+                viewModel.cancelStory()
+                stopChildren()
+            case .pressSaveButton:
+                viewModel.saveStory()
+                stop()
             }
         }).disposed(by: disposeBag)
     }
@@ -61,5 +65,6 @@ private extension StoryGeneratorCoordinator {
             rootViewController: viewController,
             storyORM: story) else { return }
         startChild(coordinator: coordinator)
+        handle(action: coordinator.output.action)
     }
 }

@@ -20,17 +20,17 @@ class StoryGeneratorViewModel {
     
     private var cellModels: [StoryGeneratorListSettingCellModel]
     private lazy var vocabularyAmount: Float = vocabularyAmountRange.average
-    private let action = PublishRelay<Action>()
+    private let apiResponse = BehaviorRelay<Response?>(value: nil)
 }
 
 extension StoryGeneratorViewModel {
     class Output: RxOutput<StoryGeneratorViewModel> {
         var cellModels: [StoryGeneratorListSettingCellModel] { target.cellModels }
         var vocabularyAmount: Float { target.vocabularyAmount }
-        var action: Observable<Action> { target.action.asObservable() }
+        var apiResponse: Observable<Response> { target.apiResponse.compactMap({ $0 }).asObservable() }
     }
     
-    enum Action {
+    enum Response {
         case apiSuccess(story: StoryORM.ORM, queryVocabularies: [VocabularyCardORM.ORM])
         case apiFailure
     }
@@ -45,6 +45,7 @@ extension StoryGeneratorViewModel {
         cellModels[index].isSelected.toggle()
     }
     
+    /// 點擊產生故事
     func pressStoryGenerateButton() {
         // 確定有觀看廣告的獎勵
         guard AdsManager.shared.output.isPresentInterstitialAdValue else { return }
@@ -56,6 +57,16 @@ extension StoryGeneratorViewModel {
             }
             await sendSuccessAction(result: result)
         }
+    }
+    
+    func saveStory() {
+        guard case let .apiSuccess(story, queryVocabularies) = apiResponse.value else { return }
+        story.save(with: queryVocabularies)
+        apiResponse.accept(nil)
+    }
+    
+    func cancelStory() {
+        apiResponse.accept(nil)
     }
 }
 
@@ -109,12 +120,12 @@ private extension StoryGeneratorViewModel {
     
     @MainActor
     func sendFailureAction() {
-        action.accept(.apiFailure)
+        apiResponse.accept(.apiFailure)
     }
 
     @MainActor
     func sendSuccessAction(result: (story: StoryORM.ORM, queryVocabularies: [VocabularyCardORM.ORM])) {
-        action.accept(.apiSuccess(story: result.story, queryVocabularies: result.queryVocabularies))
+        apiResponse.accept(.apiSuccess(story: result.story, queryVocabularies: result.queryVocabularies))
     }
 }
 
