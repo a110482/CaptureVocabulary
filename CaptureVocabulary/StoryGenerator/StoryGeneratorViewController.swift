@@ -24,39 +24,11 @@ class StoryGeneratorViewController: UIViewController {
     private let stepTwoLabel = UILabel()
     private let tableView = UITableView()
     private let confirmButton = UIButton()
-    private let displayModeButton = UIButton()
     
-    private var currentDisplayMode: DisplayMode = .normal
     private let disposeBag = DisposeBag()
 }
 
 extension StoryGeneratorViewController {
-    enum DisplayMode {
-        case normal
-        case selectVocabulary
-        
-        @discardableResult
-        mutating func toggle() -> DisplayMode {
-            switch self {
-            case .normal:
-                self = .selectVocabulary
-                return self
-            case .selectVocabulary:
-                self = .normal
-                return self
-            }
-        }
-        
-        var icon: UIImage? {
-            switch self {
-            case .normal:
-                return UIImage(named: "arrow.down.backward.and.arrow.up.forward")
-            case .selectVocabulary:
-                return UIImage(named: "arrow.down.right.and.arrow.up.left")
-            }
-        }
-    }
-    
     enum ConfirmButtonStatus {
         case generatorStory
         case watchAd
@@ -90,7 +62,7 @@ private extension StoryGeneratorViewController {
         configVocabularyAmountSlider()
         configStepTwoLabel()
         configTableView()
-        configDisplayModeButton()
+        confitTableHeaderView()
         
 #if DEBUG
         view.backgroundColor = .lightGray
@@ -119,13 +91,6 @@ private extension StoryGeneratorViewController {
     
     func configMainStackView() {
         mainStackView.axis = .vertical
-        view.addSubview(mainStackView)
-        mainStackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.bottom.equalTo(confirmButton.snp.top).offset(-20)
-            make.centerX.equalToSuperview()
-            make.left.equalToSuperview().offset(8)
-        }
     }
     
     func configTitleLabel() {
@@ -176,10 +141,13 @@ private extension StoryGeneratorViewController {
     }
     
     func configTableView() {
-        mainStackView.addArrangedSubviews([
-            mainStackView.padding(gap: 10),
-            tableView
-        ])
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-20)
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(8)
+        }
         tableView.layer.cornerRadius = 8
         tableView.backgroundColor = .white
         tableView.delegate = self
@@ -188,23 +156,18 @@ private extension StoryGeneratorViewController {
         tableView.register(StoryGeneratorListSettingCell.self, forCellReuseIdentifier: "StoryGeneratorListSettingCell")
     }
     
-    func configDisplayModeButton() {
-        let size: CGFloat = 40
-        view.addSubview(displayModeButton)
-        displayModeButton.backgroundColor = .darkGray
-        displayModeButton.snp.makeConstraints { make in
-            make.size.equalTo(size)
-            make.right.equalTo(tableView).offset(-10)
-            make.bottom.equalTo(tableView).offset(-10)
+    func confitTableHeaderView() {
+        let headerViewHeight = mainStackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        let headerViewContainer = UIView()
+        headerViewContainer.frame = CGRect(origin: .zero,
+                                     size: CGSize(width: 0, height: headerViewHeight))
+        headerViewContainer.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.equalToSuperview().inset(8)
+            make.centerX.equalToSuperview()
         }
-        displayModeButton.layer.cornerRadius = size / 2
-        displayModeButton.setImage(currentDisplayMode.icon, for: .normal)
-        
-        displayModeButton.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self else { return }
-            currentDisplayMode.toggle()
-            updateDisplayMode()
-        }).disposed(by: disposeBag)
+        tableView.tableHeaderView = headerViewContainer
     }
     
     func updateSliderUI() {
@@ -223,26 +186,6 @@ private extension StoryGeneratorViewController {
         vocabularyAmountSlider.value = roundedValue
         viewModel.set(vocabularyAmount: Int(roundedValue))
         updateSliderUI()
-    }
-    
-    func updateDisplayMode() {
-        displayModeButton.setImage(currentDisplayMode.icon, for: .normal)
-        
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
-            guard let self else { return }
-            switch currentDisplayMode {
-            case .normal:
-                mainStackView.arrangedSubviews.forEach({
-                    $0.isHidden = false
-                    $0.alpha = 1
-                })
-            case .selectVocabulary:
-                mainStackView.arrangedSubviews.forEach({
-                    $0.alpha = $0 != self.tableView ? 0 : 1
-                    $0.isHidden = $0 != self.tableView
-                })
-            }
-        })
     }
     
     func handle(viewModelAction: Observable<StoryGeneratorViewModel.Action>) {
