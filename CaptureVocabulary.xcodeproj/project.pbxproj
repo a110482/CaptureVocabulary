@@ -41,6 +41,9 @@
 		06B3F2BA2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
 		06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
 		06B3F2BC2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06BF100E2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
+		06BF100F2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
+		06BF10102D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
 		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
@@ -366,6 +369,7 @@
 		06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDisplayView.swift; sourceTree = "<group>"; };
 		06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmCoordinator.swift; sourceTree = "<group>"; };
 		06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmSaveView.swift; sourceTree = "<group>"; };
+		06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryTableViewCell.swift; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
@@ -625,6 +629,7 @@
 			children = (
 				06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */,
 				06FBBACA2D23F13000038345 /* MyStoryViewController.swift */,
+				06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */,
 				06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */,
 				06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */,
 			);
@@ -1343,6 +1348,7 @@
 				06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
 				06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
+				06BF10102D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
 				06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				06FBBAEA2D26900700038345 /* SegmentedOptionView.swift in Sources */,
 				06E199762D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
@@ -1363,6 +1369,7 @@
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
+				06BF100E2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
 				0612281B2D5D9A92008FF95E /* TypeAlias.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
@@ -1589,6 +1596,7 @@
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				06FBBAE02D268E8800038345 /* SegmentedView.swift in Sources */,
+				06BF100F2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
 				06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,

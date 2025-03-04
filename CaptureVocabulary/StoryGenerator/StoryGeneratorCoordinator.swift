@@ -9,10 +9,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol StoryGeneratorCoordinatorDelegate: AnyObject {
+    func storyDidSave()
+}
+
 class StoryGeneratorCoordinator: Coordinator<UIViewController> {
     private var viewController: StoryGeneratorViewController!
     private var viewModel: StoryGeneratorViewModel!
     private let disposeBag = DisposeBag()
+    weak var delegate: StoryGeneratorCoordinatorDelegate?
     
     override func start() {
         guard !started else { return }
@@ -55,6 +60,7 @@ private extension StoryGeneratorCoordinator {
                 stopChildren()
             case .pressSaveButton:
                 viewModel.saveStory()
+                delegate?.storyDidSave()
                 stop()
             }
         }).disposed(by: disposeBag)

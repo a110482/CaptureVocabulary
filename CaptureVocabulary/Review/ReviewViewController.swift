@@ -62,7 +62,7 @@ class ReviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AdsManager.shared.simpleBannerRootViewController = self
+        AdsManager.shared.bottomBannerRootViewController = self
     }
     
     func bind(viewModel: ReviewViewModel) {
@@ -181,7 +181,7 @@ private extension ReviewViewController {
     }
     
     func configAdView() {
-        let height = AdsManager.shared.adSize.size.height
+        let height = AdsManager.shared.bottomBannerAdSize.size.height
         adBannerView.snp.makeConstraints {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()

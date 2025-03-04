@@ -22,10 +22,6 @@ class MyStoryCoordinator: Coordinator<UIViewController> {
         viewModel = MyStoryViewModel()
         viewController.bind(viewModel: viewModel)
         handle(action: viewModel.output.action)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.popStoryGenerator()
-        })
     }
 }
 
@@ -44,5 +40,12 @@ private extension MyStoryCoordinator {
     func popStoryGenerator() {
         let coordinator = StoryGeneratorCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
+        coordinator.delegate = self
+    }
+}
+
+extension MyStoryCoordinator: StoryGeneratorCoordinatorDelegate {
+    func storyDidSave() {
+        viewModel.loadStories()
     }
 }

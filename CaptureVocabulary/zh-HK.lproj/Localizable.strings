@@ -61,3 +61,5 @@
 "StoryGeneratorViewController.stepOne" = "第一步";
 "StoryGeneratorViewController.stepTwo" = "第二步";
 "StoryGeneratorViewController.stepThree" = "第三步";
+
+"MyStoryViewController.newStory" = "新故事";

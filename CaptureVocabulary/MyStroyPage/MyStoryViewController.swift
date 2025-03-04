@@ -13,6 +13,7 @@ class MyStoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        viewModel.loadStories()
     }
     
     private let newStoryButton = UIButton()
@@ -26,6 +27,21 @@ class MyStoryViewController: UIViewController {
 extension MyStoryViewController {
     func bind(viewModel: MyStoryViewModel) {
         self.viewModel = viewModel
+        bind(needReloadTable: viewModel.output.needReloadTable)
+    }
+}
+
+// MARK: - delegate
+extension MyStoryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.output.cellModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellModel = viewModel.output.cellModels[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withClass: MyStoryTableViewCell.self)
+        cell.bind(cellModel: cellModel)
+        return cell
     }
 }
 
@@ -37,7 +53,6 @@ private extension MyStoryViewController {
         configNewStoryButton()
         configStoryTableview()
         #if DEBUG
-        newStoryButton.setTitle("New Story", for: .normal)
         storyTableview.backgroundColor = .white
         #endif
     }
@@ -62,6 +77,8 @@ private extension MyStoryViewController {
             guard let self else { return }
             viewModel.tapNewStory()
         }).disposed(by: disposeBag)
+        
+        newStoryButton.setTitle(NSLocalizedString("MyStoryViewController.newStory", comment: "新故事"), for: .normal)
     }
 
     func configStoryTableview() {
@@ -71,6 +88,16 @@ private extension MyStoryViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        storyTableview.register(cellWithClass: MyStoryTableViewCell.self)
+        storyTableview.delegate = self
+        storyTableview.dataSource = self
+    }
+    
+    func bind(needReloadTable: Observable<Void>) {
+        needReloadTable.subscribe(onNext: { [weak self] _ in
+            guard let self else { return }
+            storyTableview.reloadData()
+        }).disposed(by: disposeBag)
     }
 }
 

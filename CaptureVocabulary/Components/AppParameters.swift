@@ -15,6 +15,7 @@ class AppParameters {
         let YDSecret: String
         let adUnitID: String
         let adPageUnitID: String
+        let adMiddenUnitID: String
         let versionUrl: String
         let feedbackEmail: String
         let openApiKey: String
