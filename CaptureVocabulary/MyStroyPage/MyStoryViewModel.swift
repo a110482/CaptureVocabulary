@@ -45,7 +45,6 @@ extension MyStoryViewModel {
     func loadStories() {
         guard let stories = StoryORM.ORM.getAllStory() else { return }
         cellModels = stories.compactMap({ MyStoryTableViewCellModel(orm: $0) })
-        Log.debug(stories.count, cellModels.count)
         needReloadTable.accept(())
     }
 }

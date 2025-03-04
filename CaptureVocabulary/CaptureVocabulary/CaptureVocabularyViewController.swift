@@ -243,7 +243,7 @@ extension CaptureVocabularyViewController {
     }
     
     func configAdView() {
-        let height = AdsManager.shared.adSize.size.height
+        let height = AdsManager.shared.bottomBannerAdSize.size.height
         adBannerView.snp.makeConstraints {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()

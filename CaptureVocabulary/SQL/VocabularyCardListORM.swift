@@ -86,4 +86,9 @@ extension VocabularyCardListORM.ORM: ORMTranslateAble {
         let query = ORMModel.table.order(ORMModel.id.desc)
         return ORMModel.prepare(query)
     }
+    
+    static func getList(by listId: Int64) -> Self? {
+        let query = ORMModel.table.filter(ORMModel.id == listId).limit(1)
+        return ORMModel.prepare(query)?.first
+    }
 }

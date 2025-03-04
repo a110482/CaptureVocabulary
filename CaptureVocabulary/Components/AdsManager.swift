@@ -35,7 +35,11 @@ final class AdsManager : NSObject {
             setupSimpleBannerAdsIfPossible()
         }
     }
-    weak var middleBannerRootViewController: (any AdSimpleBannerPowered)?
+    weak var middleBannerRootViewController: (any AdSimpleBannerPowered)? {
+        didSet {
+            setupMiddleBannerAdsIfPossible()
+        }
+    }
 
     private override init() {
         super.init()
@@ -48,6 +52,7 @@ final class AdsManager : NSObject {
     }
     
     private var isLoadedSimpleBannerAd = false
+    private var isLoadedMiddleBannerAd = false
     /// 底部橫幅廣告
     private var bottomBannerView: GADBannerView?
     private var middleBannerView: GADBannerView?
@@ -85,6 +90,22 @@ private extension AdsManager {
         guard let banner = self.bottomBannerView else { return }
         banner.rootViewController = root
         if !isLoadedSimpleBannerAd {
+            banner.load(GADRequest())
+        } else {
+            root.addBannerToAdsPlaceholder(banner)
+        }
+    }
+    
+    /// 呈現橫幅廣告
+    func setupMiddleBannerAdsIfPossible() {
+        if ATTrackingManager.trackingAuthorizationStatus != .authorized {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+        }
+        assert(self.middleBannerView != nil, "WTF: simple banner has not been configured (call Ads.configure() before any usage)!")
+        guard let root = middleBannerRootViewController else { return }
+        guard let banner = self.middleBannerView else { return }
+        banner.rootViewController = root
+        if !isLoadedMiddleBannerAd {
             banner.load(GADRequest())
         } else {
             root.addBannerToAdsPlaceholder(banner)
@@ -149,9 +170,7 @@ extension AdsManager {
     }
     
     var middleBannerAdSize: GADAdSize {
-        let width = UIScreen.main.bounds.width
-        let adSize = GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight(width, 400)
-        return adSize
+        return GADAdSizeMediumRectangle
     }
     
     // (暫時停用全頁廣告)
@@ -175,6 +194,10 @@ extension AdsManager: GADBannerViewDelegate {
         if bannerView === bottomBannerView {
             isLoadedSimpleBannerAd = true
             guard let root = bottomBannerRootViewController else { return }
+            root.addBannerToAdsPlaceholder(bannerView)
+        } else if bannerView === middleBannerView {
+            isLoadedMiddleBannerAd = true
+            guard let root = middleBannerRootViewController else { return }
             root.addBannerToAdsPlaceholder(bannerView)
         }
     }

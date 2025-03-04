@@ -120,4 +120,9 @@ extension VocabularyCardORM.ORM: ORMTranslateAble {
         listObject.memorized = allCards.allSatisfy({ $0.memorized ?? false })
         listObject.update()
     }
+    
+    func getListOrm() -> VocabularyCardListORM.ORM? {
+        guard let cardListId else { return nil }
+        return VocabularyCardListORM.ORM.getList(by: cardListId)
+    }
 }
