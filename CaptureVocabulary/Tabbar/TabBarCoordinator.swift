@@ -51,11 +51,11 @@ class TabBarCoordinator: Coordinator<UIViewController> {
     private func myStory() -> UIViewController {
         let coordinator = MyStoryCoordinator(rootViewController: viewController)
         startChild(coordinator: coordinator)
-        coordinator.viewController.tabBarItem = UITabBarItem(
+        coordinator.navigationViewController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("TabBarCoordinator.myStory", comment: "我的故事"),
             image: UIImage(systemName: "chart.bar.doc.horizontal.fill"),
             tag: 2)
-        return coordinator.viewController
+        return coordinator.navigationViewController
     }
     
     private func vocabularyList() -> UIViewController {

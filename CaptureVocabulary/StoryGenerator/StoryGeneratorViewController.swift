@@ -12,12 +12,13 @@ import RxCocoa
 class StoryGeneratorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("StoryGeneratorViewController.title", comment: "故事產生器")
+        configBackButton()
         configUI()
     }
     
     private var viewModel: StoryGeneratorViewModel!
     private let mainStackView = UIStackView()
-    private let titleLabel = UILabel()
     private let stepOneLabel = UILabel()
     private let vocabularyAmountSliderLabel = UILabel()
     private let vocabularyAmountSlider = UISlider()
@@ -55,9 +56,9 @@ extension StoryGeneratorViewController {
 
 private extension StoryGeneratorViewController {
     func configUI() {
+        view.backgroundColor = "F8F7F7".color
         configConfirmButton()
         configMainStackView()
-        configTitleLabel()
         configStepOneLabel()
         configVocabularyAmountSlider()
         configStepTwoLabel()
@@ -65,10 +66,19 @@ private extension StoryGeneratorViewController {
         confitTableHeaderView()
         
 #if DEBUG
-        view.backgroundColor = .lightGray
         stepOneLabel.text! += ": 選擇隨機產生的單字上限"
         stepTwoLabel.text! += ": 選擇單字來源"
 #endif
+    }
+    
+    func configBackButton() {
+        let image = UIImage(named: "arrowLeft")?.withRenderingMode(.alwaysOriginal)
+        let backButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(tapBackButton))
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func tapBackButton() {
+        viewModel.tapBackButton()
     }
     
     func configConfirmButton() {
@@ -91,15 +101,6 @@ private extension StoryGeneratorViewController {
     
     func configMainStackView() {
         mainStackView.axis = .vertical
-    }
-    
-    func configTitleLabel() {
-        mainStackView.addArrangedSubview(titleLabel)
-        titleLabel.textAlignment = .center
-        titleLabel.snp.makeConstraints { make in
-            make.height.equalTo(30)
-        }
-        titleLabel.text = NSLocalizedString("StoryGeneratorViewController.title", comment: "故事產生器")
     }
     
     func configStepOneLabel() {

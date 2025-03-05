@@ -138,7 +138,7 @@ class CaptureVocabularyViewController: UIViewController {
 // UI
 extension CaptureVocabularyViewController {
     func configUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = "F8F7F7".color
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)

@@ -13,7 +13,7 @@ protocol StoryGeneratorCoordinatorDelegate: AnyObject {
     func storyDidSave()
 }
 
-class StoryGeneratorCoordinator: Coordinator<UIViewController> {
+class StoryGeneratorCoordinator: Coordinator<UINavigationController> {
     private var viewController: StoryGeneratorViewController!
     private var viewModel: StoryGeneratorViewModel!
     private let disposeBag = DisposeBag()
@@ -23,18 +23,21 @@ class StoryGeneratorCoordinator: Coordinator<UIViewController> {
         guard !started else { return }
         super.start()
         viewController = StoryGeneratorViewController()
+        viewController.hidesBottomBarWhenPushed = true
         viewModel = StoryGeneratorViewModel()
         viewController.bind(viewModel: viewModel)
         handle(response: viewModel.output.apiResponse)
-        present(viewController: viewController, animated: true)
+        handle(action: viewModel.output.action)
+        show(viewController: viewController, animated: true)
     }
     
     override func stop() {
         super.stop()
-        viewController.dismiss(animated: true)
+        rootViewController.popViewController(animated: true)
     }
 }
 
+/// 處理 viewModel 的 output
 private extension StoryGeneratorCoordinator {
     /// 處理產生文章結果
     func handle(response: Observable<StoryGeneratorViewModel.Response>) {
@@ -50,7 +53,28 @@ private extension StoryGeneratorCoordinator {
         }).disposed(by: disposeBag)
     }
     
-    /// 處理是否要儲存文章的按鈕
+    func handle(action: Observable<StoryGeneratorViewModel.Action>) {
+        action.subscribe(onNext: { [weak self] action in
+            guard let self else { return }
+            switch action {
+            case .popToPreviousView:
+                stop()
+            }
+        }).disposed(by: disposeBag)
+    }
+}
+
+/// 確認是否要儲存文章
+private extension StoryGeneratorCoordinator {
+    func popStoryConfirmSave(story: StoryORM.ORM) {
+        guard let coordinator = StoryConfirmCoordinator(
+            rootViewController: viewController,
+            storyORM: story) else { return }
+        startChild(coordinator: coordinator)
+        handle(action: coordinator.output.action)
+    }
+    
+    /// 處理是否要儲存文章的 ()
     func handle(action: Observable<StoryConfirmSaveViewModel.Action>) {
         action.subscribe(onNext: { [weak self] action in
             guard let self else { return }
@@ -64,13 +88,5 @@ private extension StoryGeneratorCoordinator {
                 stop()
             }
         }).disposed(by: disposeBag)
-    }
-    
-    func popStoryConfirmSave(story: StoryORM.ORM) {
-        guard let coordinator = StoryConfirmCoordinator(
-            rootViewController: viewController,
-            storyORM: story) else { return }
-        startChild(coordinator: coordinator)
-        handle(action: coordinator.output.action)
     }
 }

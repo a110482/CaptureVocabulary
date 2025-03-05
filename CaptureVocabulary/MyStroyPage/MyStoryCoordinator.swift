@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 class MyStoryCoordinator: Coordinator<UIViewController> {
+    private(set) var navigationViewController: UINavigationController!
     private(set) var viewController: MyStoryViewController!
     private(set) var viewModel: MyStoryViewModel!
     private let disposeBag = DisposeBag()
@@ -22,6 +23,13 @@ class MyStoryCoordinator: Coordinator<UIViewController> {
         viewModel = MyStoryViewModel()
         viewController.bind(viewModel: viewModel)
         handle(action: viewModel.output.action)
+        navigationViewController = UINavigationController(rootViewController: viewController)
+        
+#if DEBUG
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.popStoryGenerator()
+        })
+#endif
     }
 }
 
@@ -38,7 +46,7 @@ private extension MyStoryCoordinator {
     
     /// 彈出設定新故事的頁面
     func popStoryGenerator() {
-        let coordinator = StoryGeneratorCoordinator(rootViewController: viewController)
+        let coordinator = StoryGeneratorCoordinator(rootViewController: navigationViewController)
         startChild(coordinator: coordinator)
         coordinator.delegate = self
     }

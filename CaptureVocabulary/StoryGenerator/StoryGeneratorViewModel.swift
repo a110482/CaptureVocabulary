@@ -21,13 +21,19 @@ class StoryGeneratorViewModel {
     private var cellModels: [StoryGeneratorListSettingCellModel]
     private lazy var vocabularyAmount: Float = vocabularyAmountRange.average
     private let apiResponse = BehaviorRelay<Response?>(value: nil)
+    private let action = PublishRelay<Action>()
 }
 
 extension StoryGeneratorViewModel {
+    enum Action {
+        case popToPreviousView
+    }
+    
     class Output: RxOutput<StoryGeneratorViewModel> {
         var cellModels: [StoryGeneratorListSettingCellModel] { target.cellModels }
         var vocabularyAmount: Float { target.vocabularyAmount }
         var apiResponse: Observable<Response> { target.apiResponse.compactMap({ $0 }).asObservable() }
+        var action: Observable<Action> { target.action.asObservable() }
     }
     
     enum Response {
@@ -67,6 +73,11 @@ extension StoryGeneratorViewModel {
     
     func cancelStory() {
         apiResponse.accept(nil)
+    }
+    
+    func tapBackButton() {
+        Log.debug(#function)
+        action.accept(.popToPreviousView)
     }
 }
 
