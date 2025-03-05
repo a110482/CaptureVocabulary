@@ -22,7 +22,6 @@ class VocabularyListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         title = NSLocalizedString("VocabularyListViewController.flashcards", comment: "單字庫")
         configUI()
     }
@@ -103,7 +102,7 @@ private extension VocabularyListViewController {
     }
     
     func configTable() {
-        tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
+        tableView.backgroundColor = "F8F7F7".color
         tableView.register(cellWithClass: VocabularyListCell.self)
         tableView.delegate = self
         tableView.dataSource = self

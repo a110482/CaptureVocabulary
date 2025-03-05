@@ -78,7 +78,7 @@ private extension MyStoryViewController {
     func configTitleView() {
         mainStackView.addArrangedSubview(titleView)
         titleView.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.equalTo(40)
         }
         
         titleView.rx.newStoryButtonTap.subscribe(onNext: { [weak self] _ in
