@@ -47,6 +47,9 @@
 		06BF10122D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
 		06BF10132D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
 		06BF10142D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
+		06BF101B2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101C2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
 		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
@@ -374,6 +377,7 @@
 		06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmSaveView.swift; sourceTree = "<group>"; };
 		06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryTableViewCell.swift; sourceTree = "<group>"; };
 		06BF10112D76CEE600529EDB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		06BF101A2D79411300529EDB /* UIInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInsetLabel.swift; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
@@ -597,6 +601,14 @@
 				06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */,
 			);
 			path = StoryDisplayView;
+			sourceTree = "<group>";
+		};
+		06BF10192D7940F800529EDB /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				06BF101A2D79411300529EDB /* UIInsetLabel.swift */,
+			);
+			path = Label;
 			sourceTree = "<group>";
 		};
 		06C1F5592D3E537900C60EAE /* Views */ = {
@@ -936,6 +948,7 @@
 		F5CBF58E281571510088C801 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				06BF10192D7940F800529EDB /* Label */,
 				F52A654A2843A23D0094357B /* Button */,
 				F5CBF58F2815718E0088C801 /* PopupViewController.swift */,
 				F50952B928267A43000C74B0 /* UIPickerViewController.swift */,
@@ -1338,6 +1351,7 @@
 				06FBBAE12D268E8800038345 /* SegmentedView.swift in Sources */,
 				06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
 				06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */,
@@ -1476,6 +1490,7 @@
 				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
 				C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */,
 				C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */,
+				06BF101B2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */,
@@ -1622,6 +1637,7 @@
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
+				06BF101C2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 				067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */,
 				06FBBAC32D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,

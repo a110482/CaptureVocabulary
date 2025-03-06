@@ -61,8 +61,7 @@
 "StoryGeneratorViewController.generatorStory" = "Generate Story";
 "StoryGeneratorViewController.watchAD" = "Watch an ad to generate a story";
 "StoryGeneratorViewController.title" = "Story Generator";
-"StoryGeneratorViewController.stepOne" = "Step One";
-"StoryGeneratorViewController.stepTwo" = "Step Two";
-"StoryGeneratorViewController.stepThree" = "Step Three";
+"StoryGeneratorViewController.stepOne" = "Step One: Choose the maximum number of randomly generated words";
+"StoryGeneratorViewController.stepTwo" = "Step Two: Select the source of words";
 
 "MyStoryViewController.newStory" = "New Story";

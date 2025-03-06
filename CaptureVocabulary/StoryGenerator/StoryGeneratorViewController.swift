@@ -19,10 +19,10 @@ class StoryGeneratorViewController: UIViewController {
     
     private var viewModel: StoryGeneratorViewModel!
     private let mainStackView = UIStackView()
-    private let stepOneLabel = UILabel()
+    private let stepOneLabel = UIInsetLabel()
     private let vocabularyAmountSliderLabel = UILabel()
     private let vocabularyAmountSlider = UISlider()
-    private let stepTwoLabel = UILabel()
+    private let stepTwoLabel = UIInsetLabel()
     private let tableView = UITableView()
     private let confirmButton = UIButton()
     
@@ -64,11 +64,6 @@ private extension StoryGeneratorViewController {
         configStepTwoLabel()
         configTableView()
         confitTableHeaderView()
-        
-#if DEBUG
-        stepOneLabel.text! += ": 選擇隨機產生的單字上限"
-        stepTwoLabel.text! += ": 選擇單字來源"
-#endif
     }
     
     func configBackButton() {
@@ -104,10 +99,13 @@ private extension StoryGeneratorViewController {
     }
     
     func configStepOneLabel() {
-        mainStackView.addArrangedSubview(mainStackView.padding(gap: 20))
-        mainStackView.addArrangedSubview(stepOneLabel)
-        stepOneLabel.textAlignment = .left
+        mainStackView.addArrangedSubviews([
+            mainStackView.padding(gap: 20),
+            stepOneLabel
+        ])
         stepOneLabel.text = NSLocalizedString("StoryGeneratorViewController.stepOne", comment: "第一步")
+        stepOneLabel.applyStepLabelStyle()
+        stepOneLabel.numberOfLines = 2
     }
     
     func configVocabularyAmountSlider() {
@@ -137,8 +135,8 @@ private extension StoryGeneratorViewController {
             mainStackView.padding(gap: 20),
             stepTwoLabel
         ])
-        stepTwoLabel.textAlignment = .left
         stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "第二步")
+        stepTwoLabel.applyStepLabelStyle()
     }
     
     func configTableView() {
@@ -147,10 +145,9 @@ private extension StoryGeneratorViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             make.centerX.equalToSuperview()
-            make.left.equalToSuperview().offset(8)
+            make.left.equalToSuperview()
         }
-        tableView.layer.cornerRadius = 8
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -165,7 +162,7 @@ private extension StoryGeneratorViewController {
         headerViewContainer.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.left.equalToSuperview().inset(8)
+            make.left.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         tableView.tableHeaderView = headerViewContainer
@@ -217,5 +214,20 @@ extension StoryGeneratorViewController: UITableViewDelegate, UITableViewDataSour
         let cellModel = viewModel.output.cellModels[indexPath.row]
         viewModel.toggle(cellModel: cellModel)
         tableView.reloadData()
+    }
+}
+
+// MARK: - 設定元件共用樣式
+private extension UIInsetLabel {
+    func applyStepLabelStyle() {
+        snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(40)
+        }
+        textAlignment = .left
+        numberOfLines = 2
+        backgroundColor = "C4C9D3".color
+        textInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        textColor = "667080".color
+        font = .systemFont(ofSize: 13, weight: .medium)
     }
 }

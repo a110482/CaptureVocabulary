@@ -58,8 +58,7 @@
 "StoryGeneratorViewController.generatorStory" = "產生故事";
 "StoryGeneratorViewController.watchAD" = "觀看廣告產生故事";
 "StoryGeneratorViewController.title" = "故事產生器";
-"StoryGeneratorViewController.stepOne" = "第一步";
-"StoryGeneratorViewController.stepTwo" = "第二步";
-"StoryGeneratorViewController.stepThree" = "第三步";
+"StoryGeneratorViewController.stepOne" = "第一步: 選擇隨機產生的單字上限";
+"StoryGeneratorViewController.stepTwo" = "第二步: 選擇單字來源";
 
 "MyStoryViewController.newStory" = "新故事";
