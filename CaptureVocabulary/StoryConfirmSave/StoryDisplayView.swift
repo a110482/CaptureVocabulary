@@ -11,9 +11,7 @@ struct StoryDisplayView: View {
     @ObservedObject var viewModel: StoryDisplayViewModel
     
     var body: some View {
-        buildTitle()
         buildContent()
-        Spacer()
     }
     
 
@@ -27,7 +25,7 @@ private extension StoryDisplayView {
     @ViewBuilder
     func buildTitle() -> some View {
         Text(viewModel.storyDataModel.title.en)
-            .font(.system(size: 20))
+            .font(.system(size: 17, weight: .medium))
         if !viewModel.isTranslateHidden {
             Text(viewModel.storyDataModel.title.ch)
         }
@@ -38,6 +36,8 @@ private extension StoryDisplayView {
     func buildContent() -> some View {
         ScrollView {
             LazyVStack(spacing: 10) {
+                buildTitle()
+                
                 ForEach(viewModel.storyDataModel.story.indices, id: \.self) { index in
                     let model = viewModel.storyDataModel.story[index]
                     let text = highlightedText(
@@ -62,7 +62,7 @@ private extension StoryDisplayView {
         for key in keys {
             var searchString = attributedString [attributedString.startIndex..<attributedString.endIndex]
             while let range = searchString.range(of: key, options: .caseInsensitive) {
-                attributedString[range].foregroundColor = .blue
+                attributedString[range].foregroundColor = "3D5CFF".color
                 attributedString[range].link = URL(string: "captureVocabulary://textLink/\(key)")
                 searchString = attributedString[range.upperBound..<attributedString.endIndex]
             }

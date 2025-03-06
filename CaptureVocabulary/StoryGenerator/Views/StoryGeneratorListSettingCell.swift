@@ -28,7 +28,7 @@ class StoryGeneratorListSettingCell: UITableViewCell {
 extension StoryGeneratorListSettingCell {
     func config(cellModel: StoryGeneratorListSettingCellModel) {
         titleLabel.text = cellModel.title
-        let selectedImage = UIImage(systemName: "checkmark.circle.fill")
+        let selectedImage = UIImage(named: "checkIcon")
         selectedIcon.image = cellModel.isSelected ? selectedImage : nil
     }
 }
@@ -41,18 +41,20 @@ private extension StoryGeneratorListSettingCell {
         contentView.addSubview(selectedIcon)
         selectedIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
-            make.size.equalTo(20)
+            make.left.equalToSuperview().offset(24)
+            make.size.equalTo(17)
         }
-        selectedIcon.layer.cornerRadius = 10
-        selectedIcon.layer.borderColor = UIColor.gray.cgColor
+        selectedIcon.layer.cornerRadius = 4
+        selectedIcon.layer.borderColor = "667080".color.cgColor
         selectedIcon.layer.borderWidth = 1
+        selectedIcon.contentMode = .scaleAspectFill
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(selectedIcon.snp.right).offset(20)
+            make.left.equalTo(selectedIcon.snp.right).offset(15)
         }
+        titleLabel.numberOfLines = 2
     }
 }
 

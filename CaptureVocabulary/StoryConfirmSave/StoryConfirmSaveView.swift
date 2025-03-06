@@ -15,6 +15,10 @@ struct StoryConfirmSaveView: View {
     var body: some View {
         VStack(spacing: 10) {
             StoryDisplayView(viewModel: viewModel.storyDisplayViewModel)
+                .frame(maxHeight: .infinity)
+                .background(Color(uiColor: "F8F7F7".color))
+                .padding(.leading, 24)
+                .padding(.trailing, 24)
             buttonViews()
         }
         .padding(.top, 16)
@@ -43,6 +47,7 @@ private extension StoryConfirmSaveView {
             Button(cancelString) {
                 viewModel.pressCancelButton()
             }
+            .font(.system(size: 13, weight: .bold))
             .frame(width: 100, height: 50)
             .background(Color.gray)
             .foregroundStyle(Color.white)
@@ -51,8 +56,9 @@ private extension StoryConfirmSaveView {
             Button(saveString) {
                 viewModel.pressSaveButton()
             }
+            .font(.system(size: 13, weight: .bold))
             .frame(width: 100, height: 50)
-            .background(Color.green)
+            .background(Color(uiColor: "3D5CFF".color))
             .foregroundStyle(Color.white)
             .cornerRadius(10)
             Spacer()

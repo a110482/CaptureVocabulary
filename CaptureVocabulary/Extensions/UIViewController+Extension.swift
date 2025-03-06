@@ -17,14 +17,7 @@ extension UIViewController {
         let window = UIWindow(windowScene: windowScene!)
         window.frame = UIScreen.main.bounds
         
-        let loadingViewController = UIViewController()
-        loadingViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.center = loadingViewController.view.center
-        activityIndicator.startAnimating()
-        
-        loadingViewController.view.addSubview(activityIndicator)
+        let loadingViewController = LoadingADViewController()
         
         window.rootViewController = loadingViewController
         window.windowLevel = .alert + 1

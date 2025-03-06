@@ -236,10 +236,7 @@ extension CaptureVocabularyViewController {
     func configQueryButton() {
         let title = NSLocalizedString("CaptureVocabularyViewController.search", comment: "查詢")
         queryButton.setTitle(title, for: .normal)
-        
-        queryButton.backgroundColorHex = "3D5CFF"
-        queryButton.layer.cornerRadius = 5
-        queryButton.layer.masksToBounds = true
+        queryButton.applyConfirmStyle()
     }
     
     func configAdView() {

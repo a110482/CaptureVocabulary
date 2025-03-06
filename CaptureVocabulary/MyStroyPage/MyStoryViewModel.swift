@@ -34,6 +34,7 @@ extension MyStoryViewModel {
     
     enum Action {
         case newStory
+        case selected(cellModel: MyStoryTableViewCellModel)
     }
     
     /// 點擊 "新故事" 按鈕
@@ -46,6 +47,10 @@ extension MyStoryViewModel {
         guard let stories = StoryORM.ORM.getAllStory() else { return }
         cellModels = stories.compactMap({ MyStoryTableViewCellModel(orm: $0) })
         needReloadTable.accept(())
+    }
+    
+    func didSelectedCell(in index: Int) {
+        action.accept(.selected(cellModel: cellModels[index]))
     }
 }
 

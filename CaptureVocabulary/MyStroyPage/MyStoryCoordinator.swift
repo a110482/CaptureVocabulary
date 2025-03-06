@@ -24,12 +24,6 @@ class MyStoryCoordinator: Coordinator<UIViewController> {
         viewController.bind(viewModel: viewModel)
         handle(action: viewModel.output.action)
         navigationViewController = UINavigationController(rootViewController: viewController)
-        
-#if DEBUG
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.popStoryGenerator()
-        })
-#endif
     }
 }
 
@@ -40,6 +34,8 @@ private extension MyStoryCoordinator {
             switch action {
             case .newStory:
                 popStoryGenerator()
+            case let .selected(cellModel):
+                popStoryReading(cellModel: cellModel)
             }
         }).disposed(by: disposeBag)
     }
@@ -49,6 +45,13 @@ private extension MyStoryCoordinator {
         let coordinator = StoryGeneratorCoordinator(rootViewController: navigationViewController)
         startChild(coordinator: coordinator)
         coordinator.delegate = self
+    }
+    
+    func popStoryReading(cellModel: MyStoryTableViewCellModel) {
+        let coordinator = StoryReadingCoordinator(
+            rootViewController: navigationViewController,
+            storyModel: cellModel.orm)
+        startChild(coordinator: coordinator)
     }
 }
 

@@ -111,41 +111,6 @@ private extension AdsManager {
             root.addBannerToAdsPlaceholder(banner)
         }
     }
-    
-    /// 準備插頁廣告(暫時停用全頁廣告)
-//    func prepareLoadedInterstitialAdIfNeeded() {
-//        resetAutoReloadTimer()
-//        interstitial = nil
-//        Task {
-//            do {
-//                interstitial = try await GADInterstitialAd.load(
-//                    withAdUnitID: AppParameters.shared.model.adPageUnitID,
-//                    request: GADRequest())
-//                
-//                interstitial?.fullScreenContentDelegate = self
-//            } catch {
-//                let errorMessage = "Failed to load interstitial ad with error: \(error.localizedDescription)"
-//                assertionFailure(errorMessage)
-//            }
-//        }
-//    }
-    
-    /// 重設自動重載廣告的 timer (暫時停用全頁廣告)
-//    func resetAutoReloadTimer() {
-//        reloadInterstitialAdTimer?.invalidate()
-//        // google 插頁廣告一小時後到期，設定 50 分鐘刷新
-//        let timeInterval: TimeInterval = 50 * 60
-//        reloadInterstitialAdTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false, block: { _ in
-//            self.prepareLoadedInterstitialAdIfNeeded()
-//        })
-//    }
-    
-    /// 進入前景就重新獲取廣告(暫時停用全頁廣告)
-//    func observeSystemEvents() {
-//        UIApplication.rx.didBecomeActive.subscribe(onNext: { _ in
-//            self.prepareLoadedInterstitialAdIfNeeded()
-//        }).disposed(by: disposeBag)
-//    }
 }
 
 extension AdsManager {
@@ -172,20 +137,6 @@ extension AdsManager {
     var middleBannerAdSize: GADAdSize {
         return GADAdSizeMediumRectangle
     }
-    
-    // (暫時停用全頁廣告)
-//    func present(vc: UIViewController) {
-//        // 檢查是否有還沒有的廣告獎勵
-//        guard !isPresentInterstitialAd.value else { return }
-//        // 檢查是否廣告已下載完成
-//        guard let interstitial else { return }
-//        interstitial.present(fromRootViewController: vc)
-//    }
-    
-    /// 廣告獎勵已使用(暫時停用全頁廣告)
-//    func interstitialAdRewardUsed() {
-//        isPresentInterstitialAd.accept(false)
-//    }
 }
 
 // MARK: - 橫幅廣告 delegate
@@ -208,6 +159,59 @@ extension AdsManager: GADBannerViewDelegate {
 }
 
 // MARK: - 插頁廣告 delegate(暫時停用全頁廣告)
+//private extension AdsManager {
+//    /// 準備插頁廣告(暫時停用全頁廣告)
+//    func prepareLoadedInterstitialAdIfNeeded() {
+//        resetAutoReloadTimer()
+//        interstitial = nil
+//        Task {
+//            do {
+//                interstitial = try await GADInterstitialAd.load(
+//                    withAdUnitID: AppParameters.shared.model.adPageUnitID,
+//                    request: GADRequest())
+//
+//                interstitial?.fullScreenContentDelegate = self
+//            } catch {
+//                let errorMessage = "Failed to load interstitial ad with error: \(error.localizedDescription)"
+//                assertionFailure(errorMessage)
+//            }
+//        }
+//    }
+//    
+//    /// 重設自動重載廣告的 timer (暫時停用全頁廣告)
+//    func resetAutoReloadTimer() {
+//        reloadInterstitialAdTimer?.invalidate()
+//        // google 插頁廣告一小時後到期，設定 50 分鐘刷新
+//        let timeInterval: TimeInterval = 50 * 60
+//        reloadInterstitialAdTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false, block: { _ in
+//            self.prepareLoadedInterstitialAdIfNeeded()
+//        })
+//    }
+//    
+//    /// 進入前景就重新獲取廣告(暫時停用全頁廣告)
+//    func observeSystemEvents() {
+//        UIApplication.rx.didBecomeActive.subscribe(onNext: { _ in
+//            self.prepareLoadedInterstitialAdIfNeeded()
+//        }).disposed(by: disposeBag)
+//    }
+//}
+
+//extension AdsManager {
+//    /// (暫時停用全頁廣告)
+//    func present(vc: UIViewController) {
+//        // 檢查是否有還沒有的廣告獎勵
+//        guard !isPresentInterstitialAd.value else { return }
+//        // 檢查是否廣告已下載完成
+//        guard let interstitial else { return }
+//        interstitial.present(fromRootViewController: vc)
+//    }
+//    
+//    /// 廣告獎勵已使用(暫時停用全頁廣告)
+//    func interstitialAdRewardUsed() {
+//        isPresentInterstitialAd.accept(false)
+//    }
+//}
+
 //extension AdsManager: GADFullScreenContentDelegate {
 //    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
 //        // 讀取廣告錯誤

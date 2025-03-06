@@ -62,6 +62,11 @@ extension MyStoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.bind(cellModel: cellModel)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectedCell(in: indexPath.row)
+    }
+    
 }
 
 // MARK: - private functions

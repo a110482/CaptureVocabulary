@@ -78,15 +78,15 @@ private extension StoryGeneratorViewController {
     
     func configConfirmButton() {
         view.addSubview(confirmButton)
-        confirmButton.backgroundColor = .darkGray
         confirmButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.bottom.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
+            make.width.equalToSuperview().multipliedBy(0.7)
+            make.bottom.equalToSuperview().offset(-24)
+            make.height.equalTo(40)
             make.centerX.equalToSuperview()
         }
         confirmButton.setTitle(confirmButtonStatus.title,
                                for: .normal)
+        confirmButton.applyConfirmStyle()
         confirmButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self else { return }
             startLoadingAnimate()
@@ -99,10 +99,7 @@ private extension StoryGeneratorViewController {
     }
     
     func configStepOneLabel() {
-        mainStackView.addArrangedSubviews([
-            mainStackView.padding(gap: 20),
-            stepOneLabel
-        ])
+        mainStackView.addArrangedSubview(stepOneLabel)
         stepOneLabel.text = NSLocalizedString("StoryGeneratorViewController.stepOne", comment: "第一步")
         stepOneLabel.applyStepLabelStyle()
         stepOneLabel.numberOfLines = 2
@@ -112,29 +109,28 @@ private extension StoryGeneratorViewController {
         let sliderContainer = UIStackView()
         sliderContainer.axis = .horizontal
         mainStackView.addArrangedSubviews([
-            mainStackView.padding(gap: 10),
             sliderContainer
         ])
         
         sliderContainer.addArrangedSubviews([
+            sliderContainer.padding(gap: 20),
             vocabularyAmountSliderLabel,
             sliderContainer.padding(gap: 10),
             vocabularyAmountSlider,
+            sliderContainer.padding(gap: 20),
         ])
         vocabularyAmountSlider.snp.makeConstraints { make in
-            make.height.equalTo(40)
+            make.height.equalTo(60)
         }
         vocabularyAmountSlider.minimumValue = viewModel.vocabularyAmountRange.lowerBound
         vocabularyAmountSlider.maximumValue = viewModel.vocabularyAmountRange.upperBound
+        vocabularyAmountSlider.minimumTrackTintColor = "667080".color
         vocabularyAmountSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
         updateSliderUI()
     }
     
     func configStepTwoLabel() {
-        mainStackView.addArrangedSubviews([
-            mainStackView.padding(gap: 20),
-            stepTwoLabel
-        ])
+        mainStackView.addArrangedSubview(stepTwoLabel)
         stepTwoLabel.text = NSLocalizedString("StoryGeneratorViewController.stepTwo", comment: "第二步")
         stepTwoLabel.applyStepLabelStyle()
     }
@@ -150,7 +146,8 @@ private extension StoryGeneratorViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.separatorInset = .zero
+        tableView.separatorColor = "555555".color
         tableView.register(StoryGeneratorListSettingCell.self, forCellReuseIdentifier: "StoryGeneratorListSettingCell")
     }
     
@@ -214,6 +211,10 @@ extension StoryGeneratorViewController: UITableViewDelegate, UITableViewDataSour
         let cellModel = viewModel.output.cellModels[indexPath.row]
         viewModel.toggle(cellModel: cellModel)
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
 

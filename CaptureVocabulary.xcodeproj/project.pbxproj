@@ -50,6 +50,12 @@
 		06BF101B2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
 		06BF101C2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
 		06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101F2D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10202D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10212D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10242D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
+		06BF10252D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
+		06BF10262D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
 		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
 		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
@@ -378,6 +384,8 @@
 		06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryTableViewCell.swift; sourceTree = "<group>"; };
 		06BF10112D76CEE600529EDB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		06BF101A2D79411300529EDB /* UIInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInsetLabel.swift; sourceTree = "<group>"; };
+		06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingADViewController.swift; sourceTree = "<group>"; };
+		06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadingCoordinator.swift; sourceTree = "<group>"; };
 		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
 		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
 		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
@@ -593,14 +601,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		06B3F2982D6F18B400DA911A /* StoryDisplayView */ = {
+		06B3F2982D6F18B400DA911A /* StoryConfirmSave */ = {
 			isa = PBXGroup;
 			children = (
 				06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */,
 				06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */,
 				06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */,
 			);
-			path = StoryDisplayView;
+			path = StoryConfirmSave;
 			sourceTree = "<group>";
 		};
 		06BF10192D7940F800529EDB /* Label */ = {
@@ -609,6 +617,14 @@
 				06BF101A2D79411300529EDB /* UIInsetLabel.swift */,
 			);
 			path = Label;
+			sourceTree = "<group>";
+		};
+		06BF10222D7AE81C00529EDB /* SrotyReading */ = {
+			isa = PBXGroup;
+			children = (
+				06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */,
+			);
+			path = SrotyReading;
 			sourceTree = "<group>";
 		};
 		06C1F5592D3E537900C60EAE /* Views */ = {
@@ -921,7 +937,8 @@
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
-				06B3F2982D6F18B400DA911A /* StoryDisplayView */,
+				06BF10222D7AE81C00529EDB /* SrotyReading */,
+				06B3F2982D6F18B400DA911A /* StoryConfirmSave */,
 				06E199722D277DA4000DE54C /* StoryGenerator */,
 				06FBBAC92D23F0A500038345 /* MyStroyPage */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
@@ -958,6 +975,7 @@
 				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
 				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
 				C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */,
+				06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */,
 				0654E10F2C89964B001F769B /* RxOutput.swift */,
 				06E051E22CAA807F00015F68 /* DispatchPointer.swift */,
 			);
@@ -1343,6 +1361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06BF10212D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				06FBBABC2D1D56DD00038345 /* DatabaseBackupViewController.swift in Sources */,
 				06FBBADC2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
 				06FBBABF2D1D585F00038345 /* DatabaseBackupCoordinator.swift in Sources */,
@@ -1365,6 +1384,7 @@
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
+				06BF10262D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
 				06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
 				06BF10102D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
@@ -1430,6 +1450,7 @@
 				06E051E92CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */,
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
 				C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */,
+				06BF101F2D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				C032E5222B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
 				06E199742D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
@@ -1442,6 +1463,7 @@
 				C060795729E805DA00434A2E /* AzureRequest.swift in Sources */,
 				C060795829E805DA00434A2E /* AzureTranslate.swift in Sources */,
 				061228182D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */,
+				06BF10242D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
 				C060795929E805DA00434A2E /* AzureDictionary.swift in Sources */,
 				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
 				C0BDFEFD2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */,
@@ -1515,6 +1537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06BF10202D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */,
 				F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */,
@@ -1601,6 +1624,7 @@
 				C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */,
 				06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
+				06BF10252D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
 				F5A4CF7C28E6FC0400600E21 /* YDTranslateAPI.swift in Sources */,
 				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
