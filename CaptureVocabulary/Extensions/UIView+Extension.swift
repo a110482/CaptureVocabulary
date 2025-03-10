@@ -17,3 +17,13 @@ extension UIView {
         return image
     }
 }
+
+extension UIButton {
+    /// 藍色背景白色字體的確認按鈕樣式
+    func applyConfirmStyle() {
+        backgroundColor = "3D5CFF".color
+        layer.cornerRadius = 5
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+    }
+}

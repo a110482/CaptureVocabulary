@@ -27,60 +27,41 @@ enum SQLCoreMigrationError: Error {
 /// 1. 更改資料庫 model e.x. VocabularyCardORM
 /// 2. 新增 SQLCoreMigration 步驟, 讓舊用戶可以升級到新版資料庫
 /// 3. 修改 SQLCoreMigration_newDatabase 讓全新用戶可以直接升到最新版本
-/// 4. 記得修改 Plist file "lastDatabaseVersion"  !!!!
 class SQLCoreMigration {
-    private static let lastDatabaseVersion = AppParameters.shared.model.lastDatabaseVersion
-    private static var currentDatabaseVersion: Int { UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] ?? 0
-    }
-    private static let migrationScripts: [MigrationProcess] = [
+    private static var currentDatabaseVersion: Int { readDatabaseVersion() }
+    static let migrationScripts: [MigrationProcess] = [
         SQLCoreMigration_1(),
         SQLCoreMigration_2(),
         SQLCoreMigration_3(),
         SQLCoreMigration_4(),
         SQLCoreMigration_5(),
+        SQLCoreMigration_6()
     ]
     
     static func checkVersion(_ completion: () -> Void) throws {
-        // 新建資料庫
-        let count = try! SQLCore.shared.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
-        if count == 0 {
-            // 未建立過 db
+        switch analysisDatabaseStatus() {
+        case .newUser:
             try createNewDatabase()
             completion()
-            return
-        }
-        
-        // 舊有資料庫升級
-        guard lastDatabaseVersion > currentDatabaseVersion else {
+        case .oldVersionSystem(let version):
+            writeDatabaseVersion(version: version)
+            UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentDatabaseVersion.rawValue)
+            try checkVersion(completion)
+        case .needUpdate:
+            try migration()
+            try checkVersion(completion)
+        case .isLastVersion:
             completion()
-            return
         }
-        try migration()
-        try checkVersion(completion)
     }
     
     static func reset() {
-        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = 0
-    }
-    
-    private static func migration() throws {
-        guard let script = migrationScripts[safe: currentDatabaseVersion] else {
-            // 拋出 error
-            throw SQLCoreMigrationError.noMigrationScript
-        }
-        try script.process()
-        script.updateVersionNumber()
-    }
-    
-    private static func createNewDatabase() throws {
-        let script = SQLCoreMigration_newDatabase()
-        script.process()
-        script.updateVersionNumber()
+        writeDatabaseVersion(version: 0)
     }
     
     static func debugTest() {
         recoverDatabase()
-        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = 1
+        writeDatabaseVersion(version: 1)
     }
     
     static func backDataBase() {
@@ -114,15 +95,73 @@ class SQLCoreMigration {
     }
 }
 
+extension SQLCoreMigration {
+    enum DatabaseStatus {
+        case newUser
+        /// (準備遷移到新版號系統)
+        case oldVersionSystem(version: Int)
+        case needUpdate
+        case isLastVersion
+    }
+}
+
+private extension SQLCoreMigration {
+    static func migration() throws {
+        guard let script = migrationScripts[safe: currentDatabaseVersion] else {
+            // 拋出 error
+            throw SQLCoreMigrationError.noMigrationScript
+        }
+        try script.process()
+        script.updateVersionNumber()
+    }
+    
+    static func createNewDatabase() throws {
+        let script = SQLCoreMigration_newDatabase()
+        script.process()
+        script.updateVersionNumber()
+    }
+    
+    static func readDatabaseVersion() -> Int {
+        let userVersion = (try? SQLCore.shared.db.scalar("PRAGMA user_version") as? Int64) ?? 0
+        return Int(userVersion)
+    }
+    
+    static func writeDatabaseVersion(version: Int) {
+        let _ = try? SQLCore.shared.db.run("PRAGMA user_version = \(version)")
+    }
+    
+    static func analysisDatabaseStatus() -> DatabaseStatus {
+        let count = try! SQLCore.shared.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
+        if count == 0 { return .newUser }
+        
+        if let oldVersion = UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] {
+            return .oldVersionSystem(version: oldVersion)
+        }
+        
+        if currentDatabaseVersion < migrationScripts.count {
+            return .needUpdate
+        }
+        
+        return .isLastVersion
+    }
+}
+
 protocol MigrationProcess {
+    /// 版號，從一開始起跳 (所以是 SQLCoreMigration.migrationScripts index + 1)
     var dbVersionNumber: Int { get }
     func process() throws
     func updateVersionNumber()
 }
 
 extension MigrationProcess {
+    var dbVersionNumber: Int {
+        let index = SQLCoreMigration.migrationScripts.firstIndex(where: { type(of: $0) == Self.self })
+        assert(index != nil, "可能有新的 Migration 腳本未新增到 SQLCoreMigration.migrationScripts")
+        return (index ?? 0) + 1
+    }
+    
     func updateVersionNumber() {
-        UserDefaults.standard[UserDefaultsKeys.currentDatabaseVersion] = dbVersionNumber
+        SQLCoreMigration.writeDatabaseVersion(version: dbVersionNumber)
     }
 }
 

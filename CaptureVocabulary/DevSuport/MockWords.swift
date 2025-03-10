@@ -24,7 +24,7 @@ class MockWords {
     
     private func make() {
         words = readMockWords()
-        next()
+        words.forEach({ writeIntoDatabase(word: $0)})
     }
 }
 
@@ -36,50 +36,9 @@ private extension MockWords {
         return mockWords?.mockWords ?? []
     }
     
-    func next() {
-        guard words.count > 0 else { return }
-        let nextWord = words.removeFirst()
-        sendRequest(vocabulary: nextWord)
-    }
-    
-    func sendRequest(vocabulary: String) {
-        typealias Req = YDTranslateAPI
-        resettableDisposeBag = DisposeBag()
-        
-        let normalized = vocabulary.normalized
-        let queryModel = YDTranslateAPIQueryModel(queryString: normalized)
-        
-        guard Req.ResponseModel.load(queryModel: queryModel) == nil else {
-            return
-        }
-        
-        let request = Req(queryModel: queryModel)
-        let api = RequestBuilder<Req>()
-        api.result.subscribe(onNext: { [weak self] res in
-            guard let self = self else { return }
-            guard let res = res else { return }
-            guard res.isWord ?? false else { return }
-            Log.debug("mock words: ", vocabulary)
-            res.create(nil)
-            self.saveVocabularyCard(model: res)
-            self.next()
-        }).disposed(by: resettableDisposeBag)
-        api.send(req: request)
-        
-    }
-    
-    func saveVocabularyCard(model: YDTranslateAPI.ResponseModel) {
-        guard let translate = model.translation?.first else { return }
-        guard let vocabulary = model.query else { return }
-        guard var cardListObj = VocabularyCardListORM.ORM.lastEditList() else { return }
-        
-        var cardObj = VocabularyCardORM.ORM()
-        cardObj.normalizedSource = vocabulary
-        cardObj.normalizedTarget = translate
-        cardObj.cardListId = cardListObj.id
-        VocabularyCardORM.create(cardObj)
-        cardListObj.timestamp = Date().timeIntervalSince1970
-        VocabularyCardListORM.update(cardListObj)
+    func writeIntoDatabase(word: String) {
+        let vocabularyViewModel = VocabularyViewModel(vocabulary: word)
+        let _ = vocabularyViewModel.saveVocabularyCard()
     }
 }
 

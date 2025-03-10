@@ -11,13 +11,13 @@ import SwifterSwift
 import RxCocoa
 import RxSwift
 import MediaPlayer
+import StoreKit
 
 
 // MARK: -
 class ReviewViewController: UIViewController {
     enum Action {
         case settingPage
-        case feedback
     }
     let action = PublishRelay<Action>()
     private static let cellGape = CGFloat(12)
@@ -53,6 +53,12 @@ class ReviewViewController: UIViewController {
         configUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AdsManager.shared.bottomBannerRootViewController = self
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.reloadData {
@@ -60,9 +66,9 @@ class ReviewViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        AdsManager.shared.rootViewController = self
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func bind(viewModel: ReviewViewModel) {
@@ -181,7 +187,7 @@ private extension ReviewViewController {
     }
     
     func configAdView() {
-        let height = AdsManager.shared.adSize.size.height
+        let height = AdsManager.shared.bottomBannerAdSize.size.height
         adBannerView.snp.makeConstraints {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()
@@ -208,10 +214,18 @@ private extension ReviewViewController {
         feedbackButton.setTitle(NSLocalizedString("ReviewViewController.feedback", comment: "意見回饋"), for: .normal)
         feedbackButton.setTitleColor(.white, for: .normal)
         feedbackButton.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.action.accept(.feedback)
+            guard let self else { return }
+            requestReview()
         }).disposed(by: disposeBag)
         return feedbackButton
+    }
+    
+    func requestReview() {
+        let appId = "1623601073" // 替換為你的 App 的 Apple ID
+        guard let url = URL(string: "https://apps.apple.com/app/id\(appId)?action=write-review") else {
+            return
+        }
+        view.window?.windowScene?.open(url, options: .none)
     }
 }
 

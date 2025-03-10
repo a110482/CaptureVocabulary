@@ -22,14 +22,13 @@
 "TabBarCoordinator.scan" = "Scan";
 "TabBarCoordinator.review" = "Review";
 "TabBarCoordinator.flashcards" = "Flashcards";
+"TabBarCoordinator.myStory" = "MyStory";
 
 "VocabularyListViewController.flashcards" = "Flashcards";
 "VocabularyListViewController.addNew" = "+ Add New";
 "VocabularyListViewController.enterNewListName" = "Enter New List Name";
 "VocabularyListViewController.cancel" = "Cancel";
 "VocabularyListViewController.confirm" = "Confirm";
-"VocabularyListViewController.delete" = "Delete";
-"VocabularyListViewController.edit" = "Edit";
 
 "CaptureVocabularyViewController.enterQuery" = "Enter Query";
 "CaptureVocabularyViewController.search" = "Search";
@@ -54,3 +53,13 @@
 "DatabaseBackupViewController.confirmCodeError" = "Invalid verification code. Please enter the verification code: %@ to confirm overwriting.";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "Database overwrite completed.";
 
+"StoryGenerator.fairyTales" = "Fairy Tales";
+"StoryGenerator.conversation" = "Conversation";
+"StoryGenerator.news" = "News";
+"StoryGeneratorViewController.generatorStory" = "Generate Story";
+"StoryGeneratorViewController.watchAD" = "Watch an ad to generate a story";
+"StoryGeneratorViewController.title" = "Story Generator";
+"StoryGeneratorViewController.stepOne" = "Step One: Choose the maximum number of randomly generated words";
+"StoryGeneratorViewController.stepTwo" = "Step Two: Select the source of words";
+
+"MyStoryViewController.newStory" = "New Story";

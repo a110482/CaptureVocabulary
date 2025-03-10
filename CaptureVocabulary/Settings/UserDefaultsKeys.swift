@@ -11,7 +11,7 @@ enum UserDefaultsKeys {
     /// 目前看到第幾張單字卡
     static let vocabularyCardReadId = UserDefaults.Key<Int>(
         rawValue: "vocabularyCardReadId")
-    /// 資料庫版本
+//    /// 資料庫版本 (已棄用, 但要替舊用戶轉移到新的版控系統)
     static let currentDatabaseVersion = UserDefaults.Key<Int>(
         rawValue: "currentDatabaseVersion")
     /// 單字例句下載序列
