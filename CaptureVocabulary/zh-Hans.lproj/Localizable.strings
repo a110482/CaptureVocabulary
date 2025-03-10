@@ -29,8 +29,6 @@
 "VocabularyListViewController.enterNewListName" = "请输入新的清单名称";
 "VocabularyListViewController.cancel" = "取消";
 "VocabularyListViewController.confirm" = "确认";
-"VocabularyListViewController.delete" = "删除";
-"VocabularyListViewController.edit" = "编辑";
 
 "CaptureVocabularyViewController.enterQuery" = "输入查询";
 "CaptureVocabularyViewController.search" = "查询";

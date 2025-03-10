@@ -63,6 +63,7 @@ private extension StoryDisplayView {
             var searchString = attributedString [attributedString.startIndex..<attributedString.endIndex]
             while let range = searchString.range(of: key, options: .caseInsensitive) {
                 attributedString[range].foregroundColor = "3D5CFF".color
+                // TODO: "文字連結拆分成另一個函數 讓每個字都可以查詢"
                 attributedString[range].link = URL(string: "captureVocabulary://textLink/\(key)")
                 searchString = attributedString[range.upperBound..<attributedString.endIndex]
             }

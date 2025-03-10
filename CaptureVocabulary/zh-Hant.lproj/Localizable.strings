@@ -29,8 +29,6 @@
 "VocabularyListViewController.enterNewListName" = "請輸入新的清單名稱";
 "VocabularyListViewController.cancel" = "取消";
 "VocabularyListViewController.confirm" = "確認";
-"VocabularyListViewController.delete" = "刪除";
-"VocabularyListViewController.edit" = "編輯";
 
 "CaptureVocabularyViewController.enterQuery" = "輸入查詢";
 "CaptureVocabularyViewController.search" = "查詢";

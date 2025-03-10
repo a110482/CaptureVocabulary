@@ -67,6 +67,15 @@ extension MyStoryViewController: UITableViewDelegate, UITableViewDataSource {
         viewModel.didSelectedCell(in: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { [weak self] (action, view, completionHandler) in
+            guard let self else { return }
+            viewModel.deleteCell(in: indexPath.row)
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(.white)
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
 // MARK: - private functions

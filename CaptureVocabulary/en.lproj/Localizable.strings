@@ -29,8 +29,6 @@
 "VocabularyListViewController.enterNewListName" = "Enter New List Name";
 "VocabularyListViewController.cancel" = "Cancel";
 "VocabularyListViewController.confirm" = "Confirm";
-"VocabularyListViewController.delete" = "Delete";
-"VocabularyListViewController.edit" = "Edit";
 
 "CaptureVocabularyViewController.enterQuery" = "Enter Query";
 "CaptureVocabularyViewController.search" = "Search";

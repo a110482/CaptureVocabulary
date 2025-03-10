@@ -17,7 +17,7 @@ struct SQLCoreMigration_newDatabase: MigrationProcess {
 }
 
 
-// 新建 db 或是拷貝舊版 db
+/// 新建 db 或是拷貝舊版 db
 struct SQLCoreMigration_1: MigrationProcess {
     func process() {
         let count = try! SQLCore.oldDatabase.db.scalar("SELECT count(*) FROM sqlite_master WHERE type='table';") as! Int64
@@ -46,7 +46,7 @@ struct SQLCoreMigration_1: MigrationProcess {
     }
 }
 
-// 新增音標到單字庫裡
+/// 新增音標到單字庫裡
 struct SQLCoreMigration_2: MigrationProcess {
     typealias Card = VocabularyCardORM
     
@@ -80,7 +80,7 @@ struct SQLCoreMigration_2: MigrationProcess {
     }
 }
 
-// 本地化資料庫內容
+/// 本地化資料庫內容
 struct SQLCoreMigration_3: MigrationProcess {
     typealias Card = VocabularyCardORM
     
@@ -96,14 +96,14 @@ struct SQLCoreMigration_3: MigrationProcess {
     }
 }
 
-// 建立例句資料庫
+/// 建立例句資料庫
 struct SQLCoreMigration_4: MigrationProcess {
     func process() throws {
         SimpleSentencesORM.createTable()
     }
 }
 
-// 建立單字卡上次記憶時間
+/// 建立單字卡上次記憶時間
 struct SQLCoreMigration_5: MigrationProcess {
     typealias Card = VocabularyCardORM
     func process() throws {
@@ -118,6 +118,7 @@ struct SQLCoreMigration_5: MigrationProcess {
     }
 }
 
+/// 我的故事
 struct SQLCoreMigration_6: MigrationProcess {
     func process() throws {
         StoryORM.createTable()

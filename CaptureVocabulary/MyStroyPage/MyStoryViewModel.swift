@@ -52,6 +52,12 @@ extension MyStoryViewModel {
     func didSelectedCell(in index: Int) {
         action.accept(.selected(cellModel: cellModels[index]))
     }
+    
+    func deleteCell(in index: Int) {
+        guard let cellModel = cellModels[safe: index] else { return }
+        StoryORM.delete(cellModel.orm)
+        loadStories()
+    }
 }
 
 private extension MyStoryViewModel {

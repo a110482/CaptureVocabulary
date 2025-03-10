@@ -117,11 +117,11 @@ fileprivate struct Story_VocabularyORM: TableType {
                 t.foreignKey(storyId,
                              references: StoryORM.table,
                              id,
-                             delete: .restrict)
+                             delete: .cascade)
                 t.foreignKey(vocabularyCardId,
                              references: VocabularyCardORM.table,
                              id,
-                             delete: .restrict)
+                             delete: .cascade)
             })
         }
         catch {
@@ -129,3 +129,4 @@ fileprivate struct Story_VocabularyORM: TableType {
         }
     }
 }
+
