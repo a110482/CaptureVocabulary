@@ -12,11 +12,11 @@ import RxCocoa
 
 class StoryReadingCoordinator: Coordinator<UINavigationController> {
     private var viewController: StoryReadingViewController!
-    private var viewModel: StoryReadingViewModel!
+    private var viewModel: StoryDisplayViewModel!
     
     required init(rootViewController: UINavigationController,
                   storyModel: StoryORM.ORM) {
-        viewModel = StoryReadingViewModel(storyModel: storyModel)
+        viewModel = StoryDisplayViewModel(storyORM: storyModel)
         assert(viewModel != nil)
         super.init(rootViewController: rootViewController)
     }
@@ -24,7 +24,7 @@ class StoryReadingCoordinator: Coordinator<UINavigationController> {
     override func start() {
         guard !started else { return }
         super.start()
-        let view = StoryReadingView(viewModel: viewModel)
+        let view = StoryDisplayView(viewModel: viewModel)
         viewController = StoryReadingViewController(rootView: view)
         viewController.hidesBottomBarWhenPushed = true
         show(viewController: viewController)
@@ -36,44 +36,6 @@ class StoryReadingCoordinator: Coordinator<UINavigationController> {
     }
 }
 
-class StoryReadingViewController: UIHostingController<StoryReadingView> {
+class StoryReadingViewController: UIHostingController<StoryDisplayView> {
     
-}
-
-// MARK: -
-struct StoryReadingView: View {
-    @ObservedObject var viewModel: StoryReadingViewModel
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            StoryDisplayView(viewModel: viewModel.storyDisplayViewModel)
-        }
-    }
-}
-
-class StoryReadingViewModel: ObservableObject {
-    let storyModel: StoryORM.ORM
-    let storyDisplayViewModel: StoryDisplayViewModel
-    init?(storyModel: StoryORM.ORM) {
-        self.storyModel = storyModel
-        guard let storyDisplayViewModel = StoryDisplayViewModel(storyORM: storyModel) else {
-            return nil
-        }
-        self.storyDisplayViewModel = storyDisplayViewModel
-    }
-}
-
-#Preview {
-    let model = StoryDataModel.mock
-    let storyORM = StoryORM.ORM(storyDataModel: model)!
-    let viewModel = StoryReadingViewModel(storyModel: storyORM)!
-    
-    HStack {
-        StoryReadingView(viewModel: viewModel)
-            .background(Color.white)
-            .frame(height: 700)
-    }
-    .frame(maxHeight: .infinity)
-    .background(Color.black)
-    .ignoresSafeArea()
 }
