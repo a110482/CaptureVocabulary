@@ -6,14 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
 import SwifterSwift
 
 extension String {
-    var color: UIColor {
+    var uicolor: UIColor {
         guard let color = UIColor(hexString: self) else {
             assertionFailure()
             return .clear
         }
         return color
+    }
+    
+    var color: Color {
+        return Color(uiColor: self.uicolor)
     }
 }

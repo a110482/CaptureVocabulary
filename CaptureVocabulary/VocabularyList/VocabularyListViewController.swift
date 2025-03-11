@@ -102,7 +102,7 @@ private extension VocabularyListViewController {
     }
     
     func configTable() {
-        tableView.backgroundColor = "F8F7F7".color
+        tableView.backgroundColor = "F8F7F7".uicolor
         tableView.register(cellWithClass: VocabularyListCell.self)
         tableView.delegate = self
         tableView.dataSource = self
@@ -161,7 +161,7 @@ private extension VocabularyListViewController {
             completionHandler(true)
         }
         // 設定背景顏色
-        editAction.backgroundColor = "3D5CFF".color
+        editAction.backgroundColor = "3D5CFF".uicolor
         editAction.image = UIImage(named: "textFiledPan")?.withTintColor(.white)
         return editAction
     }
