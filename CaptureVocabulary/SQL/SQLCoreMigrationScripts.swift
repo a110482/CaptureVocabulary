@@ -51,12 +51,8 @@ struct SQLCoreMigration_2: MigrationProcess {
     typealias Card = VocabularyCardORM
     
     func process() {
-        do {
-            try addColumn()
-            updateDateBase()
-        } catch {
-            Log.debug(error.localizedDescription)
-        }
+        try? addColumn()
+        updateDateBase()
     }
     
     private func addColumn() throws {
@@ -106,13 +102,17 @@ struct SQLCoreMigration_4: MigrationProcess {
 /// 建立單字卡上次記憶時間
 struct SQLCoreMigration_5: MigrationProcess {
     typealias Card = VocabularyCardORM
-    func process() throws {
-        try addColumn()
+    func process() {
+        try? addColumnTimestamp()
+        try? addColumnTimes()
     }
     
-    private func addColumn() throws {
+    private func addColumnTimestamp() throws {
         let addColumnTimestamp = Card.table.addColumn(Card.memorizedTimestamp, defaultValue: Date().timeIntervalSince1970)
         try SQLCore.shared.db.run(addColumnTimestamp)
+    }
+    
+    private func addColumnTimes() throws {
         let addColumnTimes = Card.table.addColumn(Card.memorizedTimes, defaultValue: Int64.zero)
         try SQLCore.shared.db.run(addColumnTimes)
     }

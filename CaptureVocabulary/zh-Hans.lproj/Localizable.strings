@@ -52,6 +52,7 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即将覆盖目前的资料，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.confirmCodeError" = "验证码错误，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "资料库覆盖完成";
+"DatabaseBackupViewController.writeDatabaseFailure" = "资料库覆盖失敗";
 
 "StoryGenerator.fairyTales" = "童话";
 "StoryGenerator.conversation" = "对话";

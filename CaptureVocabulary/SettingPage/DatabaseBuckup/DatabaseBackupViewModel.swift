@@ -87,12 +87,25 @@ extension DatabaseBackupViewModel: UIDocumentPickerDelegate {
         // 目標路徑
         let destinationURL = SQLCore.groupDatabaseURL
         
-        // 移動檔案到指定位置
-        moveFile(from: selectedFileURL, to: destinationURL)
+        // 開始備份資料庫
+        SQLCoreMigration.backDataBase()
         
+        // 複寫外部資料庫到目標
+        moveFile(from: selectedFileURL, to: destinationURL)
         SQLCore.reconnectSQL()
         
-        importDatabaseStatus.accept(.complete)
+        do {
+            // 更新資料庫版本
+            try SQLCoreMigration.checkVersion({ [weak self] in
+                DispatchQueue.main.async {
+                    self?.importDatabaseStatus.accept(.complete)
+                }
+            })
+        } catch {
+            // 更新失敗，回復舊版資料庫
+            SQLCoreMigration.recoverDatabase()
+            importDatabaseStatus.accept(.failure)
+        }
     }
 }
 
@@ -103,5 +116,6 @@ extension DatabaseBackupViewModel {
         case popConfirmCodeError(confirmCode: String)
         case selectFile
         case complete
+        case failure
     }
 }

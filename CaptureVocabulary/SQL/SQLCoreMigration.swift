@@ -25,8 +25,10 @@ enum SQLCoreMigrationError: Error {
 
 /// 修改資料庫步驟
 /// 1. 更改資料庫 model e.x. VocabularyCardORM
-/// 2. 新增 SQLCoreMigration 步驟, 讓舊用戶可以升級到新版資料庫
-/// 3. 修改 SQLCoreMigration_newDatabase 讓全新用戶可以直接升到最新版本
+/// 2. 新增 SQLCoreMigration 步驟, 讓舊用戶可以升級到新版資料庫 (add column 務必用 try?)
+/// 因為如果用戶很久沒升級，例如版本 2 升到版本 5
+/// 然後我們在版本 3 新增一個 table 版本 4 add column
+/// 這樣他在最新版的 code 在建立新的 table 時就會有所有欄位, 這樣更新到 4 腳本的時候，就會 add column 失敗
 class SQLCoreMigration {
     private static var currentDatabaseVersion: Int { readDatabaseVersion() }
     static let migrationScripts: [MigrationProcess] = [
@@ -107,6 +109,8 @@ extension SQLCoreMigration {
 
 private extension SQLCoreMigration {
     static func migration() throws {
+        // 假設現在版本 4 所以要跑版本 5 的腳本升級到版本 5
+        // 所以 index = 4 (SQLCoreMigration_5)
         guard let script = migrationScripts[safe: currentDatabaseVersion] else {
             // 拋出 error
             throw SQLCoreMigrationError.noMigrationScript

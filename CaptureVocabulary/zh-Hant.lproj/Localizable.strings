@@ -52,6 +52,7 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即將覆蓋目前的資料，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.confirmCodeError" = "驗證碼錯誤，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "資料庫覆蓋完成";
+"DatabaseBackupViewController.writeDatabaseFailure" = "資料庫覆蓋失敗";
 
 "StoryGenerator.fairyTales" = "童話";
 "StoryGenerator.conversation" = "對話";

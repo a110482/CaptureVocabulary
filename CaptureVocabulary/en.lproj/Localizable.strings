@@ -52,6 +52,7 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "Warning: You are about to overwrite the current data. Please enter the verification code: %@ to confirm overwriting.";
 "DatabaseBackupViewController.confirmCodeError" = "Invalid verification code. Please enter the verification code: %@ to confirm overwriting.";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "Database overwrite completed.";
+"DatabaseBackupViewController.writeDatabaseFailure" = "Database overwrite failed.";
 
 "StoryGenerator.fairyTales" = "Fairy Tales";
 "StoryGenerator.conversation" = "Conversation";
