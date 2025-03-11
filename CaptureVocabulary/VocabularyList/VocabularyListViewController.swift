@@ -22,7 +22,6 @@ class VocabularyListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         title = NSLocalizedString("VocabularyListViewController.flashcards", comment: "單字庫")
         configUI()
     }
@@ -103,7 +102,7 @@ private extension VocabularyListViewController {
     }
     
     func configTable() {
-        tableView.backgroundColor = UIColor(hexString: "#E5E5E5")
+        tableView.backgroundColor = "F8F7F7".color
         tableView.register(cellWithClass: VocabularyListCell.self)
         tableView.delegate = self
         tableView.dataSource = self
@@ -144,7 +143,6 @@ private extension VocabularyListViewController {
     
     /// cell 左滑選項-刪除
     func cellDeleteOption(indexPath: IndexPath) -> UIContextualAction {
-        let title = NSLocalizedString("VocabularyListViewController.delete", comment: "刪除")
         let deleteAction = UIContextualAction(style: .destructive, title: title) { [weak self] _, _, completionHandler in
             guard let self else { return }
             let cellModel = cellModels[indexPath.row]
@@ -152,18 +150,19 @@ private extension VocabularyListViewController {
             viewModel?.loadList()
             completionHandler(true) // 完成動作，左滑選項會自動收回
         }
+        deleteAction.image = UIImage(systemName: "trash")?.withTintColor(.white)
         return deleteAction
     }
     
     /// cell 左滑選項  - 編輯
     func cellEditOption(indexPath: IndexPath) -> UIContextualAction {
-        let title = NSLocalizedString("VocabularyListViewController.edit", comment: "編輯")
-        let editAction = UIContextualAction(style: .normal, title: title) { _, _, completionHandler in
+        let editAction = UIContextualAction(style: .normal, title: "") { _, _, completionHandler in
             self.showEditListNameAlert(indexPath: indexPath)
             completionHandler(true)
         }
         // 設定背景顏色
-        editAction.backgroundColor = .gray
+        editAction.backgroundColor = "3D5CFF".color
+        editAction.image = UIImage(named: "textFiledPan")?.withTintColor(.white)
         return editAction
     }
     

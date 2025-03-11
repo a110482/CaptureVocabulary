@@ -22,14 +22,13 @@
 "TabBarCoordinator.scan" = "扫单字";
 "TabBarCoordinator.review" = "复习";
 "TabBarCoordinator.flashcards" = "单字库";
+"TabBarCoordinator.myStory" = "我的故事";
 
 "VocabularyListViewController.flashcards" = "单字库";
 "VocabularyListViewController.addNew" = "+新增";
 "VocabularyListViewController.enterNewListName" = "请输入新的清单名称";
 "VocabularyListViewController.cancel" = "取消";
 "VocabularyListViewController.confirm" = "确认";
-"VocabularyListViewController.delete" = "删除";
-"VocabularyListViewController.edit" = "编辑";
 
 "CaptureVocabularyViewController.enterQuery" = "输入查询";
 "CaptureVocabularyViewController.search" = "查询";
@@ -53,3 +52,15 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即将覆盖目前的资料，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.confirmCodeError" = "验证码错误，请输入验证码: %@ 确定覆盖";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "资料库覆盖完成";
+"DatabaseBackupViewController.writeDatabaseFailure" = "资料库覆盖失敗";
+
+"StoryGenerator.fairyTales" = "童话";
+"StoryGenerator.conversation" = "对话";
+"StoryGenerator.news" = "新闻";
+"StoryGeneratorViewController.generatorStory" = "生成故事";
+"StoryGeneratorViewController.watchAD" = "观看广告生成故事";
+"StoryGeneratorViewController.title" = "故事生成器";
+"StoryGeneratorViewController.stepOne" = "第一步: 选择随机生成的单词上限";
+"StoryGeneratorViewController.stepTwo" = "第二步: 选择单词来源";
+
+"MyStoryViewController.newStory" = "新故事";

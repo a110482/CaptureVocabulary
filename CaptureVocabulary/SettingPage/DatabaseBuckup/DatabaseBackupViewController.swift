@@ -137,6 +137,8 @@ private extension DatabaseBackupViewController {
             presentDocumentPicker()
         case .complete:
             popCompleteAlert()
+        case .failure:
+            popFailureAlert()
         }
     }
     
@@ -169,6 +171,20 @@ private extension DatabaseBackupViewController {
     func popCompleteAlert() {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let text = NSLocalizedString("DatabaseBackupViewController.writeDatabaseSuccess", comment: "资料库覆盖完成")
+        alertVC.title = text
+        
+        let ok = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"),
+                               style: .default) { [weak self] _ in
+            guard let self else { return }
+            viewModel.cancelConfirmAlert()
+        }
+        alertVC.addAction(ok)
+        present(alertVC, animated: true)
+    }
+    
+    func popFailureAlert() {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let text = NSLocalizedString("DatabaseBackupViewController.writeDatabaseFailure", comment: "资料库覆盖失敗")
         alertVC.title = text
         
         let ok = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"),

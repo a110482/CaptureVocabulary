@@ -30,7 +30,7 @@ struct OpenAiSentences: OpenAiRequest {
     typealias MessageModels = SentencesModel
     
     var parameters: [String : Any] {[
-        "model": "gpt-3.5-turbo-0125",
+        "model": "gpt-4o-mini",
         "response_format": [ "type": "json_object" ],
         "max_tokens": 800,
         "messages": [

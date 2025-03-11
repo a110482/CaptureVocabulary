@@ -21,6 +21,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         viewController.setViewControllers([
             vocabularyList(),
             review(),
+            myStory(),
             captureVocabulary(),
         ], animated: false)
         super.start()
@@ -33,7 +34,7 @@ class TabBarCoordinator: Coordinator<UIViewController> {
         coordinator.viewController.tabBarItem = UITabBarItem(
             title: NSLocalizedString("TabBarCoordinator.scan", comment: "掃單字"),
             image: UIImage(named: "tabBar.scan"),
-            tag: 2)
+            tag: 3)
         return coordinator.viewController
     }
     
@@ -45,6 +46,16 @@ class TabBarCoordinator: Coordinator<UIViewController> {
             image: UIImage(named: "tabBar.review"),
             tag: 1)
         return coordinator.navController
+    }
+    
+    private func myStory() -> UIViewController {
+        let coordinator = MyStoryCoordinator(rootViewController: viewController)
+        startChild(coordinator: coordinator)
+        coordinator.navigationViewController.tabBarItem = UITabBarItem(
+            title: NSLocalizedString("TabBarCoordinator.myStory", comment: "我的故事"),
+            image: UIImage(systemName: "chart.bar.doc.horizontal.fill"),
+            tag: 2)
+        return coordinator.navigationViewController
     }
     
     private func vocabularyList() -> UIViewController {
@@ -80,7 +91,7 @@ class TabBarViewController: UITabBarController {
 }
 
 // MARK: - Demo
-class DemoViewController: UIViewController {
+class TabBarDemoViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 100)

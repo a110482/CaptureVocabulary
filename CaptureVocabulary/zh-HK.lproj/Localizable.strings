@@ -22,14 +22,13 @@
 "TabBarCoordinator.scan" = "掃單字";
 "TabBarCoordinator.review" = "複習";
 "TabBarCoordinator.flashcards" = "單字庫";
+"TabBarCoordinator.myStory" = "我的故事";
 
 "VocabularyListViewController.flashcards" = "單字庫";
 "VocabularyListViewController.addNew" = "+新增";
 "VocabularyListViewController.enterNewListName" = "請輸入新的清單名稱";
 "VocabularyListViewController.cancel" = "取消";
 "VocabularyListViewController.confirm" = "確認";
-"VocabularyListViewController.delete" = "刪除";
-"VocabularyListViewController.edit" = "編輯";
 
 "CaptureVocabularyViewController.enterQuery" = "輸入查詢";
 "CaptureVocabularyViewController.search" = "查詢";
@@ -53,3 +52,12 @@
 "DatabaseBackupViewController.confirmWarningTitle" = "警告，即將覆蓋目前的資料，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.confirmCodeError" = "驗證碼錯誤，請輸入驗證碼: %@ 確定覆蓋";
 "DatabaseBackupViewController.writeDatabaseSuccess" = "資料庫覆蓋完成";
+"DatabaseBackupViewController.writeDatabaseFailure" = "資料庫覆蓋失敗";
+
+"StoryGeneratorViewController.generatorStory" = "產生故事";
+"StoryGeneratorViewController.watchAD" = "觀看廣告產生故事";
+"StoryGeneratorViewController.title" = "故事產生器";
+"StoryGeneratorViewController.stepOne" = "第一步: 選擇隨機產生的單字上限";
+"StoryGeneratorViewController.stepTwo" = "第二步: 選擇單字來源";
+
+"MyStoryViewController.newStory" = "新故事";

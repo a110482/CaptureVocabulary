@@ -39,8 +39,6 @@ private extension ReviewCoordinator {
                 switch action {
                 case .settingPage:
                     self.settingPage()
-                case .feedback:
-                    self.feedback()
                 }
             })
             .disposed(by: disposeBag)
@@ -50,28 +48,6 @@ private extension ReviewCoordinator {
     func settingPage() {
         let coordinator = SettingPageCoordinator(rootViewController: navController)
         startChild(coordinator: coordinator)
-    }
-    
-    func feedback() {
-        guard MFMailComposeViewController.canSendMail() else {
-            alertEmailNotSetting()
-            return
-        }
-        let mailVC = MFMailComposeViewController()
-        mailVC.setToRecipients([AppParameters.shared.model.feedbackEmail])
-        mailVC.setSubject(NSLocalizedString("ReviewCoordinator.feedback", comment: "[意見回饋]"))
-        viewController.present(mailVC, animated: true, completion: nil)
-        mailVC.mailComposeDelegate = mailDelegator
-    }
-    
-    func alertEmailNotSetting() {
-        let alert = UIAlertController(
-            title: NSLocalizedString("ReviewCoordinator.emailFailure", comment: "無法使用郵件"),
-            message: NSLocalizedString("ReviewCoordinator.setUpYourEmailAccount", comment: "請先設定郵件帳號"), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: NSLocalizedString("ReviewCoordinator.ok", comment: "確定"),
-            style: .default, handler: nil))
-        viewController.present(alert, animated: true, completion: nil)
     }
 }
 
