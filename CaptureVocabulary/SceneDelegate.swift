@@ -48,6 +48,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.map({ $0.url }).first else { return }
+        print(url.host(), url.path())
+    }
 }
 

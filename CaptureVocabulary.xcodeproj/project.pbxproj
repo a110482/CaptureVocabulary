@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0600CC842D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC852D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
+		0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC8C2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
+		0600CC8D2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
+		0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
+		061228182D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */; };
+		061228192D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */; };
+		0612281B2D5D9A92008FF95E /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612281A2D5D9A8C008FF95E /* TypeAlias.swift */; };
+		0612281C2D5D9A92008FF95E /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612281A2D5D9A8C008FF95E /* TypeAlias.swift */; };
 		0654E1102C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		0654E1112C89964B001F769B /* RxOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654E10F2C89964B001F769B /* RxOutput.swift */; };
 		067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */; };
@@ -19,12 +32,60 @@
 		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		06B3F29A2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29B2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
+		06B3F29E2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F29F2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F2A02D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */; };
+		06B3F2BA2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06B3F2BC2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */; };
+		06BF100E2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
+		06BF100F2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
+		06BF10102D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */; };
+		06BF10122D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
+		06BF10132D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
+		06BF10142D76CEE600529EDB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10112D76CEE600529EDB /* String+Extension.swift */; };
+		06BF101B2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101C2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101A2D79411300529EDB /* UIInsetLabel.swift */; };
+		06BF101F2D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10202D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10212D796D5D00529EDB /* LoadingADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */; };
+		06BF10242D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
+		06BF10252D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
+		06BF10262D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */; };
+		06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */; };
+		06C1F55F2D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5602D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */; };
+		06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */; };
+		06C1F5672D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F5682D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F5662D424BE500C60EAE /* StoryORM.swift */; };
+		06C1F56B2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
+		06C1F56C2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
+		06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */; };
 		06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E22CAA807F00015F68 /* DispatchPointer.swift */; };
 		06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
 		06E051E92CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */; };
 		06E051EB2CAFC18400015F68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051EA2CAFC18400015F68 /* Int+Extension.swift */; };
 		06E051EC2CAFC18400015F68 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E051EA2CAFC18400015F68 /* Int+Extension.swift */; };
+		06E199742D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199752D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199762D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */; };
+		06E199782D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E1997A2D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */; };
+		06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
+		06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
+		06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */; };
 		06FBBAB52D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
 		06FBBAB62D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
 		06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */; };
@@ -40,6 +101,27 @@
 		06FBBAC62D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
 		06FBBAC72D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
 		06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */; };
+		06FBBACB2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACC2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACA2D23F13000038345 /* MyStoryViewController.swift */; };
+		06FBBACF2D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD12D23F14900038345 /* MyStoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */; };
+		06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
+		06FBBAD42D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
+		06FBBAD52D23F15600038345 /* MyStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */; };
+		06FBBADB2D26882400038345 /* StorytypeOpentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */; };
+		06FBBADC2D26882400038345 /* StorytypeOpentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */; };
+		06FBBADD2D26882400038345 /* StorytypeOpentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */; };
+		06FBBADF2D268E8800038345 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADE2D268E8800038345 /* SegmentedView.swift */; };
+		06FBBAE02D268E8800038345 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADE2D268E8800038345 /* SegmentedView.swift */; };
+		06FBBAE12D268E8800038345 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBADE2D268E8800038345 /* SegmentedView.swift */; };
+		06FBBAE42D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE32D268EF600038345 /* SegmentedViewConfiguration.swift */; };
+		06FBBAE52D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE32D268EF600038345 /* SegmentedViewConfiguration.swift */; };
+		06FBBAE62D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE32D268EF600038345 /* SegmentedViewConfiguration.swift */; };
+		06FBBAE82D26900700038345 /* SegmentedOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE72D26900700038345 /* SegmentedOptionView.swift */; };
+		06FBBAE92D26900700038345 /* SegmentedOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE72D26900700038345 /* SegmentedOptionView.swift */; };
+		06FBBAEA2D26900700038345 /* SegmentedOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBBAE72D26900700038345 /* SegmentedOptionView.swift */; };
 		2D56E4DA4972B7F53D103B5E /* Pods_CaptureVocabularyWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EF77555101F26BC6EEB26C /* Pods_CaptureVocabularyWidgetExtension.framework */; };
 		C001389329C83BD800D2E4BA /* mockWords.json in Resources */ = {isa = PBXBuildFile; fileRef = C001389229C83BD700D2E4BA /* mockWords.json */; };
 		C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
@@ -120,7 +202,6 @@
 		C060796229E805DA00434A2E /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5EADA28145B6C000DD57B /* PlistReader.swift */; };
 		C060796329E805DA00434A2E /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001389429C83CE500D2E4BA /* JsonReader.swift */; };
 		C060796429E805DA00434A2E /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
-		C060796529E805DA00434A2E /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
 		C060796629E805DA00434A2E /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5071C9D282BBD8F00813841 /* Speaker.swift */; };
 		C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E66032283108CB00277222 /* UserDefaultUtility.swift */; };
 		C060796829E805DA00434A2E /* AzureDictionaryORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */; };
@@ -244,7 +325,6 @@
 		F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */; };
 		F5CBF5982815BFF30088C801 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5972815BFF30088C801 /* Operators.swift */; };
 		F5CBF59A2816DCF00088C801 /* AzureDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = F5CBF5992816DCF00088C801 /* AzureDictionary.json */; };
-		F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CBF5AD2816EEDB0088C801 /* GBig.swift */; };
 		F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */; };
 		F5E64829281E70CA00F8F423 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E64828281E70CA00F8F423 /* String+Ext.swift */; };
 		F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */; };
@@ -287,20 +367,48 @@
 
 /* Begin PBXFileReference section */
 		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		0600CC832D27C80200FD15FD /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorOptionView.swift; sourceTree = "<group>"; };
+		0600CC8B2D27D98600FD15FD /* Range+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+Extension.swift"; sourceTree = "<group>"; };
+		061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		0612281A2D5D9A8C008FF95E /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		0654E10F2C89964B001F769B /* RxOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxOutput.swift; sourceTree = "<group>"; };
 		067EE7F12C5B6B7400523B51 /* SettingSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSectionHeader.swift; sourceTree = "<group>"; };
 		067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDisplayView.swift; sourceTree = "<group>"; };
+		06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmCoordinator.swift; sourceTree = "<group>"; };
+		06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmSaveView.swift; sourceTree = "<group>"; };
+		06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryTableViewCell.swift; sourceTree = "<group>"; };
+		06BF10112D76CEE600529EDB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		06BF101A2D79411300529EDB /* UIInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInsetLabel.swift; sourceTree = "<group>"; };
+		06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingADViewController.swift; sourceTree = "<group>"; };
+		06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryReadingCoordinator.swift; sourceTree = "<group>"; };
+		06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorListSettingCell.swift; sourceTree = "<group>"; };
+		06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorApi.swift; sourceTree = "<group>"; };
+		06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardListORM.swift; sourceTree = "<group>"; };
+		06C1F5662D424BE500C60EAE /* StoryORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryORM.swift; sourceTree = "<group>"; };
+		06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		06E051E22CAA807F00015F68 /* DispatchPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchPointer.swift; sourceTree = "<group>"; };
 		06E051E72CAFBB8400015F68 /* SettingSwitchSentenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSwitchSentenceCell.swift; sourceTree = "<group>"; };
 		06E051EA2CAFC18400015F68 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorViewController.swift; sourceTree = "<group>"; };
+		06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorCoordinator.swift; sourceTree = "<group>"; };
+		06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorViewModel.swift; sourceTree = "<group>"; };
 		06FBBAB42D1D3D0A00038345 /* MoreSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingCell.swift; sourceTree = "<group>"; };
 		06FBBAB92D1D56DD00038345 /* DatabaseBackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupViewController.swift; sourceTree = "<group>"; };
 		06FBBABD2D1D585F00038345 /* DatabaseBackupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupCoordinator.swift; sourceTree = "<group>"; };
 		06FBBAC12D1D586E00038345 /* DatabaseBackupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseBackupViewModel.swift; sourceTree = "<group>"; };
 		06FBBAC52D1E9A0F00038345 /* VersionNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionNumberCell.swift; sourceTree = "<group>"; };
+		06FBBACA2D23F13000038345 /* MyStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewController.swift; sourceTree = "<group>"; };
+		06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryCoordinator.swift; sourceTree = "<group>"; };
+		06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewModel.swift; sourceTree = "<group>"; };
+		06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorytypeOpentionView.swift; sourceTree = "<group>"; };
+		06FBBADE2D268E8800038345 /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
+		06FBBAE32D268EF600038345 /* SegmentedViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedViewConfiguration.swift; sourceTree = "<group>"; };
+		06FBBAE72D26900700038345 /* SegmentedOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedOptionView.swift; sourceTree = "<group>"; };
 		25A28A2A8163D3EB18BB069C /* Pods-CaptureVocabularyWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		382A1C8E5C936C3D771D5899 /* Pods-CaptureVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5BDBBA04111B67CDDDFCD4 /* Pods-CaptureVocabulary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabulary.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabulary/Pods-CaptureVocabulary.release.xcconfig"; sourceTree = "<group>"; };
@@ -435,7 +543,6 @@
 		F5CBF5952815A0480088C801 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		F5CBF5972815BFF30088C801 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		F5CBF5992816DCF00088C801 /* AzureDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AzureDictionary.json; sourceTree = "<group>"; };
-		F5CBF5AD2816EEDB0088C801 /* GBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBig.swift; sourceTree = "<group>"; };
 		F5E4DE3C28F43F6200764328 /* VocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewModel.swift; sourceTree = "<group>"; };
 		F5E64828281E70CA00F8F423 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardORM.swift; sourceTree = "<group>"; };
@@ -479,13 +586,65 @@
 		067EE7F42C5B781300523B51 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0612281A2D5D9A8C008FF95E /* TypeAlias.swift */,
+				061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */,
 				067EE7F52C5B784600523B51 /* CGPoint+Extension.swift */,
 				067EE7F72C5B786600523B51 /* UIView+Extension.swift */,
 				067EE7FB2C5C712600523B51 /* View+Extension.swift */,
 				067EE7FD2C5C718700523B51 /* Color+Extension.swift */,
 				06E051EA2CAFC18400015F68 /* Int+Extension.swift */,
+				0600CC832D27C80200FD15FD /* Array+Extension.swift */,
+				0600CC8B2D27D98600FD15FD /* Range+Extension.swift */,
+				06C1F56A2D4360F400C60EAE /* Codable+Extension.swift */,
+				06BF10112D76CEE600529EDB /* String+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06B3F2982D6F18B400DA911A /* StoryConfirmSave */ = {
+			isa = PBXGroup;
+			children = (
+				06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */,
+				06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */,
+				06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */,
+			);
+			path = StoryConfirmSave;
+			sourceTree = "<group>";
+		};
+		06BF10192D7940F800529EDB /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				06BF101A2D79411300529EDB /* UIInsetLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		06BF10222D7AE81C00529EDB /* SrotyReading */ = {
+			isa = PBXGroup;
+			children = (
+				06BF10232D7AE84B00529EDB /* StoryReadingCoordinator.swift */,
+			);
+			path = SrotyReading;
+			sourceTree = "<group>";
+		};
+		06C1F5592D3E537900C60EAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				06C1F55A2D3E539500C60EAE /* StoryGeneratorListSettingCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		06E199722D277DA4000DE54C /* StoryGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */,
+				06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */,
+				06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */,
+				0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */,
+				06C1F5592D3E537900C60EAE /* Views */,
+			);
+			path = StoryGenerator;
 			sourceTree = "<group>";
 		};
 		06FBBAB82D1D566400038345 /* DatabaseBuckup */ = {
@@ -496,6 +655,28 @@
 				06FBBAC12D1D586E00038345 /* DatabaseBackupViewModel.swift */,
 			);
 			path = DatabaseBuckup;
+			sourceTree = "<group>";
+		};
+		06FBBAC92D23F0A500038345 /* MyStroyPage */ = {
+			isa = PBXGroup;
+			children = (
+				06FBBACE2D23F14900038345 /* MyStoryCoordinator.swift */,
+				06FBBACA2D23F13000038345 /* MyStoryViewController.swift */,
+				06BF100D2D75A45100529EDB /* MyStoryTableViewCell.swift */,
+				06FBBAD22D23F15600038345 /* MyStoryViewModel.swift */,
+				06FBBADA2D26882400038345 /* StorytypeOpentionView.swift */,
+			);
+			path = MyStroyPage;
+			sourceTree = "<group>";
+		};
+		06FBBAE22D268EB400038345 /* SegmentedView */ = {
+			isa = PBXGroup;
+			children = (
+				06FBBADE2D268E8800038345 /* SegmentedView.swift */,
+				06FBBAE72D26900700038345 /* SegmentedOptionView.swift */,
+				06FBBAE32D268EF600038345 /* SegmentedViewConfiguration.swift */,
+			);
+			path = SegmentedView;
 			sourceTree = "<group>";
 		};
 		BF02FDD175A511553E67A71A /* Frameworks */ = {
@@ -569,6 +750,7 @@
 			isa = PBXGroup;
 			children = (
 				C0ECF8982B0B791E00856828 /* OpenAiRequest.swift */,
+				06C1F55E2D3FA26900C60EAE /* StoryGeneratorApi.swift */,
 			);
 			path = OpenAiApi;
 			sourceTree = "<group>";
@@ -667,12 +849,12 @@
 			children = (
 				F5A16312280DBAD500257ABF /* CustomExtension */,
 				F5A16309280BF13300257ABF /* Coordinating.swift */,
+				06FBBAE22D268EB400038345 /* SegmentedView */,
 				F5A16308280BF13300257ABF /* Coordinator.swift */,
 				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
 				F5B5EADA28145B6C000DD57B /* PlistReader.swift */,
 				C001389429C83CE500D2E4BA /* JsonReader.swift */,
 				F5CBF5972815BFF30088C801 /* Operators.swift */,
-				F5CBF5AD2816EEDB0088C801 /* GBig.swift */,
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
 				F5E66032283108CB00277222 /* UserDefaultUtility.swift */,
 				C0ECF8A12B0D0B9700856828 /* SimpleSentenceService.swift */,
@@ -746,8 +928,8 @@
 				F5C2007328071DE400A3AAB6 /* LaunchScreen.storyboard */,
 				F5C2007628071DE400A3AAB6 /* Info.plist */,
 				F53771C72812985B003F892D /* appParametersDev.plist */,
-				C0EFECE729F270930064F647 /* appParametersProd.plist */,
 				C0F413B129FA5BCA00378E17 /* appParametersUat.plist */,
+				C0EFECE729F270930064F647 /* appParametersProd.plist */,
 				C0F413C829FBA11500378E17 /* GoogleService-Info-debug.plist */,
 				C0F413CB29FBAAC400378E17 /* GoogleService-Info-uat.plist */,
 				C0F413CD29FBAB2600378E17 /* GoogleService-Info-release.plist */,
@@ -755,6 +937,10 @@
 				C0F413B429FA5BD500378E17 /* Release.xcconfig */,
 				C0F413B529FA5BD500378E17 /* Uat.xcconfig */,
 				C0297F0F2A039CC3000F4A71 /* Resource.zip */,
+				06BF10222D7AE81C00529EDB /* SrotyReading */,
+				06B3F2982D6F18B400DA911A /* StoryConfirmSave */,
+				06E199722D277DA4000DE54C /* StoryGenerator */,
+				06FBBAC92D23F0A500038345 /* MyStroyPage */,
 				F599B36428E3011600C551D8 /* YoudaoService */,
 				C0BDFEFE2B8600F20033D319 /* SettingPage */,
 				F5E6602F2830DF2500277222 /* Review */,
@@ -779,6 +965,7 @@
 		F5CBF58E281571510088C801 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				06BF10192D7940F800529EDB /* Label */,
 				F52A654A2843A23D0094357B /* Button */,
 				F5CBF58F2815718E0088C801 /* PopupViewController.swift */,
 				F50952B928267A43000C74B0 /* UIPickerViewController.swift */,
@@ -788,6 +975,7 @@
 				C0EFECF529F68C440064F647 /* QueryStringTextField.swift */,
 				C0347D3329F8CBAA004A1133 /* AdsManager.swift */,
 				C0F413CF29FBAFFE00378E17 /* AnalyticsKeys.swift */,
+				06BF101E2D796D5D00529EDB /* LoadingADViewController.swift */,
 				0654E10F2C89964B001F769B /* RxOutput.swift */,
 				06E051E22CAA807F00015F68 /* DispatchPointer.swift */,
 			);
@@ -813,6 +1001,8 @@
 				C0BDFEFB2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift */,
 				F50952B5281FE81B000C74B0 /* ORMTranslateAble.swift */,
 				F5E6482B281E727100F8F423 /* VocabularyCardORM.swift */,
+				06C1F5622D4245D900C60EAE /* VocabularyCardListORM.swift */,
+				06C1F5662D424BE500C60EAE /* StoryORM.swift */,
 				C0ECF89E2B0D03D900856828 /* SimpleSentencesORM.swift */,
 				F5E64838281EC3BC00F8F423 /* AzureDictionaryORM.swift */,
 				F5CB21CF28EEE0DF0052A17E /* YDTranslateORM.swift */,
@@ -1171,11 +1361,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06BF10212D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				06FBBABC2D1D56DD00038345 /* DatabaseBackupViewController.swift in Sources */,
+				06FBBADC2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
 				06FBBABF2D1D585F00038345 /* DatabaseBackupCoordinator.swift in Sources */,
+				06FBBAE52D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
 				C02D277329BF2F3200CC26C4 /* CaptureVocabularyTests.swift in Sources */,
+				06FBBAE12D268E8800038345 /* SegmentedView.swift in Sources */,
+				06C1F55B2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
+				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */,
+				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
+				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */,
+				06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
+				06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
+				06FBBAD02D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
+				06E199792D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
+				06B3F29F2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
+				0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */,
+				06C1F5652D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				06FBBAC82D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
+				06FBBAD32D23F15600038345 /* MyStoryViewModel.swift in Sources */,
+				06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
+				06BF10262D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
+				06B3F2BB2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				06FBBAB72D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
+				06BF10102D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
+				06E1997E2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
+				06FBBAEA2D26900700038345 /* SegmentedOptionView.swift in Sources */,
+				06E199762D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
+				06BF10142D76CEE600529EDB /* String+Extension.swift in Sources */,
 				06FBBAC22D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1186,18 +1402,23 @@
 			files = (
 				C060793B29E805D900434A2E /* SceneDelegate.swift in Sources */,
 				06FBBAC42D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
+				06FBBAD52D23F15600038345 /* MyStoryViewModel.swift in Sources */,
+				0600CC852D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				067EE7F92C5B78DD00523B51 /* UIView+Extension.swift in Sources */,
 				C060793C29E805D900434A2E /* ViewController.swift in Sources */,
 				C0347D3529F8CD5E004A1133 /* AdsManager.swift in Sources */,
 				C060793D29E805D900434A2E /* YDService.swift in Sources */,
 				C0BDFF0A2B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
+				06BF100E2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
 				C0F413D629FBD6F300378E17 /* UITextField+Ext.swift in Sources */,
+				0612281B2D5D9A92008FF95E /* TypeAlias.swift in Sources */,
 				C060793E29E805D900434A2E /* YDRequest.swift in Sources */,
 				C03B02082B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				C060793F29E805D900434A2E /* ReviewCoordinator.swift in Sources */,
 				C0BDFF012B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C060794029E805D900434A2E /* ReviewViewController.swift in Sources */,
 				C060794129E805D900434A2E /* TabBarCoordinator.swift in Sources */,
+				06B3F29A2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
 				C0EFECDD29F13EC90064F647 /* SQLCoreMigration.swift in Sources */,
 				C060794229E805D900434A2E /* VocabularyCardsCoordinator.swift in Sources */,
 				C060794329E805D900434A2E /* VocabularyCardsViewModel.swift in Sources */,
@@ -1215,35 +1436,49 @@
 				C0ECF8A02B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				06FBBAC62D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				C060794A29E805DA00434A2E /* VisionCaptureViewController.swift in Sources */,
+				06B3F2A02D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
 				C060794B29E805DA00434A2E /* CaptureVocabularyCoordinator.swift in Sources */,
 				C0ECF89A2B0B8C2100856828 /* OpenAiRequest.swift in Sources */,
 				C060794C29E805DA00434A2E /* CaptureVocabularyViewController.swift in Sources */,
 				C060794D29E805DA00434A2E /* CaptureVocabularyViewModel.swift in Sources */,
+				06B3F2BC2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				C060794E29E805DA00434A2E /* VocabularyViewController.swift in Sources */,
 				C060794F29E805DA00434A2E /* CreateVocabularyCoordinator.swift in Sources */,
+				06E1997A2D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				C060795029E805DA00434A2E /* VocabularyViewModel.swift in Sources */,
 				C060795129E805DA00434A2E /* Decision.swift in Sources */,
 				06E051E92CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */,
 				C060795229E805DA00434A2E /* StanderDecision.swift in Sources */,
 				C00E95882A08EB7000D1DA29 /* UIButton+Ext.swift in Sources */,
+				06BF101F2D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				C032E5222B5534D30091F4CA /* ReviewCollectionViewCellModel.swift in Sources */,
+				06E199742D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
 				C060795329E805DA00434A2E /* MoyaProvider+Ext.swift in Sources */,
+				06FBBADB2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
 				C060795429E805DA00434A2E /* Request.swift in Sources */,
 				C0297F0E2A039648000F4A71 /* DicSQL.swift in Sources */,
+				06FBBAE92D26900700038345 /* SegmentedOptionView.swift in Sources */,
 				C060795529E805DA00434A2E /* HeaderStorage.swift in Sources */,
 				C060795629E805DA00434A2E /* RequestBuilder.swift in Sources */,
 				C060795729E805DA00434A2E /* AzureRequest.swift in Sources */,
 				C060795829E805DA00434A2E /* AzureTranslate.swift in Sources */,
+				061228182D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */,
+				06BF10242D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
 				C060795929E805DA00434A2E /* AzureDictionary.swift in Sources */,
 				C060795A29E805DA00434A2E /* Array+Ext.swift in Sources */,
 				C0BDFEFD2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */,
 				C060795B29E805DA00434A2E /* UIStackView+Ext.swift in Sources */,
 				C060795C29E805DA00434A2E /* String+Ext.swift in Sources */,
+				06FBBAE62D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
+				06C1F55C2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				C0EFECEB29F61F740064F647 /* UIView+Ext.swift in Sources */,
+				06C1F55F2D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				C060795D29E805DA00434A2E /* Data+Ext.swift in Sources */,
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
+				0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				06BF10132D76CEE600529EDB /* String+Extension.swift in Sources */,
 				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
 				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
 				C0F413D129FBB00400378E17 /* AnalyticsKeys.swift in Sources */,
@@ -1254,7 +1489,6 @@
 				C060796429E805DA00434A2E /* Operators.swift in Sources */,
 				C0ECF8962B08EABB00856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C0BDFF0D2B8899840033D319 /* SettingReadingCell.swift in Sources */,
-				C060796529E805DA00434A2E /* GBig.swift in Sources */,
 				C060796629E805DA00434A2E /* Speaker.swift in Sources */,
 				06E051E42CAA807F00015F68 /* DispatchPointer.swift in Sources */,
 				C060796729E805DA00434A2E /* UserDefaultUtility.swift in Sources */,
@@ -1264,23 +1498,32 @@
 				C060796A29E805DA00434A2E /* ActiveSwitchButton.swift in Sources */,
 				C060796B29E805DA00434A2E /* PopupViewController.swift in Sources */,
 				C060796C29E805DA00434A2E /* UIPickerViewController.swift in Sources */,
+				06FBBACF2D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				C060796D29E805DA00434A2E /* AppParameters.swift in Sources */,
 				C060796E29E805DA00434A2E /* AppInfo.swift in Sources */,
+				06FBBACB2D23F13000038345 /* MyStoryViewController.swift in Sources */,
+				06C1F5672D424BE500C60EAE /* StoryORM.swift in Sources */,
 				C060796F29E805DA00434A2E /* UserDefaultsKeys.swift in Sources */,
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
+				06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
+				06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */,
 				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
 				C06078DC29E7FADF00434A2E /* CaptureVocabularyWidgetBundle.swift in Sources */,
 				C06078F229E7FFC700434A2E /* CaptureVocabularyWidgetEntryView.swift in Sources */,
+				06BF101B2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				C060793729E8057E00434A2E /* SQLCore.swift in Sources */,
 				C060793629E8057000434A2E /* VocabularyCardORM.swift in Sources */,
 				C0BDFF072B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C060793529E8055F00434A2E /* YDTranslateAPI.swift in Sources */,
 				C0A974DB2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				06C1F56B2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */,
 				F5AEE81F29FD55F000EA3B6F /* TranslateTextView.swift in Sources */,
 				067EE7FA2C5B78E000523B51 /* CGPoint+Extension.swift in Sources */,
+				06FBBADF2D268E8800038345 /* SegmentedView.swift in Sources */,
+				0600CC8C2D27D98600FD15FD /* Range+Extension.swift in Sources */,
 				067EE7F32C5B6E4F00523B51 /* SettingSectionHeader.swift in Sources */,
 				C060793829E8059800434A2E /* ORMTranslateAble.swift in Sources */,
 				C0EFECF729F68C5D0064F647 /* QueryStringTextField.swift in Sources */,
@@ -1294,35 +1537,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06BF10202D796D5D00529EDB /* LoadingADViewController.swift in Sources */,
 				F58A860628140ED10005CD34 /* AzureRequest.swift in Sources */,
 				06E051E82CAFBB8400015F68 /* SettingSwitchSentenceCell.swift in Sources */,
 				F52A6549283DDC540094357B /* VocabularyCardCell.swift in Sources */,
 				C060797B29E808BD00434A2E /* Log.swift in Sources */,
+				061228192D5C9CDC008FF95E /* UIViewController+Extension.swift in Sources */,
 				C0B2266629C2F89700ACBA14 /* ReviewViewController.swift in Sources */,
 				06FBBAB62D1D3D0A00038345 /* MoreSettingCell.swift in Sources */,
 				F50952B6281FE81B000C74B0 /* ORMTranslateAble.swift in Sources */,
+				06BF10122D76CEE600529EDB /* String+Extension.swift in Sources */,
 				F50952BE282781CA000C74B0 /* TabBarCoordinator.swift in Sources */,
 				F5C2006D28071DE200A3AAB6 /* ViewController.swift in Sources */,
 				F5CBF59428159FE30088C801 /* VocabularyViewController.swift in Sources */,
 				C0F413D029FBAFFE00378E17 /* AnalyticsKeys.swift in Sources */,
 				067EE7F22C5B6B7400523B51 /* SettingSectionHeader.swift in Sources */,
+				06C1F56C2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
 				C0ECF89F2B0D03D900856828 /* SimpleSentencesORM.swift in Sources */,
 				F50952C628297B90000C74B0 /* VocabularyListViewController.swift in Sources */,
 				F5641818293DECB70068DA9E /* UIColorSetting.swift in Sources */,
-				F5CBF5AE2816EEDB0088C801 /* GBig.swift in Sources */,
 				06FBBABE2D1D585F00038345 /* DatabaseBackupCoordinator.swift in Sources */,
 				F5B5EADB28145B6C000DD57B /* PlistReader.swift in Sources */,
+				06C1F5602D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				C0ECF8A22B0D0B9700856828 /* SimpleSentenceService.swift in Sources */,
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
+				06E199752D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
+				0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
 				F53771CF2812B4D7003F892D /* Request.swift in Sources */,
 				F5E660312830DFD100277222 /* ReviewCoordinator.swift in Sources */,
+				06FBBAD42D23F15600038345 /* MyStoryViewModel.swift in Sources */,
 				06FBBAC72D1E9A0F00038345 /* VersionNumberCell.swift in Sources */,
 				F5A16307280AE4FB00257ABF /* VisionCaptureViewController.swift in Sources */,
 				F5A1630A280BF13300257ABF /* Coordinator.swift in Sources */,
+				0600CC842D27C80200FD15FD /* Array+Extension.swift in Sources */,
 				C0ECF8992B0B791E00856828 /* OpenAiRequest.swift in Sources */,
 				F50952B8281FE865000C74B0 /* SQLCore.swift in Sources */,
 				F5B5EAD928145720000DD57B /* AzureDictionary.swift in Sources */,
@@ -1333,6 +1584,7 @@
 				06E051EB2CAFC18400015F68 /* Int+Extension.swift in Sources */,
 				F599B36628E3014100C551D8 /* YDService.swift in Sources */,
 				F5AEE81E29FD54A700EA3B6F /* TranslateTextView.swift in Sources */,
+				06FBBAE42D268EF600038345 /* SegmentedViewConfiguration.swift in Sources */,
 				F57F807229140EA400B6FD9E /* CaptureVocabularyViewModel.swift in Sources */,
 				C00E95872A08EA6A00D1DA29 /* UIButton+Ext.swift in Sources */,
 				F599B36828E306EB00C551D8 /* Data+Ext.swift in Sources */,
@@ -1340,19 +1592,27 @@
 				C0BDFEFC2B85DBFE0033D319 /* SQLCoreMigrationScripts.swift in Sources */,
 				C0EFECEA29F61E2C0064F647 /* UIView+Ext.swift in Sources */,
 				F5CBF5962815A0480088C801 /* CreateVocabularyCoordinator.swift in Sources */,
+				06FBBADD2D26882400038345 /* StorytypeOpentionView.swift in Sources */,
+				0612281C2D5D9A92008FF95E /* TypeAlias.swift in Sources */,
 				F5E66033283108CC00277222 /* UserDefaultUtility.swift in Sources */,
 				C06078CE29E7DB0800434A2E /* AppParameters.swift in Sources */,
 				F58A8608281411080005CD34 /* HeaderStorage.swift in Sources */,
+				0600CC8D2D27D98600FD15FD /* Range+Extension.swift in Sources */,
+				06FBBAD12D23F14900038345 /* MyStoryCoordinator.swift in Sources */,
 				C0A974DA2A15C9FD00196064 /* CaptureVocabularyWidget.intentdefinition in Sources */,
+				06FBBACC2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				F5A4CF7828E5A6A100600E21 /* YDRequest.swift in Sources */,
 				F5CBF58D28156B940088C801 /* UIStackView+Ext.swift in Sources */,
 				F5A16311280C759600257ABF /* CaptureVocabularyCoordinator.swift in Sources */,
+				06B3F29E2D6FFA6300DA911A /* StoryConfirmCoordinator.swift in Sources */,
+				06B3F2BA2D70582000DA911A /* StoryConfirmSaveView.swift in Sources */,
 				067EE7F82C5B786600523B51 /* UIView+Extension.swift in Sources */,
 				F50952CA28297E1A000C74B0 /* VocabularyListCell.swift in Sources */,
 				F50952C828297BC9000C74B0 /* VocabularyListViewModel.swift in Sources */,
 				C0BDFF002B8733D80033D319 /* SettingPageCoordinator.swift in Sources */,
 				C03B02072B1F51790067D2FE /* OpenCCConverter.swift in Sources */,
 				06E051E32CAA807F00015F68 /* DispatchPointer.swift in Sources */,
+				06FBBAE82D26900700038345 /* SegmentedOptionView.swift in Sources */,
 				C001389929C84D2500D2E4BA /* DevPanelViewController.swift in Sources */,
 				F5E4DE3D28F43F6200764328 /* VocabularyViewModel.swift in Sources */,
 				C0BF557229E65BFF001DEF3D /* VocabularyCardsViewModel.swift in Sources */,
@@ -1362,7 +1622,9 @@
 				F5B5EAD7281454B7000DD57B /* AzureTranslate.swift in Sources */,
 				F5A1630D280BF14B00257ABF /* TableViewCellTemplate.swift in Sources */,
 				C0EFECF629F68C440064F647 /* QueryStringTextField.swift in Sources */,
+				06C1F5632D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
 				F5CBF5982815BFF30088C801 /* Operators.swift in Sources */,
+				06BF10252D7AE84B00529EDB /* StoryReadingCoordinator.swift in Sources */,
 				F5A4CF7C28E6FC0400600E21 /* YDTranslateAPI.swift in Sources */,
 				F5E6603628311BEE00277222 /* UserDefaultsKeys.swift in Sources */,
 				F53771CE2812B4D7003F892D /* MoyaProvider+Ext.swift in Sources */,
@@ -1372,6 +1634,7 @@
 				C001389529C83CE500D2E4BA /* JsonReader.swift in Sources */,
 				C0A974D82A121E0400196064 /* VersionCheck.swift in Sources */,
 				F53771CD2812B4D7003F892D /* Decision.swift in Sources */,
+				06C1F5682D424BE500C60EAE /* StoryORM.swift in Sources */,
 				C0B2266A29C2F92000ACBA14 /* ReviewCollectionViewCell.swift in Sources */,
 				F5CB21D028EEE0DF0052A17E /* YDTranslateORM.swift in Sources */,
 				F5A1630B280BF13300257ABF /* Coordinating.swift in Sources */,
@@ -1379,19 +1642,26 @@
 				067EE7FC2C5C712600523B51 /* View+Extension.swift in Sources */,
 				C0F413D529FBD69B00378E17 /* UITextField+Ext.swift in Sources */,
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
+				06FBBAE02D268E8800038345 /* SegmentedView.swift in Sources */,
+				06BF100F2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
+				06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
 				06FBBABA2D1D56DD00038345 /* DatabaseBackupViewController.swift in Sources */,
 				067EE7F62C5B784600523B51 /* CGPoint+Extension.swift in Sources */,
 				F5CBF5902815718E0088C801 /* PopupViewController.swift in Sources */,
 				F5A4CF7A28E6FA0D00600E21 /* Encodable+Ext.swift in Sources */,
+				06C1F55D2D3E539800C60EAE /* StoryGeneratorListSettingCell.swift in Sources */,
 				F5E64839281EC3BC00F8F423 /* AzureDictionaryORM.swift in Sources */,
 				F5E6482C281E727100F8F423 /* VocabularyCardORM.swift in Sources */,
 				C0BDFF032B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
+				06B3F29B2D6F18D400DA911A /* StoryDisplayView.swift in Sources */,
+				06E199782D277E08000DE54C /* StoryGeneratorCoordinator.swift in Sources */,
 				C0BDFF062B8739290033D319 /* SettingPageViewController.swift in Sources */,
 				C0EFECDC29F13E640064F647 /* SQLCoreMigration.swift in Sources */,
 				C0ECF8912B08E15300856828 /* EditVocabularyCardsCoordinator.swift in Sources */,
 				C0BDFF092B8896480033D319 /* SettingTableViewSectionModel.swift in Sources */,
+				06BF101C2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				C06078D029E7E64500434A2E /* AppInfo.swift in Sources */,
 				067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */,
 				06FBBAC32D1D586E00038345 /* DatabaseBackupViewModel.swift in Sources */,
@@ -1526,13 +1796,13 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.21;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1560,13 +1830,13 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.21;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1630,6 +1900,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Uat;
@@ -1657,12 +1928,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.44;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1708,13 +1979,13 @@
 				INFOPLIST_FILE = CaptureVocabularyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CaptureVocabularyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.21;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.uat.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1786,6 +2057,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1842,6 +2114,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1855,10 +2128,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CaptureVocabulary/CaptureVocabulary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 473T6T639P;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 473T6T639P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVocabulary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordHouse;
@@ -1870,15 +2145,16 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.44;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dev20250211;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1908,12 +2184,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.44;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elijahTan.capture-vocabulary.CaptureVocabulary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

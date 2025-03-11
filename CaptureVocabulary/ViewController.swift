@@ -111,7 +111,50 @@ private extension ViewController {
     }
     
     func test() {
-//        print(SimpleSentenceService.shared.querySentence(queryWord: "hello"))
+        
+    }
+    
+    func demoVoca() -> [String] {
+        let demoVoca: [String] = [
+            "Analyze",
+            "Benevolent",
+            "Contribute",
+            "Diligent",
+            "Empathy",
+            "Formulate",
+            "Hypothesis",
+            "Integrate",
+            "Jeopardize",
+            "Knowledgeable",
+            "Lucrative",
+            "Magnify",
+            "Navigate",
+            "Oblivious",
+            "Perception",
+            "Quantify",
+            "Resilient",
+            "Substantiate",
+            "Thrive",
+            "Ubiquitous"
+        ]
+        return demoVoca
+    }
+    
+    func apiTest() {
+        let req = StoryGeneratorApi(vocabularyList: demoVoca())
+        
+        let provider = MoyaProvider<StoryGeneratorApi>()
+        Log.debug("api send")
+        provider.send(request: req) { result in
+            guard case .success(let model) = result else {
+                return
+            }
+            let message = model.choices.first?.message.content ?? ""
+            guard let messageModel = try? JSONDecoder().decode(StoryGeneratorApi.MessageModels.self, from: message.data(using: .utf8)!) else {
+                return
+            }
+            Log.debug(messageModel)
+        }
     }
 }
 #endif

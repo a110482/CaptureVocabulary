@@ -47,17 +47,11 @@ class CaptureVocabularyViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         bindAction()
-        #if block //DEBUG
-        //查詢單字
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.action.accept(.selected(vocabulary: "qqqqqqqqqqqq"))
-        }
-        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AdsManager.shared.rootViewController = self
+        AdsManager.shared.bottomBannerRootViewController = self
     }
     
     func bind(viewModel: CaptureVocabularyViewModel) {
@@ -144,7 +138,7 @@ class CaptureVocabularyViewController: UIViewController {
 // UI
 extension CaptureVocabularyViewController {
     func configUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = "F8F7F7".color
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -242,14 +236,11 @@ extension CaptureVocabularyViewController {
     func configQueryButton() {
         let title = NSLocalizedString("CaptureVocabularyViewController.search", comment: "查詢")
         queryButton.setTitle(title, for: .normal)
-        
-        queryButton.backgroundColorHex = "3D5CFF"
-        queryButton.layer.cornerRadius = 5
-        queryButton.layer.masksToBounds = true
+        queryButton.applyConfirmStyle()
     }
     
     func configAdView() {
-        let height = AdsManager.shared.adSize.size.height
+        let height = AdsManager.shared.bottomBannerAdSize.size.height
         adBannerView.snp.makeConstraints {
             $0.height.equalTo(height)
             $0.width.equalToSuperview()

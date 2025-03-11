@@ -25,6 +25,22 @@ struct StanderDecision: Decision {
             #endif
         }
     }
+    
+    func apply<Req>(request: Req, response: Moya.Response) async -> DecisionAction<Req> where Req : Request {
+        return await withCheckedContinuation({ continuation in
+            let resData = response.data
+            do {
+                let model = try JSONDecoder().decode(Req.ResponseModel.self, from: resData)
+                continuation.resume(returning: .done(value: model))
+            }
+            catch {
+                #if DEBUG
+                let _ = try! JSONDecoder().decode(Req.ResponseModel.self, from: resData)
+                #endif
+                continuation.resume(returning: .errored(error: error))
+            }
+        })
+    }
 }
 
 
