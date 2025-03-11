@@ -11,12 +11,17 @@ import RxSwift
 
 struct StoryConfirmSaveView: View {
     @ObservedObject var viewModel: StoryConfirmSaveViewModel
-    
+    let title = NSLocalizedString("StoryGeneratorViewController.title", comment: "故事生成器")
     var body: some View {
         VStack(spacing: 10) {
+            Text(title)
+                .font(.system(size: 17, weight: .medium))
+            Divider()
+                .background("CBCBCB".color)
             StoryDisplayView(viewModel: viewModel.storyDisplayViewModel)
                 .frame(maxHeight: .infinity)
-                .background(Color(uiColor: "F8F7F7".color))
+                .padding(.top, 10)
+                .background("F8F7F7".color)
                 .padding(.leading, 24)
                 .padding(.trailing, 24)
             buttonViews()
@@ -43,25 +48,31 @@ private extension StoryConfirmSaveView {
         
         
         HStack {
-            Spacer()
+            Spacer().frame(width: 34)
+            
             Button(cancelString) {
                 viewModel.pressCancelButton()
             }
             .font(.system(size: 13, weight: .bold))
-            .frame(width: 100, height: 50)
-            .background(Color.gray)
+            .frame(height: 40)
+            .frame(maxWidth: .infinity)
+            .background("667080".color)
             .foregroundStyle(Color.white)
             .cornerRadius(10)
-            Spacer()
+            
+            Spacer().frame(width: 27)
+            
             Button(saveString) {
                 viewModel.pressSaveButton()
             }
             .font(.system(size: 13, weight: .bold))
-            .frame(width: 100, height: 50)
-            .background(Color(uiColor: "3D5CFF".color))
+            .frame(height: 40)
+            .frame(maxWidth: .infinity)
+            .background("3D5CFF".color)
             .foregroundStyle(Color.white)
             .cornerRadius(10)
-            Spacer()
+            
+            Spacer().frame(width: 34)
         }
     }
 }

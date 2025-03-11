@@ -45,7 +45,7 @@ private extension StoryGeneratorListSettingCell {
             make.size.equalTo(17)
         }
         selectedIcon.layer.cornerRadius = 4
-        selectedIcon.layer.borderColor = "667080".color.cgColor
+        selectedIcon.layer.borderColor = "667080".uicolor.cgColor
         selectedIcon.layer.borderWidth = 1
         selectedIcon.contentMode = .scaleAspectFill
         
