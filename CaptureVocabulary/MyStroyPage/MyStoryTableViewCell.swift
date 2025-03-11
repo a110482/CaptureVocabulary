@@ -37,7 +37,7 @@ extension MyStoryTableViewCell {
         for cardListTitle in cellModel.allCardListTitle {
             let label = UILabel(text: cardListTitle)
             label.font = .systemFont(ofSize: 12, weight: .medium)
-            label.textColor = "3D5CFF".color
+            label.textColor = "3D5CFF".uicolor
             cardListStackView.addArrangedSubview(label)
         }
     }
@@ -90,7 +90,7 @@ private extension MyStoryTableViewCell {
         mainStackView.addArrangedSubview(cardListStackView)
         let folderIcon = UIImage(systemName: "folder")?.withRenderingMode(.alwaysTemplate)
         let imageView = UIImageView(image: folderIcon)
-        imageView.tintColor = "3D5CFF".color
+        imageView.tintColor = "3D5CFF".uicolor
         imageView.snp.makeConstraints { make in
             make.size.equalTo(18)
         }

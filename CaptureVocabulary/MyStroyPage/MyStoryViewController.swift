@@ -81,7 +81,7 @@ extension MyStoryViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - private functions
 private extension MyStoryViewController {
     func configUI() {
-        view.backgroundColor = "F8F7F7".color
+        view.backgroundColor = "F8F7F7".uicolor
         configStackView()
         configTitleView()
         configStoryTableview()
@@ -155,12 +155,12 @@ private class TitleView: UIView {
             make.center.equalToSuperview()
         }
         titleLabel.text = NSLocalizedString("TabBarCoordinator.myStory", comment: "我的故事")
-        titleLabel.textColor = "353535".color
+        titleLabel.textColor = "353535".uicolor
         titleLabel.font = .systemFont(ofSize: 17, weight: .medium)
         
         
         newStoryButton.setTitle(NSLocalizedString("MyStoryViewController.newStory", comment: "新故事"), for: .normal)
-        newStoryButton.setTitleColor("3D5CFF".color, for: .normal)
+        newStoryButton.setTitleColor("3D5CFF".uicolor, for: .normal)
         newStoryButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         
         newStoryButton.snp.makeConstraints { make in

@@ -51,12 +51,13 @@ extension StoryGeneratorViewController {
     func bind(viewModel: StoryGeneratorViewModel) {
         self.viewModel = viewModel
         handle(viewModelResponse: viewModel.output.apiResponse)
+        handle(vocabularyAmountNotEnough: viewModel.output.vocabularyAmountNotEnough)
     }
 }
 
 private extension StoryGeneratorViewController {
     func configUI() {
-        view.backgroundColor = "F8F7F7".color
+        view.backgroundColor = "F8F7F7".uicolor
         configConfirmButton()
         configMainStackView()
         configStepOneLabel()
@@ -80,7 +81,7 @@ private extension StoryGeneratorViewController {
         view.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.7)
-            make.bottom.equalToSuperview().offset(-24)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(40)
             make.centerX.equalToSuperview()
         }
@@ -124,7 +125,7 @@ private extension StoryGeneratorViewController {
         }
         vocabularyAmountSlider.minimumValue = viewModel.vocabularyAmountRange.lowerBound
         vocabularyAmountSlider.maximumValue = viewModel.vocabularyAmountRange.upperBound
-        vocabularyAmountSlider.minimumTrackTintColor = "667080".color
+        vocabularyAmountSlider.minimumTrackTintColor = "667080".uicolor
         vocabularyAmountSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
         updateSliderUI()
     }
@@ -147,7 +148,7 @@ private extension StoryGeneratorViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorInset = .zero
-        tableView.separatorColor = "555555".color
+        tableView.separatorColor = "555555".uicolor
         tableView.register(StoryGeneratorListSettingCell.self, forCellReuseIdentifier: "StoryGeneratorListSettingCell")
     }
     
@@ -183,11 +184,28 @@ private extension StoryGeneratorViewController {
         updateSliderUI()
     }
     
+    /// api 回應
     func handle(viewModelResponse: Observable<StoryGeneratorViewModel.Response>) {
         viewModelResponse.subscribe(onNext: { [weak self] action in
             guard let self else { return }
             stopLoadingAnimate()
         }).disposed(by: disposeBag)
+    }
+    
+    /// 單字數量不足
+    func handle(vocabularyAmountNotEnough: Observable<Void>) {
+        vocabularyAmountNotEnough.subscribe(onNext: { [weak self] in
+            guard let self else { return }
+            stopLoadingAnimate()
+            let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            let text = NSLocalizedString("StoryGeneratorViewController.VocabularyAmountNotEnough", comment: "單字量不足以產生文章")
+            alertVC.title = text
+            let ok = UIAlertAction(title: NSLocalizedString("VocabularyListViewController.confirm", comment: "確認"),
+                                   style: .default)
+            alertVC.addAction(ok)
+            present(alertVC, animated: true)
+        }).disposed(by: disposeBag)
+        
     }
 }
 
@@ -226,9 +244,9 @@ private extension UIInsetLabel {
         }
         textAlignment = .left
         numberOfLines = 2
-        backgroundColor = "C4C9D3".color
+        backgroundColor = "C4C9D3".uicolor
         textInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        textColor = "667080".color
+        textColor = "667080".uicolor
         font = .systemFont(ofSize: 13, weight: .medium)
     }
 }

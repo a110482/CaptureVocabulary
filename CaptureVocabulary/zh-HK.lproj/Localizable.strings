@@ -59,5 +59,6 @@
 "StoryGeneratorViewController.title" = "故事產生器";
 "StoryGeneratorViewController.stepOne" = "第一步: 選擇隨機產生的單字上限";
 "StoryGeneratorViewController.stepTwo" = "第二步: 選擇單字來源";
+"StoryGeneratorViewController.VocabularyAmountNotEnough" = "單字量不足以產生文章";
 
 "MyStoryViewController.newStory" = "新故事";

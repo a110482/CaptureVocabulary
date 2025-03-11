@@ -53,8 +53,10 @@ private extension StoryDisplayView {
                             .padding(.bottom, 10)
                     }
                 }
-            }.padding([.leading, .trailing], 16)
+            }
+            .padding([.leading, .trailing], 16)
         }
+        .scrollIndicators(.hidden)
     }
 
     func highlightedText(source: String, keys: [String]) -> AttributedString {
@@ -62,7 +64,7 @@ private extension StoryDisplayView {
         for key in keys {
             var searchString = attributedString [attributedString.startIndex..<attributedString.endIndex]
             while let range = searchString.range(of: key, options: .caseInsensitive) {
-                attributedString[range].foregroundColor = "3D5CFF".color
+                attributedString[range].foregroundColor = "3D5CFF".uicolor
                 // TODO: "文字連結拆分成另一個函數 讓每個字都可以查詢"
                 attributedString[range].link = URL(string: "captureVocabulary://textLink/\(key)")
                 searchString = attributedString[range.upperBound..<attributedString.endIndex]
@@ -92,5 +94,12 @@ class StoryDisplayViewModel: ObservableObject {
     let model = StoryDataModel.mock
     let storyORM = StoryORM.ORM(storyDataModel: model)!
     let viewModel = StoryDisplayViewModel(storyORM: storyORM)!
-    StoryDisplayView(viewModel: viewModel)
+    VStack {
+        Spacer()
+        StoryDisplayView(viewModel: viewModel)
+            .frame(height: 400)
+            .background(.white)
+        Spacer()
+    }
+    .background(Color.black)
 }

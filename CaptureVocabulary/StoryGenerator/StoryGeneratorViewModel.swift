@@ -21,6 +21,7 @@ class StoryGeneratorViewModel {
     private var cellModels: [StoryGeneratorListSettingCellModel]
     private lazy var vocabularyAmount: Float = vocabularyAmountRange.average
     private let apiResponse = BehaviorRelay<Response?>(value: nil)
+    private let vocabularyAmountNotEnough = PublishRelay<Void>()
     private let action = PublishRelay<Action>()
 }
 
@@ -33,6 +34,7 @@ extension StoryGeneratorViewModel {
         var cellModels: [StoryGeneratorListSettingCellModel] { target.cellModels }
         var vocabularyAmount: Float { target.vocabularyAmount }
         var apiResponse: Observable<Response> { target.apiResponse.compactMap({ $0 }).asObservable() }
+        var vocabularyAmountNotEnough: Observable<Void> { target.vocabularyAmountNotEnough.asObservable() }
         var action: Observable<Action> { target.action.asObservable() }
     }
     
@@ -55,6 +57,10 @@ extension StoryGeneratorViewModel {
     func pressStoryGenerateButton() {
         // 確定有觀看廣告的獎勵
         guard AdsManager.shared.output.isPresentInterstitialAdValue else { return }
+        guard isVocabularyValid(allVocabularies: readAllVocabularies()) else {
+            vocabularyAmountNotEnough.accept(())
+            return
+        }
         
         SwiftTask {
             guard let result = await sendStoryGeneratorApi() else {
@@ -89,7 +95,7 @@ private extension StoryGeneratorViewModel {
     }
     
     func isVocabularyValid(allVocabularies: [VocabularyCardORM.ORM]) -> Bool {
-        return !allVocabularies.isEmpty
+        return allVocabularies.count > Int(vocabularyAmountRange.lowerBound)
     }
     
     func readAllVocabularies() -> [VocabularyCardORM.ORM] {
