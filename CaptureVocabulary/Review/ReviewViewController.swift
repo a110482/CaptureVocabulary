@@ -294,7 +294,10 @@ extension ReviewViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     private func scrollCellTo(index: Int?, animated: Bool = true) {
-        let centralIndexPath = IndexPath(row: index ?? 0, section: 0)
+        guard let index else { return }
+        guard collectionView.numberOfSections > 0,
+              collectionView.numberOfItems(inSection: 0) > index else { return }
+        let centralIndexPath = IndexPath(row: index, section: 0)
         collectionView.scrollToItem(at: centralIndexPath,
                                     at: .centeredHorizontally,
                                     animated: animated)
