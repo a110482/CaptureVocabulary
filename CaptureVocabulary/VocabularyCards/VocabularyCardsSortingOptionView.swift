@@ -42,6 +42,7 @@ private extension VocabularyCardsSortingOptionView {
         backgroundColor = .clear
         addSubview(mainStackView)
         mainStackView.axis = .horizontal
+        mainStackView.alignment = .center
         mainStackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }

@@ -42,7 +42,7 @@ extension VocabularyCardsViewModel: VocabularyCardCellDelegate {
     func loadCards() {
         guard let listId = selectedList.id else { return }
         let cards = VocabularyCardORM.ORM.allList(listId: listId) ?? []
-        self.cards.accept(Array(cards.reversed()))
+        self.cards.accept(sort(cards: cards, by: currentSelectedOption))
     }
     
     func tapMemorizedSwitchButton(cellModel: VocabularyCardORM.ORM) {
@@ -85,7 +85,64 @@ private extension VocabularyCardsViewModel {
         return (sortingOptions, filterSelectedIndex, currentSelectedOption)
     }
     
-    func sort(cards: [VocabularyCardORM.ORM], by sortingOptions: VocabularyCardsSortingOption) {
-        
+    func sort(cards: [VocabularyCardORM.ORM], by sortingOptions: VocabularyCardsSortingOption) -> [VocabularyCardORM.ORM] {
+        switch sortingOptions {
+        case .star:
+            return sortingByMemorized(cards: cards)
+        case .time(let sortingType):
+            if sortingType == .ascending {
+                return sortingByTime(cards: cards)
+            } else {
+                return sortingByTimeRevise(cards: cards)
+            }
+        case .prefixLetter(let sortingType):
+            if sortingType == .ascending {
+                return sortingByString(cards: cards)
+            } else {
+                return sortingByStringRevise(cards: cards)
+            }
+        }
+    }
+    
+    /// 依靠星號排序 (星號代表未記憶)
+    func sortingByMemorized(cards: [VocabularyCardORM.ORM]) -> [VocabularyCardORM.ORM] {
+        return cards.sorted(by: {
+            // 確保都有星號欄位
+            guard $0.memorized != nil, $1.memorized != nil else {
+                return $0.id! < $1.id!
+            }
+            
+            if $0.memorized! {
+                // $0 已記憶代表無星號，把 $1 往前排
+                return false
+            } else if $1.memorized! {
+                // $1 已記憶代表無星號，把 $0 往前排
+                return true
+            }
+            // 無記憶就靠 id 排
+            return $0.id! < $1.id!
+        })
+    }
+    
+    func sortingByTime(cards: [VocabularyCardORM.ORM]) -> [VocabularyCardORM.ORM] {
+        return cards.sorted(by: { $0.id! < $1.id! })
+    }
+    
+    func sortingByTimeRevise(cards: [VocabularyCardORM.ORM]) -> [VocabularyCardORM.ORM] {
+        return cards.sorted(by: { $0.id! > $1.id! })
+    }
+    
+    func sortingByString(cards: [VocabularyCardORM.ORM]) -> [VocabularyCardORM.ORM] {
+        return cards.sorted(by: {
+            guard  $0.normalizedSource != nil,  $1.normalizedSource != nil else { return true }
+            return $0.normalizedSource! < $1.normalizedSource!
+        })
+    }
+    
+    func sortingByStringRevise(cards: [VocabularyCardORM.ORM]) -> [VocabularyCardORM.ORM] {
+        return cards.sorted(by: {
+            guard  $0.normalizedSource != nil,  $1.normalizedSource != nil else { return true }
+            return $0.normalizedSource! > $1.normalizedSource!
+        })
     }
 }
