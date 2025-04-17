@@ -65,3 +65,6 @@
 "StoryGeneratorViewController.VocabularyAmountNotEnough" = "单词量不足以产生文章";
 
 "MyStoryViewController.newStory" = "新故事";
+
+"VocabularyCardsSortingOptionView.star" = "星号";
+"VocabularyCardsSortingOptionView.time" = "时间";
