@@ -11,11 +11,6 @@ import RxCocoa
 
 /// 分段視圖的配置設定。
 class SegmentedViewConfiguration {
-    /// 用於分段視圖中文本的字型。預設為系統字型，大小為 12。
-    var font: UIFont = .systemFont(ofSize: 12) {
-        didSet { _configChanged.accept(()) }
-    }
-    
     /// 用於分段視圖中預設（未選擇）選項的顏色。預設為淺灰色。
     var defaultOptionsColor: UIColor = .lightGray {
         didSet { _configChanged.accept(()) }

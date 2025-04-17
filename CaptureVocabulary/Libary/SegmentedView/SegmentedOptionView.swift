@@ -29,7 +29,9 @@ class SegmentedOptionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateUI() {}
+    func updateUI() {
+        backgroundColor = isSelected ? _configuration.selectedOptionsColor : _configuration.defaultOptionsColor
+    }
     
     private var _configuration: SegmentedViewConfiguration
     private var configurationDisposeBag = DisposeBag()
