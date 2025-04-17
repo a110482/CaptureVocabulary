@@ -10,9 +10,9 @@
 		0600CC842D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
 		0600CC852D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
 		0600CC862D27C80200FD15FD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC832D27C80200FD15FD /* Array+Extension.swift */; };
-		0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
-		0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
-		0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */; };
+		0600CC882D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift */; };
+		0600CC892D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift */; };
+		0600CC8A2D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC872D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift */; };
 		0600CC8C2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
 		0600CC8D2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
 		0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600CC8B2D27D98600FD15FD /* Range+Extension.swift */; };
@@ -32,6 +32,8 @@
 		067EE7FE2C5C718700523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE7FF2C5C71E000523B51 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FD2C5C718700523B51 /* Color+Extension.swift */; };
 		067EE8002C5C71E300523B51 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067EE7FB2C5C712600523B51 /* View+Extension.swift */; };
+		0685B5122DB0D3B800AFE269 /* FuzzyEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0685B5112DB0D3B800AFE269 /* FuzzyEquatable.swift */; };
+		0685B5132DB0D3B800AFE269 /* FuzzyEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0685B5112DB0D3B800AFE269 /* FuzzyEquatable.swift */; };
 		06B3F29A2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
 		06B3F29B2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
 		06B3F29C2D6F18D400DA911A /* StoryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */; };
@@ -368,7 +370,7 @@
 /* Begin PBXFileReference section */
 		03B6D3B25CFA8DFE5B486FA5 /* Pods-CaptureVocabularyWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CaptureVocabularyWidgetExtension/Pods-CaptureVocabularyWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		0600CC832D27C80200FD15FD /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGeneratorOptionView.swift; sourceTree = "<group>"; };
+		0600CC872D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCardsSortingOptionView.swift; sourceTree = "<group>"; };
 		0600CC8B2D27D98600FD15FD /* Range+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+Extension.swift"; sourceTree = "<group>"; };
 		061228172D5C9CCA008FF95E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0612281A2D5D9A8C008FF95E /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 		067EE7F72C5B786600523B51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FB2C5C712600523B51 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		067EE7FD2C5C718700523B51 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		0685B5112DB0D3B800AFE269 /* FuzzyEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyEquatable.swift; sourceTree = "<group>"; };
 		06B3F2992D6F18D400DA911A /* StoryDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDisplayView.swift; sourceTree = "<group>"; };
 		06B3F29D2D6FFA6300DA911A /* StoryConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmCoordinator.swift; sourceTree = "<group>"; };
 		06B3F2B92D70582000DA911A /* StoryConfirmSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryConfirmSaveView.swift; sourceTree = "<group>"; };
@@ -641,7 +644,6 @@
 				06E199772D277E08000DE54C /* StoryGeneratorCoordinator.swift */,
 				06E199732D277DF8000DE54C /* StoryGeneratorViewController.swift */,
 				06E1997B2D277E2D000DE54C /* StoryGeneratorViewModel.swift */,
-				0600CC872D27CF7700FD15FD /* StoryGeneratorOptionView.swift */,
 				06C1F5592D3E537900C60EAE /* Views */,
 			);
 			path = StoryGenerator;
@@ -795,6 +797,7 @@
 				C0BF557129E65BFF001DEF3D /* VocabularyCardsViewModel.swift */,
 				C0BF557329E65C2D001DEF3D /* VocabularyCardsViewController.swift */,
 				F52A6548283DDC540094357B /* VocabularyCardCell.swift */,
+				0600CC872D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift */,
 			);
 			path = VocabularyCards;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				F5A16308280BF13300257ABF /* Coordinator.swift */,
 				F5A1630C280BF14B00257ABF /* TableViewCellTemplate.swift */,
 				F5B5EADA28145B6C000DD57B /* PlistReader.swift */,
+				0685B5112DB0D3B800AFE269 /* FuzzyEquatable.swift */,
 				C001389429C83CE500D2E4BA /* JsonReader.swift */,
 				F5CBF5972815BFF30088C801 /* Operators.swift */,
 				F5071C9D282BBD8F00813841 /* Speaker.swift */,
@@ -1372,7 +1376,7 @@
 				06FBBACD2D23F13000038345 /* MyStoryViewController.swift in Sources */,
 				06BF101D2D79411300529EDB /* UIInsetLabel.swift in Sources */,
 				0600CC8E2D27D98600FD15FD /* Range+Extension.swift in Sources */,
-				0600CC8A2D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				0600CC8A2D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */,
 				06C1F5692D424BE500C60EAE /* StoryORM.swift in Sources */,
 				06C1F5612D3FA26900C60EAE /* StoryGeneratorApi.swift in Sources */,
 				06C1F56D2D4360F400C60EAE /* Codable+Extension.swift in Sources */,
@@ -1477,7 +1481,7 @@
 				C060795E29E805DA00434A2E /* Encodable+Ext.swift in Sources */,
 				C0BDFF042B8738F60033D319 /* SettingPageViewModel.swift in Sources */,
 				C060795F29E805DA00434A2E /* Coordinating.swift in Sources */,
-				0600CC882D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				0600CC882D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */,
 				06BF10132D76CEE600529EDB /* String+Extension.swift in Sources */,
 				C060796029E805DA00434A2E /* Coordinator.swift in Sources */,
 				C060796129E805DA00434A2E /* TableViewCellTemplate.swift in Sources */,
@@ -1507,6 +1511,7 @@
 				C060797029E805DA00434A2E /* UIColorSetting.swift in Sources */,
 				C060797129E805DA00434A2E /* MockWords.swift in Sources */,
 				06C1F5642D4245D900C60EAE /* VocabularyCardListORM.swift in Sources */,
+				0685B5122DB0D3B800AFE269 /* FuzzyEquatable.swift in Sources */,
 				06E1997C2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C060797229E805DA00434A2E /* DevPanelViewController.swift in Sources */,
 				C060793929E805AD00434A2E /* ReviewCollectionViewCell.swift in Sources */,
@@ -1563,7 +1568,7 @@
 				F52A654C2843A2730094357B /* ActiveSwitchButton.swift in Sources */,
 				C0347D3429F8CBAB004A1133 /* AdsManager.swift in Sources */,
 				06E199752D277DF8000DE54C /* StoryGeneratorViewController.swift in Sources */,
-				0600CC892D27CF7700FD15FD /* StoryGeneratorOptionView.swift in Sources */,
+				0600CC892D27CF7700FD15FD /* VocabularyCardsSortingOptionView.swift in Sources */,
 				F58A860D28142A110005CD34 /* RequestBuilder.swift in Sources */,
 				C0BF557429E65C2D001DEF3D /* VocabularyCardsViewController.swift in Sources */,
 				F58A860B281428670005CD34 /* StanderDecision.swift in Sources */,
@@ -1644,6 +1649,7 @@
 				F5C2006B28071DE200A3AAB6 /* SceneDelegate.swift in Sources */,
 				06FBBAE02D268E8800038345 /* SegmentedView.swift in Sources */,
 				06BF100F2D75A45100529EDB /* MyStoryTableViewCell.swift in Sources */,
+				0685B5132DB0D3B800AFE269 /* FuzzyEquatable.swift in Sources */,
 				06E1997D2D277E2D000DE54C /* StoryGeneratorViewModel.swift in Sources */,
 				C0BDFF0C2B8899840033D319 /* SettingReadingCell.swift in Sources */,
 				F50952C428280B62000C74B0 /* VocabularyCardsCoordinator.swift in Sources */,
