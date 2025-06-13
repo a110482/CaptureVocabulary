@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.map({ $0.url }).first else { return }
-        print(url.host(), url.path())
+        Log.debug(url.host(), url.path())
     }
 }
 

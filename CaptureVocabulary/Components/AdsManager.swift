@@ -43,7 +43,7 @@ final class AdsManager : NSObject {
 
     private override init() {
         super.init()
-        GADMobileAds.sharedInstance().start()
+        MobileAds.shared.start()
         configureBottomBanner()
         configureMiddleBanner()
         // (暫時停用全頁廣告)
@@ -54,9 +54,9 @@ final class AdsManager : NSObject {
     private var isLoadedSimpleBannerAd = false
     private var isLoadedMiddleBannerAd = false
     /// 底部橫幅廣告
-    private var bottomBannerView: GADBannerView?
-    private var middleBannerView: GADBannerView?
-    private var interstitial: GADInterstitialAd?
+    private var bottomBannerView: BannerView?
+    private var middleBannerView: BannerView?
+    private var interstitial: InterstitialAd?
     private var reloadInterstitialAdTimer: Timer?
     /// 是否已經看完廣告 (第一版先不要放廣告)
     private let isPresentInterstitialAd = BehaviorRelay(value: true)
@@ -68,14 +68,14 @@ final class AdsManager : NSObject {
 private extension AdsManager {
     /// 設定底部橫幅廣告
     func configureBottomBanner() {
-        bottomBannerView = GADBannerView(adSize: bottomBannerAdSize)
+        bottomBannerView = BannerView(adSize: bottomBannerAdSize)
         bottomBannerView?.delegate = self
         bottomBannerView?.adUnitID = AppParameters.shared.model.adUnitID
     }
     
     /// 設定中等橫幅廣告
     func configureMiddleBanner() {
-        middleBannerView = GADBannerView(adSize: middleBannerAdSize)
+        middleBannerView = BannerView(adSize: middleBannerAdSize)
         middleBannerView?.delegate = self
         middleBannerView?.adUnitID = AppParameters.shared.model.adMiddenUnitID
     }
@@ -90,7 +90,7 @@ private extension AdsManager {
         guard let banner = self.bottomBannerView else { return }
         banner.rootViewController = root
         if !isLoadedSimpleBannerAd {
-            banner.load(GADRequest())
+            banner.load(GoogleMobileAds.Request())
         } else {
             root.addBannerToAdsPlaceholder(banner)
         }
@@ -106,7 +106,7 @@ private extension AdsManager {
         guard let banner = self.middleBannerView else { return }
         banner.rootViewController = root
         if !isLoadedMiddleBannerAd {
-            banner.load(GADRequest())
+            banner.load(GoogleMobileAds.Request())
         } else {
             root.addBannerToAdsPlaceholder(banner)
         }
@@ -128,20 +128,20 @@ extension AdsManager {
         }
     }
     
-    var bottomBannerAdSize: GADAdSize {
+    var bottomBannerAdSize: AdSize {
         let width = UIScreen.main.bounds.width
-        let adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width)
+        let adSize = currentOrientationAnchoredAdaptiveBanner(width: width)
         return adSize
     }
     
-    var middleBannerAdSize: GADAdSize {
-        return GADAdSizeMediumRectangle
+    var middleBannerAdSize: AdSize {
+        return AdSizeMediumRectangle
     }
 }
 
 // MARK: - 橫幅廣告 delegate
-extension AdsManager: GADBannerViewDelegate {
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+extension AdsManager: BannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: BannerView) {
         if bannerView === bottomBannerView {
             isLoadedSimpleBannerAd = true
             guard let root = bottomBannerRootViewController else { return }
@@ -153,7 +153,7 @@ extension AdsManager: GADBannerViewDelegate {
         }
     }
 
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+    func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
         Log.debug(error.localizedDescription)
     }
 }

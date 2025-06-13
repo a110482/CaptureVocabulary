@@ -25,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // google 廣告設定
         ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-            GADMobileAds.sharedInstance().start(completionHandler: nil)
+            MobileAds.shared.start(completionHandler: nil)
         })
         #if DEBUG
-        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers =
             [ "cb559a1d2a23be3dcf18b870e5ff9c2d" ]
         #endif
         
