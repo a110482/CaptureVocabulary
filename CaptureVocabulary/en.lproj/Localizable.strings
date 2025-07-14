@@ -65,3 +65,6 @@
 "StoryGeneratorViewController.VocabularyAmountNotEnough" = "Insufficient vocabulary to generate the article";
 
 "MyStoryViewController.newStory" = "New Story";
+
+"VocabularyCardsSortingOptionView.star" = "Star";
+"VocabularyCardsSortingOptionView.time" = "Time";
